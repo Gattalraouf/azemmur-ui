@@ -1,0 +1,36 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "Azemmur",
+  "homepage": "http://localhost:3000",
+  "items": [
+    {
+      "name": "index",
+      "type": "registry:style",
+      "dependencies": [
+        "tw-animate-css",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "cssVars": {},
+      "files": []
+    },
+    {
+      "name": "dummy",
+      "type": "registry:ui",
+      "title": "Demo",
+      "description": "A dummy component with to test the process.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/azemmur/dummy/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/dummy.tsx"
+        }
+      ]
+    }
+  ]
+}

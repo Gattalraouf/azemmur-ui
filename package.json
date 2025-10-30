@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-    "prepare": "husky"
+    "prepare": "husky",
+    "registry:build": "pnpm --filter azemmur registry:build"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

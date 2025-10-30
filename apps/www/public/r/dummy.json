@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dummy",
+  "type": "registry:ui",
+  "title": "Demo",
+  "description": "A dummy component with to test the process.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/azemmur/dummy/index.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\n\nfunction Dummy() {\n  return <></>;\n}\n\nexport { Dummy };\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/dummy.tsx"
+    }
+  ]
+}
