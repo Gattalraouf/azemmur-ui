@@ -18,6 +18,25 @@
       "files": []
     },
     {
+      "name": "components-buttons-button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A button component with a variety of styles and animations.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@azemmur/primitives-buttons-button"
+      ],
+      "files": [
+        {
+          "path": "registry/components/azemmur/button/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/button.tsx"
+        }
+      ]
+    },
+    {
       "name": "dummy",
       "type": "registry:ui",
       "title": "Demo",
@@ -31,6 +50,89 @@
           "target": "components/azemmur/components/dummy.tsx"
         }
       ]
+    },
+    {
+      "name": "primitives-animate-slot",
+      "type": "registry:ui",
+      "title": "Animate Slot",
+      "description": "A slot component that allows you to use motion components with any element.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "registry/components/primitives/animate/slot/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/primitives/animate/slot.tsx"
+        }
+      ]
+    },
+    {
+      "name": "primitives-buttons-button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A simple button that animates on hover and tap.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "@azemmur/primitives-animate-slot"
+      ],
+      "files": [
+        {
+          "path": "registry/components/primitives/buttons/button/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/primitives/buttons/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "demo-components-buttons-button",
+      "type": "registry:ui",
+      "title": "Button Demo",
+      "description": "Demo showing a button.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@azemmur/components-buttons-button"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/azemmur/button/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/demo/components/azemmur/button.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "Button": {
+            "variant": {
+              "value": "default",
+              "options": {
+                "default": "default",
+                "accent": "accent",
+                "destructive": "destructive",
+                "outline": "outline",
+                "secondary": "secondary",
+                "ghost": "ghost",
+                "link": "link"
+              }
+            },
+            "size": {
+              "value": "default",
+              "options": {
+                "default": "default",
+                "sm": "sm",
+                "lg": "lg",
+                "icon": "icon",
+                "icon-sm": "icon-sm",
+                "icon-lg": "icon-lg"
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }

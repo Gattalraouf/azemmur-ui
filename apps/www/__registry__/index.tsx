@@ -22,6 +22,44 @@ export const index: Record<string, any> = {
     component: null,
     command: '@azemmur/index',
   },
+  'components-buttons-button': {
+    name: 'components-buttons-button',
+    description: 'A button component with a variety of styles and animations.',
+    type: 'registry:ui',
+    dependencies: ['class-variance-authority'],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/primitives-buttons-button'],
+    files: [
+      {
+        path: 'registry/components/azemmur/button/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/button.tsx',
+        content:
+          "'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/buttons/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\",\n  {\n    variants: {\n      variant: {\n        default:\n          'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',\n        accent: 'bg-accent text-accent-foreground shadow-xs hover:bg-accent/90',\n        destructive:\n          'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',\n        outline:\n          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',\n        secondary:\n          'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',\n        ghost:\n          'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',\n        link: 'text-primary underline-offset-4 hover:underline',\n      },\n      size: {\n        default: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',\n        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',\n        icon: 'size-9',\n        'icon-sm': 'size-8 rounded-md',\n        'icon-lg': 'size-10 rounded-md',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'default',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({ className, variant, size, ...props }: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(buttonVariants({ variant, size, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import(
+          '@/registry/components/azemmur/button/index.tsx'
+        );
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'components-buttons-button';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/components-buttons-button',
+  },
   dummy: {
     name: 'dummy',
     description: 'A dummy component with to test the process.',
@@ -59,5 +97,146 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/dummy',
+  },
+  'primitives-animate-slot': {
+    name: 'primitives-animate-slot',
+    description:
+      'A slot component that allows you to use motion components with any element.',
+    type: 'registry:ui',
+    dependencies: ['motion'],
+    devDependencies: undefined,
+    registryDependencies: undefined,
+    files: [
+      {
+        path: 'registry/components/primitives/animate/slot/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/primitives/animate/slot.tsx',
+        content:
+          "'use client';\n\nimport * as React from 'react';\nimport { motion, isMotionComponent, type HTMLMotionProps } from 'motion/react';\nimport { cn } from '@/lib/utils';\n\ntype AnyProps = Record<string, unknown>;\n\ntype DOMMotionProps<T extends HTMLElement = HTMLElement> = Omit<\n  HTMLMotionProps<keyof HTMLElementTagNameMap>,\n  'ref'\n> & { ref?: React.Ref<T> };\n\ntype WithAsChild<Base extends object> =\n  | (Base & { asChild: true; children: React.ReactElement })\n  | (Base & { asChild?: false | undefined });\n\ntype SlotProps<T extends HTMLElement = HTMLElement> = {\n  // eslint-disable-next-line @typescript-eslint/no-explicit-any\n  children?: any;\n} & DOMMotionProps<T>;\n\nfunction mergeRefs<T>(\n  ...refs: (React.Ref<T> | undefined)[]\n): React.RefCallback<T> {\n  return (node) => {\n    refs.forEach((ref) => {\n      if (!ref) return;\n      if (typeof ref === 'function') {\n        ref(node);\n      } else {\n        (ref as React.RefObject<T | null>).current = node;\n      }\n    });\n  };\n}\n\nfunction mergeProps<T extends HTMLElement>(\n  childProps: AnyProps,\n  slotProps: DOMMotionProps<T>,\n): AnyProps {\n  const merged: AnyProps = { ...childProps, ...slotProps };\n\n  if (childProps.className || slotProps.className) {\n    merged.className = cn(\n      childProps.className as string,\n      slotProps.className as string,\n    );\n  }\n\n  if (childProps.style || slotProps.style) {\n    merged.style = {\n      ...(childProps.style as React.CSSProperties),\n      ...(slotProps.style as React.CSSProperties),\n    };\n  }\n\n  return merged;\n}\n\nfunction Slot<T extends HTMLElement = HTMLElement>({\n  children,\n  ref,\n  ...props\n}: SlotProps<T>) {\n  const isAlreadyMotion =\n    typeof children.type === 'object' &&\n    children.type !== null &&\n    isMotionComponent(children.type);\n\n  const Base = React.useMemo(\n    () =>\n      isAlreadyMotion\n        ? (children.type as React.ElementType)\n        : motion.create(children.type as React.ElementType),\n    [isAlreadyMotion, children.type],\n  );\n\n  if (!React.isValidElement(children)) return null;\n\n  const { ref: childRef, ...childProps } = children.props as AnyProps;\n\n  const mergedProps = mergeProps(childProps, props);\n\n  return (\n    <Base {...mergedProps} ref={mergeRefs(childRef as React.Ref<T>, ref)} />\n  );\n}\n\nexport {\n  Slot,\n  type SlotProps,\n  type WithAsChild,\n  type DOMMotionProps,\n  type AnyProps,\n};",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import(
+          '@/registry/components/primitives/animate/slot/index.tsx'
+        );
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'primitives-animate-slot';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/primitives-animate-slot',
+  },
+  'primitives-buttons-button': {
+    name: 'primitives-buttons-button',
+    description: 'A simple button that animates on hover and tap.',
+    type: 'registry:ui',
+    dependencies: ['motion'],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/primitives-animate-slot'],
+    files: [
+      {
+        path: 'registry/components/primitives/buttons/button/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/primitives/buttons/button.tsx',
+        content:
+          "'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/animate-ui/primitives/animate/slot';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n\n  return (\n    <Component\n      whileTap={{ scale: tapScale }}\n      whileHover={{ scale: hoverScale }}\n      {...props}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import(
+          '@/registry/components/primitives/buttons/button/index.tsx'
+        );
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'primitives-buttons-button';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/primitives-buttons-button',
+  },
+  'demo-components-buttons-button': {
+    name: 'demo-components-buttons-button',
+    description: 'Demo showing a button.',
+    type: 'registry:ui',
+    dependencies: ['lucide-react'],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/components-buttons-button'],
+    files: [
+      {
+        path: 'registry/demo/components/azemmur/button/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/components/azemmur/button.tsx',
+        content:
+          "import { PlusIcon } from 'lucide-react';\nimport { Button, type ButtonProps } from '@/components/azemmur/components/azemmur/button';\n\ninterface ButtonDemoProps {\n  variant: ButtonProps['variant'];\n  size: ButtonProps['size'];\n}\n\nexport default function ButtonDemo({ variant, size }: ButtonDemoProps) {\n  return (\n    <Button variant={variant} size={size}>\n      {size === 'icon' ? <PlusIcon /> : 'Click me'}\n    </Button>\n  );\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import(
+          '@/registry/demo/components/azemmur/button/index.tsx'
+        );
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-components-buttons-button';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        Button: {
+          variant: {
+            value: 'default',
+            options: {
+              default: 'default',
+              accent: 'accent',
+              destructive: 'destructive',
+              outline: 'outline',
+              secondary: 'secondary',
+              ghost: 'ghost',
+              link: 'link',
+            },
+          },
+          size: {
+            value: 'default',
+            options: {
+              default: 'default',
+              sm: 'sm',
+              lg: 'lg',
+              icon: 'icon',
+              'icon-sm': 'icon-sm',
+              'icon-lg': 'icon-lg',
+            },
+          },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-components-buttons-button',
   },
 };
