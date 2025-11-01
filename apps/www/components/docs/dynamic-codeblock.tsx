@@ -8,6 +8,14 @@ import type {
 import { useShiki } from 'fumadocs-core/highlight/client';
 import { cn } from '@workspace/ui/lib/utils';
 
+/* -------------------------------------------------------------------------- */
+/*                          Utility Functions                                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Returns components used by the syntax highlighter.
+ * Currently wraps `pre` elements in our `CodeBlock` with optional title/icon/copy.
+ */
 const getComponents = ({
   title,
   icon,
@@ -35,6 +43,10 @@ const getComponents = ({
     },
   }) satisfies HighlightOptionsCommon['components'];
 
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
+
 export type DynamicCodeBlockProps = {
   lang: string;
   code: string;
@@ -45,6 +57,14 @@ export type DynamicCodeBlockProps = {
   className?: string;
 };
 
+/* -------------------------------------------------------------------------- */
+/*                           Dynamic CodeBlock                                */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * A flexible code block component that uses Shiki for syntax highlighting.
+ * Supports optional title, icon, and copy button.
+ */
 export function DynamicCodeBlock({
   lang,
   code,
@@ -54,8 +74,10 @@ export function DynamicCodeBlock({
   onCopy,
   className,
 }: DynamicCodeBlockProps) {
+  // Generate components for syntax highlighting
   const components = getComponents({ title, icon, onCopy, className });
 
+  // Render highlighted code with Shiki
   return useShiki(code, {
     lang,
     ...options,

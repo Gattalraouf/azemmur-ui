@@ -1,16 +1,23 @@
 'use client';
 
+import { useRef, useState } from 'react';
 import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
 import { CodeTabs } from '@/components/docs/code-tabs';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
-import { CollapsibleContent } from 'fumadocs-ui/components/ui/collapsible';
-import { Collapsible } from 'fumadocs-ui/components/ui/collapsible';
-import { CollapsibleTrigger } from 'fumadocs-ui/components/ui/collapsible';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from 'fumadocs-ui/components/ui/collapsible';
 import { Button } from '@workspace/ui/components/ui/button';
 import { cn } from '@workspace/ui/lib/utils';
-import { useRef, useState } from 'react';
 import ReactIcon from '@workspace/ui/components/ui/react-icon';
 
+/* -------------------------------------------------------------------------- */
+/*                        Helper Functions for Commands                        */
+/* -------------------------------------------------------------------------- */
+
+// Generate install commands for npm/pnpm/yarn/bun from a list of dependencies
 const getDepsCommands = (dependencies?: string[]) => {
   if (!dependencies) return undefined;
   return {
@@ -21,6 +28,7 @@ const getDepsCommands = (dependencies?: string[]) => {
   };
 };
 
+// Generate install commands for registry dependencies with URL rewriting
 const getRegistryDepsCommands = (dependencies?: string[]) => {
   if (!dependencies) return undefined;
   const quotedDependencies = dependencies
@@ -34,6 +42,7 @@ const getRegistryDepsCommands = (dependencies?: string[]) => {
       return dep;
     })
     .join(' ');
+
   return {
     npm: `npx shadcn@latest add ${quotedDependencies}`,
     pnpm: `pnpm dlx shadcn@latest add ${quotedDependencies}`,
@@ -42,19 +51,25 @@ const getRegistryDepsCommands = (dependencies?: string[]) => {
   };
 };
 
+/* -------------------------------------------------------------------------- */
+/*                      Component Manual Installation                         */
+/* -------------------------------------------------------------------------- */
+
+interface ComponentManualInstallationProps {
+  path: string;
+  dependencies?: string[];
+  devDependencies?: string[];
+  registryDependencies?: string[];
+  code: string;
+}
+
 export const ComponentManualInstallation = ({
   path,
   dependencies,
   devDependencies,
   registryDependencies,
   code,
-}: {
-  path: string;
-  dependencies?: string[];
-  devDependencies?: string[];
-  registryDependencies?: string[];
-  code: string;
-}) => {
+}: ComponentManualInstallationProps) => {
   const depsCommands = getDepsCommands(dependencies);
   const devDepsCommands = getDepsCommands(devDependencies);
   const registryDepsCommands = getRegistryDepsCommands(registryDependencies);
@@ -65,6 +80,7 @@ export const ComponentManualInstallation = ({
   return (
     <div className="-mt-6">
       <Steps>
+        {/* Step 1: Install dependencies */}
         {dependencies && depsCommands && (
           <Step>
             <h4 className="pt-1 pb-4">Install the following dependencies:</h4>
@@ -72,6 +88,7 @@ export const ComponentManualInstallation = ({
           </Step>
         )}
 
+        {/* Step 2: Install devDependencies */}
         {devDependencies && devDepsCommands && (
           <Step>
             <h4 className="pt-1 pb-4">
@@ -81,6 +98,7 @@ export const ComponentManualInstallation = ({
           </Step>
         )}
 
+        {/* Step 3: Install registry dependencies */}
         {registryDependencies && registryDepsCommands && (
           <Step>
             <h4 className="pt-1 pb-4">
@@ -90,6 +108,7 @@ export const ComponentManualInstallation = ({
           </Step>
         )}
 
+        {/* Step 4: Add component code */}
         <Step>
           <h4 className="pt-1 pb-4">
             Copy and paste the following code into your project:
@@ -117,6 +136,7 @@ export const ComponentManualInstallation = ({
                   />
                 </div>
               </CollapsibleContent>
+
               <div
                 className={cn(
                   'absolute flex items-center justify-center bg-gradient-to-b rounded-t-xl from-neutral-300/30 to-white dark:from-neutral-700/30 dark:to-neutral-950 p-2',
@@ -133,6 +153,7 @@ export const ComponentManualInstallation = ({
           </Collapsible>
         </Step>
 
+        {/* Step 5: Update import paths */}
         <Step>
           <h4 className="pt-1 pb-4">
             Update the import paths to match your project setup.

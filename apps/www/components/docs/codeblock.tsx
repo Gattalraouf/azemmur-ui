@@ -15,7 +15,7 @@ import {
   ScrollViewport,
 } from '@workspace/ui/components/ui/scroll-area';
 import type { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
-import { CopyButton } from '@/components/buttons/copy';
+import { CopyButton } from '@/components/ui/buttons/copy';
 import { copyToClipboard } from '@/utils/copy-to-clipboard';
 
 /* -------------------------------------------------------------------------- */

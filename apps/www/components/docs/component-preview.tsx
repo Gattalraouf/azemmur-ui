@@ -8,7 +8,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContents,
-} from '@/components/radix/tabs';
+} from '@/components/ui/tabs/tabs';
 import { cn } from '@workspace/ui/lib/utils';
 import { Loader } from 'lucide-react';
 import { Suspense, useEffect, useMemo, useState } from 'react';
@@ -16,12 +16,21 @@ import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
 import ReactIcon from '@workspace/ui/components/ui/react-icon';
 import { type Binds, Tweakpane } from '@workspace/ui/components/docs/tweakpane';
 
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
+
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   iframe?: boolean;
   bigScreen?: boolean;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                          Utility Functions                                  */
+/* -------------------------------------------------------------------------- */
+
+// Flatten first-level object for component props
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function flattenFirstLevel<T>(input: Record<string, any>): T {
   return Object.values(input).reduce((acc, current) => {
@@ -29,6 +38,7 @@ function flattenFirstLevel<T>(input: Record<string, any>): T {
   }, {} as T);
 }
 
+// Recursively unwrap `value` fields in object
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function unwrapValues(obj: Record<string, any>): Record<string, any> {
   if (obj !== null && typeof obj === 'object' && !Array.isArray(obj)) {
@@ -47,6 +57,10 @@ function unwrapValues(obj: Record<string, any>): Record<string, any> {
   return obj;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                          Component Preview                                  */
+/* -------------------------------------------------------------------------- */
+
 export function ComponentPreview({
   name,
   className,
@@ -60,6 +74,9 @@ export function ComponentPreview({
     unknown
   > | null>(null);
 
+  /* ------------------------------------------------------------------------ */
+  /*                             Component Code                                */
+  /* ------------------------------------------------------------------------ */
   const code = useMemo(() => {
     const code = index[name]?.files?.[0]?.content;
 
@@ -71,9 +88,13 @@ export function ComponentPreview({
     return code;
   }, [name]);
 
+  /* ------------------------------------------------------------------------ */
+  /*                            Component Preview                              */
+  /* ------------------------------------------------------------------------ */
   const preview = useMemo(() => {
     const Component = index[name]?.component;
 
+    // Initialize props and binds if demoProps exist
     if (Object.keys(Component?.demoProps ?? {}).length !== 0) {
       if (componentProps === null)
         setComponentProps(unwrapValues(Component?.demoProps));
@@ -96,11 +117,17 @@ export function ComponentPreview({
     return <Component {...flattenFirstLevel(componentProps ?? {})} />;
   }, [name, componentProps, binds]);
 
+  /* ------------------------------------------------------------------------ */
+  /*                        Update Component Props                             */
+  /* ------------------------------------------------------------------------ */
   useEffect(() => {
     if (!binds) return;
     setComponentProps(unwrapValues(binds));
   }, [binds]);
 
+  /* ------------------------------------------------------------------------ */
+  /*                               Render                                      */
+  /* ------------------------------------------------------------------------ */
   return (
     <div
       id="component-preview"
@@ -111,6 +138,9 @@ export function ComponentPreview({
       {...props}
     >
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
+        {/* ------------------------------------------------------------------ */}
+        {/*                           Tabs Header                               */}
+        {/* ------------------------------------------------------------------ */}
         <div
           className="flex items-center justify-between pb-2"
           id="component-preview-tab-list"
@@ -121,6 +151,9 @@ export function ComponentPreview({
           </TabsList>
         </div>
 
+        {/* ------------------------------------------------------------------ */}
+        {/*                           Tabs Content                              */}
+        {/* ------------------------------------------------------------------ */}
         <TabsContents>
           <TabsContent
             value="preview"
@@ -149,6 +182,7 @@ export function ComponentPreview({
               </Suspense>
             </ComponentWrapper>
           </TabsContent>
+
           <TabsContent
             value="code"
             initial={{ opacity: 0 }}

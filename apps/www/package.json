@@ -11,8 +11,7 @@
     "lint:fix": "eslint --fix",
     "registry:build": "pnpm format:write && tsx ./scripts/build-registry.mts && pnpm format:write",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-    "prepare": "husky"
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
     "@workspace/ui": "workspace:*",

@@ -8,10 +8,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import {
   Button as ButtonPrimitive,
   type ButtonProps as ButtonPrimitiveProps,
-} from '@workspace/ui/components/animate-ui/primitives/buttons/button';
+} from '@workspace/ui/components/primitives/button';
 import { cn } from '@workspace/ui/lib/utils';
 import { useControlledState } from '@workspace/ui/hooks/use-controlled-state';
 import { copyToClipboard } from '@/utils/copy-to-clipboard';
+
+/* -------------------------------------------------------------------------- */
+/*                               Variants                                     */
+/* -------------------------------------------------------------------------- */
 
 const buttonVariants = cva(
   "flex items-center justify-center rounded-md transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -45,6 +49,10 @@ const buttonVariants = cva(
   },
 );
 
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
+
 type CopyButtonProps = Omit<ButtonPrimitiveProps, 'children'> &
   VariantProps<typeof buttonVariants> & {
     content?: string;
@@ -52,6 +60,10 @@ type CopyButtonProps = Omit<ButtonPrimitiveProps, 'children'> &
     onCopyChange?: (isCopied: boolean, content?: string) => void;
     delay?: number;
   };
+
+/* -------------------------------------------------------------------------- */
+/*                            Copy Button                                     */
+/* -------------------------------------------------------------------------- */
 
 export function CopyButton({
   content,
@@ -76,7 +88,7 @@ export function CopyButton({
       onClick?.(e);
       if (copied) return;
       if (content) {
-          copyToClipboard(content)
+        copyToClipboard(content)
           .then(() => {
             setCopied(true);
             setTimeout(() => setCopied(false), delay);

@@ -13,10 +13,22 @@ import {
   type TabsTriggerProps as TabsTriggerPrimitiveProps,
   type TabsContentProps as TabsContentPrimitiveProps,
   type TabsContentsProps as TabsContentsPrimitiveProps,
-} from '@workspace/ui/components/animate-ui/primitives/radix/tabs';
+} from '@workspace/ui/components/primitives/tabs';
 import { cn } from '@workspace/ui/lib/utils';
 
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
+
 type TabsProps = TabsPrimitiveProps;
+type TabsListProps = TabsListPrimitiveProps;
+type TabsTriggerProps = TabsTriggerPrimitiveProps;
+type TabsContentsProps = TabsContentsPrimitiveProps;
+type TabsContentProps = TabsContentPrimitiveProps;
+
+/* -------------------------------------------------------------------------- */
+/*                                  Tabs                                       */
+/* -------------------------------------------------------------------------- */
 
 function Tabs({ className, ...props }: TabsProps) {
   return (
@@ -27,7 +39,9 @@ function Tabs({ className, ...props }: TabsProps) {
   );
 }
 
-type TabsListProps = TabsListPrimitiveProps;
+/* -------------------------------------------------------------------------- */
+/*                                TabsList                                     */
+/* -------------------------------------------------------------------------- */
 
 function TabsList({ className, ...props }: TabsListProps) {
   return (
@@ -43,7 +57,9 @@ function TabsList({ className, ...props }: TabsListProps) {
   );
 }
 
-type TabsTriggerProps = TabsTriggerPrimitiveProps;
+/* -------------------------------------------------------------------------- */
+/*                               TabsTrigger                                   */
+/* -------------------------------------------------------------------------- */
 
 function TabsTrigger({ className, ...props }: TabsTriggerProps) {
   return (
@@ -62,13 +78,17 @@ function TabsTrigger({ className, ...props }: TabsTriggerProps) {
   );
 }
 
-type TabsContentsProps = TabsContentsPrimitiveProps;
+/* -------------------------------------------------------------------------- */
+/*                               TabsContents                                  */
+/* -------------------------------------------------------------------------- */
 
 function TabsContents(props: TabsContentsProps) {
   return <TabsContentsPrimitive {...props} />;
 }
 
-type TabsContentProps = TabsContentPrimitiveProps;
+/* -------------------------------------------------------------------------- */
+/*                               TabsContent                                   */
+/* -------------------------------------------------------------------------- */
 
 function TabsContent({ className, ...props }: TabsContentProps) {
   return (
@@ -78,6 +98,10 @@ function TabsContent({ className, ...props }: TabsContentProps) {
     />
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                Exports                                      */
+/* -------------------------------------------------------------------------- */
 
 export {
   Tabs,

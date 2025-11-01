@@ -10,7 +10,7 @@ import {
 } from 'motion/react';
 
 import { useAutoHeight } from '@workspace/ui/hooks/use-auto-height';
-import { Slot, WithAsChild } from '@workspace/ui/components/animate-ui/primitives/animate/slot';
+import { Slot, WithAsChild } from '@workspace/ui/components/primitives/slot';
 
 type AutoHeightProps = WithAsChild<
   {

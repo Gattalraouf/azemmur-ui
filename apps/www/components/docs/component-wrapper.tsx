@@ -1,12 +1,16 @@
 'use client';
 
+import { useState } from 'react';
+import { motion } from 'motion/react';
 import { Button } from '@workspace/ui/components/ui/button';
 import { cn } from '@workspace/ui/lib/utils';
 import { Fullscreen, RotateCcw, SlidersHorizontal } from 'lucide-react';
-import { useState } from 'react';
-import { motion } from 'motion/react';
 import Iframe from '@/components/docs/iframe';
 import { useIsMobile } from '@workspace/ui/hooks/use-mobile';
+
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
 
 interface ComponentWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
@@ -14,6 +18,10 @@ interface ComponentWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   bigScreen?: boolean;
   tweakpane?: React.ReactNode;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                          Component Wrapper                                 */
+/* -------------------------------------------------------------------------- */
 
 export const ComponentWrapper = ({
   className,
@@ -25,7 +33,6 @@ export const ComponentWrapper = ({
 }: ComponentWrapperProps) => {
   const [tweakMode, setTweakMode] = useState(false);
   const [key, setKey] = useState(0);
-
   const isMobile = useIsMobile();
 
   return (
@@ -38,9 +45,12 @@ export const ComponentWrapper = ({
           className,
         )}
       >
+        {/* Main component area */}
         <motion.div className="relative size-full flex-1">
+          {/* Control buttons */}
           {!iframe && (
             <div className="absolute top-3 right-3 z-[9] bg-background flex items-center justify-end gap-2 p-1 rounded-[11px]">
+              {/* Restart button */}
               <Button
                 onClick={() => setKey((prev) => prev + 1)}
                 className="flex items-center rounded-lg"
@@ -56,6 +66,7 @@ export const ComponentWrapper = ({
                 </motion.button>
               </Button>
 
+              {/* Fullscreen button for iframe mode */}
               {iframe && (
                 <Button
                   onClick={() => window.open(`/examples/${name}`, '_blank')}
@@ -73,6 +84,7 @@ export const ComponentWrapper = ({
                 </Button>
               )}
 
+              {/* Tweak pane toggle */}
               {tweakpane && (
                 <Button
                   onClick={() => setTweakMode((prev) => !prev)}
@@ -92,6 +104,7 @@ export const ComponentWrapper = ({
             </div>
           )}
 
+          {/* Component display: either iframe or children */}
           {iframe ? (
             <Iframe key={key} name={name} bigScreen={bigScreen} />
           ) : (
@@ -104,6 +117,7 @@ export const ComponentWrapper = ({
           )}
         </motion.div>
 
+        {/* Tweak pane area */}
         <motion.div
           initial={false}
           animate={{

@@ -8,14 +8,22 @@ import {
   TabsTrigger,
   TabsContent,
   TabsContents,
-} from '@/components/radix/tabs';
+} from '@/components/ui/tabs/tabs';
 import { CodeTabs } from '@/components/docs/code-tabs';
 import { ComponentManualInstallation } from '@/components/docs/component-manual-installation';
+
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
 
 interface ComponentInstallationProps
   extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                        Component Installation                               */
+/* -------------------------------------------------------------------------- */
 
 export function ComponentInstallation({
   name,
@@ -24,6 +32,9 @@ export function ComponentInstallation({
 }: ComponentInstallationProps) {
   const component = index[name];
 
+  /* ------------------------------------------------------------------------ */
+  /*                             CLI Commands                                  */
+  /* ------------------------------------------------------------------------ */
   const commands = {
     npm: `npx shadcn@latest add ${component.command}`,
     pnpm: `pnpm dlx shadcn@latest add ${component.command}`,
@@ -31,6 +42,9 @@ export function ComponentInstallation({
     bun: `bun x --bun shadcn@latest add ${component.command}`,
   };
 
+  /* ------------------------------------------------------------------------ */
+  /*                               Render                                     */
+  /* ------------------------------------------------------------------------ */
   return (
     <div
       className={cn(
@@ -40,15 +54,22 @@ export function ComponentInstallation({
       {...props}
     >
       <Tabs defaultValue="cli" className="relative mr-auto w-full">
+        {/* ------------------------------------------------------------------ */}
+        {/*                              Tabs Header                           */}
+        {/* ------------------------------------------------------------------ */}
         <TabsList>
           <TabsTrigger value="cli">CLI</TabsTrigger>
           <TabsTrigger value="manual">Manual</TabsTrigger>
         </TabsList>
 
+        {/* ------------------------------------------------------------------ */}
+        {/*                              Tabs Content                          */}
+        {/* ------------------------------------------------------------------ */}
         <TabsContents>
           <TabsContent value="cli">
             <CodeTabs codes={commands} />
           </TabsContent>
+
           <TabsContent value="manual">
             <ComponentManualInstallation
               path={component.files[0].target}

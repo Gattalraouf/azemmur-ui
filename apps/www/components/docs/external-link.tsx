@@ -3,13 +3,24 @@
 import { ExternalLinkIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export const ExternalLink = ({
-  href,
-  text,
-}: {
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
+
+type ExternalLinkProps = {
   href: string;
   text: string;
-}) => {
+};
+
+/* -------------------------------------------------------------------------- */
+/*                          External Link                                     */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Renders a styled external link with hover/tap animations.
+ * Opens the link in a new tab safely.
+ */
+export const ExternalLink = ({ href, text }: ExternalLinkProps) => {
   return (
     <motion.a
       whileHover={{ scale: 1.05 }}

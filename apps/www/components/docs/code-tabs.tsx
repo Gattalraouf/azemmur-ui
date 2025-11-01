@@ -12,23 +12,18 @@ import {
   TabsHighlight,
   TabsHighlightItem,
   type TabsProps,
-} from '@workspace/ui/components/animate-ui/primitives/animate/tabs';
-import { CopyButton } from '@/components/buttons/copy';
+} from '@/components/ui/tabs/sliding-tabs';
+import { CopyButton } from '@/components/ui/buttons/copy';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */
 /* -------------------------------------------------------------------------- */
 
 export type CodeTabsProps = Omit<TabsProps, 'children'> & {
-  /** A record of label → code snippet */
   codes: Record<string, string>;
-  /** Language for syntax highlighting */
   lang?: string;
-  /** Light/dark themes for Shiki */
   themes?: { light: string; dark: string };
-  /** Whether to show the copy button */
   copyButton?: boolean;
-  /** Callback when copy state changes */
   onCopyChange?: (isCopied: boolean, content?: string) => void;
 };
 
