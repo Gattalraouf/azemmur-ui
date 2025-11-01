@@ -9,9 +9,9 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from 'fumadocs-ui/components/ui/collapsible';
-import { Button } from '@workspace/ui/components/ui/button';
+import { Button } from '@workspace/ui/components/ui/buttons/button';
 import { cn } from '@workspace/ui/lib/utils';
-import ReactIcon from '@workspace/ui/components/ui/react-icon';
+import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
 
 /* -------------------------------------------------------------------------- */
 /*                        Helper Functions for Commands                        */

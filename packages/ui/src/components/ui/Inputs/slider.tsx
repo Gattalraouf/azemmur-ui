@@ -1,10 +1,24 @@
 'use client';
 
-import * as React from 'react';
+import { useMemo } from 'react';
 import { Slider as SliderPrimitive } from 'radix-ui';
 
 import { cn } from '@workspace/ui/lib/utils';
 
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
+
+type SliderProps = React.ComponentProps<typeof SliderPrimitive.Root>;
+
+/* -------------------------------------------------------------------------- */
+/*                                  Slider                                    */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Slider component wraps Radix UI's SliderPrimitive and supports
+ * both single-value and multi-value (range) sliders.
+ */
 function Slider({
   className,
   defaultValue,
@@ -12,8 +26,9 @@ function Slider({
   min = 0,
   max = 100,
   ...props
-}: React.ComponentProps<typeof SliderPrimitive.Root>) {
-  const _values = React.useMemo(
+}: SliderProps) {
+  // Determine the number of thumbs based on provided value(s) or defaults
+  const _values = useMemo(
     () =>
       Array.isArray(value)
         ? value
@@ -36,12 +51,14 @@ function Slider({
       )}
       {...props}
     >
+      {/* Track container */}
       <SliderPrimitive.Track
         data-slot="slider-track"
         className={cn(
           'bg-muted relative grow overflow-hidden rounded-full data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5',
         )}
       >
+        {/* Filled portion of the slider */}
         <SliderPrimitive.Range
           data-slot="slider-range"
           className={cn(
@@ -49,6 +66,8 @@ function Slider({
           )}
         />
       </SliderPrimitive.Track>
+
+      {/* Slider thumbs (handles) */}
       {Array.from({ length: _values.length }, (_, index) => (
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"

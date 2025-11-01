@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Button } from '@workspace/ui/components/ui/button';
+import { Button } from '@workspace/ui/components/ui/buttons/button';
 import { cn } from '@workspace/ui/lib/utils';
 import { Fullscreen, RotateCcw, SlidersHorizontal } from 'lucide-react';
 import Iframe from '@/components/docs/iframe';

@@ -1,25 +1,48 @@
 'use client';
 
-import * as React from 'react';
+import { useMemo, isValidElement } from 'react';
 import { motion, isMotionComponent, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@workspace/ui/lib/utils';
 
+/* -------------------------------------------------------------------------- */
+/*                                   Types                                    */
+/* -------------------------------------------------------------------------- */
+
 type AnyProps = Record<string, unknown>;
 
+/**
+ * Motion-compatible DOM props for a given HTML element.
+ */
 type DOMMotionProps<T extends HTMLElement = HTMLElement> = Omit<
   HTMLMotionProps<keyof HTMLElementTagNameMap>,
   'ref'
-> & { ref?: React.Ref<T> };
+> & {
+  ref?: React.Ref<T>;
+};
 
+/**
+ * Utility type that enables a component to render as a child element (`asChild`),
+ * similar to Radix UI’s Slot pattern.
+ */
 type WithAsChild<Base extends object> =
   | (Base & { asChild: true; children: React.ReactElement })
   | (Base & { asChild?: false | undefined });
 
+/**
+ * SlotProps extends motion props and allows for animated composition.
+ */
 type SlotProps<T extends HTMLElement = HTMLElement> = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children?: any;
 } & DOMMotionProps<T>;
 
+/* -------------------------------------------------------------------------- */
+/*                                  Utilities                                 */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Merges multiple refs (React ref objects or callback refs) into one ref callback.
+ */
 function mergeRefs<T>(
   ...refs: (React.Ref<T> | undefined)[]
 ): React.RefCallback<T> {
@@ -35,6 +58,9 @@ function mergeRefs<T>(
   };
 }
 
+/**
+ * Merges props from the slot and its child element, combining className and style.
+ */
 function mergeProps<T extends HTMLElement>(
   childProps: AnyProps,
   slotProps: DOMMotionProps<T>,
@@ -58,17 +84,31 @@ function mergeProps<T extends HTMLElement>(
   return merged;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                   Slot                                     */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * `Slot` is a motion-enhanced wrapper that allows you to render any child component
+ * (e.g., `<a>`, `<div>`, `<motion.button>`) with merged props and animations.
+ *
+ * - If the child is already a motion component, it uses it directly.
+ * - Otherwise, it wraps the child type with `motion.create()`.
+ * - Useful for building composable UI primitives with animation support.
+ */
 function Slot<T extends HTMLElement = HTMLElement>({
   children,
   ref,
   ...props
 }: SlotProps<T>) {
+  if (!isValidElement(children)) return null;
+
   const isAlreadyMotion =
     typeof children.type === 'object' &&
     children.type !== null &&
     isMotionComponent(children.type);
 
-  const Base = React.useMemo(
+  const Base = useMemo(
     () =>
       isAlreadyMotion
         ? (children.type as React.ElementType)
@@ -76,16 +116,17 @@ function Slot<T extends HTMLElement = HTMLElement>({
     [isAlreadyMotion, children.type],
   );
 
-  if (!React.isValidElement(children)) return null;
-
   const { ref: childRef, ...childProps } = children.props as AnyProps;
-
   const mergedProps = mergeProps(childProps, props);
 
   return (
     <Base {...mergedProps} ref={mergeRefs(childRef as React.Ref<T>, ref)} />
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                  Exports                                   */
+/* -------------------------------------------------------------------------- */
 
 export {
   Slot,

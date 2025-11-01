@@ -5,10 +5,21 @@ import { Switch as SwitchPrimitive } from 'radix-ui';
 
 import { cn } from '@workspace/ui/lib/utils';
 
-function Switch({
-  className,
-  ...props
-}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
+
+type SwitchProps = React.ComponentProps<typeof SwitchPrimitive.Root>;
+
+/* -------------------------------------------------------------------------- */
+/*                                  Switch                                    */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Switch component wraps Radix UI's SwitchPrimitive and renders a toggle switch.
+ * Supports controlled and uncontrolled usage via `value` or `defaultValue`.
+ */
+function Switch({ className, ...props }: SwitchProps) {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"
@@ -18,6 +29,7 @@ function Switch({
       )}
       {...props}
     >
+      {/* Switch thumb (the draggable circle) */}
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
         className={cn(

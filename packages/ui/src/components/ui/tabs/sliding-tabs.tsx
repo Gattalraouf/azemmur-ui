@@ -16,7 +16,7 @@ import {
   HighlightItem,
   type HighlightItemProps,
   type HighlightProps,
-} from '@workspace/ui/components/animate-ui/primitives/effects/highlight';
+} from '@workspace/ui/components/primitives/effects/highlight';
 import { getStrictContext } from '@workspace/ui/lib/get-strict-context';
 import {
   Slot,

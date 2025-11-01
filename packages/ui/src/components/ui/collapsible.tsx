@@ -1,6 +1,12 @@
 'use client';
 
-import * as React from 'react';
+import {
+  useEffect,
+  useState,
+  useCallback,
+  createContext,
+  useContext,
+} from 'react';
 import { Collapsible as CollapsiblePrimitive } from 'radix-ui';
 import {
   AnimatePresence,
@@ -9,34 +15,52 @@ import {
   type Transition,
 } from 'motion/react';
 
+/* -------------------------------------------------------------------------- */
+/*                                   Context                                  */
+/* -------------------------------------------------------------------------- */
+
 type CollapsibleContextType = {
+  /** Whether the collapsible is currently open */
   isOpen: boolean;
 };
 
-const CollapsibleContext = React.createContext<
-  CollapsibleContextType | undefined
->(undefined);
+const CollapsibleContext = createContext<CollapsibleContextType | undefined>(
+  undefined,
+);
 
-const useCollapsible = (): CollapsibleContextType => {
-  const context = React.useContext(CollapsibleContext);
+/**
+ * Hook to access the `Collapsible` context.
+ * Throws if used outside of a `<Collapsible>` root.
+ */
+function useCollapsible(): CollapsibleContextType {
+  const context = useContext(CollapsibleContext);
   if (!context) {
     throw new Error('useCollapsible must be used within a Collapsible');
   }
   return context;
-};
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Root                                     */
+/* -------------------------------------------------------------------------- */
 
 type CollapsibleProps = React.ComponentProps<typeof CollapsiblePrimitive.Root>;
 
+/**
+ * A wrapper around Radix UI’s Collapsible Root with animated content support.
+ * Provides context for internal components.
+ */
 function Collapsible({ children, ...props }: CollapsibleProps) {
-  const [isOpen, setIsOpen] = React.useState(
+  const [isOpen, setIsOpen] = useState(
     props?.open ?? props?.defaultOpen ?? false,
   );
 
-  React.useEffect(() => {
+  // Sync with controlled `open` prop
+  useEffect(() => {
     if (props?.open !== undefined) setIsOpen(props.open);
   }, [props?.open]);
 
-  const handleOpenChange = React.useCallback(
+  const handleOpenChange = useCallback(
     (open: boolean) => {
       setIsOpen(open);
       props.onOpenChange?.(open);
@@ -57,23 +81,39 @@ function Collapsible({ children, ...props }: CollapsibleProps) {
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                  Trigger                                   */
+/* -------------------------------------------------------------------------- */
+
 type CollapsibleTriggerProps = React.ComponentProps<
   typeof CollapsiblePrimitive.Trigger
 >;
 
+/**
+ * The trigger element that toggles the collapsible’s open state.
+ */
 function CollapsibleTrigger(props: CollapsibleTriggerProps) {
   return (
     <CollapsiblePrimitive.Trigger data-slot="collapsible-trigger" {...props} />
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                  Content                                   */
+/* -------------------------------------------------------------------------- */
+
 type CollapsibleContentProps = React.ComponentProps<
   typeof CollapsiblePrimitive.Content
 > &
   HTMLMotionProps<'div'> & {
+    /** Custom Framer Motion transition for open/close animation */
     transition?: Transition;
   };
 
+/**
+ * Animated collapsible content area.
+ * Uses Framer Motion to smoothly expand/collapse while maintaining accessibility.
+ */
 function CollapsibleContent({
   className,
   children,
@@ -104,6 +144,10 @@ function CollapsibleContent({
     </AnimatePresence>
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                   Export                                   */
+/* -------------------------------------------------------------------------- */
 
 export {
   Collapsible,

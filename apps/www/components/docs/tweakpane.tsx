@@ -2,24 +2,28 @@
 
 import * as React from 'react';
 
-import { Label } from '@workspace/ui/components/ui/label';
-import { Slider } from '@workspace/ui/components/ui/slider';
-import { Input } from '@workspace/ui/components/ui/input';
+import { Label } from '@workspace/ui/components/ui/Inputs/label';
+import { Slider } from '@workspace/ui/components/ui/Inputs/slider';
+import { Input } from '@workspace/ui/components/ui/Inputs/input';
 import { cn } from '@workspace/ui/lib/utils';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@workspace/ui/components/animate-ui/components/collapsible';
+} from '@workspace/ui/components/ui/collapsible';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@workspace/ui/components/ui/select';
-import { Switch } from '@workspace/ui/components/ui/switch';
+} from '@workspace/ui/components/ui/Inputs/select';
+import { Switch } from '@workspace/ui/components/ui/Inputs/switch';
 import { ChevronsUpDown } from 'lucide-react';
+
+/* -------------------------------------------------------------------------- */
+/*                                  Types                                     */
+/* -------------------------------------------------------------------------- */
 
 type BaseBindNumber = { value: number };
 type BindNumberSlider = BaseBindNumber & {
@@ -29,17 +33,15 @@ type BindNumberSlider = BaseBindNumber & {
 };
 type BindNumberOptions = BaseBindNumber & { options: Record<string, number> };
 type BindNumber = BindNumberSlider | BindNumberOptions | BaseBindNumber;
-type BindString = {
-  value: string;
-  options?: Record<string, string>;
-};
+
+type BindString = { value: string; options?: Record<string, string> };
+type BindBoolean = { value: boolean };
 type BindOptions = {
   value: string | number | boolean;
   options: Record<string, string | number | boolean>;
 };
-type BindBoolean = { value: boolean };
-type Bind = BindNumber | BindString | BindBoolean | BindOptions;
 
+type Bind = BindNumber | BindString | BindBoolean | BindOptions;
 type FlatBinds = Record<string, Bind>;
 type NestedBinds = Record<string, FlatBinds>;
 type Binds = FlatBinds | NestedBinds;
@@ -56,6 +58,10 @@ interface UncontrolledTweakpaneProps {
 
 type TweakpaneProps = ControlledTweakpaneProps | UncontrolledTweakpaneProps;
 
+/* -------------------------------------------------------------------------- */
+/*                              Numeric Input                                 */
+/* -------------------------------------------------------------------------- */
+
 interface NumericInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   value: number;
@@ -65,6 +71,9 @@ interface NumericInputProps
   step?: number;
 }
 
+/**
+ * Numeric input that syncs string display and numeric state, respecting min, max, and step.
+ */
 const NumericInput: React.FC<NumericInputProps> = ({
   value,
   onValueChange,
@@ -74,7 +83,7 @@ const NumericInput: React.FC<NumericInputProps> = ({
   step,
   ...props
 }) => {
-  const [display, setDisplay] = React.useState<string>(value.toString());
+  const [display, setDisplay] = React.useState(value.toString());
 
   React.useEffect(() => setDisplay(value.toString()), [value]);
 
@@ -87,7 +96,10 @@ const NumericInput: React.FC<NumericInputProps> = ({
         if (!isNaN(n)) {
           if (min !== undefined && n < min) n = min;
           if (max !== undefined && n > max) n = max;
-          if (step !== undefined) n = Math.round(n / step) * step;
+          if (step !== undefined) {
+            n = Math.round(n / step) * step;
+            n = parseFloat(n.toFixed(5));
+          }
           onValueChange(n);
         }
       }
@@ -120,6 +132,10 @@ const NumericInput: React.FC<NumericInputProps> = ({
   );
 };
 
+/* -------------------------------------------------------------------------- */
+/*                             Type Utilities                                 */
+/* -------------------------------------------------------------------------- */
+
 const isNestedBinds = (binds: Binds): binds is NestedBinds =>
   Object.values(binds).every(
     (v) =>
@@ -132,77 +148,95 @@ const isNestedBinds = (binds: Binds): binds is NestedBinds =>
       ),
   );
 
+/* -------------------------------------------------------------------------- */
+/*                               Render Helpers                               */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Renders number bindings — as slider + input, or select if options exist.
+ */
 const renderNumber = (
   key: string,
   bind: BindNumber,
   onChange: (value: number) => void,
 ) => {
-  return 'min' in bind && 'max' in bind ? (
-    <div key={key} className="flex flex-row gap-2.5">
-      <div className="w-[80px] flex items-center shrink-0 min-w-0">
-        <Label
-          className="truncate text-current/80 block leading-[1.2]"
-          htmlFor={key}
-        >
-          {key}
-        </Label>
-      </div>
+  if ('min' in bind && 'max' in bind) {
+    return (
+      <div key={key} className="flex flex-row gap-2.5">
+        <div className="w-[80px] flex items-center shrink-0 min-w-0">
+          <Label
+            htmlFor={key}
+            className="truncate text-current/80 block leading-[1.2]"
+          >
+            {key}
+          </Label>
+        </div>
 
-      <Slider
-        min={bind.min}
-        max={bind.max}
-        step={bind.step}
-        value={[bind.value]}
-        onValueChange={(v) => onChange(v[0] ?? 0)}
-      />
+        <Slider
+          min={bind.min}
+          max={bind.max}
+          step={bind.step}
+          value={[bind.value]}
+          onValueChange={(v) => onChange(v[0] ?? 0)}
+        />
 
-      <NumericInput
-        id={key}
-        value={bind.value}
-        min={bind.min}
-        max={bind.max}
-        step={bind.step}
-        onValueChange={onChange}
-        className="w-[50px] h-8 rounded-md px-2 shrink-0"
-      />
-    </div>
-  ) : 'options' in bind ? (
-    <div key={key} className="flex flex-row gap-2.5">
-      <div className="w-[80px] truncate flex items-center shrink-0 min-w-0">
-        <Label
-          className="truncate text-current/80 block leading-[1.2]"
-          htmlFor={key}
-        >
-          {key}
-        </Label>
-      </div>
-
-      <Select
-        value={bind.value.toString()}
-        onValueChange={(v) => onChange(Number(v))}
-      >
-        <SelectTrigger
+        <NumericInput
           id={key}
-          className="flex-1 !h-8 rounded-md px-2 shrink-0"
-        >
-          <SelectValue placeholder="Select an option" />
-        </SelectTrigger>
+          value={bind.value}
+          min={bind.min}
+          max={bind.max}
+          step={bind.step}
+          onValueChange={onChange}
+          className="w-[50px] h-8 rounded-md px-2 shrink-0"
+        />
+      </div>
+    );
+  }
 
-        <SelectContent>
-          {Object.entries(bind.options).map(([key, value]) => (
-            <SelectItem className="!h-8" key={key} value={value.toString()}>
-              {key}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
-  ) : (
+  if ('options' in bind) {
+    return (
+      <div key={key} className="flex flex-row gap-2.5">
+        <div className="w-[80px] flex items-center shrink-0 min-w-0">
+          <Label
+            htmlFor={key}
+            className="truncate text-current/80 block leading-[1.2]"
+          >
+            {key}
+          </Label>
+        </div>
+
+        <Select
+          value={bind.value.toString()}
+          onValueChange={(v) => onChange(Number(v))}
+        >
+          <SelectTrigger
+            id={key}
+            className="flex-1 !h-8 rounded-md px-2 shrink-0"
+          >
+            <SelectValue placeholder="Select an option" />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(bind.options).map(([optKey, value]) => (
+              <SelectItem
+                key={optKey}
+                value={value.toString()}
+                className="!h-8"
+              >
+                {optKey}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  }
+
+  return (
     <div key={key} className="flex flex-row gap-2.5">
       <div className="w-[80px] truncate flex items-center shrink-0 min-w-0">
         <Label
-          className="truncate text-current/80 block leading-[1.2]"
           htmlFor={key}
+          className="truncate text-current/80 block leading-[1.2]"
         >
           {key}
         </Label>
@@ -218,58 +252,63 @@ const renderNumber = (
   );
 };
 
+/**
+ * Renders string bindings — as input or select if options exist.
+ */
 const renderString = (
   key: string,
   bind: BindString,
   onChange: (value: string | number | boolean) => void,
 ) => {
-  return bind?.options ? (
+  if (bind.options) {
+    return (
+      <div key={key} className="flex flex-row gap-2.5">
+        <div className="w-[80px] truncate flex items-center shrink-0 min-w-0">
+          <Label
+            htmlFor={key}
+            className="truncate text-current/80 block leading-[1.2]"
+          >
+            {key}
+          </Label>
+        </div>
+
+        <Select
+          value={String(bind.value)}
+          onValueChange={(v) => {
+            const realValue = Object.values(bind.options ?? {}).find(
+              (opt) => String(opt) === v,
+            );
+            onChange(realValue ?? v);
+          }}
+        >
+          <SelectTrigger
+            id={key}
+            className="flex-1 !h-8 rounded-md px-2 shrink-0"
+          >
+            <SelectValue placeholder="Select an option" />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(bind.options).map(([optKey, value]) => (
+              <SelectItem key={optKey} value={String(value)} className="!h-8">
+                {optKey}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    );
+  }
+
+  return (
     <div key={key} className="flex flex-row gap-2.5">
       <div className="w-[80px] truncate flex items-center shrink-0 min-w-0">
         <Label
-          className="truncate text-current/80 block leading-[1.2]"
           htmlFor={key}
+          className="truncate text-current/80 block leading-[1.2]"
         >
           {key}
         </Label>
       </div>
-
-      <Select
-        value={String(bind.value)}
-        onValueChange={(v) => {
-          const realValue = Object.values(bind.options ?? {}).find(
-            (opt) => String(opt) === v,
-          );
-          onChange(realValue ?? v);
-        }}
-      >
-        <SelectTrigger
-          id={key}
-          className="flex-1 !h-8 rounded-md px-2 shrink-0"
-        >
-          <SelectValue placeholder="Select an option" />
-        </SelectTrigger>
-
-        <SelectContent>
-          {Object.entries(bind.options).map(([key, value]) => (
-            <SelectItem className="!h-8" key={key} value={String(value)}>
-              {key}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
-  ) : (
-    <div key={key} className="flex flex-row gap-2.5">
-      <div className="w-[80px] truncate flex items-center shrink-0 min-w-0">
-        <Label
-          className="truncate text-current/80 block leading-[1.2]"
-          htmlFor={key}
-        >
-          {key}
-        </Label>
-      </div>
-
       <Input
         id={key}
         value={bind.value}
@@ -280,53 +319,60 @@ const renderString = (
   );
 };
 
+/**
+ * Renders boolean bindings as switches.
+ */
 const renderBoolean = (
   key: string,
   bind: BindBoolean,
   onChange: (value: boolean) => void,
-) => {
-  return (
-    <div key={key} className="flex flex-row gap-2.5 justify-between">
-      <div className="w-[80px] flex items-center shrink-0 min-w-0">
-        <Label
-          htmlFor={key}
-          className="truncate text-current/80 block leading-[1.2]"
-        >
-          {key}
-        </Label>
-      </div>
-
-      <Switch id={key} checked={bind.value} onCheckedChange={onChange} />
+) => (
+  <div key={key} className="flex flex-row gap-2.5 justify-between">
+    <div className="w-[80px] flex items-center shrink-0 min-w-0">
+      <Label
+        htmlFor={key}
+        className="truncate text-current/80 block leading-[1.2]"
+      >
+        {key}
+      </Label>
     </div>
-  );
-};
+    <Switch id={key} checked={bind.value} onCheckedChange={onChange} />
+  </div>
+);
 
+/**
+ * Determines which renderer to use based on the bind type.
+ */
 const renderBind = (
   key: string,
   bind: Bind,
   onChange: (value: unknown) => void,
 ) => {
-  if ('value' in bind) {
-    if ('options' in bind) {
-      if (typeof bind.value === 'number') {
-        return renderNumber(key, bind as unknown as BindNumber, onChange);
-      }
-      return renderString(key, bind as unknown as BindString, (v) =>
-        onChange(v),
+  if (!('value' in bind)) return null;
+
+  switch (typeof bind.value) {
+    case 'number':
+      return renderNumber(
+        key,
+        bind as BindNumber,
+        onChange as (v: number) => void,
       );
-    }
-    if (typeof bind.value === 'number') {
-      return renderNumber(key, bind as BindNumber, onChange);
-    }
-    if (typeof bind.value === 'string') {
+    case 'string':
       return renderString(key, bind as BindString, onChange);
-    }
-    if (typeof bind.value === 'boolean') {
-      return renderBoolean(key, bind as BindBoolean, onChange);
-    }
+    case 'boolean':
+      return renderBoolean(
+        key,
+        bind as BindBoolean,
+        onChange as (v: boolean) => void,
+      );
+    default:
+      return null;
   }
-  return null;
 };
+
+/* -------------------------------------------------------------------------- */
+/*                             Rendering Helpers                              */
+/* -------------------------------------------------------------------------- */
 
 const renderFlatBinds = (
   binds: FlatBinds,
@@ -360,7 +406,6 @@ const renderNestedBinds = (
         </Label>
         <ChevronsUpDown className="size-3.5 text-muted-foreground" />
       </CollapsibleTrigger>
-
       <CollapsibleContent {...(!initial ? { initial: false } : {})}>
         <div className="mt-1">
           {renderFlatBinds(groupBind, (updatedGroupBind) =>
@@ -374,16 +419,23 @@ const renderNestedBinds = (
 const renderBinds = (
   binds: Binds,
   onBindsChange: (binds: Binds) => void,
-  inital: boolean,
+  initial: boolean,
 ) =>
   isNestedBinds(binds)
     ? renderNestedBinds(
         binds,
         onBindsChange as (b: NestedBinds) => void,
-        inital,
+        initial,
       )
     : renderFlatBinds(binds, onBindsChange as (b: FlatBinds) => void);
 
+/* -------------------------------------------------------------------------- */
+/*                                  Tweakpane                                 */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Tweakpane — a dynamic configuration UI supporting numbers, strings, booleans, and nested groups.
+ */
 const Tweakpane = ({ onBindsChange, ...props }: TweakpaneProps) => {
   const [localBinds, setLocalBinds] = React.useState<Binds>(
     'binds' in props ? props.binds : props.initialBinds,

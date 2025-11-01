@@ -1,9 +1,14 @@
-import { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
-import * as React from 'react';
+'use client';
 
+import { forwardRef } from 'react';
+import { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
 import { cn } from '@workspace/ui/lib/utils';
 
-const ScrollArea = React.forwardRef<
+/* -------------------------------------------------------------------------- */
+/*                                Scroll Area                                  */
+/* -------------------------------------------------------------------------- */
+
+const ScrollArea = forwardRef<
   React.ComponentRef<typeof ScrollAreaPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
 >(({ className, children, ...props }, ref) => (
@@ -17,10 +22,9 @@ const ScrollArea = React.forwardRef<
     <ScrollBar orientation="vertical" />
   </ScrollAreaPrimitive.Root>
 ));
-
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
 
-const ScrollViewport = React.forwardRef<
+const ScrollViewport = forwardRef<
   React.ComponentRef<typeof ScrollAreaPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Viewport>
 >(({ className, children, ...props }, ref) => (
@@ -32,10 +36,9 @@ const ScrollViewport = React.forwardRef<
     {children}
   </ScrollAreaPrimitive.Viewport>
 ));
-
 ScrollViewport.displayName = ScrollAreaPrimitive.Viewport.displayName;
 
-const ScrollBar = React.forwardRef<
+const ScrollBar = forwardRef<
   React.ComponentRef<typeof ScrollAreaPrimitive.Scrollbar>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Scrollbar>
 >(({ className, orientation = 'vertical', ...props }, ref) => (

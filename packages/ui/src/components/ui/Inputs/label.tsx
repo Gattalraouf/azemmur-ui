@@ -2,8 +2,11 @@
 
 import * as React from 'react';
 import { Label as LabelPrimitive } from 'radix-ui';
-
 import { cn } from '@workspace/ui/lib/utils';
+
+/* -------------------------------------------------------------------------- */
+/*                                  Label                                     */
+/* -------------------------------------------------------------------------- */
 
 function Label({
   className,

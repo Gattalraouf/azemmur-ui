@@ -12,8 +12,8 @@ import {
   TabsHighlight,
   TabsHighlightItem,
   type TabsProps,
-} from '@/components/ui/tabs/sliding-tabs';
-import { CopyButton } from '@/components/ui/buttons/copy';
+} from '@workspace/ui/components/ui/tabs/sliding-tabs';
+import { CopyButton } from '@workspace/ui/components/ui/buttons/copy';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */

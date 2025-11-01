@@ -1,12 +1,18 @@
 'use client';
 
 import { motion, type HTMLMotionProps } from 'motion/react';
-
 import {
   Slot,
   type WithAsChild,
 } from '@workspace/ui/components/primitives/slot';
 
+/* -------------------------------------------------------------------------- */
+/*                                   Types                                    */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Animated button props supporting hover/tap scale and optional `asChild` slot rendering.
+ */
 type ButtonProps = WithAsChild<
   HTMLMotionProps<'button'> & {
     hoverScale?: number;
@@ -14,6 +20,13 @@ type ButtonProps = WithAsChild<
   }
 >;
 
+/* -------------------------------------------------------------------------- */
+/*                                   Button                                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Motion-enhanced button component that supports composability with `asChild`.
+ */
 function Button({
   hoverScale = 1.05,
   tapScale = 0.95,
@@ -24,11 +37,10 @@ function Button({
 
   return (
     <Component
-      whileTap={{ scale: tapScale }}
       whileHover={{ scale: hoverScale }}
+      whileTap={{ scale: tapScale }}
       {...props}
     />
   );
 }
-
 export { Button, type ButtonProps };

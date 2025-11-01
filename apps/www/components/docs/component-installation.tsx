@@ -8,7 +8,7 @@ import {
   TabsTrigger,
   TabsContent,
   TabsContents,
-} from '@/components/ui/tabs/tabs';
+} from '@workspace/ui/components/ui/tabs/tabs';
 import { CodeTabs } from '@/components/docs/code-tabs';
 import { ComponentManualInstallation } from '@/components/docs/component-manual-installation';
 

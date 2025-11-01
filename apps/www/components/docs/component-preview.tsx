@@ -8,13 +8,13 @@ import {
   TabsList,
   TabsTrigger,
   TabsContents,
-} from '@/components/ui/tabs/tabs';
+} from '@workspace/ui/components/ui/tabs/tabs';
 import { cn } from '@workspace/ui/lib/utils';
 import { Loader } from 'lucide-react';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
-import ReactIcon from '@workspace/ui/components/ui/react-icon';
-import { type Binds, Tweakpane } from '@workspace/ui/components/docs/tweakpane';
+import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
+import { type Binds, Tweakpane } from '@/components/docs/tweakpane';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

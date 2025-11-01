@@ -14,14 +14,22 @@ import {
   HighlightItem,
   type HighlightProps,
   type HighlightItemProps,
-} from '@workspace/ui/components/animate-ui/primitives/effects/highlight';
+} from '@workspace/ui/components/primitives/effects/highlight';
 import { getStrictContext } from '@workspace/ui/lib/get-strict-context';
 import { useControlledState } from '@workspace/ui/hooks/use-controlled-state';
 import {
   AutoHeight,
   type AutoHeightProps,
-} from '@workspace/ui/components/animate-ui/primitives/effects/auto-height';
+} from '@workspace/ui/components/primitives/effects/auto-height';
 
+/* -------------------------------------------------------------------------- */
+/*                                   Context                                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Tabs context for synchronizing the active tab and providing access
+ * to `value` and `setValue` within nested tab components.
+ */
 type TabsContextType = {
   value: string | undefined;
   setValue: TabsProps['onValueChange'];
@@ -30,8 +38,60 @@ type TabsContextType = {
 const [TabsProvider, useTabs] =
   getStrictContext<TabsContextType>('TabsContext');
 
+/* -------------------------------------------------------------------------- */
+/*                                    Types                                   */
+/* -------------------------------------------------------------------------- */
+
 type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root>;
 
+type TabsHighlightProps = Omit<HighlightProps, 'controlledItems' | 'value'>;
+type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List>;
+type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger>;
+type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Content> &
+  HTMLMotionProps<'div'>;
+
+type TabsHighlightItemProps = HighlightItemProps & {
+  value: string;
+};
+
+/**
+ * Auto-height mode props for dynamic container resizing between tab content transitions.
+ */
+type TabsContentsAutoProps = AutoHeightProps & {
+  mode?: 'auto-height';
+  children: React.ReactNode;
+  transition?: Transition;
+};
+
+/**
+ * Layout mode props for animating content size changes using layout transitions.
+ */
+type TabsContentsLayoutProps = Omit<HTMLMotionProps<'div'>, 'transition'> & {
+  mode: 'layout';
+  children: React.ReactNode;
+  transition?: Transition;
+};
+
+type TabsContentsProps = TabsContentsAutoProps | TabsContentsLayoutProps;
+
+/* -------------------------------------------------------------------------- */
+/*                                  Defaults                                  */
+/* -------------------------------------------------------------------------- */
+
+const defaultTransition: Transition = {
+  type: 'spring',
+  stiffness: 200,
+  damping: 30,
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                   Tabs Root                                */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * `Tabs` is a motion-enhanced wrapper around Radix UI's Tabs,
+ * supporting controlled and uncontrolled modes via `useControlledState`.
+ */
 function Tabs(props: TabsProps) {
   const [value, setValue] = useControlledState({
     value: props.value,
@@ -50,8 +110,14 @@ function Tabs(props: TabsProps) {
   );
 }
 
-type TabsHighlightProps = Omit<HighlightProps, 'controlledItems' | 'value'>;
+/* -------------------------------------------------------------------------- */
+/*                               Tabs Highlight                               */
+/* -------------------------------------------------------------------------- */
 
+/**
+ * `TabsHighlight` visually indicates the active tab using an animated highlight.
+ * It integrates with the Tabs context and supports custom transitions.
+ */
 function TabsHighlight({
   transition = { type: 'spring', stiffness: 200, damping: 25 },
   ...props
@@ -70,29 +136,47 @@ function TabsHighlight({
   );
 }
 
-type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List>;
+/* -------------------------------------------------------------------------- */
+/*                                Tabs HighlightItem                          */
+/* -------------------------------------------------------------------------- */
 
-function TabsList(props: TabsListProps) {
-  return <TabsPrimitive.List data-slot="tabs-list" {...props} />;
-}
-
-type TabsHighlightItemProps = HighlightItemProps & {
-  value: string;
-};
-
+/**
+ * `TabsHighlightItem` defines the interactive region of each tab trigger
+ * that the highlight system uses to track active state.
+ */
 function TabsHighlightItem(props: TabsHighlightItemProps) {
   return <HighlightItem data-slot="tabs-highlight-item" {...props} />;
 }
 
-type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger>;
+/* -------------------------------------------------------------------------- */
+/*                                  Tabs List                                 */
+/* -------------------------------------------------------------------------- */
 
+/**
+ * `TabsList` is the container for tab triggers, providing layout and grouping.
+ */
+function TabsList(props: TabsListProps) {
+  return <TabsPrimitive.List data-slot="tabs-list" {...props} />;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 Tabs Trigger                               */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * `TabsTrigger` represents an interactive button that switches the active tab.
+ */
 function TabsTrigger(props: TabsTriggerProps) {
   return <TabsPrimitive.Trigger data-slot="tabs-trigger" {...props} />;
 }
 
-type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Content> &
-  HTMLMotionProps<'div'>;
+/* -------------------------------------------------------------------------- */
+/*                                 Tabs Content                               */
+/* -------------------------------------------------------------------------- */
 
+/**
+ * `TabsContent` animates the appearance and disappearance of tab content using Framer Motion.
+ */
 function TabsContent({
   value,
   forceMount,
@@ -117,30 +201,16 @@ function TabsContent({
   );
 }
 
-type TabsContentsAutoProps = AutoHeightProps & {
-  mode?: 'auto-height';
-  children: React.ReactNode;
-  transition?: Transition;
-};
+/* -------------------------------------------------------------------------- */
+/*                                 Tabs Contents                              */
+/* -------------------------------------------------------------------------- */
 
-type TabsContentsLayoutProps = Omit<HTMLMotionProps<'div'>, 'transition'> & {
-  mode: 'layout';
-  children: React.ReactNode;
-  transition?: Transition;
-};
-
-type TabsContentsProps = TabsContentsAutoProps | TabsContentsLayoutProps;
-
-const defaultTransition: Transition = {
-  type: 'spring',
-  stiffness: 200,
-  damping: 30,
-};
-
-function isAutoMode(props: TabsContentsProps): props is TabsContentsAutoProps {
-  return !('mode' in props) || props.mode === 'auto-height';
-}
-
+/**
+ * `TabsContents` wraps multiple tab contents and animates between them.
+ * It supports two modes:
+ * - `"auto-height"` (default): smooth height transitions between content.
+ * - `"layout"`: animates layout size using Framer Motion’s layout transitions.
+ */
 function TabsContents(props: TabsContentsProps) {
   const { value } = useTabs();
 
@@ -170,6 +240,18 @@ function TabsContents(props: TabsContentsProps) {
     />
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                   Helpers                                  */
+/* -------------------------------------------------------------------------- */
+
+function isAutoMode(props: TabsContentsProps): props is TabsContentsAutoProps {
+  return !('mode' in props) || props.mode === 'auto-height';
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Exports                                  */
+/* -------------------------------------------------------------------------- */
 
 export {
   Tabs,

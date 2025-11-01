@@ -1,9 +1,12 @@
 'use client';
 
 import * as React from 'react';
-import { AnimatePresence, Transition, motion } from 'motion/react';
-
+import { AnimatePresence, motion, type Transition } from 'motion/react';
 import { cn } from '@workspace/ui/lib/utils';
+
+/* -------------------------------------------------------------------------- */
+/*                                   Types                                    */
+/* -------------------------------------------------------------------------- */
 
 type HighlightMode = 'children' | 'parent';
 
@@ -35,11 +38,19 @@ type HighlightContextType<T extends string> = {
   forceUpdateBounds?: boolean;
 };
 
+/* -------------------------------------------------------------------------- */
+/*                                 Context                                    */
+/* -------------------------------------------------------------------------- */
+
 const HighlightContext = React.createContext<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   HighlightContextType<any> | undefined
 >(undefined);
 
+/**
+ * Access the highlight context inside a child.
+ * Throws an error if used outside a <Highlight> provider.
+ */
 function useHighlight<T extends string>(): HighlightContextType<T> {
   const context = React.useContext(HighlightContext);
   if (!context) {
@@ -47,6 +58,10 @@ function useHighlight<T extends string>(): HighlightContextType<T> {
   }
   return context as unknown as HighlightContextType<T>;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                 Highlight                                  */
+/* -------------------------------------------------------------------------- */
 
 type BaseHighlightProps<T extends React.ElementType = 'div'> = {
   as?: T;
@@ -110,6 +125,11 @@ type HighlightProps<T extends React.ElementType = 'div'> =
   | UncontrolledParentModeHighlightProps<T>
   | UncontrolledChildrenModeHighlightProps<T>;
 
+/**
+ * Core highlight system.
+ * Provides context and Framer Motion-based highlight overlay
+ * for groups of interactive elements (e.g., tabs, lists, menus).
+ */
 function Highlight<T extends React.ElementType = 'div'>({
   ref,
   ...props
@@ -170,18 +190,15 @@ function Highlight<T extends React.ElementType = 'div'>({
         height: bounds.height + (boundsOffset.height ?? 0),
       };
 
-      setBoundsState((prev) => {
-        if (
-          prev &&
-          prev.top === newBounds.top &&
-          prev.left === newBounds.left &&
-          prev.width === newBounds.width &&
-          prev.height === newBounds.height
-        ) {
-          return prev;
-        }
-        return newBounds;
-      });
+      setBoundsState((prev) =>
+        prev &&
+        prev.top === newBounds.top &&
+        prev.left === newBounds.left &&
+        prev.width === newBounds.width &&
+        prev.height === newBounds.height
+          ? prev
+          : newBounds,
+      );
     },
     [props],
   );
@@ -313,20 +330,9 @@ function Highlight<T extends React.ElementType = 'div'>({
   );
 }
 
-function getNonOverridingDataAttributes(
-  element: React.ReactElement,
-  dataAttributes: Record<string, unknown>,
-): Record<string, unknown> {
-  return Object.keys(dataAttributes).reduce<Record<string, unknown>>(
-    (acc, key) => {
-      if ((element.props as Record<string, unknown>)[key] === undefined) {
-        acc[key] = dataAttributes[key];
-      }
-      return acc;
-    },
-    {},
-  );
-}
+/* -------------------------------------------------------------------------- */
+/*                               HighlightItem                                */
+/* -------------------------------------------------------------------------- */
 
 type ExtendedChildProps = React.ComponentProps<'div'> & {
   id?: string;
@@ -354,6 +360,25 @@ type HighlightItemProps<T extends React.ElementType = 'div'> =
     forceUpdateBounds?: boolean;
   };
 
+function getNonOverridingDataAttributes(
+  element: React.ReactElement,
+  dataAttributes: Record<string, unknown>,
+): Record<string, unknown> {
+  return Object.keys(dataAttributes).reduce<Record<string, unknown>>(
+    (acc, key) => {
+      if ((element.props as Record<string, unknown>)[key] === undefined) {
+        acc[key] = dataAttributes[key];
+      }
+      return acc;
+    },
+    {},
+  );
+}
+
+/**
+ * A single highlightable child.
+ * Works in both “parent” and “children” highlight modes.
+ */
 function HighlightItem<T extends React.ElementType>({
   ref,
   as,
@@ -411,7 +436,6 @@ function HighlightItem<T extends React.ElementType>({
 
     const updateBounds = () => {
       if (!localRef.current) return;
-
       const bounds = localRef.current.getBoundingClientRect();
 
       if (shouldUpdateBounds) {
@@ -524,7 +548,6 @@ function HighlightItem<T extends React.ElementType>({
               />
             )}
           </AnimatePresence>
-
           <Component
             data-slot="motion-highlight-item"
             style={{ position: 'relative', zIndex: 1 }}
@@ -601,6 +624,10 @@ function HighlightItem<T extends React.ElementType>({
     children
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                   Export                                   */
+/* -------------------------------------------------------------------------- */
 
 export {
   Highlight,
