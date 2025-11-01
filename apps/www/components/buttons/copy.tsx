@@ -1,11 +1,17 @@
 'use client';
 
 import * as React from 'react';
-import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { CheckIcon, CopyIcon } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
+import {
+  Button as ButtonPrimitive,
+  type ButtonProps as ButtonPrimitiveProps,
+} from '@workspace/ui/components/animate-ui/primitives/buttons/button';
 import { cn } from '@workspace/ui/lib/utils';
+import { useControlledState } from '@workspace/ui/hooks/use-controlled-state';
+import { copyToClipboard } from '@/utils/copy-to-clipboard';
 
 const buttonVariants = cva(
   "flex items-center justify-center rounded-md transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -39,85 +45,77 @@ const buttonVariants = cva(
   },
 );
 
-type CopyButtonProps = Omit<HTMLMotionProps<'button'>, 'children' | 'onCopy'> &
+type CopyButtonProps = Omit<ButtonPrimitiveProps, 'children'> &
   VariantProps<typeof buttonVariants> & {
     content?: string;
-    delay?: number;
-    onCopy?: (content: string) => void;
     isCopied?: boolean;
-    onCopyChange?: (isCopied: boolean) => void;
+    onCopyChange?: (isCopied: boolean, content?: string) => void;
+    delay?: number;
   };
 
-function CopyButton({
+export function CopyButton({
   content,
   className,
   size,
   variant,
   delay = 3000,
   onClick,
-  onCopy,
   isCopied,
   onCopyChange,
   ...props
 }: CopyButtonProps) {
-  const [localIsCopied, setLocalIsCopied] = React.useState(isCopied ?? false);
-  const Icon = localIsCopied ? CheckIcon : CopyIcon;
+  const [copied, setCopied] = useControlledState({
+    value: isCopied,
+    onChange: onCopyChange,
+  });
 
-  React.useEffect(() => {
-    setLocalIsCopied(isCopied ?? false);
-  }, [isCopied]);
-
-  const handleIsCopied = React.useCallback(
-    (isCopied: boolean) => {
-      setLocalIsCopied(isCopied);
-      onCopyChange?.(isCopied);
-    },
-    [onCopyChange],
-  );
+  const Icon = copied ? CheckIcon : CopyIcon;
 
   const handleCopy = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
-      if (isCopied) return;
+      onClick?.(e);
+      if (copied) return;
       if (content) {
-        navigator.clipboard
-          .writeText(content)
+          copyToClipboard(content)
           .then(() => {
-            handleIsCopied(true);
-            setTimeout(() => handleIsCopied(false), delay);
-            onCopy?.(content);
+            setCopied(true);
+            setTimeout(() => setCopied(false), delay);
           })
           .catch((error) => {
             console.error('Error copying command', error);
           });
       }
-      onClick?.(e);
     },
-    [isCopied, content, delay, onClick, onCopy, handleIsCopied],
+    [onClick, copied, content, delay, setCopied],
   );
 
   return (
-    <motion.button
-      data-slot="copy-button"
+    <motion.div
       whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className={cn(buttonVariants({ variant, size }), className)}
-      onClick={handleCopy}
-      {...props}
+      whileTap={{ scale: 0.97 }}
+      className="inline-flex"
     >
-      <AnimatePresence mode="popLayout">
-        <motion.span
-          key={localIsCopied ? 'check' : 'copy'}
-          data-slot="copy-button-icon"
-          initial={{ scale: 0, opacity: 0.4, filter: 'blur(4px)' }}
-          animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
-          exit={{ scale: 0, opacity: 0.4, filter: 'blur(4px)' }}
-          transition={{ duration: 0.25 }}
-        >
-          <Icon />
-        </motion.span>
-      </AnimatePresence>
-    </motion.button>
+      <ButtonPrimitive
+        data-slot="copy-button"
+        className={cn(buttonVariants({ variant, size }), className)}
+        onClick={handleCopy}
+        {...props}
+      >
+        <AnimatePresence mode="popLayout">
+          <motion.span
+            key={copied ? 'check' : 'copy'}
+            data-slot="copy-button-icon"
+            initial={{ scale: 0, opacity: 0.4, filter: 'blur(4px)' }}
+            animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
+            exit={{ scale: 0, opacity: 0.4, filter: 'blur(4px)' }}
+            transition={{ duration: 0.25 }}
+          >
+            <Icon />
+          </motion.span>
+        </AnimatePresence>
+      </ButtonPrimitive>
+    </motion.div>
   );
 }
 
-export { CopyButton, buttonVariants, type CopyButtonProps };
+export { buttonVariants, type CopyButtonProps };
