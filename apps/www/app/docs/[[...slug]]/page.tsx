@@ -17,7 +17,7 @@ import { Button } from '@workspace/ui/components/ui/buttons/button';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { findNeighbour } from 'fumadocs-core/page-tree';
-import { baseOptions } from '@/app/layout.config';
+import { baseOptions } from '@/lib/layout.shared';
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;

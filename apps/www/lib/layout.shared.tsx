@@ -1,9 +1,8 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 
-export function baseOptions(): BaseLayoutProps {
-  return {
-    nav: {
-      title: 'Azemmur',
-    },
-  };
-}
+export const baseOptions: BaseLayoutProps = {
+  nav: {
+    title: 'Azemmur',
+  },
+  links: [],
+};
