@@ -39,8 +39,8 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1
       zod:
-        specifier: ^3.25.76
-        version: 3.25.76
+        specifier: ^4.1.12
+        version: 4.1.12
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.8.1
@@ -127,8 +127,8 @@ importers:
         specifier: 16.0.5
         version: 16.0.5(@types/react@19.2.2)(lucide-react@0.548.0(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       fumadocs-mdx:
-        specifier: 13.0.2
-        version: 13.0.2(fumadocs-core@16.0.5(@types/react@19.2.2)(lucide-react@0.548.0(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+        specifier: 13.0.4
+        version: 13.0.4(fumadocs-core@16.0.5(@types/react@19.2.2)(lucide-react@0.548.0(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
       fumadocs-ui:
         specifier: 16.0.5
         version: 16.0.5(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(lucide-react@0.548.0(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(tailwindcss@4.1.16)
@@ -2505,8 +2505,8 @@ packages:
       waku:
         optional: true
 
-  fumadocs-mdx@13.0.2:
-    resolution: {integrity: sha512-PLlpdDJze/Yy7phM6v9vyIcxDSGrfkUTkvhTiGHkLBft5bA171fAs+BzhiqwNCfR+4MfXMppfb7ffZV3sg6frA==}
+  fumadocs-mdx@13.0.4:
+    resolution: {integrity: sha512-NOFSeytY281xpYObdBu4KeQRF58irJAFre0ge1TN4mrJqRby77mpL0SMmm0bkTImjfRarzXJtG3v14ClOg0Jkw==}
     hasBin: true
     peerDependencies:
       '@fumadocs/mdx-remote': ^1.4.0
@@ -4428,9 +4428,6 @@ packages:
   yocto-queue@1.2.1:
     resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
     engines: {node: '>=12.20'}
-
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
   zod@4.1.12:
     resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
@@ -6952,7 +6949,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  fumadocs-mdx@13.0.2(fumadocs-core@16.0.5(@types/react@19.2.2)(lucide-react@0.548.0(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0):
+  fumadocs-mdx@13.0.4(fumadocs-core@16.0.5(@types/react@19.2.2)(lucide-react@0.548.0(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(next@16.0.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0):
     dependencies:
       '@mdx-js/mdx': 3.1.1
       '@standard-schema/spec': 1.0.0
@@ -9431,8 +9428,6 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.2.1: {}
-
-  zod@3.25.76: {}
 
   zod@4.1.12: {}
 
