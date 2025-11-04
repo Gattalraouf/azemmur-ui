@@ -146,8 +146,19 @@ export function ComponentPreview({
           id="component-preview-tab-list"
         >
           <TabsList>
-            <TabsTrigger value="preview">Preview</TabsTrigger>
-            <TabsTrigger value="code">Code</TabsTrigger>
+            <TabsTrigger
+              className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer"
+              value="preview"
+            >
+              Preview
+            </TabsTrigger>
+            <TabsTrigger
+              className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer"
+              value="code"
+              disabled={!code}
+            >
+              Code
+            </TabsTrigger>
           </TabsList>
         </div>
 

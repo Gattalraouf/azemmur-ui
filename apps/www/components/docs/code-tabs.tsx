@@ -86,7 +86,7 @@ export function CodeTabs({
   return (
     <figure
       className={cn(
-        'w-full gap-0 !m-0 overflow-hidden rounded-xl bg-accent',
+        'w-full gap-0 !m-0 overflow-hidden rounded-xl bg-accent text-accent-foreground',
         className,
       )}
     >
@@ -100,7 +100,7 @@ export function CodeTabs({
         }}
         data-slot="install-tabs"
       >
-        <TabsHighlight className="absolute z-0 inset-0 rounded-none shadow-none bg-transparent after:content-[''] after:absolute after:inset-x-0 after:h-0.5 after:bottom-0 dark:after:bg-white after:bg-black after:rounded-t-full">
+        <TabsHighlight className="absolute z-0 inset-0 rounded-none shadow-none bg-transparent after:content-[''] after:absolute after:inset-x-0 after:h-0.5 after:bottom-0 dark:after:bg-accent-foreground after:bg-accent-foreground after:rounded-t-full">
           <TabsList
             data-slot="install-tabs-list"
             className="w-full relative flex items-center justify-between rounded-none h-10 text-current py-0 pl-5 pr-4.5"
@@ -116,7 +116,7 @@ export function CodeTabs({
                     <TabsTrigger
                       key={label}
                       value={label}
-                      className="text-muted-foreground h-full text-sm font-medium data-[state=active]:text-current px-0"
+                      className="text-accent-foreground h-full text-sm font-medium data-[state=active]:font-bold px-0 cursor-pointer"
                     >
                       {label}
                     </TabsTrigger>
@@ -129,7 +129,7 @@ export function CodeTabs({
                 content={codes[selectedCode] ?? ''}
                 size="xs"
                 variant="ghost"
-                className="-me-2.5 bg-transparent hover:bg-black/5 dark:hover:bg-white/10"
+                className="-me-2.5 bg-transparent hover:bg-black/5 dark:hover:bg-white/10 cursor-pointer"
                 onCopyChange={onCopyChange}
               />
             )}
@@ -140,7 +140,7 @@ export function CodeTabs({
         <div className="px-1.5 pb-1.5">
           <TabsContents
             data-slot="install-tabs-contents"
-            className="bg-background rounded-md"
+            className="bg-[var(--codeblock)] rounded-md"
           >
             {highlightedCodes &&
               Object.entries(highlightedCodes).map(([label, html]) => (

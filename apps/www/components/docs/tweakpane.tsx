@@ -215,7 +215,7 @@ const renderNumber = (
           >
             <SelectValue placeholder="Select an option" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="dark:bg-secondary dark:text-muted-foreground bg-muted text-muted-foreground">
             {Object.entries(bind.options).map(([optKey, value]) => (
               <SelectItem
                 key={optKey}
@@ -287,7 +287,7 @@ const renderString = (
           >
             <SelectValue placeholder="Select an option" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="dark:bg-secondary dark:text-muted-foreground bg-muted text-muted-foreground">
             {Object.entries(bind.options).map(([optKey, value]) => (
               <SelectItem key={optKey} value={String(value)} className="!h-8">
                 {optKey}
@@ -378,7 +378,7 @@ const renderFlatBinds = (
   binds: FlatBinds,
   onBindsChange: (binds: FlatBinds) => void,
 ): React.ReactNode => (
-  <div className="bg-background rounded-[7px] flex flex-col gap-2 pr-1.5 pl-2 py-[7px]">
+  <div className="bg-[var(--codeblock)] rounded-md flex flex-col gap-2 px-2 py-[7px]">
     {Object.entries(binds).map(([key, bind]) => (
       <React.Fragment key={key}>
         {renderBind(key, bind, (value) =>
@@ -400,11 +400,11 @@ const renderNestedBinds = (
       defaultOpen
       className="flex flex-col not-first:pt-1 first:-mt-0.5"
     >
-      <CollapsibleTrigger className="cursor-pointer w-full truncate flex items-center justify-between rounded-md p-1.5">
-        <Label className="truncate text-current/80 block leading-[1.2]">
+      <CollapsibleTrigger className="cursor-pointer w-full truncate flex items-center justify-between rounded-md p-2">
+        <Label className="truncate text-accent-foreground font-semibold block leading-[1.2]">
           {groupKey}
         </Label>
-        <ChevronsUpDown className="size-3.5 text-muted-foreground" />
+        <ChevronsUpDown className="size-3.5 text-accent-foreground" />
       </CollapsibleTrigger>
       <CollapsibleContent {...(!initial ? { initial: false } : {})}>
         <div className="mt-1">
@@ -457,7 +457,7 @@ const Tweakpane = ({ onBindsChange, ...props }: TweakpaneProps) => {
 
   return (
     <div className="bg-transparent pl-0 p-1.5 size-full">
-      <div className="overflow-y-auto bg-accent rounded-[5px] p-1.5 size-full flex flex-col">
+      <div className="overflow-y-auto bg-accent rounded-md p-1.5 size-full flex flex-col">
         {renderBinds(localBinds, handleBindsChange, initial)}
       </div>
     </div>

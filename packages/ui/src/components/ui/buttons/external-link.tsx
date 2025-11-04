@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@workspace/ui/lib/utils';
 import { ExternalLinkIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -9,7 +10,8 @@ import { motion } from 'motion/react';
 
 type ExternalLinkProps = {
   href: string;
-  text: string;
+  text?: string;
+  className?: string;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -20,7 +22,7 @@ type ExternalLinkProps = {
  * Renders a styled external link with hover/tap animations.
  * Opens the link in a new tab safely.
  */
-export const ExternalLink = ({ href, text }: ExternalLinkProps) => {
+export const ExternalLink = ({ href, text, className }: ExternalLinkProps) => {
   return (
     <motion.a
       whileHover={{ scale: 1.05 }}
@@ -28,10 +30,13 @@ export const ExternalLink = ({ href, text }: ExternalLinkProps) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="not-prose w-fit flex flex-row items-center rounded-md bg-muted hover:bg-muted/70 transition pl-3 pr-2.5 py-1 text-sm font-medium text-muted-foreground"
+      className={cn(
+        `not-prose w-fit flex flex-row items-center rounded-md bg-muted hover:bg-muted/70 transition pl-3 pr-2.5 py-1 text-sm font-medium text-muted-foreground`,
+        className,
+      )}
     >
-      <span>{text}</span>
-      <ExternalLinkIcon className="ml-1.5 h-4 w-4" />
+      {text && <span>{text}</span>}
+      <ExternalLinkIcon className={`${text && 'ml-1.5'} h-4 w-4`} />
     </motion.a>
   );
 };

@@ -28,7 +28,7 @@ export const Footer = ({ lastUpdate }: { lastUpdate?: Date }) => {
       {lastUpdate && (
         <p className="text-sm text-muted-foreground flex gap-1 items-center text-nowrap">
           Last updated:{' '}
-          <span className="text-foreground font-medium px-1.5 py-[3px] bg-accent text-[13px] rounded-sm">
+          <span className="text-foreground font-medium px-1.5 py-[3px] bg-secondary text-[13px] rounded-sm">
             {lastUpdate?.toLocaleDateString()}
           </span>
         </p>

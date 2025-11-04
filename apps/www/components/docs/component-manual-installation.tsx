@@ -115,7 +115,7 @@ export const ComponentManualInstallation = ({
           </h4>
 
           <Collapsible open={isOpened} onOpenChange={setIsOpened}>
-            <div ref={collapsibleRef} className="relative overflow-hidden">
+            <div ref={collapsibleRef} className="relative overflow-hidden mb-4">
               <CollapsibleContent
                 forceMount
                 className={cn('overflow-hidden', !isOpened && 'max-h-32')}
@@ -140,11 +140,13 @@ export const ComponentManualInstallation = ({
               <div
                 className={cn(
                   'absolute flex items-center justify-center bg-gradient-to-b rounded-t-xl from-neutral-300/30 to-white dark:from-neutral-700/30 dark:to-neutral-950 p-2',
-                  isOpened ? 'inset-x-0 bottom-0 h-12' : 'inset-0',
+                  isOpened
+                    ? 'inset-x-0 bottom-0 h-12 !rounded-none bg-transparent m-4'
+                    : 'inset-0',
                 )}
               >
                 <CollapsibleTrigger asChild>
-                  <Button variant="secondary" className="h-8 text-xs">
+                  <Button variant="accent" className="h-8 text-xs">
                     {isOpened ? 'Collapse' : 'Expand'}
                   </Button>
                 </CollapsibleTrigger>

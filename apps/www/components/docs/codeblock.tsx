@@ -103,7 +103,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
           <div className="flex h-10 items-center gap-2 px-4">
             {icon && (
               <div
-                className="text-muted-foreground [&_svg]:size-3.5"
+                className="text-accent-foreground [&_svg]:size-3.5"
                 dangerouslySetInnerHTML={
                   typeof icon === 'string' ? { __html: icon } : undefined
                 }
@@ -111,14 +111,14 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
                 {typeof icon !== 'string' ? icon : null}
               </div>
             )}
-            <figcaption className="flex-1 truncate text-muted-foreground">
+            <figcaption className="flex-1 truncate text-accent-foreground">
               {title}
             </figcaption>
             {allowCopy && (
               <CopyButton
                 size="xs"
                 variant="ghost"
-                className="-me-2 bg-transparent hover:bg-black/5 dark:hover:bg-white/10"
+                className="-me-2 bg-transparent hover:bg-black/5 dark:hover:bg-white/10 text-accent-foreground cursor-pointer"
                 onClick={handleCopy}
                 isCopied={isCopied}
               />
@@ -130,7 +130,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
               <CopyButton
                 size="xs"
                 variant="ghost"
-                className="bg-transparent hover:bg-black/5 dark:hover:bg-white/10"
+                className="bg-transparent hover:bg-black/5 dark:hover:bg-white/10 text-accent-foreground cursor-pointer"
                 onClick={handleCopy}
                 isCopied={isCopied}
               />
@@ -145,7 +145,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
               {...viewportProps}
               data-slot="codeblock-viewport"
               className={cn(
-                'max-h-[600px] rounded-md bg-background [&_code]:!text-[13px] [&_code_.line]:!px-0',
+                'max-h-[600px] rounded-md bg-[var(--codeblock)] [&_code]:!text-[13px] [&_code_.line]:!px-0',
                 viewportProps?.className,
               )}
             >

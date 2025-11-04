@@ -36,11 +36,11 @@ export const ComponentWrapper = ({
   const isMobile = useIsMobile();
 
   return (
-    <div className="bg-accent rounded-xl p-1.5">
+    <div className="bg-accent rounded-md p-1.5">
       <motion.div
         id="component-wrapper"
         className={cn(
-          'max-w-screen relative rounded-md bg-background flex flex-col md:flex-row',
+          'max-w-screen relative rounded-md bg-[var(--codeblock)] flex flex-col md:flex-row',
           bigScreen && 'overflow-hidden',
           className,
         )}
@@ -49,12 +49,12 @@ export const ComponentWrapper = ({
         <motion.div className="relative size-full flex-1">
           {/* Control buttons */}
           {!iframe && (
-            <div className="absolute top-3 right-3 z-[9] bg-background flex items-center justify-end gap-2 p-1 rounded-[11px]">
+            <div className="absolute top-3 right-3 z-[9] bg-background flex items-center justify-end gap-2 p-1 rounded-md">
               {/* Restart button */}
               <Button
                 onClick={() => setKey((prev) => prev + 1)}
-                className="flex items-center rounded-lg"
-                variant="neutral"
+                className="flex items-center rounded-md"
+                variant="secondary"
                 size="icon-sm"
                 asChild
               >
@@ -70,8 +70,8 @@ export const ComponentWrapper = ({
               {iframe && (
                 <Button
                   onClick={() => window.open(`/examples/${name}`, '_blank')}
-                  className="flex items-center rounded-lg"
-                  variant="neutral"
+                  className="flex items-center rounded-md"
+                  variant="secondary"
                   size="icon-sm"
                   asChild
                 >
@@ -88,8 +88,8 @@ export const ComponentWrapper = ({
               {tweakpane && (
                 <Button
                   onClick={() => setTweakMode((prev) => !prev)}
-                  className="flex items-center rounded-lg"
-                  variant="neutral"
+                  className="flex items-center rounded-md"
+                  variant="secondary"
                   size="icon-sm"
                   asChild
                 >

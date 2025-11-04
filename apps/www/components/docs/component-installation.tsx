@@ -58,8 +58,18 @@ export function ComponentInstallation({
         {/*                              Tabs Header                           */}
         {/* ------------------------------------------------------------------ */}
         <TabsList>
-          <TabsTrigger value="cli">CLI</TabsTrigger>
-          <TabsTrigger value="manual">Manual</TabsTrigger>
+          <TabsTrigger
+            className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer"
+            value="cli"
+          >
+            CLI
+          </TabsTrigger>
+          <TabsTrigger
+            className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer"
+            value="manual"
+          >
+            Manual
+          </TabsTrigger>
         </TabsList>
 
         {/* ------------------------------------------------------------------ */}

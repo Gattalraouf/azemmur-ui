@@ -59,7 +59,7 @@ export function LLMCopyButton({
           color: 'secondary',
           size: 'sm',
           className:
-            'gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground border-0',
+            'gap-2 [&_svg]:size-3.5 border-0 cursor-pointer !bg-fd-accent !text-fd-accent-foreground hover:!bg-fd-accent/90 hover:!text-fd-accent-foreground/90',
         }),
       )}
       onClick={onClick}
@@ -158,14 +158,15 @@ export function ViewOptions({
           buttonVariants({
             color: 'secondary',
             size: 'sm',
-            className: 'gap-2 border-0',
+            className:
+              'gap-2 border-0 cursor-pointer !bg-fd-accent !text-fd-accent-foreground hover:!bg-fd-accent/90 hover:!text-fd-accent-foreground/90',
           }),
         )}
       >
         Open
-        <ChevronDown className="size-3.5 text-fd-muted-foreground" />
+        <ChevronDown className="size-3.5" />
       </PopoverTrigger>
-      <PopoverContent className="flex flex-col overflow-auto">
+      <PopoverContent className="flex flex-col overflow-auto !text-fd-secondary-foreground">
         {items.map((item) => (
           <a
             key={item.href}
@@ -176,7 +177,7 @@ export function ViewOptions({
           >
             {item.icon}
             {item.title}
-            <ExternalLinkIcon className="text-fd-muted-foreground size-3.5 ms-auto" />
+            <ExternalLinkIcon className="size-3.5 ms-auto" />
           </a>
         ))}
       </PopoverContent>
