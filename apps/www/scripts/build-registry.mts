@@ -10,6 +10,13 @@ const REGISTRY_JSON_PATH = path.join(
   'registry.json',
 );
 
+type RegistryFile = {
+  path: string;
+  type?: string;
+  target?: string;
+  content?: string;
+};
+
 /**
  * Replace registry paths with component paths.
  * @param inputStr - The input string to process.
@@ -141,7 +148,7 @@ export const index: Record<string, any> = {`;
 
     // Read files and add content preserving newlines
     const filesWithContent = await Promise.all(
-      item.files.map(async (file: any) => {
+      item.files.map(async (file: RegistryFile) => {
         const filePath = typeof file === 'string' ? file : file.path;
         const resolvedFilePath = path.resolve(filePath);
 
@@ -256,7 +263,7 @@ async function buildRegistry() {
       const registryItem = JSON.parse(content);
 
       // Replace `@/registry` in file contents
-      registryItem.files = registryItem.files?.map((file: any) => {
+      registryItem.files = registryItem.files?.map((file: RegistryFile) => {
         if (
           file.content?.includes('@/registry') ||
           file.content?.includes('@workspace/ui/')

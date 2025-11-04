@@ -150,7 +150,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/primitives/buttons/button.tsx',
         content:
-          "'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/animate-ui/primitives/animate/slot';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n\n  return (\n    <Component\n      whileTap={{ scale: tapScale }}\n      whileHover={{ scale: hoverScale }}\n      {...props}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };",
+          "'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/primitives/slot';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n\n  return (\n    <Component\n      whileTap={{ scale: tapScale }}\n      whileHover={{ scale: hoverScale }}\n      {...props}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };",
       },
     ],
     keywords: [],
