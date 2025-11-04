@@ -32,15 +32,18 @@ releaseDate: 2025-09-07
   type={{
     variant: {
       description: 'The variant of the button.',
-      type: '"default" | "accent" | "destructive" | "outline" | "secondary" | "ghost" | "link"',
+      type: 'enum',
+      typeDescription:
+        '"default" | "accent" | "destructive" | "outline" | "secondary" | "ghost" | "link"',
       required: false,
-      default: 'default',
+      default: '"default"',
     },
     size: {
       description: 'The size of the button.',
-      type: '"default" | "sm" | "lg" | "icon"',
+      type: 'enum',
+      typeDescription: '"default" | "sm" | "lg" | "icon"',
       required: false,
-      default: 'default',
+      default: '"default"',
     },
     hoverScale: {
       description: 'The scale of the button on hover.',

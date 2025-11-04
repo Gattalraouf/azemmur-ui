@@ -6,7 +6,7 @@ import { ComponentPreview } from '@/components/docs/component-preview';
 import { ComponentInstallation } from '@/components/docs/component-installation';
 import { ExternalLink } from '@workspace/ui/components/ui/buttons/external-link';
 import { Steps, Step } from 'fumadocs-ui/components/steps';
-import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { TypeTable } from '@/components/docs/type-table';
 import {
   CodeBlock,
   Pre,
