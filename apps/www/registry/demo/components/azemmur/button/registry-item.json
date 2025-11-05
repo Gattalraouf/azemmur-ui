@@ -1,16 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "demo-components-buttons-button",
+  "name": "demo-components-button",
   "type": "registry:ui",
   "title": "Button Demo",
   "description": "Demo showing a button.",
   "dependencies": ["lucide-react"],
-  "registryDependencies": ["@azemmur/components-buttons-button"],
+  "registryDependencies": ["@azemmur/components-button"],
   "files": [
     {
       "path": "registry/demo/components/azemmur/button/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/demo/components/azemmur/button.tsx"
+      "target": "components/azemmur/demo/components/button.tsx"
     }
   ],
   "meta": {

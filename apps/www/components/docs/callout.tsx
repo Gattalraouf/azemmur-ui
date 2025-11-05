@@ -12,7 +12,8 @@ type CalloutProps = Omit<
   icon?: ReactNode;
 };
 
-const iconClass = 'size-5 -me-0.5 fill-(--callout-color) text-fd-accent';
+const iconClass =
+  'size-5 -me-0.5 fill-(--callout-color) dark:text-fd-secondary-foreground text-background';
 
 export const Callout = forwardRef<HTMLDivElement, CalloutProps>(
   ({ className, children, title, type = 'info', icon, ...props }, ref) => {
@@ -23,7 +24,7 @@ export const Callout = forwardRef<HTMLDivElement, CalloutProps>(
       <div
         ref={ref}
         className={cn(
-          'flex gap-2 my-4 rounded-lg bg-fd-accent/50 p-3 ps-2 text-sm text-fd-card-foreground',
+          'flex gap-2 my-4 rounded-md bg-fd-secondary p-3 ps-2 text-sm text-fd-secondary-foreground',
           className,
         )}
         {...props}

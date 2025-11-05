@@ -1,0 +1,157 @@
+---
+title: MCP
+description: A way to interact with Azemmur through your AI-powered editor.
+icon: Server
+---
+
+import { CodeTabs } from '@/components/docs/code-tabs';
+import {
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    TabsContents,
+    TabsContent,
+} from '@workspace/ui/components/ui/tabs/tabs';
+
+<Callout>
+  **Note:** Azemmur uses the [shadcn MCP server](https://ui.shadcn.com/docs/mcp) to connect your registry with AI assistants and editors.
+</Callout>
+
+The **Model Context Protocol (MCP)** allows AI tools like **Claude Code**, **Cursor**, or **VS Code** to interact directly with your component registry. Using the shadcn MCP server, you can **browse**, **search**, and **install Azemmur components** through natural language prompts — right inside your development environment.
+
+
+## Automatic Configuration
+
+Select your MCP client and run the command below to automatically set up the shadcn MCP server.
+
+<Tabs defaultValue="claude">
+  <TabsList>
+    <TabsTrigger className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer" value="claude">Claude Code</TabsTrigger>
+    <TabsTrigger className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer" value="cursor">Cursor</TabsTrigger>
+    <TabsTrigger className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer" value="vscode">VS Code</TabsTrigger>
+  </TabsList>
+  <TabsContents>
+    <TabsContent value="claude" className="h-[100px]">
+      <CodeTabs
+        lang="bash"
+        codes={{
+          pnpm: `pnpm dlx shadcn@latest mcp init --client claude`,
+          npm: `npx shadcn@latest mcp init --client claude`,
+          yarn: `yarn shadcn@latest mcp init --client claude`,
+          bun: `bunx --bun shadcn@latest mcp init --client claude`,
+        }}
+      />
+    </TabsContent>
+    <TabsContent value="cursor" className="h-[100px]">
+      <CodeTabs
+        lang="bash"
+        codes={{
+          pnpm: `pnpm dlx shadcn@latest mcp init --client cursor`,
+          npm: `npx shadcn@latest mcp init --client cursor`,
+          yarn: `yarn shadcn@latest mcp init --client cursor`,
+          bun: `bunx --bun shadcn@latest mcp init --client cursor`,
+        }}
+      />
+    </TabsContent>
+    <TabsContent value="vscode" className="h-[100px]">
+      <CodeTabs
+        lang="bash"
+        codes={{
+          pnpm: `pnpm dlx shadcn@latest mcp init --client vscode`,
+          npm: `npx shadcn@latest mcp init --client vscode`,
+          yarn: `yarn shadcn@latest mcp init --client vscode`,
+          bun: `bunx --bun shadcn@latest mcp init --client vscode`,
+        }}
+      />
+    </TabsContent>
+  </TabsContents>
+</Tabs>
+
+
+## Manual Configuration
+
+Install the **shadcn CLI** as a dev dependency:
+
+<CodeTabs
+  lang="bash"
+  codes={{
+    pnpm: `pnpm add -D shadcn@latest`,
+    npm: `npm install -D shadcn@latest`,
+    yarn: `yarn add -D shadcn@latest`,
+    bun: `bun add -D shadcn@latest`,
+  }}
+/>
+
+Then add the MCP configuration for your preferred client:
+
+
+<CodeTabs
+  lang="json"
+  codes={{
+    'Claude Code': `// Copy and paste the code into .mcp.json
+  {
+    "mcpServers": {
+      "shadcn": {
+        "command": "npx",
+        "args": ["shadcn@latest", "mcp"]
+      }
+    }
+  }`,
+    Cursor: `// Copy and paste the code into .cursor/mcp.json
+  {
+    "mcpServers": {
+      "shadcn": {
+        "command": "npx",
+        "args": ["shadcn@latest", "mcp"]
+      }
+    }
+  }`,
+    'VS Code': `// Copy and paste the code into .vscode/mcp.json
+  {
+    "mcpServers": {
+      "shadcn": {
+        "command": "npx",
+        "args": ["shadcn@latest", "mcp"]
+      }
+    }
+  }`,
+    Windsurf: `// Copy and paste the code into .codeium/windsurf/mcp_config.json
+  {
+    "mcpServers": {
+      "shadcn": {
+        "command": "npx",
+        "args": ["shadcn@latest", "mcp"]
+      }
+    }
+  }`,
+  }}
+/>
+
+Restart your editor, and the **shadcn MCP server** should appear as connected.
+
+
+## Using with Azemmur
+
+Once MCP is configured, you can interact with the Azemmur registry directly.
+
+Example prompts:
+
+- “Show me all components in the Azemmur registry.”  
+- “Add the @azemmur/components-button component.”  
+- “Create a login form using Azemmur components.”
+
+Your `components.json` should include the registry:
+
+```json
+{
+  "registries": {
+    "@azemmur": "http://localhost:3000/r/{name}.json"
+  }
+}
+````
+
+
+## Learn More
+
+For advanced configuration, private registries, and troubleshooting,
+see the official [shadcn MCP documentation](https://ui.shadcn.com/docs/mcp).

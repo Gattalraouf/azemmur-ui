@@ -22,8 +22,8 @@ export const index: Record<string, any> = {
     component: null,
     command: '@azemmur/index',
   },
-  'components-buttons-button': {
-    name: 'components-buttons-button',
+  'components-button': {
+    name: 'components-button',
     description: 'A button component with a variety of styles and animations.',
     type: 'registry:ui',
     dependencies: ['class-variance-authority'],
@@ -48,7 +48,7 @@ export const index: Record<string, any> = {
           Object.keys(mod).find(
             (key) =>
               typeof mod[key] === 'function' || typeof mod[key] === 'object',
-          ) || 'components-buttons-button';
+          ) || 'components-button';
         const Comp = mod.default || mod[exportName];
         if (mod.animations) {
           (LazyComp as any).animations = mod.animations;
@@ -58,7 +58,7 @@ export const index: Record<string, any> = {
       LazyComp.demoProps = {};
       return LazyComp;
     })(),
-    command: '@azemmur/components-buttons-button',
+    command: '@azemmur/components-button',
   },
   dummy: {
     name: 'dummy',
@@ -175,18 +175,18 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/primitives-buttons-button',
   },
-  'demo-components-buttons-button': {
-    name: 'demo-components-buttons-button',
+  'demo-components-button': {
+    name: 'demo-components-button',
     description: 'Demo showing a button.',
     type: 'registry:ui',
     dependencies: ['lucide-react'],
     devDependencies: undefined,
-    registryDependencies: ['@azemmur/components-buttons-button'],
+    registryDependencies: ['@azemmur/components-button'],
     files: [
       {
         path: 'registry/demo/components/azemmur/button/index.tsx',
         type: 'registry:ui',
-        target: 'components/azemmur/demo/components/azemmur/button.tsx',
+        target: 'components/azemmur/demo/components/button.tsx',
         content:
           "import { PlusIcon } from 'lucide-react';\nimport { Button, type ButtonProps } from '@/components/azemmur/components/azemmur/button';\n\ninterface ButtonDemoProps {\n  variant: ButtonProps['variant'];\n  size: ButtonProps['size'];\n}\n\nexport default function ButtonDemo({ variant, size }: ButtonDemoProps) {\n  return (\n    <Button variant={variant} size={size}>\n      {size === 'icon' ? <PlusIcon /> : 'Click me'}\n    </Button>\n  );\n}",
       },
@@ -201,7 +201,7 @@ export const index: Record<string, any> = {
           Object.keys(mod).find(
             (key) =>
               typeof mod[key] === 'function' || typeof mod[key] === 'object',
-          ) || 'demo-components-buttons-button';
+          ) || 'demo-components-button';
         const Comp = mod.default || mod[exportName];
         if (mod.animations) {
           (LazyComp as any).animations = mod.animations;
@@ -237,6 +237,6 @@ export const index: Record<string, any> = {
       };
       return LazyComp;
     })(),
-    command: '@azemmur/demo-components-buttons-button',
+    command: '@azemmur/demo-components-button',
   },
 };
