@@ -35,13 +35,13 @@ import { MotionConfig } from 'motion/react';
 export function App({ children }: { children: React.ReactNode }) {
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }
-````
+```
 
 With `reducedMotion="user"`, Motion automatically:
 
-* Disables transform and layout animations when Reduced Motion is enabled.
-* Keeps helpful, subtle effects (like opacity or background-color transitions).
-* Ensures all Azemmur components adapt without extra configuration.
+- Disables transform and layout animations when Reduced Motion is enabled.
+- Keeps helpful, subtle effects (like opacity or background-color transitions).
+- Ensures all Azemmur components adapt without extra configuration.
 
 ## Design Philosophy
 

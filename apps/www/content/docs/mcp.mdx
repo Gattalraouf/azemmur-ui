@@ -6,19 +6,19 @@ icon: Server
 
 import { CodeTabs } from '@/components/docs/code-tabs';
 import {
-    Tabs,
-    TabsList,
-    TabsTrigger,
-    TabsContents,
-    TabsContent,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContents,
+  TabsContent,
 } from '@workspace/ui/components/ui/tabs/tabs';
 
 <Callout>
-  **Note:** Azemmur uses the [shadcn MCP server](https://ui.shadcn.com/docs/mcp) to connect your registry with AI assistants and editors.
+  **Note:** Azemmur uses the [shadcn MCP server](https://ui.shadcn.com/docs/mcp)
+  to connect your registry with AI assistants and editors.
 </Callout>
 
 The **Model Context Protocol (MCP)** allows AI tools like **Claude Code**, **Cursor**, or **VS Code** to interact directly with your component registry. Using the shadcn MCP server, you can **browse**, **search**, and **install Azemmur components** through natural language prompts — right inside your development environment.
-
 
 ## Automatic Configuration
 
@@ -26,9 +26,24 @@ Select your MCP client and run the command below to automatically set up the sha
 
 <Tabs defaultValue="claude">
   <TabsList>
-    <TabsTrigger className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer" value="claude">Claude Code</TabsTrigger>
-    <TabsTrigger className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer" value="cursor">Cursor</TabsTrigger>
-    <TabsTrigger className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer" value="vscode">VS Code</TabsTrigger>
+    <TabsTrigger
+      className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer"
+      value="claude"
+    >
+      Claude Code
+    </TabsTrigger>
+    <TabsTrigger
+      className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer"
+      value="cursor"
+    >
+      Cursor
+    </TabsTrigger>
+    <TabsTrigger
+      className="data-[state=active]:!text-fd-accent-foreground !text-fd-accent cursor-pointer"
+      value="vscode"
+    >
+      VS Code
+    </TabsTrigger>
   </TabsList>
   <TabsContents>
     <TabsContent value="claude" className="h-[100px]">
@@ -67,7 +82,6 @@ Select your MCP client and run the command below to automatically set up the sha
   </TabsContents>
 </Tabs>
 
-
 ## Manual Configuration
 
 Install the **shadcn CLI** as a dev dependency:
@@ -83,7 +97,6 @@ Install the **shadcn CLI** as a dev dependency:
 />
 
 Then add the MCP configuration for your preferred client:
-
 
 <CodeTabs
   lang="json"
@@ -129,15 +142,14 @@ Then add the MCP configuration for your preferred client:
 
 Restart your editor, and the **shadcn MCP server** should appear as connected.
 
-
 ## Using with Azemmur
 
 Once MCP is configured, you can interact with the Azemmur registry directly.
 
 Example prompts:
 
-- “Show me all components in the Azemmur registry.”  
-- “Add the @azemmur/components-button component.”  
+- “Show me all components in the Azemmur registry.”
+- “Add the @azemmur/components-button component.”
 - “Create a login form using Azemmur components.”
 
 Your `components.json` should include the registry:
@@ -148,8 +160,7 @@ Your `components.json` should include the registry:
     "@azemmur": "http://localhost:3000/r/{name}.json"
   }
 }
-````
-
+```
 
 ## Learn More
 
