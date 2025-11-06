@@ -250,7 +250,7 @@ async function buildRegistry() {
     });
   });
 
-  // 3. Replace `@/registry/animate-ui/` with `@/components/animate-ui/` in all files
+  // 3. Replace `@/registry/azemmur/` with `@/components/azemmur/` in all files
   const files = await fs.readdir(path.join(process.cwd(), 'public/r'));
 
   await Promise.all(
