@@ -6,7 +6,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import {
   Button as ButtonPrimitive,
   type ButtonProps as ButtonPrimitiveProps,
-} from '@/registry/components/primitives/buttons/button';
+} from '@/registry/components/primitives/button';
 import { cn } from '@workspace/ui/lib/utils';
 
 const buttonVariants = cva(

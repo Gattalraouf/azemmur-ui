@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "primitives-buttons-button",
+  "name": "primitives-button",
   "type": "registry:ui",
   "title": "Button",
   "description": "A simple button that animates on hover and tap.",
@@ -8,14 +8,14 @@
     "motion"
   ],
   "registryDependencies": [
-    "@azemmur/primitives-animate-slot"
+    "@azemmur/primitives-slot"
   ],
   "files": [
     {
-      "path": "registry/components/primitives/buttons/button/index.tsx",
+      "path": "registry/components/primitives/button/index.tsx",
       "content": "'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/primitives/slot';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n\n  return (\n    <Component\n      whileTap={{ scale: tapScale }}\n      whileHover={{ scale: hoverScale }}\n      {...props}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };\n",
       "type": "registry:ui",
-      "target": "components/azemmur/primitives/buttons/button.tsx"
+      "target": "components/azemmur/primitives/button.tsx"
     }
   ]
 }
