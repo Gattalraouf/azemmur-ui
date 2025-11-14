@@ -23,6 +23,9 @@ export const docs = defineDocs({
         })
         .optional(),
     }),
+    postprocess: {
+      includeProcessedMarkdown: true,
+    },
   },
   meta: {
     schema: metaSchema,
