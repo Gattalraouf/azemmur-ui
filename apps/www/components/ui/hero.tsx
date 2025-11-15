@@ -16,7 +16,7 @@ const TITLE = 'Craft beautiful, accessible interfaces, your way.';
 export const Hero = () => {
   return (
     <div className="relative overflow-x-hidden flex flex-col items-center px-5">
-      <div className="relative z-10 flex flex-col items-center justify-center pt-30 md:pt-0">
+      <div className="relative z-10 flex flex-col items-center justify-center">
         <MotionEffect
           slide={{
             direction: 'down',

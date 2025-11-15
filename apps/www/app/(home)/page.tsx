@@ -6,6 +6,7 @@ import MaskedBackgroundGrid from '@/components/ui/maskedBackgroundGrid';
 import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import SquareLogo from '@/components/sqr-logo';
 
 const CONTENT_VARIANTS = {
   hidden: { opacity: 0 },
@@ -31,24 +32,35 @@ export default function HomePage() {
   return (
     <main
       className={cn(
-        'relative flex flex-col flex-1 h-full', // 👈 these are key
+        'relative flex flex-col flex-1 h-full',
         !isLoaded && 'overflow-y-hidden',
       )}
     >
       <div className="w-full flex flex-col justify-between flex-1 pointer-events-none">
-        {transition && (
+        {transition ? (
           <>
-            <motion.div
-              variants={CONTENT_VARIANTS}
-              initial="hidden"
-              animate={transition ? 'visible' : 'hidden'}
-              className="w-full z-21 flex-1 content-center"
-            >
-              <Hero key={String(transition)} />
-            </motion.div>
+            <div className="w-full z-21 flex-1 content-center">
+              <motion.div
+                layoutId="sqr-logo"
+                className="z-21 m-auto w-1/2 md:w-1/5"
+              >
+                <SquareLogo className="w-full" animate={false} />
+              </motion.div>
+              <motion.div
+                variants={CONTENT_VARIANTS}
+                initial="hidden"
+                animate={transition ? 'visible' : 'hidden'}
+              >
+                <Hero key={String(transition)} />
+              </motion.div>
+            </div>
 
             <Footer />
           </>
+        ) : (
+          <motion.div layoutId="sqr-logo" className="z-21 m-auto w-1/4">
+            <SquareLogo className="w-full" />
+          </motion.div>
         )}
       </div>
 
