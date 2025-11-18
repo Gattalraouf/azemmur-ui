@@ -18,7 +18,7 @@
     "hooks": "@workspace/ui/hooks"
   },
   "registries": {
-    "@azemmur": "http://localhost:3000/r/{name}.json",
+    "@azemmur": "https://azemmur.raouf.codes/r/{name}.json",
     "@animate-ui": "https://animate-ui.com/r/{name}.json"
   }
 }

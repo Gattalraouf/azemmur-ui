@@ -1,4 +1,4 @@
-import { getPageImage, source } from '@/lib/source';
+import { source } from '@/lib/source';
 import {
   DocsPage,
   DocsBody,
@@ -9,7 +9,6 @@ import {
 import { notFound } from 'next/navigation';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { getMDXComponents } from '@/mdx-components';
-import { Metadata } from 'next';
 import { DocsAuthor } from '@/components/docs/docs-author';
 import { ViewOptions, LLMCopyButton } from '@/components/docs/page-actions';
 import { Footer } from '@/components/docs/footer';
@@ -165,50 +164,4 @@ export default async function Page(props: {
       </DocsBody>
     </DocsPage>
   );
-}
-
-export async function generateStaticParams() {
-  return source.generateParams();
-}
-
-export async function generateMetadata(props: {
-  params: Promise<{ slug?: string[] }>;
-}): Promise<Metadata> {
-  const { slug = [] } = await props.params;
-  const page = source.getPage(slug);
-  if (!page) notFound();
-
-  const image = getPageImage(page).url;
-
-  return {
-    title: page.data.title,
-    description: page.data.description,
-    authors: page.data?.author
-      ? [
-          {
-            name: page.data.author.name,
-            ...(page.data.author?.url && { url: page.data.author.url }),
-          },
-        ]
-      : {
-          name: 'raouf.codes',
-          url: 'https://github.com/Gattalraouf',
-        },
-    openGraph: {
-      title: page.data.title,
-      description: page.data.description,
-      url: 'http://localhost:3000/',
-      siteName: 'Azemmur',
-      images: image,
-      locale: 'en_US',
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: '@azemmur',
-      title: page.data.title,
-      description: page.data.description,
-      images: image,
-    },
-  };
 }

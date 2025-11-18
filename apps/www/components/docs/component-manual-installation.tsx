@@ -31,10 +31,11 @@ const getDepsCommands = (dependencies?: string[]) => {
 // Generate install commands for registry dependencies with URL rewriting
 const getRegistryDepsCommands = (dependencies?: string[]) => {
   if (!dependencies) return undefined;
+  const baseUrl = window.location.origin;
   const quotedDependencies = dependencies
     .map((dep) => {
-      if (dep.startsWith('http://localhost:3000/r/')) {
-        return dep.replace('http://localhost:3000/r/', '@azemmur/');
+      if (dep.startsWith(`${baseUrl}/r/`)) {
+        return dep.replace(`${baseUrl}/r/`, '@azemmur/');
       }
       if (dep.startsWith('https://')) {
         return `"${dep}"`;
