@@ -121,7 +121,7 @@
   --shadow-lg: oklch(0.1 0.01 195 / 0.5);
 }
 
-#nd-sidebar {
+#nd-sidebar, #nd-nav {
   --color-fd-card: var(--sidebar);
   --color-fd-border: var(--sidebar-border);
   --color-fd-muted-foreground: var(--foreground);
