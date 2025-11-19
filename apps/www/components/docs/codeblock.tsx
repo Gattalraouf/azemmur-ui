@@ -97,6 +97,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
           'not-prose group fd-codeblock relative my-6 overflow-hidden rounded-xl text-sm [&.shiki]:!bg-accent',
           className,
         )}
+        tabIndex={-1}
       >
         {/* Header */}
         {title ? (
@@ -148,6 +149,7 @@ export const CodeBlock = forwardRef<HTMLElement, CodeBlockProps>(
                 'max-h-[600px] rounded-md bg-[var(--codeblock)] [&_code]:!text-[13px] [&_code_.line]:!px-0',
                 viewportProps?.className,
               )}
+              tabIndex={-1}
             >
               {children}
             </ScrollViewport>

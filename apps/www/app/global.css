@@ -121,7 +121,8 @@
   --shadow-lg: oklch(0.1 0.01 195 / 0.5);
 }
 
-#nd-sidebar, #nd-nav {
+#nd-sidebar,
+#nd-nav {
   --color-fd-card: var(--sidebar);
   --color-fd-border: var(--sidebar-border);
   --color-fd-muted-foreground: var(--foreground);
@@ -149,6 +150,35 @@
   /* Keep active items distinct */
   #nd-sidebar a[data-active='true'] {
     @apply relative !bg-transparent font-bold;
+  }
+
+  #nd-sidebar a:focus-visible {
+    @apply ring-ring/50 ring-[3px] border-ring outline-none rounded-md;
+  }
+
+  #nd-sidebar [data-state='open'] > div[id^='radix-'] {
+    overflow: inherit !important;
+  }
+
+  #nd-tocnav, #nd-toc a:first-child {
+    padding-top: calc(var(--spacing) * 1.5) !important;
+  }
+
+  #nd-tocnav, #nd-toc a:last-child {
+    padding-bottom: calc(var(--spacing) * 1.5) !important;
+  }
+}
+
+@layer base {
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply ring-ring/50 ring-[3px] border-ring outline-none rounded-md;
+  }
+
+  a:focus-visible {
+    @apply bg-ring/50 outline-none;
   }
 }
 

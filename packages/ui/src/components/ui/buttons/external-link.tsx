@@ -32,6 +32,7 @@ export const ExternalLink = ({ href, text, className }: ExternalLinkProps) => {
       rel="noopener noreferrer"
       className={cn(
         `not-prose w-fit flex flex-row items-center rounded-md bg-muted hover:bg-muted/70 transition pl-3 pr-2.5 py-1 text-sm font-medium text-muted-foreground`,
+        `focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:border-ring focus-visible:outline-none`,
         className,
       )}
     >

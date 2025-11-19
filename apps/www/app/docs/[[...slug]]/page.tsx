@@ -114,6 +114,7 @@ export default async function Page(props: {
               aria-label={
                 prevNav ? `Go to ${prevNav.name}` : 'There is no previous page.'
               }
+              tabIndex={-1}
             >
               <Button variant="accent" size="icon-sm">
                 <ArrowLeft />
@@ -128,6 +129,7 @@ export default async function Page(props: {
               aria-label={
                 nextNav ? `Go to ${nextNav.name}` : 'There is no next page.'
               }
+              tabIndex={-1}
             >
               <Button variant="accent" size="icon-sm">
                 <ArrowRight />

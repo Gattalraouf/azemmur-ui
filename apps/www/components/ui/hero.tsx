@@ -60,6 +60,7 @@ export const Hero = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                tabIndex={-1}
               >
                 <Button
                   size="lg"
@@ -83,7 +84,11 @@ export const Hero = () => {
             zoom
             delay={0.6}
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              tabIndex={-1}
+            >
               <Button
                 size="lg"
                 className="w-full pointer-events-auto"

@@ -3,7 +3,7 @@ import Logo from '@/components/logo';
 
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: <Logo className="h-4" />,
+    title: <Logo className="w-40 p-2" />,
   },
   links: [],
 };

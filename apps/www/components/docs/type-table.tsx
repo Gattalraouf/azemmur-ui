@@ -52,14 +52,14 @@ export function TypeTable({ type }: TypeTableProps) {
                           <button
                             type="button"
                             aria-label="View description"
-                            className="ml-1 cursor-pointer"
+                            className="ml-1 cursor-pointer h-fit my-auto"
                           >
                             <Info size={16} />
                           </button>
                         </Popover.Trigger>
 
                         <Popover.Content
-                          className="bg-background text-foreground p-4 m-1 rounded-md border z-50"
+                          className="bg-background text-foreground p-4 m-1 rounded-md border z-50 focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:border-ring focus-visible:outline-none"
                           side="top"
                         >
                           {item.description && <div>{item.description}</div>}
@@ -89,7 +89,7 @@ export function TypeTable({ type }: TypeTableProps) {
                         </Popover.Trigger>
 
                         <Popover.Content
-                          className="bg-background text-foreground p-4 m-2 rounded-md border z-50"
+                          className="bg-background text-foreground p-4 m-2 rounded-md border z-50 focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:border-ring focus-visible:outline-none"
                           side="top"
                         >
                           <div className="flex flex-col gap-2">

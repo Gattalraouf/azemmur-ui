@@ -106,6 +106,7 @@ export function CopyButton({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
       className="inline-flex"
+      tabIndex={-1}
     >
       <ButtonPrimitive
         data-slot="copy-button"

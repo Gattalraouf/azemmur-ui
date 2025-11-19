@@ -151,6 +151,13 @@ export function CodeTabs({
                   className="w-full"
                 >
                   <div
+                    ref={(el) => {
+                      if (!el) return;
+
+                      el.querySelectorAll('pre').forEach((node) => {
+                        node.setAttribute('tabindex', '-1');
+                      });
+                    }}
                     className="w-full text-sm overflow-auto flex items-center p-4 
                     [&>pre,_&_code]:!bg-transparent 
                     [&_code_.line]:!px-0 
