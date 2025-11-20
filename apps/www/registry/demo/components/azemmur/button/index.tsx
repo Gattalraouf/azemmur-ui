@@ -9,7 +9,7 @@ interface ButtonDemoProps {
 export default function ButtonDemo({ variant, size }: ButtonDemoProps) {
   return (
     <Button variant={variant} size={size}>
-      {size === 'icon' ? <PlusIcon /> : 'Click me'}
+      {size?.includes('icon') ? <PlusIcon /> : 'Click me'}
     </Button>
   );
 }
