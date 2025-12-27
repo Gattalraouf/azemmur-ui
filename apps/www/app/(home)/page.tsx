@@ -6,7 +6,7 @@ import MaskedBackgroundGrid from '@/components/ui/maskedBackgroundGrid';
 import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
-import SquareLogo from '@/components/sqr-logo';
+import SquareLogo from '@/components/logos/sqr-logo';
 
 const CONTENT_VARIANTS = {
   hidden: { opacity: 0 },
