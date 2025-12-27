@@ -41,9 +41,8 @@ export const index: Record<string, any> = {
     keywords: [],
     component: (function () {
       const LazyComp = React.lazy(async () => {
-        const mod = await import(
-          '@/registry/components/azemmur/button/index.tsx'
-        );
+        const mod =
+          await import('@/registry/components/azemmur/button/index.tsx');
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -79,9 +78,8 @@ export const index: Record<string, any> = {
     keywords: [],
     component: (function () {
       const LazyComp = React.lazy(async () => {
-        const mod = await import(
-          '@/registry/components/azemmur/dummy/index.tsx'
-        );
+        const mod =
+          await import('@/registry/components/azemmur/dummy/index.tsx');
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -117,9 +115,8 @@ export const index: Record<string, any> = {
     keywords: [],
     component: (function () {
       const LazyComp = React.lazy(async () => {
-        const mod = await import(
-          '@/registry/components/primitives/button/index.tsx'
-        );
+        const mod =
+          await import('@/registry/components/primitives/button/index.tsx');
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -156,9 +153,8 @@ export const index: Record<string, any> = {
     keywords: [],
     component: (function () {
       const LazyComp = React.lazy(async () => {
-        const mod = await import(
-          '@/registry/components/primitives/slot/index.tsx'
-        );
+        const mod =
+          await import('@/registry/components/primitives/slot/index.tsx');
         const exportName =
           Object.keys(mod).find(
             (key) =>
@@ -194,9 +190,8 @@ export const index: Record<string, any> = {
     keywords: [],
     component: (function () {
       const LazyComp = React.lazy(async () => {
-        const mod = await import(
-          '@/registry/demo/components/azemmur/button/index.tsx'
-        );
+        const mod =
+          await import('@/registry/demo/components/azemmur/button/index.tsx');
         const exportName =
           Object.keys(mod).find(
             (key) =>
