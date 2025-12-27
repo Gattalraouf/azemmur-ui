@@ -11,7 +11,17 @@
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "prepare": "husky",
-    "registry:build": "pnpm --filter azemmur registry:build"
+    "registry:build": "pnpm --filter azemmur registry:build",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "pnpm lint:fix",
+      "pnpm format:write"
+    ],
+    "*.{md,mdx}": [
+      "pnpm format:write"
+    ]
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -44,7 +54,8 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^15.15.0",
-    "husky": "^9.1.7",
+    "husky": "^8.0.0",
+    "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "tailwind-scrollbar": "^4.0.2",
