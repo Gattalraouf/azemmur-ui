@@ -16,11 +16,11 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "pnpm lint:fix",
-      "pnpm format:write"
+      "eslint --fix",
+      "prettier --write --cache"
     ],
     "*.{md,mdx}": [
-      "pnpm format:write"
+      "prettier --write --cache"
     ]
   },
   "dependencies": {
