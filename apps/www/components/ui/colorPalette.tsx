@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useState } from 'react';
-import { useCssVarHexReactive } from '@/hooks/useCssVarHexReactive';
+import { useCssVarsHexReactiveArray } from '@/hooks/useCssVarHexReactive';
 
 type ColorItem = {
   title: string;
@@ -21,13 +21,14 @@ export const ColorPalette = ({
   className?: string;
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number>(primaryIndex);
+  const reactiveValues = useCssVarsHexReactiveArray(colors);
 
   return (
     <div className={`w-full h-32 flex gap-2 ${className || ''}`}>
       {colors.map((color, index) => {
         const isHovered = hoveredIndex === index;
         const flexGrow = isHovered ? 6 : 1;
-        const value = useCssVarHexReactive(color.value);
+        const value = reactiveValues[index];
 
         return (
           <motion.div

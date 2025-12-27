@@ -1,56 +1,60 @@
 import { useState, useEffect } from 'react';
 
-/**
- * Converts any valid CSS color string to HEX using a temporary element
- */
+type ColorItem = {
+  value: string;
+};
+
 function colorToHex(color: string) {
   const el = document.createElement('div');
   el.style.color = color;
   document.body.appendChild(el);
-
-  const rgb = getComputedStyle(el).color; // normalized to rgb(...)
+  const rgb = getComputedStyle(el).color;
   document.body.removeChild(el);
-
   const match = rgb.match(/\d+/g);
   if (!match) return '';
   const [r, g, b] = match.map(Number);
   return (
     '#' +
     [r, g, b]
-      .map((x) => x.toString(16).padStart(2, '0'))
+      .map((x) => x?.toString(16).padStart(2, '0'))
       .join('')
       .toUpperCase()
   );
 }
 
 /**
- * useCssVarHexReactive
- * Returns the computed value of a CSS variable in HEX.
- * Updates automatically when the variable changes (theme switch).
+ * Reactive HEX values for an array of CSS variables
+ * Updates when the CSS variables change (theme switch)
  */
-export function useCssVarHexReactive(varName: string) {
-  const [hex, setHex] = useState<string>('');
-
-  const computeHex = () => {
-    const root = document.documentElement;
-    const computed = getComputedStyle(root).getPropertyValue(varName).trim();
-    if (computed) {
-      setHex(colorToHex(computed));
-    }
-  };
+export function useCssVarsHexReactiveArray(vars: ColorItem[]) {
+  const [hexValues, setHexValues] = useState<string[]>(vars.map(() => ''));
 
   useEffect(() => {
-    computeHex();
+    const computeHexValues = () => {
+      const values = vars.map((varName) => {
+        const computed = getComputedStyle(document.documentElement)
+          .getPropertyValue(varName.value)
+          .trim();
+        return computed ? colorToHex(computed) : '';
+      });
 
-    // Watch for changes in the style attribute (theme changes)
-    const observer = new MutationObserver(computeHex);
+      // Only update state if changed
+      setHexValues((prev) =>
+        prev.join(',') !== values.join(',') ? values : prev,
+      );
+    };
+
+    computeHexValues();
+
+    // Watch for theme changes via class/style mutation
+    const observer = new MutationObserver(computeHexValues);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['style', 'class'], // watch inline style & class changes
+      attributeFilter: ['class', 'style'],
     });
 
     return () => observer.disconnect();
-  }, [varName]);
+  }, [vars]);
 
-  return hex;
+  return hexValues;
 }
