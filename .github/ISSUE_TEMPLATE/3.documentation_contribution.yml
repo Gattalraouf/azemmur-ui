@@ -1,0 +1,24 @@
+name: Documentation Contribution
+description: Suggest improvements to guides, examples, or MDX content
+labels: [docs]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: A detailed description of the improvement or correction you would like to see.
+      placeholder: |
+        Reproduction steps...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Any extra information that might help us understand your suggestion.
+      placeholder: |
+        Additional context...
+  - type: input
+    id: affected_file
+    attributes:
+      label: Affected File
+      description: Path to the MDX or source file
+      placeholder: apps/www/content/components/button.mdx
