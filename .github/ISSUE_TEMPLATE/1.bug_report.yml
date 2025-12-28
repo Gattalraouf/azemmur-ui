@@ -1,6 +1,5 @@
 name: Bug Report
 description: Report a problem with Azemmur components
-title: ${{ inputs.issue_title }}
 labels: [bug]
 body:
   - type: markdown
