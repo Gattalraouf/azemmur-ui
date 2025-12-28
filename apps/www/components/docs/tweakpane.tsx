@@ -62,8 +62,7 @@ type TweakpaneProps = ControlledTweakpaneProps | UncontrolledTweakpaneProps;
 /*                              Numeric Input                                 */
 /* -------------------------------------------------------------------------- */
 
-interface NumericInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface NumericInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: number;
   onValueChange: (value: number) => void;
   min?: number;

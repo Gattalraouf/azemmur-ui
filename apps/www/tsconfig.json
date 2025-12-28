@@ -5,7 +5,7 @@
     "paths": {
       "@/*": ["./*"],
       "@workspace/ui/*": ["../../packages/ui/src/*"],
-      "@/.source": [".source"]
+      "fumadocs-mdx:collections/*": [".source/*"]
     },
     "plugins": [
       {

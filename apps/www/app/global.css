@@ -171,7 +171,6 @@
 
 @layer base {
   button:focus-visible,
-  input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
     @apply ring-ring/50 ring-[3px] border-ring outline-none rounded-md;
@@ -179,6 +178,10 @@
 
   a:focus-visible {
     @apply bg-ring/50 outline-none;
+  }
+
+  input {
+    color: var(--color-fd-muted-foreground);
   }
 }
 

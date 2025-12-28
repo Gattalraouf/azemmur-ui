@@ -108,9 +108,9 @@
         "demoProps": {
           "Button": {
             "variant": {
-              "value": "default",
+              "value": "primary",
               "options": {
-                "default": "default",
+                "primary": "primary",
                 "accent": "accent",
                 "destructive": "destructive",
                 "outline": "outline",

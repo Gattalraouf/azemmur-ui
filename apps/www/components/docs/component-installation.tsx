@@ -16,8 +16,7 @@ import { ComponentManualInstallation } from '@/components/docs/component-manual-
 /*                                  Types                                     */
 /* -------------------------------------------------------------------------- */
 
-interface ComponentInstallationProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+interface ComponentInstallationProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
 }
 

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dummy",
-  "type": "registry:ui",
   "title": "Demo",
   "description": "A dummy component with to test the process.",
   "dependencies": [],
@@ -13,5 +12,6 @@
       "type": "registry:ui",
       "target": "components/azemmur/components/dummy.tsx"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }
