@@ -1,0 +1,56 @@
+name: Pull Request
+about: Create a pull request following Azemmur's contribution guidelines
+title: ${{ inputs.pr_title }}
+labels: ''
+assignees: ''
+
+body:
+  - type: input
+    id: pr_title
+    attributes:
+      label: PR Title
+      description: >
+        Provide a concise title for your pull request following
+        Conventional Commits: <type>/<scope>-<short-description>
+      placeholder: feat/button-add-ripple-effect
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary of Changes
+      description: Briefly describe what your PR does.
+      placeholder: >
+        Adds ripple animation to button component when clicked.
+    validations:
+      required: true
+
+  - type: textarea
+    id: related_issue
+    attributes:
+      label: Related Issue
+      description: Link the issue this PR closes (if any).
+      placeholder: Fixes #123
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing
+      description: Describe how you tested these changes.
+      placeholder: >
+        Verified on Chrome, Firefox, Safari. All tests pass.
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / GIFs
+      description: Add screenshots or GIFs if the PR affects the UI.
+      placeholder: Optional
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Notes
+      description: Any extra context for reviewers or maintainers.
+      placeholder: Optional
