@@ -1,21 +1,17 @@
----
-name: Pull Request
-about: Create a pull request following Azemmur's contribution guidelines
----
+# Description
 
-# Summary
+Please include a summary of the changes and the related issue. Please also include relevant motivation and context. List any dependencies that are required for this change.
 
-Provide a short description of the changes in this PR.
+Fixes # (issue)
 
-# Related Issue
+## Type of change
 
-Link the related issue, if any:
+Please delete options that are not relevant.
 
-```
-
-Fixes #<issue_number>
-
-```
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] This change requires a documentation update
 
 # Changes
 
@@ -25,26 +21,24 @@ List of changes included:
 - [ ] Change 2
 - [ ] Change 3
 
-# Testing
-
-Explain how the changes were tested.
-
 # Screenshots / GIFs
 
 If applicable, add screenshots or GIFs to illustrate UI changes.
 
-# Notes
+# How Has This Been Tested?
 
-For more information, follow the [CONTRIBUTING.md](../CONTRIBUTING.md) guide.
+Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
 
----
+- [ ] Test A
+- [ ] Test B
 
-**Reminder:** Ensure your commit messages follow **Conventional Commits**:
+# Checklist:
 
-```
-
-<type>/<scope>-<short-description>
-
-```
-
-**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `ci`, `chore`
+- [ ] Have you followed the guidelines in our [Contributing document](https://github.com/Gattalraouf/azemmur-ui/blob/main/CONTRIBUTING.md)?
+- [ ] Have you checked to ensure there aren't other open [Pull Requests](https://github.com/Gattalraouf/azemmur-ui/pulls) for the same update/change?
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
