@@ -1,5 +1,7 @@
 {
   "name": "azemmur-ui-monorepo",
+  "license": "MIT",
+  "author": "raouf.codes",
   "version": "0.0.1",
   "private": true,
   "scripts": {

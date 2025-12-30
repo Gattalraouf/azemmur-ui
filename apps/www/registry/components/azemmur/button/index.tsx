@@ -1,3 +1,5 @@
+//Copyright (c) 2025 Elliot Sutton
+
 'use client';
 
 import * as React from 'react';

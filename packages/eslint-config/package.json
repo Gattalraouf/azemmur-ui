@@ -1,5 +1,7 @@
 {
   "name": "@workspace/eslint-config",
+  "license": "MIT",
+  "author": "raouf.codes",
   "version": "0.0.1",
   "type": "module",
   "private": true,
