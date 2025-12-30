@@ -1,8 +1,10 @@
 <div align="center">
-  <h1 style='font-weight:bolder; font-size:60px'>Azemmur</h1>
-  <p align="center">
-    Azemmur is an open-source distribution of React components built with React, TypeScript, Tailwind CSS, and Motion, to be <strong>accessible, animated, and performant</strong>.
+<h1 style="font-weight: bolder; font-size: 48px; margin-bottom: 0.5em;">Azemmur</h1>
+
+<p style="font-size: 18px; max-width: 600px; margin: auto;">
+Azemmur is an open-source distribution of React components built with React, TypeScript, Tailwind CSS, and Motion, to be <strong>accessible, animated, and performant</strong>.
 </p>
+
 
 <a href="https://github.com/Gattalraouf/azemmur-ui/stargazers">
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Gattalraouf/azemmur-ui?style=for-the-badge">
@@ -23,6 +25,7 @@
 
 </div>
 
+####
 ![hero](https://azemmur.raouf.codes/og-image.png)
 
 **Azemmur** began as an idea to build a personal space to organize my React components — and evolved into a way to give back to the developer community. It’s an **open-source distribution** of **React components**, built with [Tailwind CSS](https://tailwindcss.com/) and [Motion](https://motion.dev/), based on the [shadcn registry](https://ui.shadcn.com/docs/registry) and inspired by [shadcn/ui](https://ui.shadcn.com/) and [Animate UI](https://animate-ui.com).
