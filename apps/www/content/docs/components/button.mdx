@@ -24,38 +24,40 @@ releaseDate: 2025-09-07
 ### Button
 
 <ExternalLink
-  href="https://azemmur.raouf.codes/docs/primitives/buttons/button#button"
+  href="https://azemmur.raouf.codes/docs/primitives/button#button"
   text="Azemmur API Reference - Button Primitive"
 />
 
 <TypeTable
   type={{
-    variant: {
-      description: 'The variant of the button.',
+    intent: {
+      description: 'The color intent of the button.',
       type: 'enum',
       typeDescription:
-        '"default" | "accent" | "destructive" | "outline" | "secondary" | "ghost" | "link"',
+        '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
       required: false,
-      default: '"default"',
+      default: '"primary"',
+    },
+    styling: {
+      description: 'The visual style of the button.',
+      type: 'enum',
+      typeDescription: '"solid" | "outline" | "ghost" | "link"',
+      required: false,
+      default: '"solid"',
     },
     size: {
       description: 'The size of the button.',
       type: 'enum',
-      typeDescription: '"default" | "sm" | "lg" | "icon"',
+      typeDescription: '"sm" | "md" | "lg" | "icon-sm" | "icon-md" | "icon-lg"',
       required: false,
-      default: '"default"',
+      default: '"md"',
     },
-    hoverScale: {
-      description: 'The scale of the button on hover.',
-      type: 'number',
+    shape: {
+      description: 'The shape of the button.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
       required: false,
-      default: 1.05,
-    },
-    tapScale: {
-      description: 'The scale of the button on tap.',
-      type: 'number',
-      required: false,
-      default: 0.95,
+      default: '"rounded"',
     },
     '...props': {
       description: 'The props for the button.',
@@ -67,4 +69,4 @@ releaseDate: 2025-09-07
 
 ## Credits
 
-- Credit to [shadcn/ui](https://ui.shadcn.com/docs/components/button) for style inspiration.
+- Credit to [shadcn/ui](https://ui.shadcn.com/docs/components/button), and [animate-ui](https://animate-ui.com/) for style inspiration.
