@@ -33,8 +33,17 @@
   --accent: oklch(0.65 0.02 195);
   --accent-foreground: oklch(1 0 0);
 
-  --destructive: oklch(0.55 0.22 15);
-  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.62 0.15 150);
+  --success-foreground: var(--background);
+
+  --info: oklch(0.6 0.15 250);
+  --info-foreground: var(--background);
+
+  --warning: oklch(0.68 0.16 70);
+  --warning-foreground: var(--background);
+
+  --error: oklch(0.58 0.22 25);
+  --error-foreground: oklch(1 0 0);
 
   --sidebar: oklch(0.93 0.008 195);
   --sidebar-border: oklch(0.52 0.015 195 / 0.15);
@@ -76,7 +85,10 @@
   --color-fd-accent: var(--accent);
   --color-fd-accent-foreground: var(--accent-foreground);
   --color-fd-ring: var(--ring);
-  --color-fd-error: var(--destructive);
+  --color-fd-success: var(--success);
+  --color-fd-info: var(--info);
+  --color-fd-warning: var(--warning);
+  --color-fd-error: var(--error);
 }
 
 .dark {
@@ -95,8 +107,17 @@
   --accent: oklch(0.75 0.02 195);
   --accent-foreground: oklch(0.18 0.015 195);
 
-  --destructive: oklch(0.55 0.22 15);
-  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.72 0.15 145);
+  --success-foreground: var(--background);
+
+  --info: oklch(0.7 0.12 245);
+  --info-foreground: var(--background);
+
+  --warning: oklch(0.78 0.14 75);
+  --warning-foreground: var(--background);
+
+  --error: oklch(0.62 0.2 28);
+  --error-foreground: oklch(1 0 0);
 
   --sidebar: oklch(0.21 0.015 195);
   --sidebar-border: oklch(0.65 0.02 195 / 0.2);
@@ -109,7 +130,7 @@
   --card-foreground: oklch(0.985 0 0);
 
   --popover: oklch(0.21 0.015 195);
-  --popover-foreground: var(--foreground-color);
+  --popover-foreground: var(--foreground);
 
   --border: oklch(0.65 0.02 195 / 0.2);
   --input: oklch(0.65 0.02 195 / 0.1);
@@ -160,11 +181,13 @@
     overflow: inherit !important;
   }
 
-  #nd-tocnav, #nd-toc a:first-child {
+  #nd-tocnav,
+  #nd-toc a:first-child {
     padding-top: calc(var(--spacing) * 1.5) !important;
   }
 
-  #nd-tocnav, #nd-toc a:last-child {
+  #nd-tocnav,
+  #nd-toc a:last-child {
     padding-bottom: calc(var(--spacing) * 1.5) !important;
   }
 }
@@ -216,9 +239,21 @@
 
   --color-accent-foreground: var(--accent-foreground);
 
-  --color-destructive: var(--destructive);
+  --color-success: var(--success);
 
-  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success-foreground: var(--success-foreground);
+
+  --color-info: var(--info);
+
+  --color-info-foreground: var(--info-foreground);
+
+  --color-warning: var(--warning);
+
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-error: var(--error);
+
+  --color-error-foreground: var(--error-foreground);
 
   --color-border: var(--border);
 

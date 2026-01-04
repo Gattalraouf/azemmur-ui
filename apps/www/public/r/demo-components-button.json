@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/demo/components/azemmur/button/index.tsx",
-      "content": "import { PlusIcon } from 'lucide-react';\nimport { Button, type ButtonProps } from '@/components/azemmur/components/azemmur/button';\n\ninterface ButtonDemoProps {\n  variant: ButtonProps['variant'];\n  size: ButtonProps['size'];\n}\n\nexport default function ButtonDemo({ variant, size }: ButtonDemoProps) {\n  return (\n    <Button variant={variant} size={size}>\n      {size?.includes('icon') ? <PlusIcon /> : 'Click me'}\n    </Button>\n  );\n}\n",
+      "content": "import { PlusIcon } from 'lucide-react';\nimport { Button, type ButtonProps } from '@/components/azemmur/components/azemmur/button';\n\ninterface ButtonDemoProps {\n  intent: ButtonProps['intent'];\n  styling: ButtonProps['styling'];\n  size: ButtonProps['size'];\n  shape: ButtonProps['shape'];\n}\n\nexport default function ButtonDemo({\n  intent,\n  styling,\n  size,\n  shape,\n}: ButtonDemoProps) {\n  return (\n    <Button intent={intent} styling={styling} size={size} shape={shape}>\n      {size?.includes('icon') ? <PlusIcon /> : 'Click me'}\n    </Button>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/azemmur/demo/components/button.tsx"
     }
@@ -20,27 +20,44 @@
   "meta": {
     "demoProps": {
       "Button": {
-        "variant": {
+        "intent": {
           "value": "primary",
           "options": {
             "primary": "primary",
             "accent": "accent",
-            "destructive": "destructive",
-            "outline": "outline",
             "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "styling": {
+          "value": "solid",
+          "options": {
+            "solid": "solid",
+            "outline": "outline",
             "ghost": "ghost",
             "link": "link"
           }
         },
         "size": {
-          "value": "default",
+          "value": "md",
           "options": {
-            "default": "default",
             "sm": "sm",
+            "md": "md",
             "lg": "lg",
-            "icon": "icon",
             "icon-sm": "icon-sm",
+            "icon-md": "icon-md",
             "icon-lg": "icon-lg"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
           }
         }
       }

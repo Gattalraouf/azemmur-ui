@@ -1,4 +1,4 @@
-//Copyright (c) 2025 Elliot Sutton
+// Copyright (c) 2025 raouf.codes - Azemmur
 
 'use client';
 
@@ -12,44 +12,124 @@ import {
 import { cn } from '@workspace/ui/lib/utils';
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  [
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap',
+    'select-none touch-manipulation',
+    'rounded-md text-sm font-medium shrink-0',
+    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',
+    'outline-none',
+    'disabled:pointer-events-none disabled:opacity-50',
+    'hover:brightness-95 active:brightness-90',
+    '[&_svg]:pointer-events-none [&_svg]:shrink-0',
+    "[&_svg:not([class*='size-'])]:size-4",
+    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:brightness-85',
+    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40',
+    'aria-invalid:border-error',
+  ].join(' '),
   {
     variants: {
-      variant: {
+      intent: {
         primary:
-          'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
-        accent: 'bg-accent text-accent-foreground shadow-xs hover:bg-accent/90',
-        destructive:
-          'bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
-        outline:
-          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
+          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',
+        accent:
+          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',
+        success:
+          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',
+        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',
+        warning:
+          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',
+        error:
+          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',
+      },
+      styling: {
+        solid: 'shadow-xs border-none',
+        outline: 'border border-2 bg-transparent shadow-xs hover:bg-current/20',
+        ghost: 'bg-transparent',
+        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',
       },
       size: {
-        default: 'h-9 px-4 py-2 has-[>svg]:px-3',
-        sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
-        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
-        icon: 'size-9',
-        'icon-sm': 'size-8 rounded-md',
-        'icon-lg': 'size-10 rounded-md',
+        sm: 'h-8 px-3 gap-1.5 has-[>svg]:px-2.5',
+        md: 'h-9 px-4 py-2 has-[>svg]:px-3',
+        lg: 'h-10 px-6 has-[>svg]:px-4',
+        'icon-sm': 'size-8 p-0',
+        'icon-md': 'size-9 p-0',
+        'icon-lg': 'size-10 p-0',
+      },
+      shape: {
+        rounded: 'rounded-md',
+        pill: 'rounded-full',
+        sharp: 'rounded-none',
       },
     },
+    compoundVariants: [
+      {
+        intent: 'primary',
+        styling: 'solid',
+        className: 'text-primary-foreground',
+      },
+      {
+        intent: 'accent',
+        styling: 'solid',
+        className: 'text-accent-foreground',
+      },
+      {
+        intent: 'secondary',
+        styling: 'solid',
+        className: 'text-secondary-foreground',
+      },
+      {
+        intent: 'success',
+        styling: 'solid',
+        className: 'text-success-foreground',
+      },
+      {
+        intent: 'info',
+        styling: 'solid',
+        className: 'text-info-foreground',
+      },
+      {
+        intent: 'warning',
+        styling: 'solid',
+        className: 'text-warning-foreground',
+      },
+      {
+        intent: 'error',
+        styling: 'solid',
+        className: 'text-error-foreground',
+      },
+    ],
     defaultVariants: {
-      variant: 'primary',
-      size: 'default',
+      intent: 'primary',
+      styling: 'solid',
+      size: 'md',
+      shape: 'rounded',
     },
   },
 );
 
 type ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;
 
-function Button({ className, variant, size, ...props }: ButtonProps) {
+function Button({
+  className,
+  intent,
+  styling,
+  size,
+  shape,
+  ...props
+}: ButtonProps) {
   return (
     <ButtonPrimitive
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({
+          intent,
+          styling,
+          size,
+          shape,
+        }),
+        className,
+      )}
       {...props}
     />
   );

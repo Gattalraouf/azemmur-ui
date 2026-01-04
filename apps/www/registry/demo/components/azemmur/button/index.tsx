@@ -2,13 +2,20 @@ import { PlusIcon } from 'lucide-react';
 import { Button, type ButtonProps } from '@/registry/components/azemmur/button';
 
 interface ButtonDemoProps {
-  variant: ButtonProps['variant'];
+  intent: ButtonProps['intent'];
+  styling: ButtonProps['styling'];
   size: ButtonProps['size'];
+  shape: ButtonProps['shape'];
 }
 
-export default function ButtonDemo({ variant, size }: ButtonDemoProps) {
+export default function ButtonDemo({
+  intent,
+  styling,
+  size,
+  shape,
+}: ButtonDemoProps) {
   return (
-    <Button variant={variant} size={size}>
+    <Button intent={intent} styling={styling} size={size} shape={shape}>
       {size?.includes('icon') ? <PlusIcon /> : 'Click me'}
     </Button>
   );
