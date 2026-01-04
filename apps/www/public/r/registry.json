@@ -150,6 +150,40 @@
           }
         }
       }
+    },
+    {
+      "name": "demo-primitives-button",
+      "type": "registry:ui",
+      "title": "Button Demo",
+      "description": "Demo showing a button.",
+      "registryDependencies": [
+        "@azemmur/primitives-button"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/primitives/button/index.tsx",
+          "type": "registry:ui",
+          "target": "components/demo/components/primitives/button.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "Button": {
+            "hoverScale": {
+              "value": 1.05,
+              "min": 0,
+              "max": 2,
+              "step": 0.05
+            },
+            "tapScale": {
+              "value": 0.95,
+              "min": 0,
+              "max": 2,
+              "step": 0.05
+            }
+          }
+        }
+      }
     }
   ]
 }

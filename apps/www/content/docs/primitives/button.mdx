@@ -1,0 +1,50 @@
+---
+title: Button
+description: A simple button that animates on hover and tap.
+author:
+  name: imskyleen
+  url: https://github.com/imskyleen
+releaseDate: 2025-09-07
+---
+
+<ComponentPreview name="demo-primitives-button" />
+
+## Installation
+
+<ComponentInstallation name="primitives-button" />
+
+## Usage
+
+```tsx
+<Button>Button</Button>
+```
+
+## API Reference
+
+### Button
+
+<TypeTable
+  type={{
+    hoverScale: {
+      description: 'The scale of the button on hover.',
+      type: 'number',
+      required: false,
+      default: 1.05,
+    },
+    tapScale: {
+      description: 'The scale of the button on tap.',
+      type: 'number',
+      required: false,
+      default: 0.95,
+    },
+    '...props': {
+      description: 'The props for the button.',
+      type: 'HTMLMotionProps<"button">',
+      required: false,
+    },
+  }}
+/>
+
+## Credits
+
+- Credit to [animate-ui](https://animate-ui.com/docs/primitives/buttons/button).

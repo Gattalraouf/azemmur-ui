@@ -35,7 +35,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/components/button.tsx',
         content:
-          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  [\n    'inline-flex items-center justify-center gap-2 whitespace-nowrap',\n    'select-none touch-manipulation',\n    'rounded-md text-sm font-medium shrink-0',\n    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',\n    'outline-none',\n    'disabled:pointer-events-none disabled:opacity-50',\n    'hover:brightness-95 active:brightness-85',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:brightness-80',\n    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40',\n    'aria-invalid:border-error',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n        success:\n          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',\n        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',\n        warning:\n          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',\n        error:\n          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',\n      },\n      styling: {\n        solid: 'shadow-xs border-none',\n        outline: 'border border-2 bg-transparent shadow-xs hover:bg-current/20',\n        ghost: 'bg-transparent',\n        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',\n      },\n      size: {\n        sm: 'h-8 px-3 gap-1.5 has-[>svg]:px-2.5',\n        md: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        lg: 'h-10 px-6 has-[>svg]:px-4',\n        'icon-sm': 'size-8 p-0',\n        'icon-md': 'size-9 p-0',\n        'icon-lg': 'size-10 p-0',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'solid',\n      size: 'md',\n      shape: 'rounded',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({\n  className,\n  intent,\n  styling,\n  size,\n  shape,\n  ...props\n}: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(\n        buttonVariants({\n          intent,\n          styling,\n          size,\n          shape,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  [\n    'inline-flex items-center justify-center gap-2 whitespace-nowrap',\n    'select-none touch-manipulation',\n    'rounded-md text-sm font-medium shrink-0',\n    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',\n    'outline-none',\n    'disabled:pointer-events-none disabled:opacity-50',\n    'hover:brightness-95 active:brightness-90',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:brightness-85',\n    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40',\n    'aria-invalid:border-error',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n        success:\n          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',\n        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',\n        warning:\n          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',\n        error:\n          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',\n      },\n      styling: {\n        solid: 'shadow-xs border-none',\n        outline: 'border border-2 bg-transparent shadow-xs hover:bg-current/20',\n        ghost: 'bg-transparent',\n        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',\n      },\n      size: {\n        sm: 'h-8 px-3 gap-1.5 has-[>svg]:px-2.5',\n        md: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        lg: 'h-10 px-6 has-[>svg]:px-4',\n        'icon-sm': 'size-8 p-0',\n        'icon-md': 'size-9 p-0',\n        'icon-lg': 'size-10 p-0',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'solid',\n      size: 'md',\n      shape: 'rounded',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({\n  className,\n  intent,\n  styling,\n  size,\n  shape,\n  ...props\n}: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(\n        buttonVariants({\n          intent,\n          styling,\n          size,\n          shape,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
       },
     ],
     keywords: [],
@@ -246,5 +246,47 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/demo-components-button',
+  },
+  'demo-primitives-button': {
+    name: 'demo-primitives-button',
+    description: 'Demo showing a button.',
+    type: 'registry:ui',
+    dependencies: undefined,
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/primitives-button'],
+    files: [
+      {
+        path: 'registry/demo/components/primitives/button/index.tsx',
+        type: 'registry:ui',
+        target: 'components/demo/components/primitives/button.tsx',
+        content:
+          'import { Button } from \'@/components/azemmur/components/primitives/button\';\n\ninterface ButtonDemoProps {\n  hoverScale: number;\n  tapScale: number;\n}\n\nexport default function ButtonDemo({ hoverScale, tapScale }: ButtonDemoProps) {\n  return (\n    <Button\n      key={`${hoverScale}-${tapScale}`}\n      hoverScale={hoverScale}\n      tapScale={tapScale}\n      className="bg-primary text-primary-foreground text-sm font-medium px-4 py-2 h-10"\n    >\n      Button\n    </Button>\n  );\n}',
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/components/primitives/button/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-primitives-button';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        Button: {
+          hoverScale: { value: 1.05, min: 0, max: 2, step: 0.05 },
+          tapScale: { value: 0.95, min: 0, max: 2, step: 0.05 },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-primitives-button',
   },
 };
