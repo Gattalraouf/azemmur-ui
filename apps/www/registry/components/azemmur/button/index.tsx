@@ -14,17 +14,14 @@ import { cn } from '@workspace/ui/lib/utils';
 const buttonVariants = cva(
   [
     'inline-flex items-center justify-center gap-2 whitespace-nowrap',
-    'select-none touch-manipulation',
-    'rounded-md text-sm font-medium shrink-0',
+    'select-none touch-manipulation text-sm font-medium shrink-0',
     'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',
-    'outline-none',
+    'outline-none cursor-pointer',
     'disabled:pointer-events-none disabled:opacity-50',
-    'hover:brightness-95 active:brightness-90',
     '[&_svg]:pointer-events-none [&_svg]:shrink-0',
     "[&_svg:not([class*='size-'])]:size-4",
-    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:brightness-85',
-    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40',
-    'aria-invalid:border-error',
+    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:brightness-95',
+    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',
   ].join(' '),
   {
     variants: {
@@ -44,8 +41,8 @@ const buttonVariants = cva(
           'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',
       },
       styling: {
-        solid: 'shadow-xs border-none',
-        outline: 'border border-2 bg-transparent shadow-xs hover:bg-current/20',
+        solid: 'border-none',
+        outline: 'border border-2 bg-transparent hover:bg-current/20',
         ghost: 'bg-transparent',
         link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',
       },
@@ -61,6 +58,13 @@ const buttonVariants = cva(
         rounded: 'rounded-md',
         pill: 'rounded-full',
         sharp: 'rounded-none',
+      },
+      elevation: {
+        flat: 'transition-none hover:opacity-95 active:opacity-90',
+        raised:
+          'shadow-sm hover:shadow-md active:shadow-xs hover:brightness-95 active:brightness-90',
+        floating:
+          'shadow-md hover:shadow-lg active:shadow-sm hover:brightness-95 active:brightness-90',
       },
     },
     compoundVariants: [
@@ -105,6 +109,7 @@ const buttonVariants = cva(
       styling: 'solid',
       size: 'md',
       shape: 'rounded',
+      elevation: 'raised',
     },
   },
 );
@@ -117,6 +122,7 @@ function Button({
   styling,
   size,
   shape,
+  elevation,
   ...props
 }: ButtonProps) {
   return (
@@ -127,9 +133,11 @@ function Button({
           styling,
           size,
           shape,
+          elevation,
         }),
         className,
       )}
+      isFlat={elevation == 'flat'}
       {...props}
     />
   );

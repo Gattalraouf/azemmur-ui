@@ -6,6 +6,7 @@ interface ButtonDemoProps {
   styling: ButtonProps['styling'];
   size: ButtonProps['size'];
   shape: ButtonProps['shape'];
+  elevation: ButtonProps['elevation'];
 }
 
 export default function ButtonDemo({
@@ -13,9 +14,16 @@ export default function ButtonDemo({
   styling,
   size,
   shape,
+  elevation,
 }: ButtonDemoProps) {
   return (
-    <Button intent={intent} styling={styling} size={size} shape={shape}>
+    <Button
+      intent={intent}
+      styling={styling}
+      size={size}
+      shape={shape}
+      elevation={elevation}
+    >
       {size?.includes('icon') ? <PlusIcon /> : 'Click me'}
     </Button>
   );
