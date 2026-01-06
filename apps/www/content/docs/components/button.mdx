@@ -31,7 +31,8 @@ releaseDate: 2025-09-07
 <TypeTable
   type={{
     intent: {
-      description: 'The color intent of the button.',
+      description:
+        'Defines the color intent of the button, indicating its purpose or semantic meaning in the interface.',
       type: 'enum',
       typeDescription:
         '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
@@ -39,33 +40,46 @@ releaseDate: 2025-09-07
       default: '"primary"',
     },
     styling: {
-      description: 'The visual style of the button.',
+      description:
+        'Specifies the visual treatment of the button, controlling whether it is solid, outlined, ghosted, or styled as a link.',
       type: 'enum',
       typeDescription: '"solid" | "outline" | "ghost" | "link"',
       required: false,
       default: '"solid"',
     },
     size: {
-      description: 'The size of the button.',
+      description:
+        'Controls the overall size of the button, including height, padding, and icon spacing, to fit different UI contexts.',
       type: 'enum',
       typeDescription: '"sm" | "md" | "lg" | "icon-sm" | "icon-md" | "icon-lg"',
       required: false,
       default: '"md"',
     },
     shape: {
-      description: 'The shape of the button.',
+      description:
+        'Defines the border radius of the button, determining whether it is rounded, pill-shaped, or sharp-edged.',
       type: 'enum',
       typeDescription: '"rounded" | "pill" | "sharp"',
       required: false,
       default: '"rounded"',
     },
+    elevation: {
+      description:
+        'Controls the perceived depth and interaction style of the button. "Flat" removes shadows and motion, "Raised" adds subtle depth, and "Floating" gives more pronounced emphasis.',
+      type: 'enum',
+      typeDescription: '"flat" | "raised" | "floating"',
+      required: false,
+      default: '"raised"',
+    },
     '...props': {
-      description: 'The props for the button.',
+      description:
+        'Additional props passed to the underlying motion-enabled button, such as event handlers, ARIA attributes, or native HTML props.',
       type: 'HTMLMotionProps<"button">',
       required: false,
     },
   }}
 />
+
 
 ## Credits
 
