@@ -5,7 +5,7 @@
   "title": "Button",
   "description": "A button component with a variety of styles and animations.",
   "dependencies": ["class-variance-authority"],
-  "registryDependencies": ["@azemmur/primitives-buttons-button"],
+  "registryDependencies": ["@azemmur/primitives-button"],
   "files": [
     {
       "path": "registry/components/azemmur/button/index.tsx",

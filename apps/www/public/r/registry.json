@@ -26,7 +26,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@azemmur/primitives-buttons-button"
+        "@azemmur/primitives-button"
       ],
       "files": [
         {
@@ -60,7 +60,8 @@
         "motion"
       ],
       "registryDependencies": [
-        "@azemmur/primitives-slot"
+        "@azemmur/primitives-slot",
+        "@azemmur/hooks-prefers-reduced-motion"
       ],
       "files": [
         {
@@ -191,6 +192,21 @@
           }
         }
       }
+    },
+    {
+      "name": "hooks-prefers-reduced-motion",
+      "type": "registry:hook",
+      "title": "usePrefersReducedMotion",
+      "description": "A small SSR-safe hook that returns true when the user prefers reduced motion.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/hooks/prefers-reduced-motion/index.ts",
+          "type": "registry:hook",
+          "target": "hooks/prefers-reduced-motion/index.ts"
+        }
+      ]
     }
   ]
 }

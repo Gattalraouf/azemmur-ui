@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'motion/react';
+import usePrefersReducedMotion from '@/registry/hooks/prefers-reduced-motion';
 
 import {
   Slot,
@@ -24,11 +25,13 @@ function Button({
   ...props
 }: ButtonProps) {
   const Component = asChild ? Slot : motion.button;
+  const prefersReduced = usePrefersReducedMotion();
 
   return (
     <Component
-      whileHover={{ scale: hoverScale }}
-      whileTap={{ scale: tapScale }}
+      {...(!prefersReduced
+        ? { whileHover: { scale: hoverScale }, whileTap: { scale: tapScale } }
+        : {})}
       {...props}
     />
   );

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-prefers-reduced-motion",
+  "type": "registry:hook",
+  "title": "usePrefersReducedMotion",
+  "description": "A small SSR-safe hook that returns true when the user prefers reduced motion.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/prefers-reduced-motion/index.ts",
+      "type": "registry:hook",
+      "target": "hooks/prefers-reduced-motion/index.ts"
+    }
+  ]
+}

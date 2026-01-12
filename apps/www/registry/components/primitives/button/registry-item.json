@@ -5,7 +5,7 @@
   "title": "Button",
   "description": "A simple button that animates on hover and tap.",
   "dependencies": ["motion"],
-  "registryDependencies": ["@azemmur/primitives-slot"],
+  "registryDependencies": ["@azemmur/primitives-slot", "@azemmur/hooks-prefers-reduced-motion"],
   "files": [
     {
       "path": "registry/components/primitives/button/index.tsx",
