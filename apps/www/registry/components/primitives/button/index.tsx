@@ -14,7 +14,6 @@ type ButtonProps = WithAsChild<
   HTMLMotionProps<'button'> & {
     hoverScale?: number;
     tapScale?: number;
-    isFlat?: boolean;
   }
 >;
 
@@ -22,17 +21,14 @@ function Button({
   hoverScale = 1.05,
   tapScale = 0.95,
   asChild = false,
-  isFlat = false,
   ...props
 }: ButtonProps) {
   const Component = asChild ? Slot : motion.button;
 
   return (
     <Component
-      {...(!isFlat && {
-        whileHover: { scale: hoverScale },
-        whileTap: { scale: tapScale },
-      })}
+      whileHover={{ scale: hoverScale }}
+      whileTap={{ scale: tapScale }}
       {...props}
     />
   );

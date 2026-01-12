@@ -150,7 +150,6 @@
             "elevation": {
               "value": "raised",
               "options": {
-                "flat": "flat",
                 "raised": "raised",
                 "floating": "floating"
               }

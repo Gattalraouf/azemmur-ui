@@ -37,14 +37,9 @@ releaseDate: 2025-09-07
       required: false,
       default: 0.95,
     },
-    isFlat: {
-      description: 'Uses a flat interaction model without depth or motion cues.',
-      type: 'boolean',
-      required: false,
-      default: false,
-    },
     '...props': {
-      description: 'Additional props passed to the underlying motion-enabled button, such as event handlers, ARIA attributes, or native HTML props.',
+      description:
+        'Additional props passed to the underlying motion-enabled button, such as event handlers, ARIA attributes, or native HTML props.',
       type: 'HTMLMotionProps<"button">',
       required: false,
     },

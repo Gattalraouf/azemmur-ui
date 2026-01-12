@@ -60,9 +60,8 @@ const buttonVariants = cva(
         sharp: 'rounded-none',
       },
       elevation: {
-        flat: 'transition-none hover:opacity-95 active:opacity-90',
         raised:
-          'shadow-sm hover:shadow-md active:shadow-xs hover:brightness-95 active:brightness-90',
+          'shadow-sm hover:shadow-md active:shadow-none hover:brightness-95 active:brightness-90',
         floating:
           'shadow-md hover:shadow-lg active:shadow-sm hover:brightness-95 active:brightness-90',
       },
@@ -137,7 +136,6 @@ function Button({
         }),
         className,
       )}
-      isFlat={elevation == 'flat'}
       {...props}
     />
   );
