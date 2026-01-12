@@ -20,7 +20,7 @@ const buttonVariants = cva(
     'disabled:pointer-events-none disabled:opacity-50',
     '[&_svg]:pointer-events-none [&_svg]:shrink-0',
     "[&_svg:not([class*='size-'])]:size-4",
-    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:brightness-95',
+    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',
     'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',
   ].join(' '),
   {
@@ -61,9 +61,9 @@ const buttonVariants = cva(
       },
       elevation: {
         raised:
-          'shadow-sm hover:shadow-md active:shadow-none hover:brightness-95 active:brightness-90',
+          'shadow-sm hover:shadow-md active:shadow-none hover:opacity-95 active:opacity-90',
         floating:
-          'shadow-md hover:shadow-lg active:shadow-sm hover:brightness-95 active:brightness-90',
+          'shadow-md hover:shadow-lg active:shadow-sm hover:opacity-95 active:opacity-90',
       },
     },
     compoundVariants: [
@@ -101,6 +101,26 @@ const buttonVariants = cva(
         intent: 'error',
         styling: 'solid',
         className: 'text-error-foreground',
+      },
+      {
+        styling: 'ghost',
+        elevation: 'raised',
+        className: 'shadow-none hover:shadow-none active:shadow-none',
+      },
+      {
+        styling: 'ghost',
+        elevation: 'floating',
+        className: 'shadow-none hover:shadow-none active:shadow-none',
+      },
+      {
+        styling: 'link',
+        elevation: 'raised',
+        className: 'shadow-none hover:shadow-none active:shadow-none',
+      },
+      {
+        styling: 'link',
+        elevation: 'floating',
+        className: 'shadow-none hover:shadow-none active:shadow-none',
       },
     ],
     defaultVariants: {
