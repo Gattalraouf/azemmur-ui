@@ -13,7 +13,10 @@ import { DocsAuthor } from '@/components/docs/docs-author';
 import { ViewOptions, LLMCopyButton } from '@/components/docs/page-actions';
 import { Footer } from '@/components/docs/footer';
 import { Button } from '@workspace/ui/components/ui/buttons/button';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import {
+  IconArrowLeft as ArrowLeft,
+  IconArrowRight as ArrowRight,
+} from '@tabler/icons-react';
 import Link from 'next/link';
 import { findNeighbour } from 'fumadocs-core/page-tree';
 import { baseOptions } from '@/lib/layout.shared';

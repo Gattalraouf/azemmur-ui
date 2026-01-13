@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from 'react';
 import {
-  Check,
-  ChevronDown,
-  Copy,
-  ExternalLinkIcon,
-  MessageCircleIcon,
-} from 'lucide-react';
+  IconCheck as Check,
+  IconChevronDown as ChevronDown,
+  IconCopy as Copy,
+  IconExternalLink as ExternalLinkIcon,
+  IconMessageCircle as MessageCircleIcon,
+} from '@tabler/icons-react';
 import { cn } from '@workspace/ui/lib/utils';
 import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';

@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@workspace/ui/lib/utils';
-import { ExternalLinkIcon } from 'lucide-react';
+import { IconExternalLink as ExternalLinkIcon } from '@tabler/icons-react';
 import { motion } from 'motion/react';
 
 /* -------------------------------------------------------------------------- */

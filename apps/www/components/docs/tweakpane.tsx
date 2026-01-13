@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@workspace/ui/components/ui/Inputs/select';
 import { Switch } from '@workspace/ui/components/ui/Inputs/switch';
-import { ChevronsUpDown } from 'lucide-react';
+import { IconChevronsDown as ChevronsUpDown } from '@tabler/icons-react';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

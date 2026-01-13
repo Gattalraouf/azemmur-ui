@@ -10,7 +10,7 @@ import {
   TabsContents,
 } from '@workspace/ui/components/ui/tabs/tabs';
 import { cn } from '@workspace/ui/lib/utils';
-import { Loader } from 'lucide-react';
+import { IconRotateClockwise as Loader } from '@tabler/icons-react';
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
 import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';

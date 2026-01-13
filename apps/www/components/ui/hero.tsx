@@ -7,7 +7,7 @@ import ShadcnIcon from '@workspace/ui/components/ui/icons/shadcn-icon';
 import { Button } from '@workspace/ui/components/ui/buttons/button';
 import Link from 'next/link';
 import { MotionEffect } from '@/components/effects/motion-effect';
-import { ArrowRight } from 'lucide-react';
+import { IconArrowRight } from '@tabler/icons-react';
 import { AnimateIcon } from '@workspace/ui/components/ui/icons/icon';
 
 const ICONS = [ReactIcon, TSIcon, TailwindIcon, MotionIcon, ShadcnIcon];
@@ -69,7 +69,7 @@ export const Hero = () => {
                   asChild
                 >
                   <Link href="/docs/installation">
-                    Get Started <ArrowRight className="!size-5" />
+                    Get Started <IconArrowRight className="!size-5" />
                   </Link>
                 </Button>
               </motion.div>

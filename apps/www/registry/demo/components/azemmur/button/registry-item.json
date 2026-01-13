@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Button Demo",
   "description": "Demo showing a button.",
-  "dependencies": ["lucide-react"],
+  "dependencies": ["@tabler/icons-react"],
   "registryDependencies": ["@azemmur/components-button"],
   "files": [
     {

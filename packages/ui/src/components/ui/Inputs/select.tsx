@@ -1,7 +1,11 @@
 'use client';
 
 import { Select as SelectPrimitive } from 'radix-ui';
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
+import {
+  IconCheck as CheckIcon,
+  IconChevronDown as ChevronDownIcon,
+  IconChevronUp as ChevronUpIcon,
+} from '@tabler/icons-react';
 
 import { cn } from '@workspace/ui/lib/utils';
 

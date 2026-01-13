@@ -1,4 +1,4 @@
-import { PlusIcon } from 'lucide-react';
+import { IconPlus } from '@tabler/icons-react';
 import { Button, type ButtonProps } from '@/registry/components/azemmur/button';
 
 interface ButtonDemoProps {
@@ -24,7 +24,7 @@ export default function ButtonDemo({
       shape={shape}
       elevation={elevation}
     >
-      {size?.includes('icon') ? <PlusIcon /> : 'Click me'}
+      {size?.includes('icon') ? <IconPlus /> : 'Click me'}
     </Button>
   );
 }

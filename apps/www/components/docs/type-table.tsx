@@ -1,7 +1,7 @@
 'use client';
 
 import { Popover } from 'radix-ui';
-import { Info } from 'lucide-react';
+import { IconInfoCircle as Info } from '@tabler/icons-react';
 import { ExternalLink } from '@workspace/ui/components/ui/buttons/external-link';
 import { TypeNode, ParameterNode } from 'fumadocs-ui/components/type-table';
 

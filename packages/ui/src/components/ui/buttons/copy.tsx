@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { CheckIcon, CopyIcon } from 'lucide-react';
+import {
+  IconCheck as CheckIcon,
+  IconCopy as CopyIcon,
+} from '@tabler/icons-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import {

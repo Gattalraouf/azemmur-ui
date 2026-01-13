@@ -9,7 +9,7 @@
       "dependencies": [
         "tw-animate-css",
         "class-variance-authority",
-        "lucide-react"
+        "@tabler/icons-react"
       ],
       "registryDependencies": [
         "utils"
@@ -93,7 +93,7 @@
       "title": "Button Demo",
       "description": "Demo showing a button.",
       "dependencies": [
-        "lucide-react"
+        "@tabler/icons-react"
       ],
       "registryDependencies": [
         "@azemmur/components-button"

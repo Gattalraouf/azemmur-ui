@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '@workspace/ui/components/ui/buttons/button';
 import { cn } from '@workspace/ui/lib/utils';
-import { Fullscreen, RotateCcw, SlidersHorizontal } from 'lucide-react';
+import {
+  IconMaximize as Fullscreen,
+  IconRotateClockwise as RotateCcw,
+  IconAdjustmentsHorizontal as SlidersHorizontal,
+} from '@tabler/icons-react';
 import Iframe from '@/components/docs/iframe';
 import { useIsMobile } from '@workspace/ui/hooks/use-mobile';
 
