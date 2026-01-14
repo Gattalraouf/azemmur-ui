@@ -1,0 +1,67 @@
+---
+title: Theme Switch
+description: A compact theme toggle with motion animations and accessibility.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2025-01-14
+---
+
+<ComponentPreview name="demo-components-theme-switch" />
+
+## Installation
+
+<ComponentInstallation name="components-theme-switch" />
+
+## Usage
+
+```tsx
+<ThemeSwitch />
+```
+
+### Examples
+
+```tsx
+// Primary (default)
+<ThemeSwitch />
+
+// Accent intent with solid styling
+<ThemeSwitch intent="accent" styling="solid" />
+```
+
+## API Reference
+
+### ThemeSwitch
+
+<TypeTable
+  type={{
+    size: {
+      description: 'Controls the overall size of the switch.',
+      type: 'enum',
+      typeDescription: '"sm" | "md" | "lg"',
+      required: false,
+      default: '"md"',
+    },
+    styling: {
+      description: 'Visual styling variant such as "ghost" or "solid".',
+      type: 'enum',
+      typeDescription: '"ghost" | "solid"',
+      required: false,
+      default: '"ghost"',
+    },
+    intent: {
+      description: 'Color intent for the switch (matches Button intents).',
+      type: 'enum',
+      typeDescription:
+        '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
+      required: false,
+      default: '"primary"',
+    },
+    '...props': {
+      description:
+        'Additional props passed to the underlying motion-enabled button, such as event handlers or ARIA attributes.',
+      type: 'HTMLMotionProps<"button">',
+      required: false,
+    },
+  }}
+/>
