@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-theme-switch",
+  "type": "registry:ui",
+  "title": "Theme Switch",
+  "description": "A small theme toggle button with motion animations.",
+  "dependencies": ["class-variance-authority", "motion", "@tabler/icons-react"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/azemmur/themeSwitch/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/themeSwitch.tsx"
+    }
+  ]
+}

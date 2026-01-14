@@ -1,0 +1,54 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-theme-switch",
+  "title": "Theme Switch Demo",
+  "description": "Demo for the ThemeSwitch component.",
+  "dependencies": [
+    "@tabler/icons-react"
+  ],
+  "registryDependencies": [
+    "@azemmur/components-theme-switch"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/themeSwitch/index.tsx",
+      "content": "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/themeSwitch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n}: ThemeSwitchDemoProps) {\n  return <ThemeSwitch size={size} styling={styling} intent={intent} />;\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/themeSwitch.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "ThemeSwitch": {
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "styling": {
+          "value": "ghost",
+          "options": {
+            "ghost": "ghost",
+            "solid": "solid"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

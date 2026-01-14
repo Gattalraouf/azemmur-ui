@@ -96,6 +96,43 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/dummy',
   },
+  'components-theme-switch': {
+    name: 'components-theme-switch',
+    description: 'A small theme toggle button with motion animations.',
+    type: 'registry:ui',
+    dependencies: ['class-variance-authority', 'motion', '@tabler/icons-react'],
+    devDependencies: undefined,
+    registryDependencies: [],
+    files: [
+      {
+        path: 'registry/components/azemmur/themeSwitch/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/themeSwitch.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\nimport { forwardRef, useCallback } from 'react';\nimport { useTheme } from 'next-themes';\nimport { motion, AnimatePresence } from 'motion/react';\nimport { IconSunLow, IconMoon } from '@tabler/icons-react';\n\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\n\nconst themeSwitchVariants = cva(\n  [\n    'inline-flex items-center justify-center',\n    'select-none outline-none cursor-pointer',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'transition-transform rounded-full',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n        success:\n          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',\n        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',\n        warning:\n          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',\n        error:\n          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',\n      },\n      size: {\n        sm: \"h-6 w-6 [&_svg:not([class*='size-'])]:size-4\",\n        md: \"h-8 w-8 [&_svg:not([class*='size-'])]:size-5\",\n        lg: \"h-10 w-10 [&_svg:not([class*='size-'])]:size-6\",\n      },\n      styling: {\n        ghost: 'bg-transparent',\n        solid: '',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      size: 'md',\n      styling: 'ghost',\n    },\n  },\n);\n\ntype ThemeSwitchVariants = VariantProps<typeof themeSwitchVariants>;\n\ntype ThemeSwitchProps = ThemeSwitchVariants & {\n  className?: string;\n};\n\nconst ThemeSwitch = forwardRef<HTMLButtonElement, ThemeSwitchProps>(\n  ({ className, size, styling, intent, ...props }, ref) => {\n    const { theme, setTheme } = useTheme();\n\n    const handleToggle = useCallback(() => {\n      setTheme(theme === 'dark' ? 'light' : 'dark');\n    }, [setTheme, theme]);\n\n    const iconVariants = {\n      initial: { scale: 0, rotate: -360 },\n      animate: { scale: 1, rotate: 0 },\n      exit: { scale: 0, rotate: 360 },\n      hover: {\n        rotate: [0, 30, -30, 0],\n        transition: { duration: 0.4 },\n      },\n    };\n\n    return (\n      <ButtonPrimitive\n        ref={ref as any}\n        type=\"button\"\n        hoverScale={1.3}\n        tapScale={0.9}\n        aria-label={\n          theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'\n        }\n        aria-pressed={theme === 'dark'}\n        className={cn(\n          themeSwitchVariants({ intent, size, styling }),\n          className,\n        )}\n        onClick={handleToggle}\n        {...props}\n      >\n        <AnimatePresence mode=\"wait\">\n          <motion.div\n            className=\"w-fit\"\n            key={theme === 'dark' ? 'sun-icon' : 'moon-icon'}\n            initial=\"initial\"\n            animate=\"animate\"\n            exit=\"exit\"\n            whileHover=\"hover\"\n            variants={iconVariants}\n            transition={{\n              duration: 0.4,\n              rotate: { duration: 0.6, delay: 0.12 },\n            }}\n          >\n            {theme === 'dark' ? <IconSunLow /> : <IconMoon />}\n          </motion.div>\n        </AnimatePresence>\n      </ButtonPrimitive>\n    );\n  },\n);\n\nexport { ThemeSwitch, themeSwitchVariants, type ThemeSwitchProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/components/azemmur/themeSwitch/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'components-theme-switch';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/components-theme-switch',
+  },
   'primitives-button': {
     name: 'primitives-button',
     description: 'A simple button that animates on hover and tap.',
@@ -253,6 +290,63 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/demo-components-button',
+  },
+  'demo-components-theme-switch': {
+    name: 'demo-components-theme-switch',
+    description: 'Demo for the ThemeSwitch component.',
+    type: 'registry:ui',
+    dependencies: ['@tabler/icons-react'],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/components-theme-switch'],
+    files: [
+      {
+        path: 'registry/demo/components/azemmur/themeSwitch/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/themeSwitch.tsx',
+        content:
+          "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/themeSwitch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n}: ThemeSwitchDemoProps) {\n  return <ThemeSwitch size={size} styling={styling} intent={intent} />;\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/components/azemmur/themeSwitch/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-components-theme-switch';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        ThemeSwitch: {
+          size: { value: 'md', options: { sm: 'sm', md: 'md', lg: 'lg' } },
+          styling: {
+            value: 'ghost',
+            options: { ghost: 'ghost', solid: 'solid' },
+          },
+          intent: {
+            value: 'primary',
+            options: {
+              primary: 'primary',
+              accent: 'accent',
+              secondary: 'secondary',
+              success: 'success',
+              info: 'info',
+              warning: 'warning',
+              error: 'error',
+            },
+          },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-components-theme-switch',
   },
   'demo-primitives-button': {
     name: 'demo-primitives-button',
