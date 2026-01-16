@@ -16,17 +16,13 @@ const themeSwitchVariants = cva(
     'transition-colors',
     '[&_svg]:pointer-events-none [&_svg]:shrink-0',
     'disabled:pointer-events-none disabled:opacity-50',
-    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',
   ].join(' '),
   {
     variants: {
       intent: {
-        primary:
-          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',
-        accent:
-          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',
-        secondary:
-          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',
+        primary: 'bg-primary text-primary border-primary',
+        accent: 'bg-accent text-accent border-accent',
+        secondary: 'bg-secondary text-secondary border-secondary',
       },
       size: {
         sm: 'h-6 w-6 [&_svg]:size-4',
@@ -110,7 +106,6 @@ function ThemeSwitch({
 
   return (
     <ButtonPrimitive
-      type="button"
       suppressHydrationWarning
       aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
       aria-pressed={isDark}

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Button } from '@workspace/ui/components/ui/buttons/button';
+import { Button } from '@/registry/components/azemmur/button';
 import { cn } from '@workspace/ui/lib/utils';
 import {
   IconMaximize as Fullscreen,
@@ -53,38 +53,24 @@ export const ComponentWrapper = ({
         <motion.div className="relative size-full flex-1">
           {/* Control buttons */}
           {!iframe && (
-            <div className="absolute top-3 right-3 z-[9] bg-background flex items-center justify-end gap-2 p-1 rounded-md">
+            <div className="absolute top-3 right-3 z-[9] bg-secondary flex items-center justify-end gap-2 p-1 rounded-md">
               {/* Restart button */}
               <Button
                 onClick={() => setKey((prev) => prev + 1)}
-                className="flex items-center rounded-md"
-                variant="secondary"
+                intent="primary"
                 size="icon-sm"
-                asChild
               >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <RotateCcw aria-label="restart-btn" size={14} />
-                </motion.button>
+                <RotateCcw aria-label="restart-btn" />
               </Button>
 
               {/* Fullscreen button for iframe mode */}
               {iframe && (
                 <Button
                   onClick={() => window.open(`/examples/${name}`, '_blank')}
-                  className="flex items-center rounded-md"
-                  variant="secondary"
+                  intent="primary"
                   size="icon-sm"
-                  asChild
                 >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Fullscreen aria-label="fullscreen-btn" size={14} />
-                  </motion.button>
+                  <Fullscreen aria-label="fullscreen-btn" />
                 </Button>
               )}
 
@@ -92,17 +78,10 @@ export const ComponentWrapper = ({
               {tweakpane && (
                 <Button
                   onClick={() => setTweakMode((prev) => !prev)}
-                  className="flex items-center rounded-md"
-                  variant="secondary"
+                  intent="primary"
                   size="icon-sm"
-                  asChild
                 >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <SlidersHorizontal aria-label="tweak-btn" size={14} />
-                  </motion.button>
+                  <SlidersHorizontal aria-label="tweak-btn" />
                 </Button>
               )}
             </div>

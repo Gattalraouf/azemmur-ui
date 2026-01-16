@@ -20,35 +20,28 @@ const buttonVariants = cva(
     'disabled:pointer-events-none disabled:opacity-50',
     '[&_svg]:pointer-events-none [&_svg]:shrink-0',
     "[&_svg:not([class*='size-'])]:size-4",
-    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',
     'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',
   ].join(' '),
   {
     variants: {
       intent: {
-        primary:
-          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',
-        accent:
-          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',
-        secondary:
-          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',
-        success:
-          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',
-        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',
-        warning:
-          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',
-        error:
-          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',
+        primary: 'bg-primary text-primary border-primary',
+        accent: 'bg-accent text-accent border-accent',
+        secondary: 'bg-secondary text-secondary border-secondary',
+        success: 'bg-success text-success border-success',
+        info: 'bg-info text-info border-info',
+        warning: 'bg-warning text-warning border-warning',
+        error: 'bg-error text-error border-error',
       },
       styling: {
         solid: 'border-none',
-        outline: 'border border-2 bg-transparent hover:bg-current/20',
+        outline: 'border border-2 bg-background hover:bg-current/20',
         ghost: 'bg-transparent',
-        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',
+        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:bg-ring/40 focus-visible:rounded-none focus-visible:p-0',
       },
       size: {
-        sm: 'h-8 px-3 gap-1.5 has-[>svg]:px-2.5',
-        md: 'h-9 px-4 py-2 has-[>svg]:px-3',
+        sm: 'h-8 px-2 gap-1.5 has-[>svg]:px-2.5',
+        md: 'h-9 px-4 py-2 has-[>svg]:px-4',
         lg: 'h-10 px-6 has-[>svg]:px-4',
         'icon-sm': 'size-8 p-0',
         'icon-md': 'size-9 p-0',

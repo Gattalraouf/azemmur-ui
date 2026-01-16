@@ -194,11 +194,11 @@
   button:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    @apply ring-ring/50 ring-[3px] border-ring outline-none rounded-md;
+    @apply ring-ring/60 ring-[3px] opacity-95 outline-none rounded-md;
   }
 
   a:focus-visible {
-    @apply bg-ring/50 outline-none;
+    @apply ring-0 bg-ring/40 outline-none;
   }
 
   input {

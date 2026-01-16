@@ -1,11 +1,25 @@
+import { MotionConfig } from 'motion/react';
 import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { baseOptions } from '@/lib/layout.shared';
+import { ThemeSwitch } from '@/registry/components/azemmur/themeSwitch';
 
 export default function Layout({ children }: LayoutProps<'/docs'>) {
   return (
-    <DocsLayout tree={source.pageTree} {...baseOptions}>
-      {children}
-    </DocsLayout>
+    <MotionConfig reducedMotion="user">
+      <DocsLayout
+        tree={source.pageTree}
+        {...baseOptions}
+        themeSwitch={{
+          component: (
+            <div className="flex w-full justify-end">
+              <ThemeSwitch styling="solid" intent="secondary" />
+            </div>
+          ),
+        }}
+      >
+        {children}
+      </DocsLayout>
+    </MotionConfig>
   );
 }

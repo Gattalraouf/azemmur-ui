@@ -12,7 +12,7 @@ import { getMDXComponents } from '@/mdx-components';
 import { DocsAuthor } from '@/components/docs/docs-author';
 import { ViewOptions, LLMCopyButton } from '@/components/docs/page-actions';
 import { Footer } from '@/components/docs/footer';
-import { Button } from '@workspace/ui/components/ui/buttons/button';
+import { Button } from '@/registry/components/azemmur/button';
 import {
   IconArrowLeft as ArrowLeft,
   IconArrowRight as ArrowRight,
@@ -119,7 +119,7 @@ export default async function Page(props: {
               }
               tabIndex={-1}
             >
-              <Button variant="accent" size="icon-sm">
+              <Button intent="accent" size="icon-sm">
                 <ArrowLeft />
               </Button>
             </Link>
@@ -134,7 +134,7 @@ export default async function Page(props: {
               }
               tabIndex={-1}
             >
-              <Button variant="accent" size="icon-sm">
+              <Button intent="accent" size="icon-sm">
                 <ArrowRight />
               </Button>
             </Link>

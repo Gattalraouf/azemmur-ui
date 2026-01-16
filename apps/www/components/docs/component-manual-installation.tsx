@@ -9,7 +9,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from 'fumadocs-ui/components/ui/collapsible';
-import { Button } from '@workspace/ui/components/ui/buttons/button';
+import { Button } from '@/registry/components/azemmur/button';
 import { cn } from '@workspace/ui/lib/utils';
 import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
 
@@ -147,7 +147,7 @@ export const ComponentManualInstallation = ({
                 )}
               >
                 <CollapsibleTrigger asChild>
-                  <Button variant="accent" className="h-8 text-xs">
+                  <Button intent="accent">
                     {isOpened ? 'Collapse' : 'Expand'}
                   </Button>
                 </CollapsibleTrigger>
