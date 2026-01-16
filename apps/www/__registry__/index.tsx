@@ -35,7 +35,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/components/button.tsx',
         content:
-          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  [\n    'inline-flex items-center justify-center gap-2 whitespace-nowrap',\n    'select-none touch-manipulation text-sm font-medium shrink-0',\n    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',\n    'outline-none cursor-pointer',\n    'disabled:pointer-events-none disabled:opacity-50',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',\n    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n        success:\n          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',\n        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',\n        warning:\n          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',\n        error:\n          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',\n      },\n      styling: {\n        solid: 'border-none',\n        outline: 'border border-2 bg-transparent hover:bg-current/20',\n        ghost: 'bg-transparent',\n        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',\n      },\n      size: {\n        sm: 'h-8 px-3 gap-1.5 has-[>svg]:px-2.5',\n        md: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        lg: 'h-10 px-6 has-[>svg]:px-4',\n        'icon-sm': 'size-8 p-0',\n        'icon-md': 'size-9 p-0',\n        'icon-lg': 'size-10 p-0',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised:\n          'shadow-sm hover:shadow-md active:shadow-none hover:opacity-95 active:opacity-90',\n        floating:\n          'shadow-md hover:shadow-lg active:shadow-sm hover:opacity-95 active:opacity-90',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'solid',\n      size: 'md',\n      shape: 'rounded',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({\n  className,\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  ...props\n}: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(\n        buttonVariants({\n          intent,\n          styling,\n          size,\n          shape,\n          elevation,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  [\n    'inline-flex items-center justify-center gap-2 whitespace-nowrap',\n    'select-none touch-manipulation text-sm font-medium shrink-0',\n    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',\n    'outline-none',\n    'disabled:pointer-events-none disabled:opacity-50',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',\n    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n        success:\n          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',\n        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',\n        warning:\n          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',\n        error:\n          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',\n      },\n      styling: {\n        solid: 'border-none',\n        outline: 'border border-2 bg-transparent hover:bg-current/20',\n        ghost: 'bg-transparent',\n        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',\n      },\n      size: {\n        sm: 'h-8 px-3 gap-1.5 has-[>svg]:px-2.5',\n        md: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        lg: 'h-10 px-6 has-[>svg]:px-4',\n        'icon-sm': 'size-8 p-0',\n        'icon-md': 'size-9 p-0',\n        'icon-lg': 'size-10 p-0',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised:\n          'shadow-sm hover:shadow-md active:shadow-none hover:opacity-95 active:opacity-90',\n        floating:\n          'shadow-md hover:shadow-lg active:shadow-sm hover:opacity-95 active:opacity-90',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'solid',\n      size: 'md',\n      shape: 'rounded',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({\n  className,\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  ...props\n}: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(\n        buttonVariants({\n          intent,\n          styling,\n          size,\n          shape,\n          elevation,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
       },
     ],
     keywords: [],
@@ -59,57 +59,25 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/components-button',
   },
-  dummy: {
-    name: 'dummy',
-    description: 'A dummy component with to test the process.',
-    type: 'registry:ui',
-    dependencies: [],
-    devDependencies: undefined,
-    registryDependencies: [],
-    files: [
-      {
-        path: 'registry/components/azemmur/dummy/index.tsx',
-        type: 'registry:ui',
-        target: 'components/azemmur/components/dummy.tsx',
-        content:
-          "'use client';\n\nimport * as React from 'react';\n\nfunction Dummy() {\n  return <></>;\n}\n\nexport { Dummy };",
-      },
-    ],
-    keywords: [],
-    component: (function () {
-      const LazyComp = React.lazy(async () => {
-        const mod =
-          await import('@/registry/components/azemmur/dummy/index.tsx');
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === 'function' || typeof mod[key] === 'object',
-          ) || 'dummy';
-        const Comp = mod.default || mod[exportName];
-        if (mod.animations) {
-          (LazyComp as any).animations = mod.animations;
-        }
-        return { default: Comp };
-      });
-      LazyComp.demoProps = {};
-      return LazyComp;
-    })(),
-    command: '@azemmur/dummy',
-  },
   'components-theme-switch': {
     name: 'components-theme-switch',
     description: 'A small theme toggle button with motion animations.',
     type: 'registry:ui',
-    dependencies: ['class-variance-authority', 'motion', '@tabler/icons-react'],
+    dependencies: [
+      'class-variance-authority',
+      'motion',
+      '@tabler/icons-react',
+      'next-themes',
+    ],
     devDependencies: undefined,
-    registryDependencies: [],
+    registryDependencies: ['@azemmur/primitives-button'],
     files: [
       {
         path: 'registry/components/azemmur/themeSwitch/index.tsx',
         type: 'registry:ui',
         target: 'components/azemmur/components/themeSwitch.tsx',
         content:
-          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\nimport { forwardRef, useCallback } from 'react';\nimport { useTheme } from 'next-themes';\nimport { motion, AnimatePresence } from 'motion/react';\nimport { IconSunLow, IconMoon } from '@tabler/icons-react';\n\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\n\nconst themeSwitchVariants = cva(\n  [\n    'inline-flex items-center justify-center',\n    'select-none outline-none cursor-pointer',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'transition-transform rounded-full',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n        success:\n          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',\n        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',\n        warning:\n          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',\n        error:\n          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',\n      },\n      size: {\n        sm: \"h-6 w-6 [&_svg:not([class*='size-'])]:size-4\",\n        md: \"h-8 w-8 [&_svg:not([class*='size-'])]:size-5\",\n        lg: \"h-10 w-10 [&_svg:not([class*='size-'])]:size-6\",\n      },\n      styling: {\n        ghost: 'bg-transparent',\n        solid: '',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      size: 'md',\n      styling: 'ghost',\n    },\n  },\n);\n\ntype ThemeSwitchVariants = VariantProps<typeof themeSwitchVariants>;\n\ntype ThemeSwitchProps = ThemeSwitchVariants & {\n  className?: string;\n};\n\nconst ThemeSwitch = forwardRef<HTMLButtonElement, ThemeSwitchProps>(\n  ({ className, size, styling, intent, ...props }, ref) => {\n    const { theme, setTheme } = useTheme();\n\n    const handleToggle = useCallback(() => {\n      setTheme(theme === 'dark' ? 'light' : 'dark');\n    }, [setTheme, theme]);\n\n    const iconVariants = {\n      initial: { scale: 0, rotate: -360 },\n      animate: { scale: 1, rotate: 0 },\n      exit: { scale: 0, rotate: 360 },\n      hover: {\n        rotate: [0, 30, -30, 0],\n        transition: { duration: 0.4 },\n      },\n    };\n\n    return (\n      <ButtonPrimitive\n        ref={ref as any}\n        type=\"button\"\n        hoverScale={1.3}\n        tapScale={0.9}\n        aria-label={\n          theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'\n        }\n        aria-pressed={theme === 'dark'}\n        className={cn(\n          themeSwitchVariants({ intent, size, styling }),\n          className,\n        )}\n        onClick={handleToggle}\n        {...props}\n      >\n        <AnimatePresence mode=\"wait\">\n          <motion.div\n            className=\"w-fit\"\n            key={theme === 'dark' ? 'sun-icon' : 'moon-icon'}\n            initial=\"initial\"\n            animate=\"animate\"\n            exit=\"exit\"\n            whileHover=\"hover\"\n            variants={iconVariants}\n            transition={{\n              duration: 0.4,\n              rotate: { duration: 0.6, delay: 0.12 },\n            }}\n          >\n            {theme === 'dark' ? <IconSunLow /> : <IconMoon />}\n          </motion.div>\n        </AnimatePresence>\n      </ButtonPrimitive>\n    );\n  },\n);\n\nexport { ThemeSwitch, themeSwitchVariants, type ThemeSwitchProps };",
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\nimport { useCallback } from 'react';\nimport { useTheme } from 'next-themes';\nimport { motion, AnimatePresence } from 'motion/react';\nimport { IconSunLow, IconMoon } from '@tabler/icons-react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst themeSwitchVariants = cva(\n  [\n    'inline-flex items-center justify-center',\n    'select-none touch-manipulation',\n    'transition-colors',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    'disabled:pointer-events-none disabled:opacity-50',\n    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n      },\n      size: {\n        sm: 'h-6 w-6 [&_svg]:size-4',\n        md: 'h-8 w-8 [&_svg]:size-5',\n        lg: 'h-10 w-10 [&_svg]:size-6',\n      },\n      styling: {\n        ghost: 'bg-transparent',\n        solid: 'border-none',\n        outline: 'border border-2 bg-transparent hover:bg-current/20',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised: 'shadow-sm hover:shadow-md active:shadow-none',\n        floating: 'shadow-md hover:shadow-lg active:shadow-sm',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        styling: 'ghost',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      size: 'md',\n      styling: 'ghost',\n      shape: 'pill',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ThemeSwitchProps = VariantProps<typeof themeSwitchVariants> & {\n  className?: string;\n};\n\nfunction ThemeSwitch({\n  className,\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n  ...props\n}: ThemeSwitchProps) {\n  const { theme, setTheme, resolvedTheme } = useTheme();\n\n  const currentTheme = resolvedTheme ?? theme;\n  const isDark = currentTheme === 'dark';\n\n  const handleToggle = useCallback(() => {\n    setTheme(isDark ? 'light' : 'dark');\n  }, [setTheme, isDark]);\n\n  const iconVariants = {\n    initial: { scale: 0, rotate: -360 },\n    animate: { scale: 1, rotate: 0 },\n    exit: { scale: 0, rotate: 360 },\n    hover: { rotate: [0, 30, -30, 0], transition: { duration: 0.4 } },\n  };\n\n  return (\n    <ButtonPrimitive\n      type=\"button\"\n      suppressHydrationWarning\n      aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}\n      aria-pressed={isDark}\n      className={cn(\n        themeSwitchVariants({ intent, size, styling, shape, elevation }),\n        className,\n      )}\n      onClick={handleToggle}\n      {...props}\n    >\n      <AnimatePresence mode=\"wait\" initial={false}>\n        <motion.div\n          key={isDark ? 'sun-icon' : 'moon-icon'}\n          initial=\"initial\"\n          animate=\"animate\"\n          exit=\"exit\"\n          whileHover=\"hover\"\n          variants={iconVariants}\n          transition={{\n            duration: 0.4,\n            rotate: { duration: 0.6, delay: 0.12 },\n          }}\n        >\n          {isDark ? <IconSunLow /> : <IconMoon />}\n        </motion.div>\n      </AnimatePresence>\n    </ButtonPrimitive>\n  );\n}\n\nexport { ThemeSwitch, themeSwitchVariants, type ThemeSwitchProps };",
       },
     ],
     keywords: [],
@@ -139,17 +107,14 @@ export const index: Record<string, any> = {
     type: 'registry:ui',
     dependencies: ['motion'],
     devDependencies: undefined,
-    registryDependencies: [
-      '@azemmur/primitives-slot',
-      '@azemmur/hooks-prefers-reduced-motion',
-    ],
+    registryDependencies: ['@azemmur/primitives-slot'],
     files: [
       {
         path: 'registry/components/primitives/button/index.tsx',
         type: 'registry:ui',
         target: 'components/azemmur/primitives/button.tsx',
         content:
-          "//Copyright (c) 2025 Elliot Sutton\n\n'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\nimport usePrefersReducedMotion from '@/hooks/prefers-reduced-motion';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/primitives/slot';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n  const prefersReduced = usePrefersReducedMotion();\n\n  return (\n    <Component\n      {...(!prefersReduced\n        ? { whileHover: { scale: hoverScale }, whileTap: { scale: tapScale } }\n        : {})}\n      {...props}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };",
+          "//Copyright (c) 2025 Elliot Sutton\n\n'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/primitives/slot';\nimport { cn } from '@/lib/utils';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n\n  return (\n    <Component\n      {...props}\n      className={cn('cursor-pointer', props.className)}\n      whileHover={{ scale: hoverScale }}\n      whileTap={{ scale: tapScale }}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };",
       },
     ],
     keywords: [],
@@ -295,7 +260,7 @@ export const index: Record<string, any> = {
     name: 'demo-components-theme-switch',
     description: 'Demo for the ThemeSwitch component.',
     type: 'registry:ui',
-    dependencies: ['@tabler/icons-react'],
+    dependencies: undefined,
     devDependencies: undefined,
     registryDependencies: ['@azemmur/components-theme-switch'],
     files: [
@@ -304,7 +269,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/demo/themeSwitch.tsx',
         content:
-          "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/themeSwitch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n}: ThemeSwitchDemoProps) {\n  return <ThemeSwitch size={size} styling={styling} intent={intent} />;\n}",
+          "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/themeSwitch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n  shape?: ThemeSwitchProps['shape'];\n  elevation?: ThemeSwitchProps['elevation'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n}: ThemeSwitchDemoProps) {\n  return (\n    <ThemeSwitch\n      size={size}\n      styling={styling}\n      intent={intent}\n      shape={shape}\n      elevation={elevation}\n    />\n  );\n}",
       },
     ],
     keywords: [],
@@ -328,7 +293,7 @@ export const index: Record<string, any> = {
           size: { value: 'md', options: { sm: 'sm', md: 'md', lg: 'lg' } },
           styling: {
             value: 'ghost',
-            options: { ghost: 'ghost', solid: 'solid' },
+            options: { ghost: 'ghost', solid: 'solid', outline: 'outline' },
           },
           intent: {
             value: 'primary',
@@ -336,11 +301,15 @@ export const index: Record<string, any> = {
               primary: 'primary',
               accent: 'accent',
               secondary: 'secondary',
-              success: 'success',
-              info: 'info',
-              warning: 'warning',
-              error: 'error',
             },
+          },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', sharp: 'sharp', pill: 'pill' },
+          },
+          elevation: {
+            value: 'raised',
+            options: { raised: 'raised', floating: 'floating' },
           },
         },
       };
@@ -389,43 +358,5 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/demo-primitives-button',
-  },
-  'hooks-prefers-reduced-motion': {
-    name: 'hooks-prefers-reduced-motion',
-    description:
-      'A small SSR-safe hook that returns true when the user prefers reduced motion.',
-    type: 'registry:hook',
-    dependencies: [],
-    devDependencies: undefined,
-    registryDependencies: [],
-    files: [
-      {
-        path: 'registry/hooks/prefers-reduced-motion/index.ts',
-        type: 'registry:hook',
-        target: 'hooks/prefers-reduced-motion/index.ts',
-        content:
-          "import { useState, useEffect } from 'react';\n\nexport default function usePrefersReducedMotion() {\n  const [shouldReduce, setShouldReduce] = useState<boolean>(() => {\n    if (\n      typeof window !== 'undefined' &&\n      typeof window.matchMedia === 'function'\n    ) {\n      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n    }\n    return true;\n  });\n\n  useEffect(() => {\n    if (\n      typeof window === 'undefined' ||\n      typeof window.matchMedia !== 'function'\n    )\n      return;\n\n    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');\n    const handleChange = (e: MediaQueryListEvent) => setShouldReduce(e.matches);\n\n    setShouldReduce(mediaQuery.matches);\n\n    mediaQuery.addEventListener('change', handleChange);\n    return () => mediaQuery.removeEventListener('change', handleChange);\n  }, []);\n\n  return shouldReduce;\n}",
-      },
-    ],
-    keywords: [],
-    component: (function () {
-      const LazyComp = React.lazy(async () => {
-        const mod =
-          await import('@/registry/hooks/prefers-reduced-motion/index.ts');
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === 'function' || typeof mod[key] === 'object',
-          ) || 'hooks-prefers-reduced-motion';
-        const Comp = mod.default || mod[exportName];
-        if (mod.animations) {
-          (LazyComp as any).animations = mod.animations;
-        }
-        return { default: Comp };
-      });
-      LazyComp.demoProps = {};
-      return LazyComp;
-    })(),
-    command: '@azemmur/hooks-prefers-reduced-motion',
   },
 };

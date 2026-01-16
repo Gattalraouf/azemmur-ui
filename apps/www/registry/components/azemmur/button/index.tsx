@@ -16,7 +16,7 @@ const buttonVariants = cva(
     'inline-flex items-center justify-center gap-2 whitespace-nowrap',
     'select-none touch-manipulation text-sm font-medium shrink-0',
     'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',
-    'outline-none cursor-pointer',
+    'outline-none',
     'disabled:pointer-events-none disabled:opacity-50',
     '[&_svg]:pointer-events-none [&_svg]:shrink-0',
     "[&_svg:not([class*='size-'])]:size-4",

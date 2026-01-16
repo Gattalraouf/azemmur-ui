@@ -37,21 +37,6 @@
       ]
     },
     {
-      "name": "dummy",
-      "type": "registry:ui",
-      "title": "Demo",
-      "description": "A dummy component with to test the process.",
-      "dependencies": [],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "registry/components/azemmur/dummy/index.tsx",
-          "type": "registry:ui",
-          "target": "components/azemmur/components/dummy.tsx"
-        }
-      ]
-    },
-    {
       "name": "components-theme-switch",
       "type": "registry:ui",
       "title": "Theme Switch",
@@ -59,9 +44,12 @@
       "dependencies": [
         "class-variance-authority",
         "motion",
-        "@tabler/icons-react"
+        "@tabler/icons-react",
+        "next-themes"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "@azemmur/primitives-button"
+      ],
       "files": [
         {
           "path": "registry/components/azemmur/themeSwitch/index.tsx",
@@ -79,8 +67,7 @@
         "motion"
       ],
       "registryDependencies": [
-        "@azemmur/primitives-slot",
-        "@azemmur/hooks-prefers-reduced-motion"
+        "@azemmur/primitives-slot"
       ],
       "files": [
         {
@@ -183,9 +170,6 @@
       "type": "registry:ui",
       "title": "Theme Switch Demo",
       "description": "Demo for the ThemeSwitch component.",
-      "dependencies": [
-        "@tabler/icons-react"
-      ],
       "registryDependencies": [
         "@azemmur/components-theme-switch"
       ],
@@ -211,7 +195,8 @@
               "value": "ghost",
               "options": {
                 "ghost": "ghost",
-                "solid": "solid"
+                "solid": "solid",
+                "outline": "outline"
               }
             },
             "intent": {
@@ -219,11 +204,22 @@
               "options": {
                 "primary": "primary",
                 "accent": "accent",
-                "secondary": "secondary",
-                "success": "success",
-                "info": "info",
-                "warning": "warning",
-                "error": "error"
+                "secondary": "secondary"
+              }
+            },
+            "shape": {
+              "value": "rounded",
+              "options": {
+                "rounded": "rounded",
+                "sharp": "sharp",
+                "pill": "pill"
+              }
+            },
+            "elevation": {
+              "value": "raised",
+              "options": {
+                "raised": "raised",
+                "floating": "floating"
               }
             }
           }
@@ -263,21 +259,6 @@
           }
         }
       }
-    },
-    {
-      "name": "hooks-prefers-reduced-motion",
-      "type": "registry:hook",
-      "title": "usePrefersReducedMotion",
-      "description": "A small SSR-safe hook that returns true when the user prefers reduced motion.",
-      "dependencies": [],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "registry/hooks/prefers-reduced-motion/index.ts",
-          "type": "registry:hook",
-          "target": "hooks/prefers-reduced-motion/index.ts"
-        }
-      ]
     }
   ]
 }

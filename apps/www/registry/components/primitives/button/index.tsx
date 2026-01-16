@@ -4,12 +4,12 @@
 
 import * as React from 'react';
 import { motion, type HTMLMotionProps } from 'motion/react';
-import usePrefersReducedMotion from '@/registry/hooks/prefers-reduced-motion';
 
 import {
   Slot,
   type WithAsChild,
 } from '@workspace/ui/components/primitives/slot';
+import { cn } from '@workspace/ui/lib/utils';
 
 type ButtonProps = WithAsChild<
   HTMLMotionProps<'button'> & {
@@ -25,14 +25,13 @@ function Button({
   ...props
 }: ButtonProps) {
   const Component = asChild ? Slot : motion.button;
-  const prefersReduced = usePrefersReducedMotion();
 
   return (
     <Component
-      {...(!prefersReduced
-        ? { whileHover: { scale: hoverScale }, whileTap: { scale: tapScale } }
-        : {})}
       {...props}
+      className={cn('cursor-pointer', props.className)}
+      whileHover={{ scale: hoverScale }}
+      whileTap={{ scale: tapScale }}
     />
   );
 }
