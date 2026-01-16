@@ -35,6 +35,21 @@ releaseDate: 2025-01-14
 
 <TypeTable
   type={{
+    styling: {
+      description:
+        'Visual styling variant such as "ghost", "solid", or "outline".',
+      type: 'enum',
+      typeDescription: '"ghost" | "solid" | "outline"',
+      required: false,
+      default: '"ghost"',
+    },
+    intent: {
+      description: 'Color intent for the switch (matches Button intents).',
+      type: 'enum',
+      typeDescription: '"primary" | "accent" | "secondary"',
+      required: false,
+      default: '"primary"',
+    },
     size: {
       description: 'Controls the overall size of the switch.',
       type: 'enum',
@@ -42,20 +57,20 @@ releaseDate: 2025-01-14
       required: false,
       default: '"md"',
     },
-    styling: {
-      description: 'Visual styling variant such as "ghost" or "solid".',
+    shape: {
+      description: 'Border radius style for the switch.',
       type: 'enum',
-      typeDescription: '"ghost" | "solid"',
+      typeDescription: '"rounded" | "pill" | "sharp"',
       required: false,
-      default: '"ghost"',
+      default: '"pill"',
     },
-    intent: {
-      description: 'Color intent for the switch (matches Button intents).',
+    elevation: {
+      description:
+        'Shadow / elevation variant for the switch (affects hover/active shadows).',
       type: 'enum',
-      typeDescription:
-        '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
+      typeDescription: '"raised" | "floating"',
       required: false,
-      default: '"primary"',
+      default: '"raised"',
     },
     '...props': {
       description:
