@@ -4,7 +4,6 @@
   "type": "registry:ui",
   "title": "Theme Switch Demo",
   "description": "Demo for the ThemeSwitch component.",
-  "dependencies": ["@tabler/icons-react"],
   "registryDependencies": ["@azemmur/components-theme-switch"],
   "files": [
     {
@@ -28,7 +27,8 @@
           "value": "ghost",
           "options": {
             "ghost": "ghost",
-            "solid": "solid"
+            "solid": "solid",
+            "outline": "outline"
           }
         },
         "intent": {
@@ -36,11 +36,22 @@
           "options": {
             "primary": "primary",
             "accent": "accent",
-            "secondary": "secondary",
-            "success": "success",
-            "info": "info",
-            "warning": "warning",
-            "error": "error"
+            "secondary": "secondary"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "sharp": "sharp",
+            "pill": "pill"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
           }
         }
       }

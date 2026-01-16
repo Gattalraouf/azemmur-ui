@@ -4,8 +4,8 @@
   "type": "registry:ui",
   "title": "Theme Switch",
   "description": "A small theme toggle button with motion animations.",
-  "dependencies": ["class-variance-authority", "motion", "@tabler/icons-react"],
-  "registryDependencies": [],
+  "dependencies": ["class-variance-authority", "motion", "@tabler/icons-react","next-themes"],
+  "registryDependencies": ["@azemmur/primitives-button"],
   "files": [
     {
       "path": "registry/components/azemmur/themeSwitch/index.tsx",
