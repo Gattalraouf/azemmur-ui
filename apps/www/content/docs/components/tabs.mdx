@@ -1,0 +1,267 @@
+---
+title: Tabs
+description: Animated, accessible tablist with keyboard navigation and animated underline.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-01-20
+---
+
+<ComponentPreview name="demo-components-tab" />
+
+## Installation
+
+<ComponentInstallation name="components-tab" />
+
+## Usage
+
+```tsx
+// Uncontrolled usage
+<Tabs tabs={['Overview', 'Features']} />;
+
+// Controlled usage with change handler
+const [active, setActive] = React.useState(0);
+
+<Tabs
+  tabs={['Overview', 'Features']}
+  activeTabId={active}
+  onTabChange={(index) => setActive(index)}
+/>;
+```
+
+## API Reference
+
+### Tabs
+
+<TypeTable
+  type={{
+    tabs: {
+      description: 'Array of tab labels. Order determines tab indices.',
+      type: 'string[]',
+      required: true,
+    },
+    activeTabId: {
+      description:
+        'Controlled active tab index. When provided the component becomes controlled and will not update its internal active state.',
+      type: 'number',
+      required: false,
+    },
+    onTabChange: {
+      description:
+        'Callback fired when a tab is selected. Receives the selected tab index and the generated tabs id.',
+      type: 'function',
+      parameters: [
+        { name: 'tabIndex', description: 'number' },
+        { name: 'tabsId', description: 'string' },
+      ],
+      required: false,
+    },
+    ltr: {
+      description:
+        'Layout direction; set to `false` for RTL keyboard behavior.',
+      type: 'boolean',
+      required: false,
+      default: 'true',
+    },
+    intent: {
+      description: 'Visual intent for tabs (affects color tokens).',
+      type: 'enum',
+      typeDescription: '"primary" | "secondary" | "accent"',
+      required: false,
+      default: '"primary"',
+    },
+    visuals: {
+      description: 'Overall visual style of the tab container.',
+      type: 'enum',
+      typeDescription:
+        '"filled" | "subtle" | "classic" | "outline" | "levitate"',
+      required: false,
+      default: '"classic"',
+    },
+    size: {
+      description: 'Size variant affecting font-size and spacing.',
+      type: 'enum',
+      typeDescription: '"sm" | "md" | "lg"',
+      required: false,
+      default: '"md"',
+    },
+    shape: {
+      description: 'Corner rounding for container and indicators.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"rounded"',
+    },
+    styling: {
+      description: 'Tab trigger styling variant (controls indicator style).',
+      type: 'enum',
+      typeDescription: '"underline" | "minimal" | "solid"',
+      required: false,
+      default: '"underline"',
+    },
+    className: {
+      description: 'Classes applied to the outer tablist container.',
+      type: 'string',
+      required: false,
+    },
+    tabClassName: {
+      description: 'Classes applied to each `TabTrigger` (tab button).',
+      type: 'string',
+      required: false,
+    },
+  }}
+/>
+
+### Tab Trigger
+
+<TypeTable
+  type={{
+    tabsId: {
+      description:
+        'Auto-generated id shared across tabs and panels (used for `id`/`aria-controls`).',
+      type: 'string',
+      required: true,
+    },
+    idx: {
+      description: 'Index of the tab within the `tabs` array.',
+      type: 'number',
+      required: true,
+    },
+    label: {
+      description: 'Visible label for the tab trigger.',
+      type: 'string',
+      required: true,
+    },
+    onSelect: {
+      description:
+        'Callback invoked when the tab is selected; receives the tab index.',
+      type: 'function',
+      required: true,
+      parameters: [{ name: 'index', description: 'number' }],
+    },
+    onKeyDown: {
+      description:
+        "Keyboard handler wired for Arrow/Home/End navigation; you usually don't need to provide this yourself.",
+      type: 'function',
+      required: true,
+      parameters: [{ name: 'e', description: 'React.KeyboardEvent' }],
+    },
+    buttonRef: {
+      description:
+        'Ref callback used internally to manage focus for keyboard navigation.',
+      type: 'function',
+      required: true,
+      parameters: [{ name: 'el', description: 'HTMLButtonElement | null' }],
+    },
+    intent: {
+      description: 'Visual intent for the trigger (affects color tokens).',
+      type: 'enum',
+      typeDescription: '"primary" | "secondary" | "accent"',
+      required: false,
+    },
+    styling: {
+      description: 'Trigger styling variant that controls the indicator style.',
+      type: 'enum',
+      typeDescription: '"underline" | "minimal" | "solid"',
+      required: false,
+      default: '"underline"',
+    },
+    shape: {
+      description: 'Corner rounding for the trigger and indicator.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"rounded"',
+    },
+    visuals: {
+      description:
+        'Visual grouping inherited from the `Tabs` container (e.g., `filled`, `classic`).',
+      type: 'enum',
+      typeDescription:
+        '"filled" | "subtle" | "classic" | "outline" | "levitate"',
+      required: false,
+    },
+    active: {
+      description: 'Whether this tab is currently active.',
+      type: 'boolean',
+      required: false,
+    },
+    tabClassName: {
+      description: 'Additional classes applied to the trigger button.',
+      type: 'string',
+      required: false,
+    },
+  }}
+/>
+
+### Tab Indicator
+
+<TypeTable
+  type={{
+    tabsId: {
+      description:
+        'Id used for layout animation coordination (passed to motion layoutId).',
+      type: 'string',
+      required: true,
+    },
+    intent: {
+      description:
+        'Visual intent for the indicator (primary, secondary, accent).',
+      type: 'enum',
+      typeDescription: '"primary" | "secondary" | "accent"',
+      required: false,
+    },
+    styling: {
+      description:
+        'Indicator styling variant; controls size/position (underline, minimal dot, solid).',
+      type: 'enum',
+      typeDescription: '"underline" | "minimal" | "solid"',
+      required: false,
+      default: '"underline"',
+    },
+    visuals: {
+      description:
+        'Inherited visuals option from `Tabs` (affects compound styling).',
+      type: 'enum',
+      typeDescription:
+        '"filled" | "subtle" | "classic" | "outline" | "levitate"',
+      required: false,
+    },
+    shape: {
+      description: 'Corner rounding for the indicator element.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"rounded"',
+    },
+    active: {
+      description: 'Whether the indicator is rendered for the active tab.',
+      type: 'boolean',
+      required: false,
+    },
+  }}
+/>
+
+## Accessibility Notes
+
+To ensure full accessibility, pair this component with matching content panels. The component emits `id` and `aria-controls` for triggers and expects panels to use those ids:
+
+```tsx
+<div
+  role="tabpanel"
+  id={`panel-${tabsId}-${activeTabId}`}
+  aria-labelledby={`tab-${tabsId}-${activeTabId}`}
+>
+  {/* Content for the active tab */}
+</div>
+```
+
+Keyboard support:
+
+- ArrowRight / ArrowLeft (direction depends on `ltr`) to move between tabs.
+- `Home` / `End` to jump to first/last tab.
+
+Implementation notes:
+
+- The `Tabs` component controls focus internally via `buttonRef` callbacks and maintains an internal active index unless `activeTabId` is provided (controlled mode).
+- `aria-orientation` is set to `horizontal` and the container uses `role="tablist"`.
