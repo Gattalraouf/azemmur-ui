@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
 import TSIcon from '@workspace/ui/components/ui/icons/ts-icon';
 import TailwindIcon from '@workspace/ui/components/ui/icons/tailwind-icon';
