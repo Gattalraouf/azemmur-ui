@@ -1,0 +1,70 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-tabs",
+  "title": "Tab Demo",
+  "description": "Interactive demo for the Tab component",
+  "dependencies": [],
+  "registryDependencies": [
+    "@azemmur/components-tabs"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/tabs/index.tsx",
+      "content": "'use client';\n\nimport React from 'react';\nimport {\n  Tabs,\n  type TabsVariantProps,\n} from '@/components/azemmur/components/azemmur/tabs';\n\ninterface TabsDemoProps {\n  intent?: TabsVariantProps['intent'];\n  styling?: TabsVariantProps['styling'];\n  visuals?: TabsVariantProps['visuals'];\n  size?: TabsVariantProps['size'];\n  shape?: TabsVariantProps['shape'];\n  ltr?: boolean;\n}\nexport default function TabsDemo({\n  ltr = true,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n}: TabsDemoProps) {\n  const tabs: string[] = ['fetching', 'caching', 'mutations'];\n\n  const [active, setActive] = React.useState<number>(0);\n\n  return (\n    <div className=\"max-w-xl space-y-4\">\n      <Tabs\n        tabs={tabs}\n        ltr={ltr}\n        intent={intent}\n        styling={styling}\n        visuals={visuals}\n        size={size}\n        shape={shape}\n        activeTabId={active}\n        onTabChange={setActive}\n      />\n\n      <div className=\"text-sm text-muted-foreground\">Active tab: {active}</div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/components/tabs.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "Tab": {
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "secondary": "secondary",
+            "accent": "accent"
+          }
+        },
+        "styling": {
+          "value": "underline",
+          "options": {
+            "underline": "underline",
+            "minimal": "minimal",
+            "solid": "solid"
+          }
+        },
+        "visuals": {
+          "value": "classic",
+          "options": {
+            "filled": "filled",
+            "subtle": "subtle",
+            "classic": "classic",
+            "outline": "outline",
+            "levitate": "levitate"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "ltr": {
+          "value": true
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

@@ -35,7 +35,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/components/button.tsx',
         content:
-          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  [\n    'inline-flex items-center justify-center gap-2 whitespace-nowrap',\n    'select-none touch-manipulation text-sm font-medium shrink-0',\n    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',\n    'outline-none',\n    'disabled:pointer-events-none disabled:opacity-50',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',\n    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n        success:\n          'bg-success text-success border-success focus-visible:ring-success/20 dark:focus-visible:ring-success/40',\n        info: 'bg-info text-info border-info focus-visible:ring-info/20 dark:focus-visible:ring-info/40',\n        warning:\n          'bg-warning text-warning border-warning focus-visible:ring-warning/20 dark:focus-visible:ring-warning/40',\n        error:\n          'bg-error text-error border-error focus-visible:ring-error/20 dark:focus-visible:ring-error/40',\n      },\n      styling: {\n        solid: 'border-none',\n        outline: 'border border-2 bg-transparent hover:bg-current/20',\n        ghost: 'bg-transparent',\n        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:ring-offset-0',\n      },\n      size: {\n        sm: 'h-8 px-3 gap-1.5 has-[>svg]:px-2.5',\n        md: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        lg: 'h-10 px-6 has-[>svg]:px-4',\n        'icon-sm': 'size-8 p-0',\n        'icon-md': 'size-9 p-0',\n        'icon-lg': 'size-10 p-0',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised:\n          'shadow-sm hover:shadow-md active:shadow-none hover:opacity-95 active:opacity-90',\n        floating:\n          'shadow-md hover:shadow-lg active:shadow-sm hover:opacity-95 active:opacity-90',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'solid',\n      size: 'md',\n      shape: 'rounded',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({\n  className,\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  ...props\n}: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(\n        buttonVariants({\n          intent,\n          styling,\n          size,\n          shape,\n          elevation,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  [\n    'inline-flex items-center justify-center gap-2 whitespace-nowrap',\n    'select-none touch-manipulation text-sm font-medium shrink-0',\n    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',\n    'outline-none',\n    'disabled:pointer-events-none disabled:opacity-50',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        accent: 'bg-accent text-accent border-accent',\n        secondary: 'bg-secondary text-secondary border-secondary',\n        success: 'bg-success text-success border-success',\n        info: 'bg-info text-info border-info',\n        warning: 'bg-warning text-warning border-warning',\n        error: 'bg-error text-error border-error',\n      },\n      styling: {\n        solid: 'border-none',\n        outline: 'border border-2 bg-background hover:bg-current/20',\n        ghost: 'bg-transparent',\n        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:bg-ring/40 focus-visible:rounded-none focus-visible:p-0',\n      },\n      size: {\n        sm: 'h-8 px-2 gap-1.5 has-[>svg]:px-2.5',\n        md: 'h-9 px-4 py-2 has-[>svg]:px-4',\n        lg: 'h-10 px-6 has-[>svg]:px-4',\n        'icon-sm': 'size-8 p-0',\n        'icon-md': 'size-9 p-0',\n        'icon-lg': 'size-10 p-0',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised:\n          'shadow-sm hover:shadow-md active:shadow-none hover:opacity-95 active:opacity-90',\n        floating:\n          'shadow-md hover:shadow-lg active:shadow-sm hover:opacity-95 active:opacity-90',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'solid',\n      size: 'md',\n      shape: 'rounded',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({\n  className,\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  ...props\n}: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(\n        buttonVariants({\n          intent,\n          styling,\n          size,\n          shape,\n          elevation,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
       },
     ],
     keywords: [],
@@ -59,6 +59,121 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/components-button',
   },
+  'components-tab-indicator': {
+    name: 'components-tab-indicator',
+    description: 'Animated visual indicator for the active tab.',
+    type: 'registry:ui',
+    dependencies: ['motion', 'class-variance-authority'],
+    devDependencies: undefined,
+    registryDependencies: [],
+    files: [
+      {
+        path: 'registry/components/azemmur/tabIndicator/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabIndicator.tsx',
+        content:
+          "import { motion } from 'motion/react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nconst tabIndicatorVariants = cva('absolute', {\n  variants: {\n    intent: {\n      primary: 'bg-primary text-primary border-primary',\n      secondary: 'bg-secondary text-secondary border-secondary',\n      accent: 'bg-accent text-accent border-accent',\n    },\n    styling: {\n      underline: 'bottom-0 h-1 start-0 end-0 bg-primary',\n      minimal: 'bottom-0 h-2 w-2 left-1/2 -translate-x-1/2 bg-current',\n      solid: 'inset-0',\n    },\n    visuals: {\n      filled: '',\n      subtle: '',\n      classic: '',\n      outline: '',\n      levitate: '',\n    },\n    shape: {\n      rounded: 'rounded-md',\n      pill: 'rounded-full',\n      sharp: 'rounded-none',\n    },\n    active: {\n      true: '',\n      false: '',\n    },\n  },\n  compoundVariants: [\n    {\n      styling: 'solid',\n      visuals: 'classic',\n      className: 'rounded-b-none',\n    },\n    {\n      styling: 'solid',\n      visuals: 'classic',\n      shape: 'pill',\n      className: 'rounded-b-none rounded-t-md',\n    },\n    {\n      styling: 'solid',\n      visuals: 'outline',\n      className: 'rounded-none',\n    },\n  ],\n  defaultVariants: {\n    styling: 'underline',\n    shape: 'rounded',\n  },\n});\n\ntype TabIndicatorProps = VariantProps<typeof tabIndicatorVariants>;\n\nfunction TabIndicator({\n  tabsId,\n  intent,\n  styling,\n  shape,\n  visuals,\n  active,\n}: {\n  tabsId: string;\n  intent?: TabIndicatorProps['intent'];\n  styling?: TabIndicatorProps['styling'];\n  shape?: TabIndicatorProps['shape'];\n  visuals?: TabIndicatorProps['visuals'];\n  active?: TabIndicatorProps['active'];\n}) {\n  return (\n    <motion.div\n      layoutId={`activeUnderline-${tabsId}`}\n      className={cn(\n        tabIndicatorVariants({ intent, styling, shape, visuals, active }),\n      )}\n      transition={{\n        type: 'spring',\n        stiffness: 380,\n        damping: 25,\n      }}\n    />\n  );\n}\n\nexport { TabIndicator, tabIndicatorVariants, type TabIndicatorProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/components/azemmur/tabIndicator/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'components-tab-indicator';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/components-tab-indicator',
+  },
+  'components-tab-item': {
+    name: 'components-tab-item',
+    description: 'Single tab trigger used within the Tabs component.',
+    type: 'registry:ui',
+    dependencies: ['class-variance-authority'],
+    devDependencies: undefined,
+    registryDependencies: [
+      '@azemmur/primitives-button',
+      '@azemmur/tab-indicator',
+    ],
+    files: [
+      {
+        path: 'registry/components/azemmur/tabTrigger/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabTrigger.tsx',
+        content:
+          "import { cva, type VariantProps } from 'class-variance-authority';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\nimport {\n  TabIndicator as Indicator,\n  tabIndicatorVariants,\n} from '@/components/azemmur/components/azemmur/tabIndicator';\n\nconst tabTriggerVariants = cva(\n  'relative px-6 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-0 focus-visible:bg-ring/40 focus-visible:rounded-b-none',\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        secondary: 'bg-secondary text-secondary border-secondary',\n        accent: 'bg-accent text-accent border-accent',\n      },\n      styling: {\n        underline: 'bg-transparent',\n        minimal: 'bg-transparent',\n        solid: 'bg-transparent',\n      },\n      active: {\n        true: 'font-bold',\n        false: 'text-foreground',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        active: true,\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        active: true,\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        active: true,\n        className: 'text-accent-foreground',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'underline',\n    },\n  },\n);\n\ntype TabTriggerProps = VariantProps<typeof tabTriggerVariants> &\n  VariantProps<typeof tabIndicatorVariants>;\n\nfunction TabTrigger({\n  tabsId,\n  idx,\n  label,\n  onSelect,\n  onKeyDown,\n  buttonRef,\n  intent,\n  styling,\n  shape,\n  active,\n  visuals,\n  tabClassName,\n}: {\n  tabsId: string;\n  idx: number;\n  label: string;\n  onSelect: (i: number) => void;\n  onKeyDown: (e: React.KeyboardEvent) => void;\n  buttonRef: (el: HTMLButtonElement | null) => void;\n  intent?: TabTriggerProps['intent'];\n  styling?: TabTriggerProps['styling'];\n  shape?: TabTriggerProps['shape'];\n  active?: TabTriggerProps['active'];\n  visuals?: TabTriggerProps['visuals'];\n  tabClassName?: string;\n}) {\n  return (\n    <ButtonPrimitive\n      key={`tab-${tabsId}-${idx}`}\n      ref={buttonRef}\n      role=\"tab\"\n      aria-selected={active?.valueOf()}\n      aria-controls={`panel-${tabsId}-${idx}`}\n      id={`tab-${tabsId}-${idx}`}\n      tabIndex={active?.valueOf() ? 0 : -1}\n      onClick={() => onSelect(idx)}\n      onKeyDown={onKeyDown}\n      data-label={label}\n      className={cn(\n        'after:content-[attr(data-label)] after:block after:h-0 after:invisible',\n        tabTriggerVariants({ intent, styling, active }),\n        tabClassName,\n      )}\n    >\n      <span className=\"relative z-10\">{label}</span>\n\n      {active?.valueOf() && (\n        <Indicator\n          tabsId={tabsId}\n          intent={intent}\n          styling={styling}\n          active={active}\n          shape={shape}\n          visuals={visuals}\n        />\n      )}\n    </ButtonPrimitive>\n  );\n}\n\nexport { TabTrigger, tabTriggerVariants, type TabTriggerProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/components/azemmur/tabTrigger/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'components-tab-item';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/components-tab-item',
+  },
+  'components-tabs': {
+    name: 'components-tabs',
+    description:
+      'Animated tablist with accessible keyboard navigation and animated underline.',
+    type: 'registry:ui',
+    dependencies: ['class-variance-authority'],
+    devDependencies: undefined,
+    registryDependencies: ['components-tab-trigger'],
+    files: [
+      {
+        path: 'registry/components/azemmur/tabs/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs.tsx',
+        content:
+          "'use client';\n\nimport React, { useId, useRef, useState } from 'react';\nimport { cn } from '@/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport {\n  TabTrigger,\n  tabTriggerVariants,\n} from '@/components/azemmur/components/azemmur/tabTrigger';\n\nconst layoutVariants = cva(\n  'relative h-fit overflow-x-auto scrollbar-hide inline-flex whitespace-nowrap overflow-y-hidden',\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        secondary: 'bg-secondary text-secondary border-secondary',\n        accent: 'bg-accent text-accent border-accent',\n      },\n      visuals: {\n        filled: 'px-0',\n        subtle: 'bg-transparent px-8',\n        classic: 'bg-transparent border-b px-8 rounded-none',\n        outline: 'bg-transparent border-2 px-0',\n        levitate: 'p-2',\n      },\n      size: {\n        sm: 'text-sm',\n        md: 'text-base',\n        lg: 'text-lg',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        visuals: 'classic',\n        shape: ['rounded', 'pill'],\n        className: 'rounded-none',\n      },\n      {\n        intent: 'primary',\n        visuals: ['filled', 'levitate'],\n        className: 'bg-primary-foreground/40',\n      },\n      {\n        intent: 'secondary',\n        visuals: ['filled', 'levitate'],\n        className: 'bg-secondary-foreground/40',\n      },\n      {\n        intent: 'accent',\n        visuals: ['filled', 'levitate'],\n        className: 'bg-accent-foreground/40',\n      },\n    ],\n    defaultVariants: {\n      visuals: 'classic',\n      size: 'md',\n      shape: 'rounded',\n    },\n  },\n);\n\ntype TabsVariantProps = VariantProps<typeof layoutVariants> &\n  VariantProps<typeof tabTriggerVariants>;\n\ninterface TabsProps extends TabsVariantProps {\n  tabs: string[];\n  activeTabId?: number;\n  onTabChange?: (tabIndex: number, tabsId: string) => void;\n  className?: string;\n  tabClassName?: string;\n  ltr?: boolean;\n}\n\nfunction Tabs({\n  tabs,\n  activeTabId,\n  onTabChange,\n  className,\n  tabClassName,\n  ltr = true,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n}: TabsProps) {\n  const tabsId = useId();\n  const [internalTab, setInternalTab] = useState(0);\n  const activeTab = activeTabId ?? internalTab;\n\n  const [focusedIndex, setFocusedIndex] = useState(activeTab);\n\n  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);\n\n  const handleSelect = (index: number) => {\n    setInternalTab(index);\n    setFocusedIndex(index);\n    onTabChange?.(index, tabsId);\n  };\n\n  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {\n    const forwardKey = ltr ? 'ArrowRight' : 'ArrowLeft';\n    const backwardKey = ltr ? 'ArrowLeft' : 'ArrowRight';\n\n    let nextIndex = index;\n\n    if (e.key === forwardKey) nextIndex = (index + 1) % tabs.length;\n    else if (e.key === backwardKey)\n      nextIndex = (index - 1 + tabs.length) % tabs.length;\n    else if (e.key === 'Home') nextIndex = 0;\n    else if (e.key === 'End') nextIndex = tabs.length - 1;\n    else return;\n\n    e.preventDefault();\n    setFocusedIndex(nextIndex);\n    tabRefs.current[nextIndex]?.focus();\n  };\n\n  return (\n    <div\n      role=\"tablist\"\n      aria-label=\"Navigation Tabs\"\n      aria-orientation=\"horizontal\"\n      dir={ltr ? 'ltr' : 'rtl'}\n      className={cn(\n        layoutVariants({ intent, visuals, size, shape }),\n        className,\n      )}\n    >\n      {tabs.map((tab, idx) => {\n        const isActive = idx === activeTab;\n\n        return (\n          <TabTrigger\n            key={`tab-${tabsId}-${idx}`}\n            tabsId={tabsId}\n            idx={idx}\n            label={tab}\n            active={isActive}\n            onSelect={handleSelect}\n            onKeyDown={(e) => handleKeyDown(e, idx)}\n            buttonRef={(el) => {\n              tabRefs.current[idx] = el;\n            }}\n            intent={intent}\n            styling={styling}\n            shape={shape}\n            visuals={visuals}\n            tabClassName={tabClassName}\n          />\n        );\n      })}\n    </div>\n  );\n}\n\nexport { Tabs, type TabsProps, type TabsVariantProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/components/azemmur/tabs/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'components-tabs';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/components-tabs',
+  },
   'components-theme-switch': {
     name: 'components-theme-switch',
     description: 'A small theme toggle button with motion animations.',
@@ -77,7 +192,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/components/themeSwitch.tsx',
         content:
-          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\nimport { useCallback } from 'react';\nimport { useTheme } from 'next-themes';\nimport { motion, AnimatePresence } from 'motion/react';\nimport { IconSunLow, IconMoon } from '@tabler/icons-react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst themeSwitchVariants = cva(\n  [\n    'inline-flex items-center justify-center',\n    'select-none touch-manipulation',\n    'transition-colors',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    'disabled:pointer-events-none disabled:opacity-50',\n    'focus-visible:ring-ring/40 focus-visible:ring-[3px] focus-visible:opacity-95',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary:\n          'bg-primary text-primary border-primary focus-visible:ring-primary/20 dark:focus-visible:ring-primary/40',\n        accent:\n          'bg-accent text-accent border-accent focus-visible:ring-accent/20 dark:focus-visible:ring-accent/40',\n        secondary:\n          'bg-secondary text-secondary border-secondary focus-visible:ring-secondary/20 dark:focus-visible:ring-secondary/40',\n      },\n      size: {\n        sm: 'h-6 w-6 [&_svg]:size-4',\n        md: 'h-8 w-8 [&_svg]:size-5',\n        lg: 'h-10 w-10 [&_svg]:size-6',\n      },\n      styling: {\n        ghost: 'bg-transparent',\n        solid: 'border-none',\n        outline: 'border border-2 bg-transparent hover:bg-current/20',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised: 'shadow-sm hover:shadow-md active:shadow-none',\n        floating: 'shadow-md hover:shadow-lg active:shadow-sm',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        styling: 'ghost',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      size: 'md',\n      styling: 'ghost',\n      shape: 'pill',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ThemeSwitchProps = VariantProps<typeof themeSwitchVariants> & {\n  className?: string;\n};\n\nfunction ThemeSwitch({\n  className,\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n  ...props\n}: ThemeSwitchProps) {\n  const { theme, setTheme, resolvedTheme } = useTheme();\n\n  const currentTheme = resolvedTheme ?? theme;\n  const isDark = currentTheme === 'dark';\n\n  const handleToggle = useCallback(() => {\n    setTheme(isDark ? 'light' : 'dark');\n  }, [setTheme, isDark]);\n\n  const iconVariants = {\n    initial: { scale: 0, rotate: -360 },\n    animate: { scale: 1, rotate: 0 },\n    exit: { scale: 0, rotate: 360 },\n    hover: { rotate: [0, 30, -30, 0], transition: { duration: 0.4 } },\n  };\n\n  return (\n    <ButtonPrimitive\n      type=\"button\"\n      suppressHydrationWarning\n      aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}\n      aria-pressed={isDark}\n      className={cn(\n        themeSwitchVariants({ intent, size, styling, shape, elevation }),\n        className,\n      )}\n      onClick={handleToggle}\n      {...props}\n    >\n      <AnimatePresence mode=\"wait\" initial={false}>\n        <motion.div\n          key={isDark ? 'sun-icon' : 'moon-icon'}\n          initial=\"initial\"\n          animate=\"animate\"\n          exit=\"exit\"\n          whileHover=\"hover\"\n          variants={iconVariants}\n          transition={{\n            duration: 0.4,\n            rotate: { duration: 0.6, delay: 0.12 },\n          }}\n        >\n          {isDark ? <IconSunLow /> : <IconMoon />}\n        </motion.div>\n      </AnimatePresence>\n    </ButtonPrimitive>\n  );\n}\n\nexport { ThemeSwitch, themeSwitchVariants, type ThemeSwitchProps };",
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\nimport { useCallback } from 'react';\nimport { useTheme } from 'next-themes';\nimport { motion, AnimatePresence } from 'motion/react';\nimport { IconSunLow, IconMoon } from '@tabler/icons-react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst themeSwitchVariants = cva(\n  [\n    'inline-flex items-center justify-center',\n    'select-none touch-manipulation',\n    'transition-colors',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    'disabled:pointer-events-none disabled:opacity-50',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        accent: 'bg-accent text-accent border-accent',\n        secondary: 'bg-secondary text-secondary border-secondary',\n      },\n      size: {\n        sm: 'h-6 w-6 [&_svg]:size-4',\n        md: 'h-8 w-8 [&_svg]:size-5',\n        lg: 'h-10 w-10 [&_svg]:size-6',\n      },\n      styling: {\n        ghost: 'bg-transparent',\n        solid: 'border-none',\n        outline: 'border border-2 bg-transparent hover:bg-current/20',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised: 'shadow-sm hover:shadow-md active:shadow-none',\n        floating: 'shadow-md hover:shadow-lg active:shadow-sm',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        styling: 'ghost',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      size: 'md',\n      styling: 'ghost',\n      shape: 'pill',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ThemeSwitchProps = VariantProps<typeof themeSwitchVariants> & {\n  className?: string;\n};\n\nfunction ThemeSwitch({\n  className,\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n  ...props\n}: ThemeSwitchProps) {\n  const { theme, setTheme, resolvedTheme } = useTheme();\n\n  const currentTheme = resolvedTheme ?? theme;\n  const isDark = currentTheme === 'dark';\n\n  const handleToggle = useCallback(() => {\n    setTheme(isDark ? 'light' : 'dark');\n  }, [setTheme, isDark]);\n\n  const iconVariants = {\n    initial: { scale: 0, rotate: -360 },\n    animate: { scale: 1, rotate: 0 },\n    exit: { scale: 0, rotate: 360 },\n    hover: { rotate: [0, 30, -30, 0], transition: { duration: 0.4 } },\n  };\n\n  return (\n    <ButtonPrimitive\n      suppressHydrationWarning\n      aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}\n      aria-pressed={isDark}\n      className={cn(\n        themeSwitchVariants({ intent, size, styling, shape, elevation }),\n        className,\n      )}\n      onClick={handleToggle}\n      {...props}\n    >\n      <AnimatePresence mode=\"wait\" initial={false}>\n        <motion.div\n          key={isDark ? 'sun-icon' : 'moon-icon'}\n          initial=\"initial\"\n          animate=\"animate\"\n          exit=\"exit\"\n          whileHover=\"hover\"\n          variants={iconVariants}\n          transition={{\n            duration: 0.4,\n            rotate: { duration: 0.6, delay: 0.12 },\n          }}\n        >\n          {isDark ? <IconSunLow /> : <IconMoon />}\n        </motion.div>\n      </AnimatePresence>\n    </ButtonPrimitive>\n  );\n}\n\nexport { ThemeSwitch, themeSwitchVariants, type ThemeSwitchProps };",
       },
     ],
     keywords: [],
@@ -255,6 +370,78 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/demo-components-button',
+  },
+  'demo-components-tabs': {
+    name: 'demo-components-tabs',
+    description: 'Interactive demo for the Tab component',
+    type: 'registry:ui',
+    dependencies: [],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/components-tabs'],
+    files: [
+      {
+        path: 'registry/demo/components/azemmur/tabs/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/components/tabs.tsx',
+        content:
+          "'use client';\n\nimport React from 'react';\nimport {\n  Tabs,\n  type TabsVariantProps,\n} from '@/components/azemmur/components/azemmur/tabs';\n\ninterface TabsDemoProps {\n  intent?: TabsVariantProps['intent'];\n  styling?: TabsVariantProps['styling'];\n  visuals?: TabsVariantProps['visuals'];\n  size?: TabsVariantProps['size'];\n  shape?: TabsVariantProps['shape'];\n  ltr?: boolean;\n}\nexport default function TabsDemo({\n  ltr = true,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n}: TabsDemoProps) {\n  const tabs: string[] = ['fetching', 'caching', 'mutations'];\n\n  const [active, setActive] = React.useState<number>(0);\n\n  return (\n    <div className=\"max-w-xl space-y-4\">\n      <Tabs\n        tabs={tabs}\n        ltr={ltr}\n        intent={intent}\n        styling={styling}\n        visuals={visuals}\n        size={size}\n        shape={shape}\n        activeTabId={active}\n        onTabChange={setActive}\n      />\n\n      <div className=\"text-sm text-muted-foreground\">Active tab: {active}</div>\n    </div>\n  );\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/components/azemmur/tabs/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-components-tabs';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        Tab: {
+          intent: {
+            value: 'primary',
+            options: {
+              primary: 'primary',
+              secondary: 'secondary',
+              accent: 'accent',
+            },
+          },
+          styling: {
+            value: 'underline',
+            options: {
+              underline: 'underline',
+              minimal: 'minimal',
+              solid: 'solid',
+            },
+          },
+          visuals: {
+            value: 'classic',
+            options: {
+              filled: 'filled',
+              subtle: 'subtle',
+              classic: 'classic',
+              outline: 'outline',
+              levitate: 'levitate',
+            },
+          },
+          size: { value: 'md', options: { sm: 'sm', md: 'md', lg: 'lg' } },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', pill: 'pill', sharp: 'sharp' },
+          },
+          ltr: { value: true },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-components-tabs',
   },
   'demo-components-theme-switch': {
     name: 'demo-components-theme-switch',

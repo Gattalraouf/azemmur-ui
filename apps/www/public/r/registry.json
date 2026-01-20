@@ -37,6 +37,63 @@
       ]
     },
     {
+      "name": "components-tab-indicator",
+      "type": "registry:ui",
+      "title": "Tab Indicator",
+      "description": "Animated visual indicator for the active tab.",
+      "dependencies": [
+        "motion",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/azemmur/tabIndicator/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabIndicator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "components-tab-item",
+      "type": "registry:ui",
+      "title": "Tab Trigger",
+      "description": "Single tab trigger used within the Tabs component.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@azemmur/primitives-button",
+        "@azemmur/tab-indicator"
+      ],
+      "files": [
+        {
+          "path": "registry/components/azemmur/tabTrigger/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabTrigger.tsx"
+        }
+      ]
+    },
+    {
+      "name": "components-tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Animated tablist with accessible keyboard navigation and animated underline.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "components-tab-trigger"
+      ],
+      "files": [
+        {
+          "path": "registry/components/azemmur/tabs/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs.tsx"
+        }
+      ]
+    },
+    {
       "name": "components-theme-switch",
       "type": "registry:ui",
       "title": "Theme Switch",
@@ -160,6 +217,74 @@
                 "raised": "raised",
                 "floating": "floating"
               }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "demo-components-tabs",
+      "type": "registry:ui",
+      "title": "Tab Demo",
+      "description": "Interactive demo for the Tab component",
+      "dependencies": [],
+      "registryDependencies": [
+        "@azemmur/components-tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/azemmur/tabs/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/demo/components/tabs.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "Tab": {
+            "intent": {
+              "value": "primary",
+              "options": {
+                "primary": "primary",
+                "secondary": "secondary",
+                "accent": "accent"
+              }
+            },
+            "styling": {
+              "value": "underline",
+              "options": {
+                "underline": "underline",
+                "minimal": "minimal",
+                "solid": "solid"
+              }
+            },
+            "visuals": {
+              "value": "classic",
+              "options": {
+                "filled": "filled",
+                "subtle": "subtle",
+                "classic": "classic",
+                "outline": "outline",
+                "levitate": "levitate"
+              }
+            },
+            "size": {
+              "value": "md",
+              "options": {
+                "sm": "sm",
+                "md": "md",
+                "lg": "lg"
+              }
+            },
+            "shape": {
+              "value": "rounded",
+              "options": {
+                "rounded": "rounded",
+                "pill": "pill",
+                "sharp": "sharp"
+              }
+            },
+            "ltr": {
+              "value": true
             }
           }
         }
