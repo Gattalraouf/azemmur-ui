@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-tab-item",
+  "type": "registry:ui",
+  "title": "Tab Trigger",
+  "description": "Single tab trigger used within the Tabs component.",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": ["@azemmur/primitives-button", "@azemmur/tab-indicator"],
+  "files": [
+    {
+      "path": "registry/components/azemmur/tabTrigger/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabTrigger.tsx"
+    }
+  ]
+}

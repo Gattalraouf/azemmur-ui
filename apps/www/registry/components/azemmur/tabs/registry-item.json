@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-tabs",
+  "type": "registry:ui",
+  "title": "Tabs",
+  "description": "Animated tablist with accessible keyboard navigation and animated underline.",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": ["components-tab-trigger"],
+  "files": [
+    {
+      "path": "registry/components/azemmur/tabs/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs.tsx"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-tab-indicator",
+  "type": "registry:ui",
+  "title": "Tab Indicator",
+  "description": "Animated visual indicator for the active tab.",
+  "dependencies": ["motion", "class-variance-authority"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/azemmur/tabIndicator/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabIndicator.tsx"
+    }
+  ]
+}
