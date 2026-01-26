@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import SquareLogo from '@/components/logos/sqr-logo';
 import { Footer } from '@/components/ui/footer';
 import { Hero } from '@/components/ui/hero';
-import MaskedBackgroundGrid from '@/components/ui/maskedBackgroundGrid';
+import MaskedBackgroundGrid from '@/components/ui/masked-background-grid';
 
 const CONTENT_VARIANTS = {
   hidden: { opacity: 0 },
