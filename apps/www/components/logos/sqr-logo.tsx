@@ -1,7 +1,10 @@
+// Azemmur – Open-source React component distribution
+// Copyright (c) 2025 raouf.codes
+
 'use client';
-import * as React from 'react';
-import { motion } from 'motion/react';
 import { cn } from '@workspace/ui/lib/utils';
+import { motion } from 'motion/react';
+import * as React from 'react';
 
 const SquareLogo = ({
   className,

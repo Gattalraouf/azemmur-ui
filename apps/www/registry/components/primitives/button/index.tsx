@@ -1,12 +1,15 @@
+//Copyright (c) 2025 Elliot Sutton
+
 'use client';
 
-import * as React from 'react';
-import { motion, type HTMLMotionProps } from 'motion/react';
 
 import {
   Slot,
   type WithAsChild,
 } from '@workspace/ui/components/primitives/slot';
+import { cn } from '@workspace/ui/lib/utils';
+import { motion, type HTMLMotionProps } from 'motion/react';
+import * as React from 'react';
 
 type ButtonProps = WithAsChild<
   HTMLMotionProps<'button'> & {
@@ -25,9 +28,10 @@ function Button({
 
   return (
     <Component
-      whileTap={{ scale: tapScale }}
-      whileHover={{ scale: hoverScale }}
       {...props}
+      className={cn('cursor-pointer', props.className)}
+      whileHover={{ scale: hoverScale }}
+      whileTap={{ scale: tapScale }}
     />
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { useIsMobile } from '@workspace/ui/hooks/use-mobile';
+import React from 'react';
 import { HeroBackground } from '@/components/ui/hero-background';
 const MaskedBackgroundGrid = () => {
   const isMobile = useIsMobile();

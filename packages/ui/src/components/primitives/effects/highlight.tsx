@@ -1,8 +1,8 @@
 'use client';
 
-import * as React from 'react';
-import { AnimatePresence, motion, type Transition } from 'motion/react';
 import { cn } from '@workspace/ui/lib/utils';
+import { AnimatePresence, motion, type Transition } from 'motion/react';
+import * as React from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */

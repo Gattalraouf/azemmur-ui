@@ -1,6 +1,10 @@
 'use client';
 
-import * as React from 'react';
+import {
+  Slot,
+  type WithAsChild,
+} from '@workspace/ui/components/primitives/slot';
+import { useAutoHeight } from '@workspace/ui/hooks/use-auto-height';
 import {
   motion,
   type HTMLMotionProps,
@@ -8,12 +12,8 @@ import {
   type TargetAndTransition,
   type Transition,
 } from 'motion/react';
+import * as React from 'react';
 
-import { useAutoHeight } from '@workspace/ui/hooks/use-auto-height';
-import {
-  Slot,
-  type WithAsChild,
-} from '@workspace/ui/components/primitives/slot';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */

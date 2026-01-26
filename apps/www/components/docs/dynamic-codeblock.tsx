@@ -1,12 +1,12 @@
 'use client';
 
-import { CodeBlock, Pre } from '@/components/docs/codeblock';
+import { cn } from '@workspace/ui/lib/utils';
 import type {
   HighlightOptionsCommon,
   HighlightOptionsThemes,
 } from 'fumadocs-core/highlight';
 import { useShiki } from 'fumadocs-core/highlight/client';
-import { cn } from '@workspace/ui/lib/utils';
+import { CodeBlock, Pre } from '@/components/docs/codeblock';
 
 /* -------------------------------------------------------------------------- */
 /*                          Utility Functions                                  */

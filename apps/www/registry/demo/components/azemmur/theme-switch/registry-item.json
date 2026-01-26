@@ -1,0 +1,60 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-theme-switch",
+  "type": "registry:ui",
+  "title": "Theme Switch Demo",
+  "description": "Demo for the ThemeSwitch component.",
+  "registryDependencies": ["@azemmur/components-theme-switch"],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/theme-switch/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/theme-switch.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "ThemeSwitch": {
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "styling": {
+          "value": "ghost",
+          "options": {
+            "ghost": "ghost",
+            "solid": "solid",
+            "outline": "outline"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "sharp": "sharp",
+            "pill": "pill"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
+          }
+        }
+      }
+    }
+  }
+}

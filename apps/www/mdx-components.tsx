@@ -1,18 +1,18 @@
+import { ExternalLink } from '@workspace/ui/components/ui/buttons/external-link';
 import { cn } from '@workspace/ui/lib/utils';
 import { Card } from 'fumadocs-ui/components/card';
+import { Steps, Step } from 'fumadocs-ui/components/steps';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import type { MDXComponents } from 'mdx/types';
-import { ComponentPreview } from '@/components/docs/component-preview';
-import { ComponentInstallation } from '@/components/docs/component-installation';
-import { ExternalLink } from '@workspace/ui/components/ui/buttons/external-link';
-import { Steps, Step } from 'fumadocs-ui/components/steps';
-import { TypeTable } from '@/components/docs/type-table';
+import { Callout } from '@/components/docs/callout';
 import {
   CodeBlock,
   Pre,
   type CodeBlockProps,
 } from '@/components/docs/codeblock';
-import { Callout } from '@/components/docs/callout';
+import { ComponentInstallation } from '@/components/docs/component-installation';
+import { ComponentPreview } from '@/components/docs/component-preview';
+import { TypeTable } from '@/components/docs/type-table';
 
 // use this function to get MDX components, you will need it for rendering MDX
 export function getMDXComponents(components?: MDXComponents): MDXComponents {

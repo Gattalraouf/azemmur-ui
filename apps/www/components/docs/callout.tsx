@@ -1,7 +1,12 @@
-import { CircleCheck, CircleX, Info, TriangleAlert } from 'lucide-react';
+import {
+  IconCheck as CircleCheck,
+  IconX as CircleX,
+  IconInfoCircle as Info,
+  IconAlertTriangle as TriangleAlert,
+} from '@tabler/icons-react';
+import { cn } from '@workspace/ui/lib/utils';
 import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 
-import { cn } from '@workspace/ui/lib/utils';
 
 type CalloutProps = Omit<
   HTMLAttributes<HTMLDivElement>,

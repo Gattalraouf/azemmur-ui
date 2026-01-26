@@ -1,22 +1,22 @@
 'use client';
 
-import { useMemo, useState } from 'react';
 import {
-  Check,
-  ChevronDown,
-  Copy,
-  ExternalLinkIcon,
-  MessageCircleIcon,
-} from 'lucide-react';
+  IconCheck as Check,
+  IconChevronDown as ChevronDown,
+  IconCopy as Copy,
+  IconExternalLink as ExternalLinkIcon,
+  IconMessageCircle as MessageCircleIcon,
+} from '@tabler/icons-react';
 import { cn } from '@workspace/ui/lib/utils';
-import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
+import { cva } from 'class-variance-authority';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from 'fumadocs-ui/components/ui/popover';
-import { cva } from 'class-variance-authority';
+import { useCopyButton } from 'fumadocs-ui/utils/use-copy-button';
+import { useMemo, useState } from 'react';
 
 const cache = new Map<string, string>();
 

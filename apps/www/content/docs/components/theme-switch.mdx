@@ -1,0 +1,79 @@
+---
+title: Theme Switch
+description: A compact theme toggle with motion animations and accessibility.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2025-02-01
+---
+
+<ComponentPreview name="demo-components-theme-switch" />
+
+## Installation
+
+<ComponentInstallation name="components-theme-switch" />
+
+## Usage
+
+### Basic Usage
+
+```tsx
+<ThemeSwitch />
+```
+
+## API Reference
+
+### ThemeSwitch
+
+<ExternalLink
+  href="https://azemmur.raouf.codes/docs/primitives/button#button"
+  text="Azemmur API Reference - Button Primitive"
+/>
+
+<TypeTable
+  type={{
+    styling: {
+      description:
+        'Visual styling variant such as "ghost", "solid", or "outline".',
+      type: 'enum',
+      typeDescription: '"ghost" | "solid" | "outline"',
+      required: false,
+      default: '"ghost"',
+    },
+    intent: {
+      description: 'Color intent for the switch (matches Button intents).',
+      type: 'enum',
+      typeDescription: '"primary" | "accent" | "secondary"',
+      required: false,
+      default: '"primary"',
+    },
+    size: {
+      description: 'Controls the overall size of the switch.',
+      type: 'enum',
+      typeDescription: '"sm" | "md" | "lg"',
+      required: false,
+      default: '"md"',
+    },
+    shape: {
+      description: 'Border radius style for the switch.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"pill"',
+    },
+    elevation: {
+      description:
+        'Shadow / elevation variant for the switch (affects hover/active shadows).',
+      type: 'enum',
+      typeDescription: '"raised" | "floating"',
+      required: false,
+      default: '"raised"',
+    },
+    '...props': {
+      description:
+        'Additional props passed to the underlying motion-enabled button, such as event handlers or ARIA attributes.',
+      type: 'HTMLMotionProps<"button">',
+      required: false,
+    },
+  }}
+/>

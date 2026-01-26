@@ -1,14 +1,13 @@
-import { motion } from 'motion/react';
-import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
-import TSIcon from '@workspace/ui/components/ui/icons/ts-icon';
-import TailwindIcon from '@workspace/ui/components/ui/icons/tailwind-icon';
+import { IconArrowRight } from '@tabler/icons-react';
+import { AnimateIcon } from '@workspace/ui/components/ui/icons/icon';
 import MotionIcon from '@workspace/ui/components/ui/icons/motion-icon';
+import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
 import ShadcnIcon from '@workspace/ui/components/ui/icons/shadcn-icon';
-import { Button } from '@workspace/ui/components/ui/buttons/button';
+import TailwindIcon from '@workspace/ui/components/ui/icons/tailwind-icon';
+import TSIcon from '@workspace/ui/components/ui/icons/ts-icon';
 import Link from 'next/link';
 import { MotionEffect } from '@/components/effects/motion-effect';
-import { ArrowRight } from 'lucide-react';
-import { AnimateIcon } from '@workspace/ui/components/ui/icons/icon';
+import { Button } from '@/registry/components/azemmur/button';
 
 const ICONS = [ReactIcon, TSIcon, TailwindIcon, MotionIcon, ShadcnIcon];
 const TITLE = 'Craft beautiful, accessible interfaces, your way.';
@@ -57,22 +56,15 @@ export const Hero = () => {
             delay={0.45}
           >
             <AnimateIcon animateOnHover="out" completeOnStop asChild>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                tabIndex={-1}
-              >
-                <Button
-                  size="lg"
-                  className="w-full !pr-5 pointer-events-auto"
-                  variant="default"
-                  asChild
+              <Button size="lg" className="w-full !pr-5 pointer-events-auto">
+                <Link
+                  href="/docs/installation"
+                  className="flex gap-2"
+                  tabIndex={-1}
                 >
-                  <Link href="/docs/installation">
-                    Get Started <ArrowRight className="!size-5" />
-                  </Link>
-                </Button>
-              </motion.div>
+                  Get Started <IconArrowRight className="!size-5" />
+                </Link>
+              </Button>
             </AnimateIcon>
           </MotionEffect>
 
@@ -84,20 +76,15 @@ export const Hero = () => {
             zoom
             delay={0.6}
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              tabIndex={-1}
+            <Button
+              size="lg"
+              className="w-full pointer-events-auto"
+              styling="outline"
             >
-              <Button
-                size="lg"
-                className="w-full pointer-events-auto"
-                variant="outline"
-                asChild
-              >
-                <Link href="/docs/components">Browse Components</Link>
-              </Button>
-            </motion.div>
+              <Link href="/docs/components" tabIndex={-1}>
+                Browse Components
+              </Link>
+            </Button>
           </MotionEffect>
         </div>
 

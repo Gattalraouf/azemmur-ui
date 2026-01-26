@@ -9,7 +9,7 @@
       "dependencies": [
         "tw-animate-css",
         "class-variance-authority",
-        "lucide-react"
+        "@tabler/icons-react"
       ],
       "registryDependencies": [
         "utils"
@@ -26,7 +26,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@azemmur/primitives-buttons-button"
+        "@azemmur/primitives-button"
       ],
       "files": [
         {
@@ -37,17 +37,84 @@
       ]
     },
     {
-      "name": "dummy",
+      "name": "components-tabs",
       "type": "registry:ui",
-      "title": "Demo",
-      "description": "A dummy component with to test the process.",
-      "dependencies": [],
-      "registryDependencies": [],
+      "title": "Tabs",
+      "description": "Animated tablist with accessible keyboard navigation and animated underline.",
+      "dependencies": [
+        "motion",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@azemmur/primitives-button"
+      ],
       "files": [
         {
-          "path": "registry/components/azemmur/dummy/index.tsx",
+          "path": "registry/components/azemmur/tabs/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/dummy.tsx"
+          "target": "components/azemmur/components/tabs/index.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-root.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs/tabs-root.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-context.tsx",
+          "type": "registry:hook",
+          "target": "components/azemmur/components/tabs/tabs-context.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-list.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs/tabs-list.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-trigger.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs/tabs-trigger.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-indicator.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs/tabs-indicator.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-content.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs/tabs-content.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-panel.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs/tabs-panel.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/tabs/tabs-variants.ts",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/tabs/tabs-variants.ts"
+        }
+      ]
+    },
+    {
+      "name": "components-theme-switch",
+      "type": "registry:ui",
+      "title": "Theme Switch",
+      "description": "A small theme toggle button with motion animations.",
+      "dependencies": [
+        "class-variance-authority",
+        "motion",
+        "@tabler/icons-react",
+        "next-themes"
+      ],
+      "registryDependencies": [
+        "@azemmur/primitives-button"
+      ],
+      "files": [
+        {
+          "path": "registry/components/azemmur/theme-switch/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/theme-switch.tsx"
         }
       ]
     },
@@ -92,7 +159,7 @@
       "title": "Button Demo",
       "description": "Demo showing a button.",
       "dependencies": [
-        "lucide-react"
+        "@tabler/icons-react"
       ],
       "registryDependencies": [
         "@azemmur/components-button"
@@ -107,28 +174,217 @@
       "meta": {
         "demoProps": {
           "Button": {
-            "variant": {
+            "intent": {
               "value": "primary",
               "options": {
                 "primary": "primary",
                 "accent": "accent",
-                "destructive": "destructive",
-                "outline": "outline",
                 "secondary": "secondary",
+                "success": "success",
+                "info": "info",
+                "warning": "warning",
+                "error": "error"
+              }
+            },
+            "styling": {
+              "value": "solid",
+              "options": {
+                "solid": "solid",
+                "outline": "outline",
                 "ghost": "ghost",
                 "link": "link"
               }
             },
             "size": {
-              "value": "default",
+              "value": "md",
               "options": {
-                "default": "default",
                 "sm": "sm",
+                "md": "md",
                 "lg": "lg",
-                "icon": "icon",
                 "icon-sm": "icon-sm",
+                "icon-md": "icon-md",
                 "icon-lg": "icon-lg"
               }
+            },
+            "shape": {
+              "value": "rounded",
+              "options": {
+                "rounded": "rounded",
+                "pill": "pill",
+                "sharp": "sharp"
+              }
+            },
+            "elevation": {
+              "value": "raised",
+              "options": {
+                "raised": "raised",
+                "floating": "floating"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "demo-components-tabs",
+      "type": "registry:ui",
+      "title": "Tab Demo",
+      "description": "Interactive demo for the Tab component",
+      "dependencies": [
+        "@tabler/icons-react"
+      ],
+      "registryDependencies": [
+        "@azemmur/components-tabs"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/azemmur/tabs/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/demo/components/tabs.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "Tab": {
+            "intent": {
+              "value": "primary",
+              "options": {
+                "primary": "primary",
+                "secondary": "secondary",
+                "accent": "accent"
+              }
+            },
+            "styling": {
+              "value": "underline",
+              "options": {
+                "underline": "underline",
+                "minimal": "minimal",
+                "solid": "solid"
+              }
+            },
+            "visuals": {
+              "value": "classic",
+              "options": {
+                "filled": "filled",
+                "subtle": "subtle",
+                "classic": "classic",
+                "outline": "outline",
+                "levitate": "levitate"
+              }
+            },
+            "size": {
+              "value": "md",
+              "options": {
+                "sm": "sm",
+                "md": "md",
+                "lg": "lg"
+              }
+            },
+            "shape": {
+              "value": "rounded",
+              "options": {
+                "rounded": "rounded",
+                "pill": "pill",
+                "sharp": "sharp"
+              }
+            },
+            "ltr": {
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "demo-components-theme-switch",
+      "type": "registry:ui",
+      "title": "Theme Switch Demo",
+      "description": "Demo for the ThemeSwitch component.",
+      "registryDependencies": [
+        "@azemmur/components-theme-switch"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/azemmur/theme-switch/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/demo/theme-switch.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "ThemeSwitch": {
+            "size": {
+              "value": "md",
+              "options": {
+                "sm": "sm",
+                "md": "md",
+                "lg": "lg"
+              }
+            },
+            "styling": {
+              "value": "ghost",
+              "options": {
+                "ghost": "ghost",
+                "solid": "solid",
+                "outline": "outline"
+              }
+            },
+            "intent": {
+              "value": "primary",
+              "options": {
+                "primary": "primary",
+                "accent": "accent",
+                "secondary": "secondary"
+              }
+            },
+            "shape": {
+              "value": "rounded",
+              "options": {
+                "rounded": "rounded",
+                "sharp": "sharp",
+                "pill": "pill"
+              }
+            },
+            "elevation": {
+              "value": "raised",
+              "options": {
+                "raised": "raised",
+                "floating": "floating"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "demo-primitives-button",
+      "type": "registry:ui",
+      "title": "Button Demo",
+      "description": "Demo showing a button.",
+      "registryDependencies": [
+        "@azemmur/primitives-button"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/primitives/button/index.tsx",
+          "type": "registry:ui",
+          "target": "components/demo/components/primitives/button.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "Button": {
+            "hoverScale": {
+              "value": 1.05,
+              "min": 0,
+              "max": 2,
+              "step": 0.05
+            },
+            "tapScale": {
+              "value": 0.95,
+              "min": 0,
+              "max": 2,
+              "step": 0.05
             }
           }
         }

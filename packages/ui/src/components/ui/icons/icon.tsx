@@ -1,6 +1,11 @@
 'use client';
 
-import * as React from 'react';
+import {
+  Slot,
+  type WithAsChild,
+} from '@workspace/ui/components/primitives/slot';
+import { useIsInView } from '@workspace/ui/hooks/use-is-in-view';
+import { cn } from '@workspace/ui/lib/utils';
 import {
   motion,
   useAnimation,
@@ -10,13 +15,8 @@ import {
   type Variants,
   type HTMLMotionProps,
 } from 'motion/react';
+import * as React from 'react';
 
-import { cn } from '@workspace/ui/lib/utils';
-import { useIsInView } from '@workspace/ui/hooks/use-is-in-view';
-import {
-  Slot,
-  type WithAsChild,
-} from '@workspace/ui/components/primitives/slot';
 
 const staticAnimations = {
   path: {

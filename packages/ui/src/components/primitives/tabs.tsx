@@ -1,26 +1,26 @@
 'use client';
 
-import * as React from 'react';
-import { Tabs as TabsPrimitive } from 'radix-ui';
 import {
-  motion,
-  AnimatePresence,
-  type HTMLMotionProps,
-  type Transition,
-} from 'motion/react';
-
+  AutoHeight,
+  type AutoHeightProps,
+} from '@workspace/ui/components/primitives/effects/auto-height';
 import {
   Highlight,
   HighlightItem,
   type HighlightProps,
   type HighlightItemProps,
 } from '@workspace/ui/components/primitives/effects/highlight';
-import { getStrictContext } from '@workspace/ui/lib/get-strict-context';
 import { useControlledState } from '@workspace/ui/hooks/use-controlled-state';
+import { getStrictContext } from '@workspace/ui/lib/get-strict-context';
 import {
-  AutoHeight,
-  type AutoHeightProps,
-} from '@workspace/ui/components/primitives/effects/auto-height';
+  motion,
+  AnimatePresence,
+  type HTMLMotionProps,
+  type Transition,
+} from 'motion/react';
+import { Tabs as TabsPrimitive } from 'radix-ui';
+import * as React from 'react';
+
 
 /* -------------------------------------------------------------------------- */
 /*                                   Context                                  */

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-theme-switch",
+  "title": "Theme Switch Demo",
+  "description": "Demo for the ThemeSwitch component.",
+  "registryDependencies": [
+    "@azemmur/components-theme-switch"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/theme-switch/index.tsx",
+      "content": "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/theme-switch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n  shape?: ThemeSwitchProps['shape'];\n  elevation?: ThemeSwitchProps['elevation'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n}: ThemeSwitchDemoProps) {\n  return (\n    <ThemeSwitch\n      size={size}\n      styling={styling}\n      intent={intent}\n      shape={shape}\n      elevation={elevation}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/theme-switch.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "ThemeSwitch": {
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "styling": {
+          "value": "ghost",
+          "options": {
+            "ghost": "ghost",
+            "solid": "solid",
+            "outline": "outline"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "sharp": "sharp",
+            "pill": "pill"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
+          }
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

@@ -3,6 +3,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import onlyWarn from 'eslint-plugin-only-warn';
 import turboPlugin from 'eslint-plugin-turbo';
 import tseslint from 'typescript-eslint';
+import importPlugin from 'eslint-plugin-import';
 
 /** @type {import("eslint").Linter.Config[]} */
 export const config = [
@@ -13,6 +14,7 @@ export const config = [
     plugins: {
       turbo: turboPlugin,
       onlyWarn,
+      import: importPlugin,
     },
     rules: {
       'turbo/no-undeclared-env-vars': 'warn',
@@ -26,6 +28,27 @@ export const config = [
       ],
       '@typescript-eslint/explicit-function-return-type': 'off',
       'react/no-unknown-property': ['error', { ignore: ['css', 'tw'] }],
+      'import/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          pathGroups: [
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'before',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['builtin'],
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['./*', '../*'],
+        },
+      ],
     },
     ignores: [
       'dist/**',

@@ -1,7 +1,7 @@
 'use client';
 
-import { index } from '@/__registry__';
-import { ComponentWrapper } from '@/components/docs/component-wrapper';
+import { IconRotateClockwise as Loader } from '@tabler/icons-react';
+import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
 import {
   Tabs,
   TabsContent,
@@ -10,10 +10,10 @@ import {
   TabsContents,
 } from '@workspace/ui/components/ui/tabs/tabs';
 import { cn } from '@workspace/ui/lib/utils';
-import { Loader } from 'lucide-react';
 import { Suspense, useEffect, useMemo, useState } from 'react';
+import { index } from '@/__registry__';
+import { ComponentWrapper } from '@/components/docs/component-wrapper';
 import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
-import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
 import { type Binds, Tweakpane } from '@/components/docs/tweakpane';
 
 /* -------------------------------------------------------------------------- */

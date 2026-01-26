@@ -1,12 +1,12 @@
 'use client';
 
-import { Footer } from '@/components/ui/footer';
-import { Hero } from '@/components/ui/hero';
-import MaskedBackgroundGrid from '@/components/ui/maskedBackgroundGrid';
 import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import SquareLogo from '@/components/logos/sqr-logo';
+import { Footer } from '@/components/ui/footer';
+import { Hero } from '@/components/ui/hero';
+import MaskedBackgroundGrid from '@/components/ui/maskedBackgroundGrid';
 
 const CONTENT_VARIANTS = {
   hidden: { opacity: 0 },

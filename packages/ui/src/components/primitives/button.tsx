@@ -1,10 +1,10 @@
 'use client';
 
-import { motion, type HTMLMotionProps } from 'motion/react';
 import {
   Slot,
   type WithAsChild,
 } from '@workspace/ui/components/primitives/slot';
+import { motion, type HTMLMotionProps } from 'motion/react';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */

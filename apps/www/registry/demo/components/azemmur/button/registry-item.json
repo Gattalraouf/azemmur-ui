@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Button Demo",
   "description": "Demo showing a button.",
-  "dependencies": ["lucide-react"],
+  "dependencies": ["@tabler/icons-react"],
   "registryDependencies": ["@azemmur/components-button"],
   "files": [
     {
@@ -16,27 +16,51 @@
   "meta": {
     "demoProps": {
       "Button": {
-        "variant": {
+        "intent": {
           "value": "primary",
           "options": {
             "primary": "primary",
             "accent": "accent",
-            "destructive": "destructive",
-            "outline": "outline",
             "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "styling": {
+          "value": "solid",
+          "options": {
+            "solid": "solid",
+            "outline": "outline",
             "ghost": "ghost",
             "link": "link"
           }
         },
         "size": {
-          "value": "default",
+          "value": "md",
           "options": {
-            "default": "default",
             "sm": "sm",
+            "md": "md",
             "lg": "lg",
-            "icon": "icon",
             "icon-sm": "icon-sm",
+            "icon-md": "icon-md",
             "icon-lg": "icon-lg"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
           }
         }
       }

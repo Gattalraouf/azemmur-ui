@@ -59,7 +59,7 @@ async function buildRegistryFile() {
       dependencies: [
         'tw-animate-css',
         'class-variance-authority',
-        'lucide-react',
+        '@tabler/icons-react',
       ],
       registryDependencies: ['utils'],
       cssVars: {},

@@ -1,3 +1,6 @@
+// Azemmur – Open-source React component distribution
+// Copyright (c) 2025 raouf.codes
+
 import { cn } from '@workspace/ui/lib/utils';
 import * as React from 'react';
 const Logo = ({ className, ...props }: { className?: string }) => (

@@ -13,7 +13,7 @@ export const index: Record<string, any> = {
     dependencies: [
       'tw-animate-css',
       'class-variance-authority',
-      'lucide-react',
+      '@tabler/icons-react',
     ],
     devDependencies: undefined,
     registryDependencies: ['utils'],
@@ -28,14 +28,14 @@ export const index: Record<string, any> = {
     type: 'registry:ui',
     dependencies: ['class-variance-authority'],
     devDependencies: undefined,
-    registryDependencies: ['@azemmur/primitives-buttons-button'],
+    registryDependencies: ['@azemmur/primitives-button'],
     files: [
       {
         path: 'registry/components/azemmur/button/index.tsx',
         type: 'registry:ui',
         target: 'components/azemmur/components/button.tsx',
         content:
-          "'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\",\n  {\n    variants: {\n      variant: {\n        primary:\n          'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',\n        accent: 'bg-accent text-accent-foreground shadow-xs hover:bg-accent/90',\n        destructive:\n          'bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',\n        outline:\n          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',\n        secondary:\n          'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',\n        ghost: 'hover:bg-accent hover:text-accent-foreground',\n        link: 'text-primary underline-offset-4 hover:underline',\n      },\n      size: {\n        default: 'h-9 px-4 py-2 has-[>svg]:px-3',\n        sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',\n        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',\n        icon: 'size-9',\n        'icon-sm': 'size-8 rounded-md',\n        'icon-lg': 'size-10 rounded-md',\n      },\n    },\n    defaultVariants: {\n      variant: 'primary',\n      size: 'default',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({ className, variant, size, ...props }: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(buttonVariants({ variant, size, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nimport {\n  Button as ButtonPrimitive,\n  type ButtonProps as ButtonPrimitiveProps,\n} from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  [\n    'inline-flex items-center justify-center gap-2 whitespace-nowrap',\n    'select-none touch-manipulation text-sm font-medium shrink-0',\n    'transition-[box-shadow,_color,_background-color,_border-color,_outline-color,_text-decoration-color,_fill,_stroke]',\n    'outline-none',\n    'disabled:pointer-events-none disabled:opacity-50',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    \"[&_svg:not([class*='size-'])]:size-4\",\n    'aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        accent: 'bg-accent text-accent border-accent',\n        secondary: 'bg-secondary text-secondary border-secondary',\n        success: 'bg-success text-success border-success',\n        info: 'bg-info text-info border-info',\n        warning: 'bg-warning text-warning border-warning',\n        error: 'bg-error text-error border-error',\n      },\n      styling: {\n        solid: 'border-none',\n        outline: 'border border-2 bg-background hover:bg-current/20',\n        ghost: 'bg-transparent',\n        link: 'bg-transparent underline-offset-4 hover:underline focus-visible:underline focus-visible:ring-0 focus-visible:bg-ring/40 focus-visible:rounded-none focus-visible:p-0',\n      },\n      size: {\n        sm: 'h-8 px-2 gap-1.5 has-[>svg]:px-2.5',\n        md: 'h-9 px-4 py-2 has-[>svg]:px-4',\n        lg: 'h-10 px-6 has-[>svg]:px-4',\n        'icon-sm': 'size-8 p-0',\n        'icon-md': 'size-9 p-0',\n        'icon-lg': 'size-10 p-0',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised:\n          'shadow-sm hover:shadow-md active:shadow-none hover:opacity-95 active:opacity-90',\n        floating:\n          'shadow-md hover:shadow-lg active:shadow-sm hover:opacity-95 active:opacity-90',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'success',\n        styling: 'solid',\n        className: 'text-success-foreground',\n      },\n      {\n        intent: 'info',\n        styling: 'solid',\n        className: 'text-info-foreground',\n      },\n      {\n        intent: 'warning',\n        styling: 'solid',\n        className: 'text-warning-foreground',\n      },\n      {\n        intent: 'error',\n        styling: 'solid',\n        className: 'text-error-foreground',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'ghost',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'raised',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n      {\n        styling: 'link',\n        elevation: 'floating',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'solid',\n      size: 'md',\n      shape: 'rounded',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ButtonProps = ButtonPrimitiveProps & VariantProps<typeof buttonVariants>;\n\nfunction Button({\n  className,\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  ...props\n}: ButtonProps) {\n  return (\n    <ButtonPrimitive\n      className={cn(\n        buttonVariants({\n          intent,\n          styling,\n          size,\n          shape,\n          elevation,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Button, buttonVariants, type ButtonProps };",
       },
     ],
     keywords: [],
@@ -59,32 +59,89 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/components-button',
   },
-  dummy: {
-    name: 'dummy',
-    description: 'A dummy component with to test the process.',
+  'components-tabs': {
+    name: 'components-tabs',
+    description:
+      'Animated tablist with accessible keyboard navigation and animated underline.',
     type: 'registry:ui',
-    dependencies: [],
+    dependencies: ['motion', 'class-variance-authority'],
     devDependencies: undefined,
-    registryDependencies: [],
+    registryDependencies: ['@azemmur/primitives-button'],
     files: [
       {
-        path: 'registry/components/azemmur/dummy/index.tsx',
+        path: 'registry/components/azemmur/tabs/index.tsx',
         type: 'registry:ui',
-        target: 'components/azemmur/components/dummy.tsx',
+        target: 'components/azemmur/components/tabs/index.tsx',
         content:
-          "'use client';\n\nimport * as React from 'react';\n\nfunction Dummy() {\n  return <></>;\n}\n\nexport { Dummy };",
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\nimport { TabTrigger } from '@/components/azemmur/components/azemmur/tabs/tabs-trigger';\nimport { TabsRoot } from '@/components/azemmur/components/azemmur/tabs/tabs-root';\nimport { TabsList } from '@/components/azemmur/components/azemmur/tabs/tabs-list';\nimport { TabPanel } from '@/components/azemmur/components/azemmur/tabs/tabs-panel';\nimport { TabsContent } from '@/components/azemmur/components/azemmur/tabs/tabs-content';\n\ntype TabsComponent = typeof TabsRoot & {\n  List: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-list').TabsList;\n  Trigger: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-trigger').TabTrigger;\n\n  Content: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-content').TabsContent;\n  Panel: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-panel').TabPanel;\n};\n\nconst Tabs = TabsRoot as TabsComponent;\n\nTabs.Trigger = TabTrigger;\nTabs.List = TabsList;\nTabs.Content = TabsContent;\nTabs.Panel = TabPanel;\n\nexport { Tabs };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-root.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-root.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport React, {\n  useId,\n  useState,\n  useLayoutEffect,\n  useRef,\n  useMemo,\n  useCallback,\n  ComponentProps,\n} from 'react';\nimport { cn } from '@/lib/utils';\nimport { TabsContext } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { TabsVariantProps } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabsRootProps extends ComponentProps<'div'>, TabsVariantProps {\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  ltr?: boolean;\n  activation?: 'auto' | 'manual';\n  className?: string;\n  children: React.ReactNode;\n}\n\nfunction TabsRoot({\n  value,\n  defaultValue,\n  onValueChange,\n  ltr = true,\n  activation = 'manual',\n  className,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n  children,\n  ...props\n}: TabsRootProps) {\n  const tabsId = useId();\n  const [internalValue, setInternalValue] = useState(defaultValue ?? '');\n\n  const activeValue = value ?? internalValue;\n\n  const isControlled = value !== undefined;\n\n  const triggerRefs = useRef<Map<string, HTMLButtonElement>>(new Map());\n\n  const registerTrigger = useCallback(\n    (val: string, node: HTMLButtonElement | null) => {\n      if (node) {\n        const prevSize = triggerRefs.current.size;\n        triggerRefs.current.set(val, node);\n        if (!isControlled && !activeValue && prevSize === 0) {\n          setInternalValue(val);\n        }\n      } else {\n        triggerRefs.current.delete(val);\n      }\n    },\n    [isControlled, activeValue],\n  );\n\n  const handleValueChange = useCallback(\n    (next: string) => {\n      if (!isControlled) setInternalValue(next);\n      onValueChange?.(next);\n    },\n    [onValueChange, isControlled],\n  );\n\n  const handleKeyDown = useCallback(\n    (e: React.KeyboardEvent, val: string) => {\n      const values = Array.from(triggerRefs.current.keys());\n      const index = values.indexOf(val);\n      if (index === -1) return;\n\n      const forward = ltr ? 'ArrowRight' : 'ArrowLeft';\n      const backward = ltr ? 'ArrowLeft' : 'ArrowRight';\n\n      let next = index;\n\n      if (e.key === forward) next = (index + 1) % values.length;\n      else if (e.key === backward)\n        next = (index - 1 + values.length) % values.length;\n      else if (e.key === 'Home') next = 0;\n      else if (e.key === 'End') next = values.length - 1;\n      else return;\n\n      e.preventDefault();\n      const nextValue = values[next] ?? '';\n      triggerRefs.current.get(nextValue)?.focus();\n      if (activation === 'auto') handleValueChange(nextValue);\n    },\n    [ltr, activation, handleValueChange],\n  );\n\n  useLayoutEffect(() => {\n    if (isControlled) return;\n    if (!activeValue && triggerRefs.current.size > 0) {\n      const first = triggerRefs.current.keys().next().value;\n      if (first) setInternalValue(first);\n    }\n  }, [activeValue, isControlled]);\n\n  const memoizedValue = useMemo(\n    () => ({\n      tabsId,\n      activeValue,\n      onValueChange: handleValueChange,\n      registerTrigger,\n      handleKeyDown,\n      ltr,\n      activation,\n      getTriggerId: (val: string) => `${tabsId}-trigger-${val}`,\n      getPanelId: (val: string) => `${tabsId}-panel-${val}`,\n      intent,\n      styling,\n      visuals,\n      size,\n      shape,\n    }),\n    [\n      tabsId,\n      activeValue,\n      handleValueChange,\n      registerTrigger,\n      handleKeyDown,\n      ltr,\n      activation,\n      intent,\n      styling,\n      visuals,\n      size,\n      shape,\n    ],\n  );\n\n  return (\n    <TabsContext.Provider value={memoizedValue}>\n      <div className={cn(className)} {...props}>\n        {children}\n      </div>\n    </TabsContext.Provider>\n  );\n}\n\nexport { TabsRoot, type TabsRootProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-context.tsx',
+        type: 'registry:hook',
+        target: 'components/azemmur/components/tabs/tabs-context.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n'use client';\n\nimport { createContext, useContext } from 'react';\nimport { TabsVariantProps } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabsContextValue extends TabsVariantProps {\n  tabsId: string;\n  ltr: boolean;\n  activeValue?: string;\n  onValueChange: (value: string) => void;\n  registerTrigger: (value: string, node: HTMLButtonElement | null) => void;\n  handleKeyDown: (e: React.KeyboardEvent, value: string) => void;\n  getPanelId: (value: string) => string;\n  getTriggerId: (value: string) => string;\n}\n\nconst TabsContext = createContext<TabsContextValue | null>(null);\n\nconst useTabs = () => {\n  const context = useContext(TabsContext);\n  if (!context) {\n    throw new Error('Tab components must be used within <Tabs />');\n  }\n  return context;\n};\n\nexport { TabsContext, useTabs };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-list.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-list.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n'use client';\n\nimport React, { ComponentProps } from 'react';\nimport { cn } from '@/lib/utils';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { listVariants } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabsListProps extends ComponentProps<'div'> {\n  className?: string;\n}\n\nfunction TabsList({ className, children, ...props }: TabsListProps) {\n  const { ltr, intent, visuals, size, shape } = useTabs();\n  return (\n    <div\n      role=\"tablist\"\n      aria-orientation=\"horizontal\"\n      dir={ltr ? 'ltr' : 'rtl'}\n      className={cn(listVariants({ intent, visuals, size, shape }), className)}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport { TabsList, type TabsListProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-trigger.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-trigger.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\nimport React, {\n  useEffect,\n  useRef,\n  ComponentPropsWithoutRef,\n  useImperativeHandle,\n  forwardRef,\n} from 'react';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\nimport { TabsIndicator as Indicator } from '@/components/azemmur/components/azemmur/tabs/tabs-indicator';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { triggerVariants } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabTriggerProps extends Omit<\n  ComponentPropsWithoutRef<typeof ButtonPrimitive>,\n  'asChild'\n> {\n  value: string;\n  triggerClassName?: string;\n  indicatorClassName?: string;\n}\n\nconst TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(\n  (\n    {\n      value,\n      children,\n      className,\n      triggerClassName,\n      indicatorClassName,\n      ...props\n    },\n    forwardedRef,\n  ) => {\n    const {\n      tabsId,\n      activeValue,\n      onValueChange,\n      registerTrigger,\n      handleKeyDown,\n      getTriggerId,\n      getPanelId,\n      intent,\n      styling,\n      visuals,\n      shape,\n    } = useTabs();\n    const isActive = value === activeValue;\n    const internalRef = useRef<HTMLButtonElement>(null);\n\n    useImperativeHandle(forwardedRef, () => internalRef.current!);\n\n    useEffect(() => {\n      registerTrigger(value, internalRef.current);\n      return () => registerTrigger(value, null);\n    }, [value, registerTrigger]);\n\n    return (\n      <div\n        role=\"tab\"\n        aria-selected={isActive}\n        aria-controls={getPanelId(value)}\n        className={cn('relative inline-block', className)}\n      >\n        {isActive && (\n          <Indicator\n            layoutId={`active-tab-${tabsId}`}\n            className={indicatorClassName}\n            aria-selected={isActive}\n            data-state={isActive ? 'active' : 'inactive'}\n            intent={intent}\n            styling={styling}\n            visuals={visuals}\n            shape={shape}\n          />\n        )}\n\n        <ButtonPrimitive\n          id={getTriggerId(value)}\n          ref={internalRef}\n          data-state={isActive ? 'active' : 'inactive'}\n          tabIndex={isActive ? 0 : -1}\n          onClick={(e) => {\n            onValueChange(value);\n            props.onClick?.(e);\n          }}\n          onKeyDown={(e) => {\n            handleKeyDown(e, value);\n            props.onKeyDown?.(e);\n          }}\n          className={cn(\n            triggerVariants({\n              intent,\n              visuals,\n              styling,\n              shape,\n            }),\n            triggerClassName,\n          )}\n          {...props}\n        >\n          {children}\n        </ButtonPrimitive>\n      </div>\n    );\n  },\n);\n\nTabTrigger.displayName = 'TabTrigger';\n\nexport { TabTrigger, type TabTriggerProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-indicator.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-indicator.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\nimport type { ComponentProps } from 'react';\nimport { motion } from 'motion/react';\nimport { type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\nimport { indicatorVariants } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ntype TabsIndicatorProps = VariantProps<typeof indicatorVariants> &\n  ComponentProps<typeof motion.div>;\n\nfunction TabsIndicator({\n  intent,\n  styling,\n  shape,\n  visuals,\n  className,\n  ...props\n}: TabsIndicatorProps) {\n  return (\n    <motion.div\n      aria-hidden=\"true\"\n      layout\n      {...props}\n      className={cn(\n        indicatorVariants({\n          intent,\n          styling,\n          shape,\n          visuals,\n        }),\n        className,\n      )}\n      transition={{ type: 'spring', stiffness: 400, damping: 30, mass: 1 }}\n    />\n  );\n}\n\nexport { TabsIndicator, type TabsIndicatorProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-content.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-content.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n'use client';\n\nimport React, { ComponentProps } from 'react';\nimport { cn } from '@/lib/utils';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\n\ninterface TabsContentProps extends ComponentProps<'div'> {\n  className?: string;\n}\n\nfunction TabsContent({ className, children, ...props }: TabsContentProps) {\n  const { ltr } = useTabs();\n  return (\n    <div\n      dir={ltr ? 'ltr' : 'rtl'}\n      className={cn('overflow-hidden', className)}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport { TabsContent, type TabsContentProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-panel.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-panel.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\n\nimport React, { type ComponentProps } from 'react';\nimport { motion } from 'motion/react';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { cn } from '@/lib/utils';\n\nexport interface TabPanelProps extends ComponentProps<typeof motion.div> {\n  value: string;\n}\n\nexport function TabPanel({\n  value,\n  children,\n  className,\n  ...props\n}: TabPanelProps) {\n  const { activeValue, getPanelId } = useTabs();\n  const isActive = activeValue === value;\n\n  return isActive ? (\n    <motion.div\n      key={value}\n      role=\"tabpanel\"\n      id={getPanelId(value)}\n      aria-labelledby={getPanelId(value)}\n      tabIndex={0}\n      initial={{ opacity: 0, y: '100%' }}\n      animate={{ opacity: 1, y: '0%' }}\n      exit={{ opacity: 0, y: '-100%' }}\n      transition={{ duration: 0.2, ease: 'easeOut' }}\n      className={cn(\n        'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  ) : null;\n}",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-variants.ts',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-variants.ts',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst listVariants = cva(\n  'relative inline-flex whitespace-nowrap overflow-visible gap-2',\n  {\n    variants: {\n      intent: {\n        primary: 'text-primary border-primary',\n        secondary: 'text-secondary border-secondary',\n        accent: 'text-accent border-accent',\n      },\n      visuals: {\n        filled: '',\n        subtle: 'bg-transparent px-8',\n        classic: 'bg-transparent border-b px-8',\n        outline: 'bg-transparent border-2 overflow-hidden',\n        levitate: 'p-2 border-2',\n      },\n      size: {\n        sm: 'text-sm',\n        md: 'text-base',\n        lg: 'text-lg',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        visuals: 'classic',\n        shape: ['rounded', 'pill'],\n        className: 'rounded-none',\n      },\n      {\n        intent: ['primary', 'secondary', 'accent'],\n        visuals: ['filled', 'levitate'],\n        className: 'bg-current/10',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      visuals: 'classic',\n      size: 'md',\n      shape: 'rounded',\n    },\n  },\n);\n\nconst triggerVariants = cva(\n  [\n    'block px-6 py-2 font-medium transition-colors z-10 relative bg-transparent',\n    'focus-visible:outline-none focus-visible:ring-2',\n    'after:content-[attr(data-label)] after:block after:h-0 after:invisible',\n    '[&[data-state=\"active\"]]:font-bold [&[data-state=\"active\"]]:text-foreground',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary: 'text-primary',\n        secondary: 'text-secondary',\n        accent: 'text-accent',\n      },\n      visuals: {\n        classic: null,\n        outline: 'focus-visible:rounded-none',\n      },\n      styling: {\n        underline: null,\n        minimal: null,\n        solid: null,\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: '[&[data-state=\"active\"]]:text-primary-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: '[&[data-state=\"active\"]]:text-secondary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: '[&[data-state=\"active\"]]:text-accent-foreground',\n      },\n      {\n        visuals: 'classic',\n        shape: ['pill', 'rounded'],\n        className: 'rounded-b-none rounded-t-md',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'underline',\n      shape: 'rounded',\n    },\n  },\n);\n\nconst indicatorVariants = cva(\n  'absolute pointer-events-none transition-colors',\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary',\n        secondary: 'bg-secondary',\n        accent: 'bg-accent',\n      },\n      styling: {\n        underline: 'bottom-0 h-1 start-0 end-0 bg-primary',\n        minimal: 'bottom-0 h-2 w-2 left-1/2 -translate-x-1/2 bg-current',\n        solid: 'inset-0',\n      },\n      visuals: {\n        classic: null,\n        outline: null,\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        styling: 'solid',\n        visuals: 'classic',\n        shape: ['pill', 'rounded'],\n        className: 'rounded-b-none rounded-t-md',\n      },\n      {\n        styling: 'solid',\n        visuals: 'outline',\n        className: 'rounded-none',\n      },\n      {\n        styling: ['underline', 'minimal'],\n        className: '[&[data-state=\"active\"]]:bg-foreground',\n      },\n    ],\n    defaultVariants: {\n      styling: 'underline',\n      visuals: 'classic',\n      shape: 'rounded',\n    },\n  },\n);\n\ntype TabsVariantProps = VariantProps<typeof listVariants> &\n  VariantProps<typeof triggerVariants>;\n\nexport {\n  indicatorVariants,\n  listVariants,\n  triggerVariants,\n  type TabsVariantProps,\n};",
       },
     ],
     keywords: [],
     component: (function () {
       const LazyComp = React.lazy(async () => {
         const mod =
-          await import('@/registry/components/azemmur/dummy/index.tsx');
+          await import('@/registry/components/azemmur/tabs/index.tsx');
         const exportName =
           Object.keys(mod).find(
             (key) =>
               typeof mod[key] === 'function' || typeof mod[key] === 'object',
-          ) || 'dummy';
+          ) || 'components-tabs';
         const Comp = mod.default || mod[exportName];
         if (mod.animations) {
           (LazyComp as any).animations = mod.animations;
@@ -94,7 +151,49 @@ export const index: Record<string, any> = {
       LazyComp.demoProps = {};
       return LazyComp;
     })(),
-    command: '@azemmur/dummy',
+    command: '@azemmur/components-tabs',
+  },
+  'components-theme-switch': {
+    name: 'components-theme-switch',
+    description: 'A small theme toggle button with motion animations.',
+    type: 'registry:ui',
+    dependencies: [
+      'class-variance-authority',
+      'motion',
+      '@tabler/icons-react',
+      'next-themes',
+    ],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/primitives-button'],
+    files: [
+      {
+        path: 'registry/components/azemmur/theme-switch/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/theme-switch.tsx',
+        content:
+          "// Copyright (c) 2025 raouf.codes - Azemmur\n\n'use client';\nimport { useCallback } from 'react';\nimport { useTheme } from 'next-themes';\nimport { motion, AnimatePresence } from 'motion/react';\nimport { IconSunLow, IconMoon } from '@tabler/icons-react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\n\nconst themeSwitchVariants = cva(\n  [\n    'inline-flex items-center justify-center',\n    'select-none touch-manipulation',\n    'transition-colors',\n    '[&_svg]:pointer-events-none [&_svg]:shrink-0',\n    'disabled:pointer-events-none disabled:opacity-50',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        accent: 'bg-accent text-accent border-accent',\n        secondary: 'bg-secondary text-secondary border-secondary',\n      },\n      size: {\n        sm: 'h-6 w-6 [&_svg]:size-4',\n        md: 'h-8 w-8 [&_svg]:size-5',\n        lg: 'h-10 w-10 [&_svg]:size-6',\n      },\n      styling: {\n        ghost: 'bg-transparent',\n        solid: 'border-none',\n        outline: 'border border-2 bg-transparent hover:bg-current/20',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n      elevation: {\n        raised: 'shadow-sm hover:shadow-md active:shadow-none',\n        floating: 'shadow-md hover:shadow-lg active:shadow-sm',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: 'text-accent-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: 'text-secondary-foreground',\n      },\n      {\n        styling: 'ghost',\n        className: 'shadow-none hover:shadow-none active:shadow-none',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      size: 'md',\n      styling: 'ghost',\n      shape: 'pill',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype ThemeSwitchProps = VariantProps<typeof themeSwitchVariants> & {\n  className?: string;\n};\n\nfunction ThemeSwitch({\n  className,\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n  ...props\n}: ThemeSwitchProps) {\n  const { theme, setTheme, resolvedTheme } = useTheme();\n\n  const currentTheme = resolvedTheme ?? theme;\n  const isDark = currentTheme === 'dark';\n\n  const handleToggle = useCallback(() => {\n    setTheme(isDark ? 'light' : 'dark');\n  }, [setTheme, isDark]);\n\n  const iconVariants = {\n    initial: { scale: 0, rotate: -360 },\n    animate: { scale: 1, rotate: 0 },\n    exit: { scale: 0, rotate: 360 },\n    hover: { rotate: [0, 30, -30, 0], transition: { duration: 0.4 } },\n  };\n\n  return (\n    <ButtonPrimitive\n      suppressHydrationWarning\n      aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}\n      aria-pressed={isDark}\n      className={cn(\n        themeSwitchVariants({ intent, size, styling, shape, elevation }),\n        className,\n      )}\n      onClick={handleToggle}\n      {...props}\n    >\n      <AnimatePresence mode=\"wait\" initial={false}>\n        <motion.div\n          key={isDark ? 'sun-icon' : 'moon-icon'}\n          initial=\"initial\"\n          animate=\"animate\"\n          exit=\"exit\"\n          whileHover=\"hover\"\n          variants={iconVariants}\n          transition={{\n            duration: 0.4,\n            rotate: { duration: 0.6, delay: 0.12 },\n          }}\n        >\n          {isDark ? <IconSunLow /> : <IconMoon />}\n        </motion.div>\n      </AnimatePresence>\n    </ButtonPrimitive>\n  );\n}\n\nexport { ThemeSwitch, themeSwitchVariants, type ThemeSwitchProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/components/azemmur/theme-switch/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'components-theme-switch';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/components-theme-switch',
   },
   'primitives-button': {
     name: 'primitives-button',
@@ -109,7 +208,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/primitives/button.tsx',
         content:
-          "'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/primitives/slot';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n\n  return (\n    <Component\n      whileTap={{ scale: tapScale }}\n      whileHover={{ scale: hoverScale }}\n      {...props}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };",
+          "//Copyright (c) 2025 Elliot Sutton\n\n'use client';\n\nimport * as React from 'react';\nimport { motion, type HTMLMotionProps } from 'motion/react';\n\nimport {\n  Slot,\n  type WithAsChild,\n} from '@/components/primitives/slot';\nimport { cn } from '@/lib/utils';\n\ntype ButtonProps = WithAsChild<\n  HTMLMotionProps<'button'> & {\n    hoverScale?: number;\n    tapScale?: number;\n  }\n>;\n\nfunction Button({\n  hoverScale = 1.05,\n  tapScale = 0.95,\n  asChild = false,\n  ...props\n}: ButtonProps) {\n  const Component = asChild ? Slot : motion.button;\n\n  return (\n    <Component\n      {...props}\n      className={cn('cursor-pointer', props.className)}\n      whileHover={{ scale: hoverScale }}\n      whileTap={{ scale: tapScale }}\n    />\n  );\n}\n\nexport { Button, type ButtonProps };",
       },
     ],
     keywords: [],
@@ -147,7 +246,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/primitives/slot.tsx',
         content:
-          "'use client';\n\nimport * as React from 'react';\nimport { motion, isMotionComponent, type HTMLMotionProps } from 'motion/react';\nimport { cn } from '@/lib/utils';\n\ntype AnyProps = Record<string, unknown>;\n\ntype DOMMotionProps<T extends HTMLElement = HTMLElement> = Omit<\n  HTMLMotionProps<keyof HTMLElementTagNameMap>,\n  'ref'\n> & { ref?: React.Ref<T> };\n\ntype WithAsChild<Base extends object> =\n  | (Base & { asChild: true; children: React.ReactElement })\n  | (Base & { asChild?: false | undefined });\n\ntype SlotProps<T extends HTMLElement = HTMLElement> = {\n  // eslint-disable-next-line @typescript-eslint/no-explicit-any\n  children?: any;\n} & DOMMotionProps<T>;\n\nfunction mergeRefs<T>(\n  ...refs: (React.Ref<T> | undefined)[]\n): React.RefCallback<T> {\n  return (node) => {\n    refs.forEach((ref) => {\n      if (!ref) return;\n      if (typeof ref === 'function') {\n        ref(node);\n      } else {\n        (ref as React.RefObject<T | null>).current = node;\n      }\n    });\n  };\n}\n\nfunction mergeProps<T extends HTMLElement>(\n  childProps: AnyProps,\n  slotProps: DOMMotionProps<T>,\n): AnyProps {\n  const merged: AnyProps = { ...childProps, ...slotProps };\n\n  if (childProps.className || slotProps.className) {\n    merged.className = cn(\n      childProps.className as string,\n      slotProps.className as string,\n    );\n  }\n\n  if (childProps.style || slotProps.style) {\n    merged.style = {\n      ...(childProps.style as React.CSSProperties),\n      ...(slotProps.style as React.CSSProperties),\n    };\n  }\n\n  return merged;\n}\n\nfunction Slot<T extends HTMLElement = HTMLElement>({\n  children,\n  ref,\n  ...props\n}: SlotProps<T>) {\n  const isAlreadyMotion =\n    typeof children.type === 'object' &&\n    children.type !== null &&\n    isMotionComponent(children.type);\n\n  const Base = React.useMemo(\n    () =>\n      isAlreadyMotion\n        ? (children.type as React.ElementType)\n        : motion.create(children.type as React.ElementType),\n    [isAlreadyMotion, children.type],\n  );\n\n  if (!React.isValidElement(children)) return null;\n\n  const { ref: childRef, ...childProps } = children.props as AnyProps;\n\n  const mergedProps = mergeProps(childProps, props);\n\n  return (\n    <Base {...mergedProps} ref={mergeRefs(childRef as React.Ref<T>, ref)} />\n  );\n}\n\nexport {\n  Slot,\n  type SlotProps,\n  type WithAsChild,\n  type DOMMotionProps,\n  type AnyProps,\n};",
+          "//Copyright (c) 2025 Elliot Sutton\n\n'use client';\n\nimport * as React from 'react';\nimport { motion, isMotionComponent, type HTMLMotionProps } from 'motion/react';\nimport { cn } from '@/lib/utils';\n\ntype AnyProps = Record<string, unknown>;\n\ntype DOMMotionProps<T extends HTMLElement = HTMLElement> = Omit<\n  HTMLMotionProps<keyof HTMLElementTagNameMap>,\n  'ref'\n> & { ref?: React.Ref<T> };\n\ntype WithAsChild<Base extends object> =\n  | (Base & { asChild: true; children: React.ReactElement })\n  | (Base & { asChild?: false | undefined });\n\ntype SlotProps<T extends HTMLElement = HTMLElement> = {\n  // eslint-disable-next-line @typescript-eslint/no-explicit-any\n  children?: any;\n} & DOMMotionProps<T>;\n\nfunction mergeRefs<T>(\n  ...refs: (React.Ref<T> | undefined)[]\n): React.RefCallback<T> {\n  return (node) => {\n    refs.forEach((ref) => {\n      if (!ref) return;\n      if (typeof ref === 'function') {\n        ref(node);\n      } else {\n        (ref as React.RefObject<T | null>).current = node;\n      }\n    });\n  };\n}\n\nfunction mergeProps<T extends HTMLElement>(\n  childProps: AnyProps,\n  slotProps: DOMMotionProps<T>,\n): AnyProps {\n  const merged: AnyProps = { ...childProps, ...slotProps };\n\n  if (childProps.className || slotProps.className) {\n    merged.className = cn(\n      childProps.className as string,\n      slotProps.className as string,\n    );\n  }\n\n  if (childProps.style || slotProps.style) {\n    merged.style = {\n      ...(childProps.style as React.CSSProperties),\n      ...(slotProps.style as React.CSSProperties),\n    };\n  }\n\n  return merged;\n}\n\nfunction Slot<T extends HTMLElement = HTMLElement>({\n  children,\n  ref,\n  ...props\n}: SlotProps<T>) {\n  const isAlreadyMotion =\n    typeof children.type === 'object' &&\n    children.type !== null &&\n    isMotionComponent(children.type);\n\n  const Base = React.useMemo(\n    () =>\n      isAlreadyMotion\n        ? (children.type as React.ElementType)\n        : motion.create(children.type as React.ElementType),\n    [isAlreadyMotion, children.type],\n  );\n\n  if (!React.isValidElement(children)) return null;\n\n  const { ref: childRef, ...childProps } = children.props as AnyProps;\n\n  const mergedProps = mergeProps(childProps, props);\n\n  return (\n    <Base {...mergedProps} ref={mergeRefs(childRef as React.Ref<T>, ref)} />\n  );\n}\n\nexport {\n  Slot,\n  type SlotProps,\n  type WithAsChild,\n  type DOMMotionProps,\n  type AnyProps,\n};",
       },
     ],
     keywords: [],
@@ -175,7 +274,7 @@ export const index: Record<string, any> = {
     name: 'demo-components-button',
     description: 'Demo showing a button.',
     type: 'registry:ui',
-    dependencies: ['lucide-react'],
+    dependencies: ['@tabler/icons-react'],
     devDependencies: undefined,
     registryDependencies: ['@azemmur/components-button'],
     files: [
@@ -184,7 +283,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/demo/components/button.tsx',
         content:
-          "import { PlusIcon } from 'lucide-react';\nimport { Button, type ButtonProps } from '@/components/azemmur/components/azemmur/button';\n\ninterface ButtonDemoProps {\n  variant: ButtonProps['variant'];\n  size: ButtonProps['size'];\n}\n\nexport default function ButtonDemo({ variant, size }: ButtonDemoProps) {\n  return (\n    <Button variant={variant} size={size}>\n      {size?.includes('icon') ? <PlusIcon /> : 'Click me'}\n    </Button>\n  );\n}",
+          "import { IconPlus } from '@tabler/icons-react';\nimport { Button, type ButtonProps } from '@/components/azemmur/components/azemmur/button';\n\ninterface ButtonDemoProps {\n  intent: ButtonProps['intent'];\n  styling: ButtonProps['styling'];\n  size: ButtonProps['size'];\n  shape: ButtonProps['shape'];\n  elevation: ButtonProps['elevation'];\n}\n\nexport default function ButtonDemo({\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n}: ButtonDemoProps) {\n  return (\n    <Button\n      intent={intent}\n      styling={styling}\n      size={size}\n      shape={shape}\n      elevation={elevation}\n    >\n      {size?.includes('icon') ? <IconPlus /> : 'Click me'}\n    </Button>\n  );\n}",
       },
     ],
     keywords: [],
@@ -205,33 +304,225 @@ export const index: Record<string, any> = {
       });
       LazyComp.demoProps = {
         Button: {
-          variant: {
+          intent: {
             value: 'primary',
             options: {
               primary: 'primary',
               accent: 'accent',
-              destructive: 'destructive',
-              outline: 'outline',
               secondary: 'secondary',
+              success: 'success',
+              info: 'info',
+              warning: 'warning',
+              error: 'error',
+            },
+          },
+          styling: {
+            value: 'solid',
+            options: {
+              solid: 'solid',
+              outline: 'outline',
               ghost: 'ghost',
               link: 'link',
             },
           },
           size: {
-            value: 'default',
+            value: 'md',
             options: {
-              default: 'default',
               sm: 'sm',
+              md: 'md',
               lg: 'lg',
-              icon: 'icon',
               'icon-sm': 'icon-sm',
+              'icon-md': 'icon-md',
               'icon-lg': 'icon-lg',
             },
+          },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', pill: 'pill', sharp: 'sharp' },
+          },
+          elevation: {
+            value: 'raised',
+            options: { raised: 'raised', floating: 'floating' },
           },
         },
       };
       return LazyComp;
     })(),
     command: '@azemmur/demo-components-button',
+  },
+  'demo-components-tabs': {
+    name: 'demo-components-tabs',
+    description: 'Interactive demo for the Tab component',
+    type: 'registry:ui',
+    dependencies: ['@tabler/icons-react'],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/components-tabs'],
+    files: [
+      {
+        path: 'registry/demo/components/azemmur/tabs/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/components/tabs.tsx',
+        content:
+          '\'use client\';\n\nimport React from \'react\';\nimport { Tabs } from \'@/components/azemmur/components/azemmur/tabs\';\nimport { TabsVariantProps } from \'@/components/azemmur/components/azemmur/tabs/tabs-variants\';\n\ninterface TabsDemoProps {\n  intent?: TabsVariantProps[\'intent\'];\n  styling?: TabsVariantProps[\'styling\'];\n  visuals?: TabsVariantProps[\'visuals\'];\n  size?: TabsVariantProps[\'size\'];\n  shape?: TabsVariantProps[\'shape\'];\n  ltr?: boolean;\n}\n\nexport default function TabsDemo({\n  ltr = true,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n}: TabsDemoProps) {\n  return (\n    <Tabs\n      defaultValue="profile"\n      intent={intent}\n      visuals={visuals}\n      styling={styling}\n      shape={shape}\n      size={size}\n      ltr={ltr}\n      className="bg-card border rounded-xl p-4"\n    >\n      <Tabs.List>\n        <Tabs.Trigger\n          value="profile"\n          className="flex-1"\n          triggerClassName="gap-2"\n        >\n          Profile\n        </Tabs.Trigger>\n\n        <Tabs.Trigger\n          value="notifications"\n          className="flex-1"\n          triggerClassName="gap-2"\n        >\n          Notifications\n        </Tabs.Trigger>\n\n        <Tabs.Trigger\n          value="security"\n          className="flex-1"\n          triggerClassName="gap-2"\n        >\n          Security\n        </Tabs.Trigger>\n      </Tabs.List>\n\n      <Tabs.Content>\n        <Tabs.Panel value="profile">\n          <h2 className="text-lg font-semibold">Public Profile</h2>\n          <p className="text-muted-foreground text-sm">\n            Update your bio and avatar.\n          </p>\n          {/* Form components here */}\n        </Tabs.Panel>\n\n        <Tabs.Panel value="notifications">\n          <h2 className="text-lg font-semibold">Notifications</h2>\n          <p className="text-muted-foreground text-sm">\n            Manage how you receive alerts.\n          </p>\n        </Tabs.Panel>\n\n        <Tabs.Panel value="security">\n          <h2 className="text-lg font-semibold">Security Settings</h2>\n          <p className="text-muted-foreground text-sm">\n            Two-factor authentication and passwords.\n          </p>\n        </Tabs.Panel>\n      </Tabs.Content>\n    </Tabs>\n  );\n}',
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/components/azemmur/tabs/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-components-tabs';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        Tab: {
+          intent: {
+            value: 'primary',
+            options: {
+              primary: 'primary',
+              secondary: 'secondary',
+              accent: 'accent',
+            },
+          },
+          styling: {
+            value: 'underline',
+            options: {
+              underline: 'underline',
+              minimal: 'minimal',
+              solid: 'solid',
+            },
+          },
+          visuals: {
+            value: 'classic',
+            options: {
+              filled: 'filled',
+              subtle: 'subtle',
+              classic: 'classic',
+              outline: 'outline',
+              levitate: 'levitate',
+            },
+          },
+          size: { value: 'md', options: { sm: 'sm', md: 'md', lg: 'lg' } },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', pill: 'pill', sharp: 'sharp' },
+          },
+          ltr: { value: true },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-components-tabs',
+  },
+  'demo-components-theme-switch': {
+    name: 'demo-components-theme-switch',
+    description: 'Demo for the ThemeSwitch component.',
+    type: 'registry:ui',
+    dependencies: undefined,
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/components-theme-switch'],
+    files: [
+      {
+        path: 'registry/demo/components/azemmur/theme-switch/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/theme-switch.tsx',
+        content:
+          "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/theme-switch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n  shape?: ThemeSwitchProps['shape'];\n  elevation?: ThemeSwitchProps['elevation'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n}: ThemeSwitchDemoProps) {\n  return (\n    <ThemeSwitch\n      size={size}\n      styling={styling}\n      intent={intent}\n      shape={shape}\n      elevation={elevation}\n    />\n  );\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/components/azemmur/theme-switch/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-components-theme-switch';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        ThemeSwitch: {
+          size: { value: 'md', options: { sm: 'sm', md: 'md', lg: 'lg' } },
+          styling: {
+            value: 'ghost',
+            options: { ghost: 'ghost', solid: 'solid', outline: 'outline' },
+          },
+          intent: {
+            value: 'primary',
+            options: {
+              primary: 'primary',
+              accent: 'accent',
+              secondary: 'secondary',
+            },
+          },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', sharp: 'sharp', pill: 'pill' },
+          },
+          elevation: {
+            value: 'raised',
+            options: { raised: 'raised', floating: 'floating' },
+          },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-components-theme-switch',
+  },
+  'demo-primitives-button': {
+    name: 'demo-primitives-button',
+    description: 'Demo showing a button.',
+    type: 'registry:ui',
+    dependencies: undefined,
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/primitives-button'],
+    files: [
+      {
+        path: 'registry/demo/components/primitives/button/index.tsx',
+        type: 'registry:ui',
+        target: 'components/demo/components/primitives/button.tsx',
+        content:
+          'import { Button } from \'@/components/azemmur/components/primitives/button\';\n\ninterface ButtonDemoProps {\n  hoverScale: number;\n  tapScale: number;\n}\n\nexport default function ButtonDemo({ hoverScale, tapScale }: ButtonDemoProps) {\n  return (\n    <Button\n      key={`${hoverScale}-${tapScale}`}\n      hoverScale={hoverScale}\n      tapScale={tapScale}\n      className="bg-primary text-primary-foreground text-sm font-medium px-4 py-2 h-10"\n    >\n      Button\n    </Button>\n  );\n}',
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/components/primitives/button/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-primitives-button';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        Button: {
+          hoverScale: { value: 1.05, min: 0, max: 2, step: 0.05 },
+          tapScale: { value: 0.95, min: 0, max: 2, step: 0.05 },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-primitives-button',
   },
 };

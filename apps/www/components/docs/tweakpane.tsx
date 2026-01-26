@@ -1,16 +1,14 @@
 'use client';
 
-import * as React from 'react';
-
-import { Label } from '@workspace/ui/components/ui/Inputs/label';
-import { Slider } from '@workspace/ui/components/ui/Inputs/slider';
-import { Input } from '@workspace/ui/components/ui/Inputs/input';
-import { cn } from '@workspace/ui/lib/utils';
+import { IconChevronsDown as ChevronsUpDown } from '@tabler/icons-react';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@workspace/ui/components/ui/collapsible';
+import { Input } from '@workspace/ui/components/ui/Inputs/input';
+import { Label } from '@workspace/ui/components/ui/Inputs/label';
+
 import {
   Select,
   SelectContent,
@@ -18,8 +16,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@workspace/ui/components/ui/Inputs/select';
+import { Slider } from '@workspace/ui/components/ui/Inputs/slider';
 import { Switch } from '@workspace/ui/components/ui/Inputs/switch';
-import { ChevronsUpDown } from 'lucide-react';
+import { cn } from '@workspace/ui/lib/utils';
+import * as React from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

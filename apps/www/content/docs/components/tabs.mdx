@@ -1,0 +1,378 @@
+---
+title: Tabs
+description: Animated, accessible tab component with keyboard navigation and an animated indicator.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-01
+---
+
+## Overview
+
+The `Tabs` component provides a small, composable, and accessible tab system with first-class keyboard support and smooth motion.
+
+**Subcomponents & hooks:**
+
+- `Tabs` — root component (state, ids, keyboard logic)
+- `Tabs.List` — tablist container
+- `Tabs.Trigger` — interactive tab button
+- `Tabs.Indicator` — animated underline / selection indicator
+- `Tabs.Content` — layout wrapper for panels
+- `Tabs.Panel` — individual animated panel
+- `useTabs()` — advanced hook for custom integrations
+
+Advanced users can import `useTabs()` from the registry context for id helpers and keyboard/register callbacks.
+
+<ComponentPreview name="demo-components-tabs" />
+
+## Installation
+
+<ComponentInstallation name="components-tabs" />
+
+## Usage
+
+It can be used uncontrolled for simplicity, or controlled when you need external state management.
+
+### Basic (uncontrolled)
+
+```tsx
+function Basic() {
+  return (
+    <Tabs defaultValue="account">
+      <Tabs.List>
+        <Tabs.Trigger value="account">Account</Tabs.Trigger>
+        <Tabs.Trigger value="security">Security</Tabs.Trigger>
+        <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
+      </Tabs.List>
+
+      <Tabs.Content>
+        <Tabs.Panel value="account">Account content</Tabs.Panel>
+        <Tabs.Panel value="security">Security content</Tabs.Panel>
+        <Tabs.Panel value="billing">Billing content</Tabs.Panel>
+      </Tabs.Content>
+    </Tabs>
+  );
+}
+```
+
+### Controlled
+
+```tsx
+function Controlled() {
+  const [value, setValue] = React.useState('notifications');
+
+  return (
+    <Tabs value={value} onValueChange={setValue} intent="primary">
+      <Tabs.List>
+        <Tabs.Trigger value="profile">Profile</Tabs.Trigger>
+        <Tabs.Trigger value="notifications">Notifications</Tabs.Trigger>
+      </Tabs.List>
+
+      <Tabs.Content>
+        <Tabs.Panel value="profile">Profile content</Tabs.Panel>
+        <Tabs.Panel value="notifications">Notifications content</Tabs.Panel>
+      </Tabs.Content>
+    </Tabs>
+  );
+}
+```
+
+### Using `useTabs()` inside a custom panel
+
+```tsx
+import { useTabs } from '@/registry/components/azemmur/tabs/tabs-context';
+
+function Panel({
+  value,
+  children,
+}: {
+  value: string;
+  children: React.ReactNode;
+}) {
+  const { getPanelId, getTriggerId } = useTabs();
+  return (
+    <div
+      role="tabpanel"
+      id={getPanelId(value)}
+      aria-labelledby={getTriggerId(value)}
+    >
+      {children}
+    </div>
+  );
+}
+```
+
+## API Reference
+
+### `Tabs` (root)
+
+<TypeTable
+  type={{
+    value: {
+      description:
+        'Controlled active tab value. Use for controlled components.',
+      type: 'string',
+      required: false,
+    },
+    defaultValue: {
+      description: 'Initial active tab value for uncontrolled usage.',
+      type: 'string',
+      required: false,
+    },
+    onValueChange: {
+      description: 'Called when the active value changes (selection callback).',
+      type: 'function',
+      required: false,
+      parameters: [{ name: 'value', description: 'string' }],
+    },
+    activation: {
+      description:
+        'Activation behavior: "auto" activates on focus; "manual" requires Enter/Space.',
+      type: 'enum',
+      typeDescription: '"auto" | "manual"',
+      required: false,
+      default: '"auto"',
+    },
+    ltr: {
+      description:
+        'Determines the logical direction for layout and keyboard interaction. When set to LTR, horizontal arrow keys follow standard left-to-right navigation.',
+      type: 'boolean',
+      required: false,
+      default: 'true',
+    },
+    intent: {
+      description: 'Semantic intent used by visual variants.',
+      type: 'enum',
+      typeDescription: '"primary" | "secondary" | "accent"',
+      default: '"primary"',
+      required: false,
+    },
+    styling: {
+      description: 'Trigger & indicator styling variant.',
+      type: 'enum',
+      typeDescription: '"underline" | "minimal" | "solid"',
+      default: '"underline"',
+      required: false,
+    },
+    visuals: {
+      description: 'Surface/background treatment.',
+      type: 'enum',
+      typeDescription:
+        '"filled" | "subtle" | "classic" | "outline" | "levitate"',
+      default: '"classic"',
+      required: false,
+    },
+    size: {
+      description: 'Size variant affecting spacing and typography.',
+      type: 'enum',
+      typeDescription: '"sm" | "md" | "lg"',
+      default: '"md"',
+      required: false,
+    },
+    shape: {
+      description: 'Global corner radius style for the component.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      default: '"rounded"',
+      required: false,
+    },
+    className: {
+      description: 'Custom class name applied to the root container.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description:
+        'Additional props passed to the root `div` (id, data-attrs, event handlers, etc.)',
+      type: 'ComponentProps<"div">',
+      required: false,
+    },
+  }}
+/>
+
+### `Tabs.List`
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Class names applied to the list wrapper.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description:
+        'Additional props forwarded to the list `<div>` (aria, data-attrs).',
+      type: 'ComponentProps<"div">',
+      required: false,
+    },
+  }}
+/>
+
+### `Tabs.Trigger`
+
+<ExternalLink
+  href="https://azemmur.raouf.codes/docs/primitives/button#button"
+  text="Azemmur API Reference - Button Primitive"
+/>
+
+<TypeTable
+  type={{
+    value: {
+      description:
+        'Unique value string that links this trigger to a `Tabs.Panel`.',
+      type: 'string',
+      required: true,
+    },
+    triggerClassName: {
+      description: 'Additional class names applied to the trigger button.',
+      type: 'string',
+      required: false,
+    },
+    indicatorClassName: {
+      description:
+        'Class names applied to the trigger’s visual indicator (if used).',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description:
+        'Additional props passed to the underlying motion-enabled button (event handlers, ARIA attributes, etc.)',
+      type: 'HTMLMotionProps<"button">',
+      required: false,
+    },
+  }}
+/>
+
+### `Tabs.Content`
+
+<TypeTable
+  type={{
+    className: {
+      description:
+        'Custom class names for the content wrapper (layout/overflow).',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description: 'Additional props forwarded to the content `<div>`.',
+      type: 'ComponentProps<"div">',
+      required: false,
+    },
+  }}
+/>
+
+### `Tabs.Panel`
+
+<TypeTable
+  type={{
+    value: {
+      description: 'Panel value string that must match a `Tabs.Trigger` value.',
+      type: 'string',
+      required: true,
+    },
+    className: {
+      description: 'Class names for the panel container.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description:
+        'All `motion.div` props are forwarded to the underlying animated panel.',
+      type: 'ComponentProps<typeof motion.div>',
+      required: false,
+    },
+  }}
+/>
+
+### `Tabs.Indicator`
+
+<TypeTable
+  type={{
+    intent: {
+      description: 'Semantic intent applied to the indicator.',
+      type: 'enum',
+      typeDescription: '"primary" | "secondary" | "accent"',
+      default: '"primary"',
+      required: false,
+    },
+    styling: {
+      description: 'Visual style of the indicator.',
+      type: 'enum',
+      typeDescription: '"underline" | "minimal" | "solid"',
+      default: '"underline"',
+      required: false,
+    },
+    visuals: {
+      description: 'Inherited visuals/surface treatment.',
+      type: 'enum',
+      typeDescription:
+        '"filled" | "subtle" | "classic" | "outline" | "levitate"',
+      default: '"classic"',
+      required: false,
+    },
+    shape: {
+      description: 'Corner rounding for the indicator element.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      default: '"rounded"',
+      required: false,
+    },
+    '...props': {
+      description:
+        'Additional props forwarded to the underlying motion `div` (layout, transition, data-attrs).',
+      type: 'ComponentProps<typeof motion.div>',
+      required: false,
+    },
+  }}
+/>
+
+### `useTabs()` hook
+
+```ts
+{
+  tabsId: string;
+  activeValue?: string;
+  onValueChange: (value: string) => void;
+  registerTrigger: (value: string, node: HTMLButtonElement | null) => void;
+  handleKeyDown: (e: React.KeyboardEvent, value: string) => void;
+  getPanelId: (value: string) => string;
+  getTriggerId: (value: string) => string;
+  intent?: string;
+  styling?: string;
+  visuals?: string;
+  size?: string;
+  shape?: string;
+  ltr?: boolean;
+  activation?: "auto" | "manual";
+}
+```
+
+## Variants
+
+Visual variants are powered by tabs-variants and applied consistently across the component:
+
+- `intent` — semantic intent (primary / secondary / accent)
+- `styling` — trigger & indicator style
+- `visuals` — surface / background treatment
+- `size` — spacing & typography
+- `shape` — border radius
+
+For more details, refer to the tables above.
+
+## Accessibility
+
+- `Tabs.List` renders `role="tablist"` with `aria-orientation`.
+- `Tabs.Trigger` uses `role="tab"`, `aria-selected`, and `aria-controls`.
+- `Tabs.Panel` uses `role="tabpanel"`, `id`, and `aria-labelledby`.
+- Ids are generated via `useTabs()` helpers for consistency.
+
+## Keyboard support
+
+- `ArrowRight` / `ArrowLeft` — move focus between tabs (respects `ltr`)
+- `Home` / `End` — jump to first / last tab
+- `'auto'` vs `'manual'` activation controls when selection changes
+
+## Notes
+
+- `Tabs` manages focus and selection internally unless controlled via `value`.
+- This component exposes a stable public API. Lower-level primitives (auto-height contents, advanced layout helpers) live in the shared UI package and are intentionally not part of this surface.

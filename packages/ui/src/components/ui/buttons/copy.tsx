@@ -1,16 +1,19 @@
 'use client';
 
-import * as React from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { CheckIcon, CopyIcon } from 'lucide-react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import {
+  IconCheck as CheckIcon,
+  IconCopy as CopyIcon,
+} from '@tabler/icons-react';
 
 import {
   Button as ButtonPrimitive,
   type ButtonProps as ButtonPrimitiveProps,
 } from '@workspace/ui/components/primitives/button';
-import { cn } from '@workspace/ui/lib/utils';
 import { useControlledState } from '@workspace/ui/hooks/use-controlled-state';
+import { cn } from '@workspace/ui/lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { AnimatePresence, motion } from 'motion/react';
+import * as React from 'react';
 import { copyToClipboard } from '@/utils/copy-to-clipboard';
 
 /* -------------------------------------------------------------------------- */

@@ -1,0 +1,7 @@
+{
+  "title": "Primitives",
+  "description": "Base Components",
+  "icon": "BrainCog",
+  "root": false,
+  "pages": ["button"]
+}

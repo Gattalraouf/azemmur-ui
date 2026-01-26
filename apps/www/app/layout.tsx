@@ -1,6 +1,6 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import { Metadata } from 'next';
-import './global.css';
+import '@/app/global.css';
 import { Inter } from 'next/font/google';
 import { getBaseUrl } from '@/lib/get-base-url';
 

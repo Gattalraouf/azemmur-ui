@@ -9,6 +9,8 @@ But not everyone experiences motion the same way. For some users, strong or cont
 
 At Azemmur, accessibility is a **core principle** — every animated interaction should feel **intentional, subtle, and inclusive**. That’s why all Azemmur components are built with **Reduced Motion** support through [Motion](https://motion.dev/).
 
+> **Accessibility is not optional** — it’s a design choice that empowers everyone to enjoy your interface, comfortably and confidently.
+
 ## Prefers Reduced Motion
 
 Modern operating systems and browsers expose a setting called **Reduced Motion** (`prefers-reduced-motion`).  
@@ -43,6 +45,8 @@ With `reducedMotion="user"`, Motion automatically:
 - Keeps helpful, subtle effects (like opacity or background-color transitions).
 - Ensures all Azemmur components adapt without extra configuration.
 
+For more guidance on accessible motion, see the [Motion documentation](https://motion.dev/docs/react-accessibility).
+
 ## Design Philosophy
 
 Accessibility in animation is about **balance** — creating expressive interactions that remain **comfortable and inclusive** for all users.
@@ -50,19 +54,3 @@ Azemmur embraces this principle by default: every component aims to be **beautif
 
 > **Inclusive motion is thoughtful motion.**
 > When animation enhances usability instead of overwhelming it, design becomes universal.
-
-## Recommendation
-
-We recommend adding:
-
-```tsx
-<MotionConfig reducedMotion="user" />
-```
-
-at the **root level** of your app to ensure all animations respect system preferences.
-
-For more guidance on accessible motion, see the [Motion documentation](https://motion.dev/docs/react-accessibility).
-
----
-
-**Accessibility is not optional** — it’s a design choice that empowers everyone to enjoy your interface, comfortably and confidently.

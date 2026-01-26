@@ -1,5 +1,7 @@
 {
   "name": "azemmur",
+  "license": "MIT",
+  "author": "raouf.codes",
   "version": "0.0.1",
   "type": "module",
   "private": true,
@@ -19,7 +21,6 @@
     "fumadocs-core": "16.4.1",
     "fumadocs-mdx": "14.2.3",
     "fumadocs-ui": "16.4.1",
-    "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",

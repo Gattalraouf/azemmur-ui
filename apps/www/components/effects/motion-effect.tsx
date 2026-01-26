@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import {
   AnimatePresence,
   motion,
@@ -10,6 +9,7 @@ import {
   type Transition,
   type Variant,
 } from 'motion/react';
+import * as React from 'react';
 
 type MotionEffectProps = HTMLMotionProps<'div'> & {
   children: React.ReactNode;

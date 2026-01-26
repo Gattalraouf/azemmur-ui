@@ -1,17 +1,17 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
-import { CodeTabs } from '@/components/docs/code-tabs';
+import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
+import { cn } from '@workspace/ui/lib/utils';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from 'fumadocs-ui/components/ui/collapsible';
-import { Button } from '@workspace/ui/components/ui/buttons/button';
-import { cn } from '@workspace/ui/lib/utils';
-import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
+import { useRef, useState } from 'react';
+import { CodeTabs } from '@/components/docs/code-tabs';
+import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
+import { Button } from '@/registry/components/azemmur/button';
 
 /* -------------------------------------------------------------------------- */
 /*                        Helper Functions for Commands                        */
@@ -147,7 +147,7 @@ export const ComponentManualInstallation = ({
                 )}
               >
                 <CollapsibleTrigger asChild>
-                  <Button variant="accent" className="h-8 text-xs">
+                  <Button intent="accent">
                     {isOpened ? 'Collapse' : 'Expand'}
                   </Button>
                 </CollapsibleTrigger>
