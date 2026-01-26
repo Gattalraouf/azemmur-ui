@@ -18,6 +18,23 @@
       "files": []
     },
     {
+      "name": "components-blur-image",
+      "type": "registry:ui",
+      "title": "Blur Image",
+      "description": "An image component that shows a low-quality blurred placeholder while loading.",
+      "dependencies": [
+        "next/image"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/azemmur/blur-image/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/blur-image.tsx"
+        }
+      ]
+    },
+    {
       "name": "components-button",
       "type": "registry:ui",
       "title": "Button",
@@ -152,6 +169,38 @@
           "target": "components/azemmur/primitives/slot.tsx"
         }
       ]
+    },
+    {
+      "name": "demo-components-blur-image",
+      "type": "registry:ui",
+      "title": "Blur Image Demo",
+      "description": "Demo for the blur image component.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@azemmur/components-blur-image"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/azemmur/blur-image/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/demo/components/blur-image.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "BlurImage": {
+            "src": {
+              "value": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/dae2cf242954131.6977de86013f2.png"
+            },
+            "width": {
+              "value": 400
+            },
+            "height": {
+              "value": 210
+            }
+          }
+        }
+      }
     },
     {
       "name": "demo-components-button",
