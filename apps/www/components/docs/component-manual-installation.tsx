@@ -1,17 +1,17 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
-import { CodeTabs } from '@/components/docs/code-tabs';
+import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
+import { cn } from '@workspace/ui/lib/utils';
 import { Step, Steps } from 'fumadocs-ui/components/steps';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from 'fumadocs-ui/components/ui/collapsible';
+import { useRef, useState } from 'react';
+import { CodeTabs } from '@/components/docs/code-tabs';
+import { DynamicCodeBlock } from '@/components/docs/dynamic-codeblock';
 import { Button } from '@/registry/components/azemmur/button';
-import { cn } from '@workspace/ui/lib/utils';
-import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
 
 /* -------------------------------------------------------------------------- */
 /*                        Helper Functions for Commands                        */

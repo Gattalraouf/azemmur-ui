@@ -1,8 +1,8 @@
 'use client';
 
-import { forwardRef } from 'react';
-import { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
 import { cn } from '@workspace/ui/lib/utils';
+import { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
+import { forwardRef } from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                                Scroll Area                                  */

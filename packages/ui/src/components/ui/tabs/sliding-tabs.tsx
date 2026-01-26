@@ -1,6 +1,18 @@
 'use client';
 
 import {
+  Highlight,
+  HighlightItem,
+  type HighlightItemProps,
+  type HighlightProps,
+} from '@workspace/ui/components/primitives/effects/highlight';
+import {
+  Slot,
+  type WithAsChild,
+} from '@workspace/ui/components/primitives/slot';
+import { getStrictContext } from '@workspace/ui/lib/get-strict-context';
+import { motion, type Transition, type HTMLMotionProps } from 'motion/react';
+import {
   useState,
   useEffect,
   useLayoutEffect,
@@ -10,18 +22,6 @@ import {
   Children,
   isValidElement,
 } from 'react';
-import { motion, type Transition, type HTMLMotionProps } from 'motion/react';
-import {
-  Highlight,
-  HighlightItem,
-  type HighlightItemProps,
-  type HighlightProps,
-} from '@workspace/ui/components/primitives/effects/highlight';
-import { getStrictContext } from '@workspace/ui/lib/get-strict-context';
-import {
-  Slot,
-  type WithAsChild,
-} from '@workspace/ui/components/primitives/slot';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

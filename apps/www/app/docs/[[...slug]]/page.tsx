@@ -1,4 +1,9 @@
-import { source } from '@/lib/source';
+import {
+  IconArrowLeft as ArrowLeft,
+  IconArrowRight as ArrowRight,
+} from '@tabler/icons-react';
+import { findNeighbour } from 'fumadocs-core/page-tree';
+import { createRelativeLink } from 'fumadocs-ui/mdx';
 import {
   DocsPage,
   DocsBody,
@@ -6,20 +11,15 @@ import {
   DocsTitle,
   EditOnGitHub,
 } from 'fumadocs-ui/page';
-import { notFound } from 'next/navigation';
-import { createRelativeLink } from 'fumadocs-ui/mdx';
-import { getMDXComponents } from '@/mdx-components';
-import { DocsAuthor } from '@/components/docs/docs-author';
-import { ViewOptions, LLMCopyButton } from '@/components/docs/page-actions';
-import { Footer } from '@/components/docs/footer';
-import { Button } from '@/registry/components/azemmur/button';
-import {
-  IconArrowLeft as ArrowLeft,
-  IconArrowRight as ArrowRight,
-} from '@tabler/icons-react';
 import Link from 'next/link';
-import { findNeighbour } from 'fumadocs-core/page-tree';
+import { notFound } from 'next/navigation';
+import { DocsAuthor } from '@/components/docs/docs-author';
+import { Footer } from '@/components/docs/footer';
+import { ViewOptions, LLMCopyButton } from '@/components/docs/page-actions';
 import { baseOptions } from '@/lib/layout.shared';
+import { source } from '@/lib/source';
+import { getMDXComponents } from '@/mdx-components';
+import { Button } from '@/registry/components/azemmur/button';
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;

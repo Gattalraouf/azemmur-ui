@@ -2,6 +2,7 @@
 
 'use client';
 
+import { cn } from '@workspace/ui/lib/utils';
 import React, {
   useId,
   useState,
@@ -11,7 +12,6 @@ import React, {
   useCallback,
   ComponentProps,
 } from 'react';
-import { cn } from '@workspace/ui/lib/utils';
 import { TabsContext } from '@/registry/components/azemmur/tabs/tabs-context';
 import { TabsVariantProps } from '@/registry/components/azemmur/tabs/tabs-variants';
 

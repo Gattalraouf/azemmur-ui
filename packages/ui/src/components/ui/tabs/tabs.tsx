@@ -1,4 +1,3 @@
-import * as React from 'react';
 
 import {
   Tabs as TabsPrimitive,
@@ -15,6 +14,7 @@ import {
   type TabsContentsProps as TabsContentsPrimitiveProps,
 } from '@workspace/ui/components/primitives/tabs';
 import { cn } from '@workspace/ui/lib/utils';
+import * as React from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

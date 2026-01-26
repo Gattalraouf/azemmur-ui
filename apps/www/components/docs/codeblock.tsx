@@ -1,5 +1,13 @@
 'use client';
 
+import { CopyButton } from '@workspace/ui/components/ui/buttons/copy';
+import {
+  ScrollArea,
+  ScrollBar,
+  ScrollViewport,
+} from '@workspace/ui/components/ui/scroll/scroll-area';
+import { cn } from '@workspace/ui/lib/utils';
+import type { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
 import {
   forwardRef,
   useCallback,
@@ -8,14 +16,6 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from 'react';
-import { cn } from '@workspace/ui/lib/utils';
-import {
-  ScrollArea,
-  ScrollBar,
-  ScrollViewport,
-} from '@workspace/ui/components/ui/scroll/scroll-area';
-import type { ScrollArea as ScrollAreaPrimitive } from 'radix-ui';
-import { CopyButton } from '@workspace/ui/components/ui/buttons/copy';
 import { copyToClipboard } from '@/utils/copy-to-clipboard';
 
 /* -------------------------------------------------------------------------- */

@@ -2,10 +2,10 @@
 
 'use client';
 
-import React, { type ComponentProps } from 'react';
-import { motion } from 'motion/react';
-import { useTabs } from '@/registry/components/azemmur/tabs/tabs-context';
 import { cn } from '@workspace/ui/lib/utils';
+import { motion } from 'motion/react';
+import React, { type ComponentProps } from 'react';
+import { useTabs } from '@/registry/components/azemmur/tabs/tabs-context';
 
 export interface TabPanelProps extends ComponentProps<typeof motion.div> {
   value: string;

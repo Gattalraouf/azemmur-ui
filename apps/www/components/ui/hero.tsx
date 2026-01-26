@@ -1,13 +1,13 @@
-import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
-import TSIcon from '@workspace/ui/components/ui/icons/ts-icon';
-import TailwindIcon from '@workspace/ui/components/ui/icons/tailwind-icon';
-import MotionIcon from '@workspace/ui/components/ui/icons/motion-icon';
-import ShadcnIcon from '@workspace/ui/components/ui/icons/shadcn-icon';
-import { Button } from '@/registry/components/azemmur/button';
-import Link from 'next/link';
-import { MotionEffect } from '@/components/effects/motion-effect';
 import { IconArrowRight } from '@tabler/icons-react';
 import { AnimateIcon } from '@workspace/ui/components/ui/icons/icon';
+import MotionIcon from '@workspace/ui/components/ui/icons/motion-icon';
+import ReactIcon from '@workspace/ui/components/ui/icons/react-icon';
+import ShadcnIcon from '@workspace/ui/components/ui/icons/shadcn-icon';
+import TailwindIcon from '@workspace/ui/components/ui/icons/tailwind-icon';
+import TSIcon from '@workspace/ui/components/ui/icons/ts-icon';
+import Link from 'next/link';
+import { MotionEffect } from '@/components/effects/motion-effect';
+import { Button } from '@/registry/components/azemmur/button';
 
 const ICONS = [ReactIcon, TSIcon, TailwindIcon, MotionIcon, ShadcnIcon];
 const TITLE = 'Craft beautiful, accessible interfaces, your way.';

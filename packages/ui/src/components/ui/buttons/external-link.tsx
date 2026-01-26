@@ -1,7 +1,7 @@
 'use client';
 
-import { cn } from '@workspace/ui/lib/utils';
 import { IconExternalLink as ExternalLinkIcon } from '@tabler/icons-react';
+import { cn } from '@workspace/ui/lib/utils';
 import { motion } from 'motion/react';
 
 /* -------------------------------------------------------------------------- */

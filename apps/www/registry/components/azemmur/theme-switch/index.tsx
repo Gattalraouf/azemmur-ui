@@ -1,13 +1,13 @@
 // Copyright (c) 2025 raouf.codes - Azemmur
 
 'use client';
-import { useCallback } from 'react';
-import { useTheme } from 'next-themes';
-import { motion, AnimatePresence } from 'motion/react';
 import { IconSunLow, IconMoon } from '@tabler/icons-react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { Button as ButtonPrimitive } from '@/registry/components/primitives/button';
 import { cn } from '@workspace/ui/lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { motion, AnimatePresence } from 'motion/react';
+import { useTheme } from 'next-themes';
+import { useCallback } from 'react';
+import { Button as ButtonPrimitive } from '@/registry/components/primitives/button';
 
 const themeSwitchVariants = cva(
   [

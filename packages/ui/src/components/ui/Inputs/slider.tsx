@@ -1,9 +1,9 @@
 'use client';
 
-import { useMemo } from 'react';
-import { Slider as SliderPrimitive } from 'radix-ui';
-
 import { cn } from '@workspace/ui/lib/utils';
+import { Slider as SliderPrimitive } from 'radix-ui';
+import { useMemo } from 'react';
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

@@ -1,6 +1,5 @@
 'use client';
 
-import { Select as SelectPrimitive } from 'radix-ui';
 import {
   IconCheck as CheckIcon,
   IconChevronDown as ChevronDownIcon,
@@ -8,6 +7,7 @@ import {
 } from '@tabler/icons-react';
 
 import { cn } from '@workspace/ui/lib/utils';
+import { Select as SelectPrimitive } from 'radix-ui';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

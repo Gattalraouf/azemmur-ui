@@ -1,8 +1,8 @@
 'use client';
 
-import { useMemo, isValidElement } from 'react';
-import { motion, isMotionComponent, type HTMLMotionProps } from 'motion/react';
 import { cn } from '@workspace/ui/lib/utils';
+import { motion, isMotionComponent, type HTMLMotionProps } from 'motion/react';
+import { useMemo, isValidElement } from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */

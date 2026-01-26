@@ -2,8 +2,8 @@
 // Copyright (c) 2025 raouf.codes
 
 'use client';
-import * as React from 'react';
 import { cn } from '@workspace/ui/lib/utils';
+import * as React from 'react';
 
 const SubMarkLogo = ({
   className,

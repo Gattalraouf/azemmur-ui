@@ -1,7 +1,7 @@
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getBaseUrl } from '@/lib/get-base-url';
 import { getPageImage, source } from '@/lib/source';
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
 
 interface Props {
   children: React.ReactNode;

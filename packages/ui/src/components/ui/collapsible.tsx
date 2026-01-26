@@ -1,19 +1,19 @@
 'use client';
 
 import {
+  AnimatePresence,
+  motion,
+  type HTMLMotionProps,
+  type Transition,
+} from 'motion/react';
+import { Collapsible as CollapsiblePrimitive } from 'radix-ui';
+import {
   useEffect,
   useState,
   useCallback,
   createContext,
   useContext,
 } from 'react';
-import { Collapsible as CollapsiblePrimitive } from 'radix-ui';
-import {
-  AnimatePresence,
-  motion,
-  type HTMLMotionProps,
-  type Transition,
-} from 'motion/react';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Context                                  */

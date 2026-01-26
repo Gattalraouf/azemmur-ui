@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Button } from '@/registry/components/azemmur/button';
-import { cn } from '@workspace/ui/lib/utils';
 import {
   IconMaximize as Fullscreen,
   IconRotateClockwise as RotateCcw,
   IconAdjustmentsHorizontal as SlidersHorizontal,
 } from '@tabler/icons-react';
-import Iframe from '@/components/docs/iframe';
 import { useIsMobile } from '@workspace/ui/hooks/use-mobile';
+import { cn } from '@workspace/ui/lib/utils';
+import { motion } from 'motion/react';
+import { useState } from 'react';
+import Iframe from '@/components/docs/iframe';
+import { Button } from '@/registry/components/azemmur/button';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Types                                     */

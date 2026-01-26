@@ -1,5 +1,6 @@
 // Copyright (c) 2025 raouf.codes - Azemmur
 
+import { cn } from '@workspace/ui/lib/utils';
 import React, {
   useEffect,
   useRef,
@@ -7,11 +8,10 @@ import React, {
   useImperativeHandle,
   forwardRef,
 } from 'react';
-import { Button as ButtonPrimitive } from '@/registry/components/primitives/button';
-import { cn } from '@workspace/ui/lib/utils';
-import { TabsIndicator as Indicator } from '@/registry/components/azemmur/tabs/tabs-indicator';
 import { useTabs } from '@/registry/components/azemmur/tabs/tabs-context';
+import { TabsIndicator as Indicator } from '@/registry/components/azemmur/tabs/tabs-indicator';
 import { triggerVariants } from '@/registry/components/azemmur/tabs/tabs-variants';
+import { Button as ButtonPrimitive } from '@/registry/components/primitives/button';
 
 interface TabTriggerProps extends Omit<
   ComponentPropsWithoutRef<typeof ButtonPrimitive>,

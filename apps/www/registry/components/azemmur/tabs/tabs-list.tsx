@@ -1,8 +1,8 @@
 // Copyright (c) 2025 raouf.codes - Azemmur
 'use client';
 
-import React, { ComponentProps } from 'react';
 import { cn } from '@workspace/ui/lib/utils';
+import React, { ComponentProps } from 'react';
 import { useTabs } from '@/registry/components/azemmur/tabs/tabs-context';
 import { listVariants } from '@/registry/components/azemmur/tabs/tabs-variants';
 

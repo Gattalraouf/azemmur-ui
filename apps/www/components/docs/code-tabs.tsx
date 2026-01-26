@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
-import { cn } from '@workspace/ui/lib/utils';
+import { CopyButton } from '@workspace/ui/components/ui/buttons/copy';
 import {
   Tabs,
   TabsContent,
@@ -13,7 +11,9 @@ import {
   TabsHighlightItem,
   type TabsProps,
 } from '@workspace/ui/components/ui/tabs/sliding-tabs';
-import { CopyButton } from '@workspace/ui/components/ui/buttons/copy';
+import { cn } from '@workspace/ui/lib/utils';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 /* -------------------------------------------------------------------------- */
 /*                                   Types                                    */

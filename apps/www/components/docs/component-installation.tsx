@@ -1,7 +1,5 @@
 'use client';
 
-import { index } from '@/__registry__';
-import { cn } from '@workspace/ui/lib/utils';
 import {
   Tabs,
   TabsList,
@@ -9,6 +7,8 @@ import {
   TabsContent,
   TabsContents,
 } from '@workspace/ui/components/ui/tabs/tabs';
+import { cn } from '@workspace/ui/lib/utils';
+import { index } from '@/__registry__';
 import { CodeTabs } from '@/components/docs/code-tabs';
 import { ComponentManualInstallation } from '@/components/docs/component-manual-installation';
 
