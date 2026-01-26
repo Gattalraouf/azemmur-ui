@@ -1,163 +1,22 @@
-'use client';
+import { TabTrigger } from '@/registry/components/azemmur/tabs/tabs-trigger';
+import { TabsRoot } from '@/registry/components/azemmur/tabs/tabs-root';
+import { TabsList } from '@/registry/components/azemmur/tabs/tabs-list';
+import { TabPanel } from '@/registry/components/azemmur/tabs/tabs-panel';
+import { TabsContent } from '@/registry/components/azemmur/tabs/tabs-content';
 
-import React, { useId, useRef, useState } from 'react';
-import { cn } from '@workspace/ui/lib/utils';
-import { cva, type VariantProps } from 'class-variance-authority';
-import {
-  TabTrigger,
-  tabTriggerVariants,
-} from '@/registry/components/azemmur/tabTrigger';
+type TabsComponent = typeof TabsRoot & {
+  List: typeof import('@/registry/components/azemmur/tabs/tabs-list').TabsList;
+  Trigger: typeof import('@/registry/components/azemmur/tabs/tabs-trigger').TabTrigger;
 
-const layoutVariants = cva(
-  'relative h-fit overflow-x-auto scrollbar-hide inline-flex whitespace-nowrap overflow-y-hidden',
-  {
-    variants: {
-      intent: {
-        primary: 'bg-primary text-primary border-primary',
-        secondary: 'bg-secondary text-secondary border-secondary',
-        accent: 'bg-accent text-accent border-accent',
-      },
-      visuals: {
-        filled: 'px-0',
-        subtle: 'bg-transparent px-8',
-        classic: 'bg-transparent border-b px-8 rounded-none',
-        outline: 'bg-transparent border-2 px-0',
-        levitate: 'p-2',
-      },
-      size: {
-        sm: 'text-sm',
-        md: 'text-base',
-        lg: 'text-lg',
-      },
-      shape: {
-        rounded: 'rounded-md',
-        pill: 'rounded-full',
-        sharp: 'rounded-none',
-      },
-    },
-    compoundVariants: [
-      {
-        visuals: 'classic',
-        shape: ['rounded', 'pill'],
-        className: 'rounded-none',
-      },
-      {
-        intent: 'primary',
-        visuals: ['filled', 'levitate'],
-        className: 'bg-primary-foreground/40',
-      },
-      {
-        intent: 'secondary',
-        visuals: ['filled', 'levitate'],
-        className: 'bg-secondary-foreground/40',
-      },
-      {
-        intent: 'accent',
-        visuals: ['filled', 'levitate'],
-        className: 'bg-accent-foreground/40',
-      },
-    ],
-    defaultVariants: {
-      visuals: 'classic',
-      size: 'md',
-      shape: 'rounded',
-    },
-  },
-);
+  Content: typeof import('@/registry/components/azemmur/tabs/tabs-content').TabsContent;
+  Panel: typeof import('@/registry/components/azemmur/tabs/tabs-panel').TabPanel;
+};
 
-type TabsVariantProps = VariantProps<typeof layoutVariants> &
-  VariantProps<typeof tabTriggerVariants>;
+const Tabs = TabsRoot as TabsComponent;
 
-interface TabsProps extends TabsVariantProps {
-  tabs: string[];
-  activeTabId?: number;
-  onTabChange?: (tabIndex: number, tabsId: string) => void;
-  className?: string;
-  tabClassName?: string;
-  ltr?: boolean;
-}
+Tabs.Trigger = TabTrigger;
+Tabs.List = TabsList;
+Tabs.Content = TabsContent;
+Tabs.Panel = TabPanel;
 
-function Tabs({
-  tabs,
-  activeTabId,
-  onTabChange,
-  className,
-  tabClassName,
-  ltr = true,
-  intent,
-  styling,
-  visuals,
-  size,
-  shape,
-}: TabsProps) {
-  const tabsId = useId();
-  const [internalTab, setInternalTab] = useState(0);
-  const activeTab = activeTabId ?? internalTab;
-
-  const [focusedIndex, setFocusedIndex] = useState(activeTab);
-
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
-
-  const handleSelect = (index: number) => {
-    setInternalTab(index);
-    setFocusedIndex(index);
-    onTabChange?.(index, tabsId);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-    const forwardKey = ltr ? 'ArrowRight' : 'ArrowLeft';
-    const backwardKey = ltr ? 'ArrowLeft' : 'ArrowRight';
-
-    let nextIndex = index;
-
-    if (e.key === forwardKey) nextIndex = (index + 1) % tabs.length;
-    else if (e.key === backwardKey)
-      nextIndex = (index - 1 + tabs.length) % tabs.length;
-    else if (e.key === 'Home') nextIndex = 0;
-    else if (e.key === 'End') nextIndex = tabs.length - 1;
-    else return;
-
-    e.preventDefault();
-    setFocusedIndex(nextIndex);
-    tabRefs.current[nextIndex]?.focus();
-  };
-
-  return (
-    <div
-      role="tablist"
-      aria-label="Navigation Tabs"
-      aria-orientation="horizontal"
-      dir={ltr ? 'ltr' : 'rtl'}
-      className={cn(
-        layoutVariants({ intent, visuals, size, shape }),
-        className,
-      )}
-    >
-      {tabs.map((tab, idx) => {
-        const isActive = idx === activeTab;
-
-        return (
-          <TabTrigger
-            key={`tab-${tabsId}-${idx}`}
-            tabsId={tabsId}
-            idx={idx}
-            label={tab}
-            active={isActive}
-            onSelect={handleSelect}
-            onKeyDown={(e) => handleKeyDown(e, idx)}
-            buttonRef={(el) => {
-              tabRefs.current[idx] = el;
-            }}
-            intent={intent}
-            styling={styling}
-            shape={shape}
-            visuals={visuals}
-            tabClassName={tabClassName}
-          />
-        );
-      })}
-    </div>
-  );
-}
-
-export { Tabs, type TabsProps, type TabsVariantProps };
+export { Tabs };

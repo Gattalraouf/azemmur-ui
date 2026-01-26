@@ -4,13 +4,53 @@
   "type": "registry:ui",
   "title": "Tabs",
   "description": "Animated tablist with accessible keyboard navigation and animated underline.",
-  "dependencies": ["class-variance-authority"],
-  "registryDependencies": ["components-tab-trigger"],
+  "dependencies": ["motion", "class-variance-authority"],
+  "registryDependencies": ["@azemmur/primitives-button"],
   "files": [
     {
       "path": "registry/components/azemmur/tabs/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/tabs.tsx"
+      "target": "components/azemmur/components/tabs/index.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-root.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs/tabs-root.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-context.tsx",
+      "type": "registry:hook",
+      "target": "components/azemmur/components/tabs/tabs-context.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-list.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs/tabs-list.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-trigger.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs/tabs-trigger.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-indicator.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs/tabs-indicator.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-content.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs/tabs-content.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-panel.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs/tabs-panel.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/tabs/tabs-variants.ts",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/tabs/tabs-variants.ts"
     }
   ]
 }

@@ -59,98 +59,77 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/components-button',
   },
-  'components-tab-indicator': {
-    name: 'components-tab-indicator',
-    description: 'Animated visual indicator for the active tab.',
-    type: 'registry:ui',
-    dependencies: ['motion', 'class-variance-authority'],
-    devDependencies: undefined,
-    registryDependencies: [],
-    files: [
-      {
-        path: 'registry/components/azemmur/tabIndicator/index.tsx',
-        type: 'registry:ui',
-        target: 'components/azemmur/components/tabIndicator.tsx',
-        content:
-          "import { motion } from 'motion/react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nconst tabIndicatorVariants = cva('absolute', {\n  variants: {\n    intent: {\n      primary: 'bg-primary text-primary border-primary',\n      secondary: 'bg-secondary text-secondary border-secondary',\n      accent: 'bg-accent text-accent border-accent',\n    },\n    styling: {\n      underline: 'bottom-0 h-1 start-0 end-0 bg-primary',\n      minimal: 'bottom-0 h-2 w-2 left-1/2 -translate-x-1/2 bg-current',\n      solid: 'inset-0',\n    },\n    visuals: {\n      filled: '',\n      subtle: '',\n      classic: '',\n      outline: '',\n      levitate: '',\n    },\n    shape: {\n      rounded: 'rounded-md',\n      pill: 'rounded-full',\n      sharp: 'rounded-none',\n    },\n    active: {\n      true: '',\n      false: '',\n    },\n  },\n  compoundVariants: [\n    {\n      styling: 'solid',\n      visuals: 'classic',\n      className: 'rounded-b-none',\n    },\n    {\n      styling: 'solid',\n      visuals: 'classic',\n      shape: 'pill',\n      className: 'rounded-b-none rounded-t-md',\n    },\n    {\n      styling: 'solid',\n      visuals: 'outline',\n      className: 'rounded-none',\n    },\n  ],\n  defaultVariants: {\n    styling: 'underline',\n    shape: 'rounded',\n  },\n});\n\ntype TabIndicatorProps = VariantProps<typeof tabIndicatorVariants>;\n\nfunction TabIndicator({\n  tabsId,\n  intent,\n  styling,\n  shape,\n  visuals,\n  active,\n}: {\n  tabsId: string;\n  intent?: TabIndicatorProps['intent'];\n  styling?: TabIndicatorProps['styling'];\n  shape?: TabIndicatorProps['shape'];\n  visuals?: TabIndicatorProps['visuals'];\n  active?: TabIndicatorProps['active'];\n}) {\n  return (\n    <motion.div\n      layoutId={`activeUnderline-${tabsId}`}\n      className={cn(\n        tabIndicatorVariants({ intent, styling, shape, visuals, active }),\n      )}\n      transition={{\n        type: 'spring',\n        stiffness: 380,\n        damping: 25,\n      }}\n    />\n  );\n}\n\nexport { TabIndicator, tabIndicatorVariants, type TabIndicatorProps };",
-      },
-    ],
-    keywords: [],
-    component: (function () {
-      const LazyComp = React.lazy(async () => {
-        const mod =
-          await import('@/registry/components/azemmur/tabIndicator/index.tsx');
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === 'function' || typeof mod[key] === 'object',
-          ) || 'components-tab-indicator';
-        const Comp = mod.default || mod[exportName];
-        if (mod.animations) {
-          (LazyComp as any).animations = mod.animations;
-        }
-        return { default: Comp };
-      });
-      LazyComp.demoProps = {};
-      return LazyComp;
-    })(),
-    command: '@azemmur/components-tab-indicator',
-  },
-  'components-tab-item': {
-    name: 'components-tab-item',
-    description: 'Single tab trigger used within the Tabs component.',
-    type: 'registry:ui',
-    dependencies: ['class-variance-authority'],
-    devDependencies: undefined,
-    registryDependencies: [
-      '@azemmur/primitives-button',
-      '@azemmur/tab-indicator',
-    ],
-    files: [
-      {
-        path: 'registry/components/azemmur/tabTrigger/index.tsx',
-        type: 'registry:ui',
-        target: 'components/azemmur/components/tabTrigger.tsx',
-        content:
-          "import { cva, type VariantProps } from 'class-variance-authority';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\nimport {\n  TabIndicator as Indicator,\n  tabIndicatorVariants,\n} from '@/components/azemmur/components/azemmur/tabIndicator';\n\nconst tabTriggerVariants = cva(\n  'relative px-6 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-0 focus-visible:bg-ring/40 focus-visible:rounded-b-none',\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        secondary: 'bg-secondary text-secondary border-secondary',\n        accent: 'bg-accent text-accent border-accent',\n      },\n      styling: {\n        underline: 'bg-transparent',\n        minimal: 'bg-transparent',\n        solid: 'bg-transparent',\n      },\n      active: {\n        true: 'font-bold',\n        false: 'text-foreground',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        active: true,\n        className: 'text-primary-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        active: true,\n        className: 'text-secondary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        active: true,\n        className: 'text-accent-foreground',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'underline',\n    },\n  },\n);\n\ntype TabTriggerProps = VariantProps<typeof tabTriggerVariants> &\n  VariantProps<typeof tabIndicatorVariants>;\n\nfunction TabTrigger({\n  tabsId,\n  idx,\n  label,\n  onSelect,\n  onKeyDown,\n  buttonRef,\n  intent,\n  styling,\n  shape,\n  active,\n  visuals,\n  tabClassName,\n}: {\n  tabsId: string;\n  idx: number;\n  label: string;\n  onSelect: (i: number) => void;\n  onKeyDown: (e: React.KeyboardEvent) => void;\n  buttonRef: (el: HTMLButtonElement | null) => void;\n  intent?: TabTriggerProps['intent'];\n  styling?: TabTriggerProps['styling'];\n  shape?: TabTriggerProps['shape'];\n  active?: TabTriggerProps['active'];\n  visuals?: TabTriggerProps['visuals'];\n  tabClassName?: string;\n}) {\n  return (\n    <ButtonPrimitive\n      key={`tab-${tabsId}-${idx}`}\n      ref={buttonRef}\n      role=\"tab\"\n      aria-selected={active?.valueOf()}\n      aria-controls={`panel-${tabsId}-${idx}`}\n      id={`tab-${tabsId}-${idx}`}\n      tabIndex={active?.valueOf() ? 0 : -1}\n      onClick={() => onSelect(idx)}\n      onKeyDown={onKeyDown}\n      data-label={label}\n      className={cn(\n        'after:content-[attr(data-label)] after:block after:h-0 after:invisible',\n        tabTriggerVariants({ intent, styling, active }),\n        tabClassName,\n      )}\n    >\n      <span className=\"relative z-10\">{label}</span>\n\n      {active?.valueOf() && (\n        <Indicator\n          tabsId={tabsId}\n          intent={intent}\n          styling={styling}\n          active={active}\n          shape={shape}\n          visuals={visuals}\n        />\n      )}\n    </ButtonPrimitive>\n  );\n}\n\nexport { TabTrigger, tabTriggerVariants, type TabTriggerProps };",
-      },
-    ],
-    keywords: [],
-    component: (function () {
-      const LazyComp = React.lazy(async () => {
-        const mod =
-          await import('@/registry/components/azemmur/tabTrigger/index.tsx');
-        const exportName =
-          Object.keys(mod).find(
-            (key) =>
-              typeof mod[key] === 'function' || typeof mod[key] === 'object',
-          ) || 'components-tab-item';
-        const Comp = mod.default || mod[exportName];
-        if (mod.animations) {
-          (LazyComp as any).animations = mod.animations;
-        }
-        return { default: Comp };
-      });
-      LazyComp.demoProps = {};
-      return LazyComp;
-    })(),
-    command: '@azemmur/components-tab-item',
-  },
   'components-tabs': {
     name: 'components-tabs',
     description:
       'Animated tablist with accessible keyboard navigation and animated underline.',
     type: 'registry:ui',
-    dependencies: ['class-variance-authority'],
+    dependencies: ['motion', 'class-variance-authority'],
     devDependencies: undefined,
-    registryDependencies: ['components-tab-trigger'],
+    registryDependencies: ['@azemmur/primitives-button'],
     files: [
       {
         path: 'registry/components/azemmur/tabs/index.tsx',
         type: 'registry:ui',
-        target: 'components/azemmur/components/tabs.tsx',
+        target: 'components/azemmur/components/tabs/index.tsx',
         content:
-          "'use client';\n\nimport React, { useId, useRef, useState } from 'react';\nimport { cn } from '@/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport {\n  TabTrigger,\n  tabTriggerVariants,\n} from '@/components/azemmur/components/azemmur/tabTrigger';\n\nconst layoutVariants = cva(\n  'relative h-fit overflow-x-auto scrollbar-hide inline-flex whitespace-nowrap overflow-y-hidden',\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary text-primary border-primary',\n        secondary: 'bg-secondary text-secondary border-secondary',\n        accent: 'bg-accent text-accent border-accent',\n      },\n      visuals: {\n        filled: 'px-0',\n        subtle: 'bg-transparent px-8',\n        classic: 'bg-transparent border-b px-8 rounded-none',\n        outline: 'bg-transparent border-2 px-0',\n        levitate: 'p-2',\n      },\n      size: {\n        sm: 'text-sm',\n        md: 'text-base',\n        lg: 'text-lg',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        visuals: 'classic',\n        shape: ['rounded', 'pill'],\n        className: 'rounded-none',\n      },\n      {\n        intent: 'primary',\n        visuals: ['filled', 'levitate'],\n        className: 'bg-primary-foreground/40',\n      },\n      {\n        intent: 'secondary',\n        visuals: ['filled', 'levitate'],\n        className: 'bg-secondary-foreground/40',\n      },\n      {\n        intent: 'accent',\n        visuals: ['filled', 'levitate'],\n        className: 'bg-accent-foreground/40',\n      },\n    ],\n    defaultVariants: {\n      visuals: 'classic',\n      size: 'md',\n      shape: 'rounded',\n    },\n  },\n);\n\ntype TabsVariantProps = VariantProps<typeof layoutVariants> &\n  VariantProps<typeof tabTriggerVariants>;\n\ninterface TabsProps extends TabsVariantProps {\n  tabs: string[];\n  activeTabId?: number;\n  onTabChange?: (tabIndex: number, tabsId: string) => void;\n  className?: string;\n  tabClassName?: string;\n  ltr?: boolean;\n}\n\nfunction Tabs({\n  tabs,\n  activeTabId,\n  onTabChange,\n  className,\n  tabClassName,\n  ltr = true,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n}: TabsProps) {\n  const tabsId = useId();\n  const [internalTab, setInternalTab] = useState(0);\n  const activeTab = activeTabId ?? internalTab;\n\n  const [focusedIndex, setFocusedIndex] = useState(activeTab);\n\n  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);\n\n  const handleSelect = (index: number) => {\n    setInternalTab(index);\n    setFocusedIndex(index);\n    onTabChange?.(index, tabsId);\n  };\n\n  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {\n    const forwardKey = ltr ? 'ArrowRight' : 'ArrowLeft';\n    const backwardKey = ltr ? 'ArrowLeft' : 'ArrowRight';\n\n    let nextIndex = index;\n\n    if (e.key === forwardKey) nextIndex = (index + 1) % tabs.length;\n    else if (e.key === backwardKey)\n      nextIndex = (index - 1 + tabs.length) % tabs.length;\n    else if (e.key === 'Home') nextIndex = 0;\n    else if (e.key === 'End') nextIndex = tabs.length - 1;\n    else return;\n\n    e.preventDefault();\n    setFocusedIndex(nextIndex);\n    tabRefs.current[nextIndex]?.focus();\n  };\n\n  return (\n    <div\n      role=\"tablist\"\n      aria-label=\"Navigation Tabs\"\n      aria-orientation=\"horizontal\"\n      dir={ltr ? 'ltr' : 'rtl'}\n      className={cn(\n        layoutVariants({ intent, visuals, size, shape }),\n        className,\n      )}\n    >\n      {tabs.map((tab, idx) => {\n        const isActive = idx === activeTab;\n\n        return (\n          <TabTrigger\n            key={`tab-${tabsId}-${idx}`}\n            tabsId={tabsId}\n            idx={idx}\n            label={tab}\n            active={isActive}\n            onSelect={handleSelect}\n            onKeyDown={(e) => handleKeyDown(e, idx)}\n            buttonRef={(el) => {\n              tabRefs.current[idx] = el;\n            }}\n            intent={intent}\n            styling={styling}\n            shape={shape}\n            visuals={visuals}\n            tabClassName={tabClassName}\n          />\n        );\n      })}\n    </div>\n  );\n}\n\nexport { Tabs, type TabsProps, type TabsVariantProps };",
+          "import { TabTrigger } from '@/components/azemmur/components/azemmur/tabs/tabs-trigger';\nimport { TabsRoot } from '@/components/azemmur/components/azemmur/tabs/tabs-root';\nimport { TabsList } from '@/components/azemmur/components/azemmur/tabs/tabs-list';\nimport { TabPanel } from '@/components/azemmur/components/azemmur/tabs/tabs-panel';\nimport { TabsContent } from '@/components/azemmur/components/azemmur/tabs/tabs-content';\n\ntype TabsComponent = typeof TabsRoot & {\n  List: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-list').TabsList;\n  Trigger: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-trigger').TabTrigger;\n\n  Content: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-content').TabsContent;\n  Panel: typeof import('@/components/azemmur/components/azemmur/tabs/tabs-panel').TabPanel;\n};\n\nconst Tabs = TabsRoot as TabsComponent;\n\nTabs.Trigger = TabTrigger;\nTabs.List = TabsList;\nTabs.Content = TabsContent;\nTabs.Panel = TabPanel;\n\nexport { Tabs };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-root.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-root.tsx',
+        content:
+          "'use client';\n\nimport React, {\n  useId,\n  useState,\n  useLayoutEffect,\n  useRef,\n  useMemo,\n  useCallback,\n  ComponentProps,\n} from 'react';\nimport { cn } from '@/lib/utils';\nimport { TabsContext } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { TabsVariantProps } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabsRootProps extends ComponentProps<'div'>, TabsVariantProps {\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  ltr?: boolean;\n  activation?: 'auto' | 'manual';\n  className?: string;\n  children: React.ReactNode;\n}\n\nfunction TabsRoot({\n  value,\n  defaultValue,\n  onValueChange,\n  ltr = true,\n  activation = 'manual',\n  className,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n  children,\n  ...props\n}: TabsRootProps) {\n  const tabsId = useId();\n  const [internalValue, setInternalValue] = useState(defaultValue ?? '');\n\n  const activeValue = value ?? internalValue;\n\n  const isControlled = value !== undefined;\n\n  const triggerRefs = useRef<Map<string, HTMLButtonElement>>(new Map());\n\n  const registerTrigger = useCallback(\n    (val: string, node: HTMLButtonElement | null) => {\n      if (node) {\n        const prevSize = triggerRefs.current.size;\n        triggerRefs.current.set(val, node);\n        if (!isControlled && !activeValue && prevSize === 0) {\n          setInternalValue(val);\n        }\n      } else {\n        triggerRefs.current.delete(val);\n      }\n    },\n    [isControlled, activeValue],\n  );\n\n  const handleValueChange = useCallback(\n    (next: string) => {\n      if (!isControlled) setInternalValue(next);\n      onValueChange?.(next);\n    },\n    [onValueChange, isControlled],\n  );\n\n  const handleKeyDown = useCallback(\n    (e: React.KeyboardEvent, val: string) => {\n      const values = Array.from(triggerRefs.current.keys());\n      const index = values.indexOf(val);\n      if (index === -1) return;\n\n      const forward = ltr ? 'ArrowRight' : 'ArrowLeft';\n      const backward = ltr ? 'ArrowLeft' : 'ArrowRight';\n\n      let next = index;\n\n      if (e.key === forward) next = (index + 1) % values.length;\n      else if (e.key === backward)\n        next = (index - 1 + values.length) % values.length;\n      else if (e.key === 'Home') next = 0;\n      else if (e.key === 'End') next = values.length - 1;\n      else return;\n\n      e.preventDefault();\n      const nextValue = values[next] ?? '';\n      triggerRefs.current.get(nextValue)?.focus();\n      if (activation === 'auto') handleValueChange(nextValue);\n    },\n    [ltr, activation, handleValueChange],\n  );\n\n  useLayoutEffect(() => {\n    if (isControlled) return;\n    if (!activeValue && triggerRefs.current.size > 0) {\n      const first = triggerRefs.current.keys().next().value;\n      if (first) setInternalValue(first);\n    }\n  }, [activeValue, isControlled]);\n\n  const memoizedValue = useMemo(\n    () => ({\n      tabsId,\n      activeValue,\n      onValueChange: handleValueChange,\n      registerTrigger,\n      handleKeyDown,\n      ltr,\n      activation,\n      getTriggerId: (val: string) => `${tabsId}-trigger-${val}`,\n      getPanelId: (val: string) => `${tabsId}-panel-${val}`,\n      intent,\n      styling,\n      visuals,\n      size,\n      shape,\n    }),\n    [\n      tabsId,\n      activeValue,\n      handleValueChange,\n      registerTrigger,\n      handleKeyDown,\n      ltr,\n      activation,\n      intent,\n      styling,\n      visuals,\n      size,\n      shape,\n    ],\n  );\n\n  return (\n    <TabsContext.Provider value={memoizedValue}>\n      <div className={cn(className)} {...props}>\n        {children}\n      </div>\n    </TabsContext.Provider>\n  );\n}\n\nexport { TabsRoot, type TabsRootProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-context.tsx',
+        type: 'registry:hook',
+        target: 'components/azemmur/components/tabs/tabs-context.tsx',
+        content:
+          "'use client';\n\nimport { createContext, useContext } from 'react';\nimport { TabsVariantProps } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabsContextValue extends TabsVariantProps {\n  tabsId: string;\n  ltr: boolean;\n  activeValue?: string;\n  onValueChange: (value: string) => void;\n  registerTrigger: (value: string, node: HTMLButtonElement | null) => void;\n  handleKeyDown: (e: React.KeyboardEvent, value: string) => void;\n  getPanelId: (value: string) => string;\n  getTriggerId: (value: string) => string;\n}\n\nconst TabsContext = createContext<TabsContextValue | null>(null);\n\nconst useTabs = () => {\n  const context = useContext(TabsContext);\n  if (!context) {\n    throw new Error('Tab components must be used within <Tabs />');\n  }\n  return context;\n};\n\nexport { TabsContext, useTabs };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-list.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-list.tsx',
+        content:
+          "'use client';\n\nimport React, { ComponentProps } from 'react';\nimport { cn } from '@/lib/utils';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { listVariants } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabsListProps extends ComponentProps<'div'> {\n  className?: string;\n}\n\nfunction TabsList({ className, children, ...props }: TabsListProps) {\n  const { ltr, intent, visuals, size, shape } = useTabs();\n  return (\n    <div\n      role=\"tablist\"\n      aria-orientation=\"horizontal\"\n      dir={ltr ? 'ltr' : 'rtl'}\n      className={cn(listVariants({ intent, visuals, size, shape }), className)}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport { TabsList, type TabsListProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-trigger.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-trigger.tsx',
+        content:
+          "import React, {\n  useEffect,\n  useRef,\n  ComponentPropsWithoutRef,\n  useImperativeHandle,\n  forwardRef,\n} from 'react';\nimport { Button as ButtonPrimitive } from '@/components/azemmur/components/primitives/button';\nimport { cn } from '@/lib/utils';\nimport { TabsIndicator as Indicator } from '@/components/azemmur/components/azemmur/tabs/tabs-indicator';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { triggerVariants } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ninterface TabTriggerProps extends Omit<\n  ComponentPropsWithoutRef<typeof ButtonPrimitive>,\n  'asChild'\n> {\n  value: string;\n  triggerClassName?: string;\n  indicatorClassName?: string;\n}\n\nconst TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(\n  (\n    {\n      value,\n      children,\n      className,\n      triggerClassName,\n      indicatorClassName,\n      ...props\n    },\n    forwardedRef,\n  ) => {\n    const {\n      tabsId,\n      activeValue,\n      onValueChange,\n      registerTrigger,\n      handleKeyDown,\n      getTriggerId,\n      getPanelId,\n      intent,\n      styling,\n      visuals,\n      shape,\n    } = useTabs();\n    const isActive = value === activeValue;\n    const internalRef = useRef<HTMLButtonElement>(null);\n\n    useImperativeHandle(forwardedRef, () => internalRef.current!);\n\n    useEffect(() => {\n      registerTrigger(value, internalRef.current);\n      return () => registerTrigger(value, null);\n    }, [value, registerTrigger]);\n\n    return (\n      <div\n        role=\"tab\"\n        aria-selected={isActive}\n        aria-controls={getPanelId(value)}\n        className={cn('relative inline-block', className)}\n      >\n        {isActive && (\n          <Indicator\n            layoutId={`active-tab-${tabsId}`}\n            className={indicatorClassName}\n            aria-selected={isActive}\n            data-state={isActive ? 'active' : 'inactive'}\n            intent={intent}\n            styling={styling}\n            visuals={visuals}\n            shape={shape}\n          />\n        )}\n\n        <ButtonPrimitive\n          id={getTriggerId(value)}\n          ref={internalRef}\n          data-state={isActive ? 'active' : 'inactive'}\n          tabIndex={isActive ? 0 : -1}\n          onClick={(e) => {\n            onValueChange(value);\n            props.onClick?.(e);\n          }}\n          onKeyDown={(e) => {\n            handleKeyDown(e, value);\n            props.onKeyDown?.(e);\n          }}\n          className={cn(\n            triggerVariants({\n              intent,\n              visuals,\n              styling,\n              shape,\n            }),\n            triggerClassName,\n          )}\n          {...props}\n        >\n          {children}\n        </ButtonPrimitive>\n      </div>\n    );\n  },\n);\n\nTabTrigger.displayName = 'TabTrigger';\n\nexport { TabTrigger, type TabTriggerProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-indicator.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-indicator.tsx',
+        content:
+          "import type { ComponentProps } from 'react';\nimport { motion } from 'motion/react';\nimport { type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\nimport { indicatorVariants } from '@/components/azemmur/components/azemmur/tabs/tabs-variants';\n\ntype TabsIndicatorProps = VariantProps<typeof indicatorVariants> &\n  ComponentProps<typeof motion.div>;\n\nfunction TabsIndicator({\n  intent,\n  styling,\n  shape,\n  visuals,\n  className,\n  ...props\n}: TabsIndicatorProps) {\n  return (\n    <motion.div\n      aria-hidden=\"true\"\n      layout\n      {...props}\n      className={cn(\n        indicatorVariants({\n          intent,\n          styling,\n          shape,\n          visuals,\n        }),\n        className,\n      )}\n      transition={{ type: 'spring', stiffness: 400, damping: 30, mass: 1 }}\n    />\n  );\n}\n\nexport { TabsIndicator, type TabsIndicatorProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-content.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-content.tsx',
+        content:
+          "'use client';\n\nimport React, { ComponentProps } from 'react';\nimport { cn } from '@/lib/utils';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\n\ninterface TabsContentProps extends ComponentProps<'div'> {\n  className?: string;\n}\n\nfunction TabsContent({ className, children, ...props }: TabsContentProps) {\n  const { ltr } = useTabs();\n  return (\n    <div\n      dir={ltr ? 'ltr' : 'rtl'}\n      className={cn('overflow-hidden', className)}\n      {...props}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport { TabsContent, type TabsContentProps };",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-panel.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-panel.tsx',
+        content:
+          "'use client';\n\nimport React, { type ComponentProps } from 'react';\nimport { motion } from 'motion/react';\nimport { useTabs } from '@/components/azemmur/components/azemmur/tabs/tabs-context';\nimport { cn } from '@/lib/utils';\n\nexport interface TabPanelProps extends ComponentProps<typeof motion.div> {\n  value: string;\n}\n\nexport function TabPanel({\n  value,\n  children,\n  className,\n  ...props\n}: TabPanelProps) {\n  const { activeValue, getPanelId } = useTabs();\n  const isActive = activeValue === value;\n\n  return isActive ? (\n    <motion.div\n      key={value}\n      role=\"tabpanel\"\n      id={getPanelId(value)}\n      aria-labelledby={getPanelId(value)}\n      tabIndex={0}\n      initial={{ opacity: 0, y: '100%' }}\n      animate={{ opacity: 1, y: '0%' }}\n      exit={{ opacity: 0, y: '-100%' }}\n      transition={{ duration: 0.2, ease: 'easeOut' }}\n      className={cn(\n        'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </motion.div>\n  ) : null;\n}",
+      },
+      {
+        path: 'registry/components/azemmur/tabs/tabs-variants.ts',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/tabs/tabs-variants.ts',
+        content:
+          "import { cva, type VariantProps } from 'class-variance-authority';\n\nconst listVariants = cva(\n  'relative inline-flex whitespace-nowrap overflow-visible gap-2',\n  {\n    variants: {\n      intent: {\n        primary: 'text-primary border-primary',\n        secondary: 'text-secondary border-secondary',\n        accent: 'text-accent border-accent',\n      },\n      visuals: {\n        filled: '',\n        subtle: 'bg-transparent px-8',\n        classic: 'bg-transparent border-b px-8',\n        outline: 'bg-transparent border-2 overflow-hidden',\n        levitate: 'p-2 border-2',\n      },\n      size: {\n        sm: 'text-sm',\n        md: 'text-base',\n        lg: 'text-lg',\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        visuals: 'classic',\n        shape: ['rounded', 'pill'],\n        className: 'rounded-none',\n      },\n      {\n        intent: ['primary', 'secondary', 'accent'],\n        visuals: ['filled', 'levitate'],\n        className: 'bg-current/10',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      visuals: 'classic',\n      size: 'md',\n      shape: 'rounded',\n    },\n  },\n);\n\nconst triggerVariants = cva(\n  [\n    'block px-6 py-2 font-medium transition-colors z-10 relative bg-transparent',\n    'focus-visible:outline-none focus-visible:ring-2',\n    'after:content-[attr(data-label)] after:block after:h-0 after:invisible',\n    '[&[data-state=\"active\"]]:font-bold [&[data-state=\"active\"]]:text-foreground',\n  ].join(' '),\n  {\n    variants: {\n      intent: {\n        primary: 'text-primary',\n        secondary: 'text-secondary',\n        accent: 'text-accent',\n      },\n      visuals: {\n        classic: null,\n        outline: 'focus-visible:rounded-none',\n      },\n      styling: {\n        underline: null,\n        minimal: null,\n        solid: null,\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        intent: 'primary',\n        styling: 'solid',\n        className: '[&[data-state=\"active\"]]:text-primary-foreground',\n      },\n      {\n        intent: 'secondary',\n        styling: 'solid',\n        className: '[&[data-state=\"active\"]]:text-secondary-foreground',\n      },\n      {\n        intent: 'accent',\n        styling: 'solid',\n        className: '[&[data-state=\"active\"]]:text-accent-foreground',\n      },\n      {\n        visuals: 'classic',\n        shape: ['pill', 'rounded'],\n        className: 'rounded-b-none rounded-t-md',\n      },\n    ],\n    defaultVariants: {\n      intent: 'primary',\n      styling: 'underline',\n      shape: 'rounded',\n    },\n  },\n);\n\nconst indicatorVariants = cva(\n  'absolute pointer-events-none transition-colors',\n  {\n    variants: {\n      intent: {\n        primary: 'bg-primary',\n        secondary: 'bg-secondary',\n        accent: 'bg-accent',\n      },\n      styling: {\n        underline: 'bottom-0 h-1 start-0 end-0 bg-primary',\n        minimal: 'bottom-0 h-2 w-2 left-1/2 -translate-x-1/2 bg-current',\n        solid: 'inset-0',\n      },\n      visuals: {\n        classic: null,\n        outline: null,\n      },\n      shape: {\n        rounded: 'rounded-md',\n        pill: 'rounded-full',\n        sharp: 'rounded-none',\n      },\n    },\n    compoundVariants: [\n      {\n        styling: 'solid',\n        visuals: 'classic',\n        shape: ['pill', 'rounded'],\n        className: 'rounded-b-none rounded-t-md',\n      },\n      {\n        styling: 'solid',\n        visuals: 'outline',\n        className: 'rounded-none',\n      },\n      {\n        styling: ['underline', 'minimal'],\n        className: '[&[data-state=\"active\"]]:bg-foreground',\n      },\n    ],\n    defaultVariants: {\n      styling: 'underline',\n      visuals: 'classic',\n      shape: 'rounded',\n    },\n  },\n);\n\ntype TabsVariantProps = VariantProps<typeof listVariants> &\n  VariantProps<typeof triggerVariants>;\n\nexport {\n  indicatorVariants,\n  listVariants,\n  triggerVariants,\n  type TabsVariantProps,\n};",
       },
     ],
     keywords: [],
@@ -375,16 +354,19 @@ export const index: Record<string, any> = {
     name: 'demo-components-tabs',
     description: 'Interactive demo for the Tab component',
     type: 'registry:ui',
-    dependencies: [],
+    dependencies: ['@tabler/icons-react'],
     devDependencies: undefined,
-    registryDependencies: ['@azemmur/components-tabs'],
+    registryDependencies: [
+      '@azemmur/components-tabs',
+      '@azemmur/components-tab-trigger',
+    ],
     files: [
       {
         path: 'registry/demo/components/azemmur/tabs/index.tsx',
         type: 'registry:ui',
         target: 'components/azemmur/demo/components/tabs.tsx',
         content:
-          "'use client';\n\nimport React from 'react';\nimport {\n  Tabs,\n  type TabsVariantProps,\n} from '@/components/azemmur/components/azemmur/tabs';\n\ninterface TabsDemoProps {\n  intent?: TabsVariantProps['intent'];\n  styling?: TabsVariantProps['styling'];\n  visuals?: TabsVariantProps['visuals'];\n  size?: TabsVariantProps['size'];\n  shape?: TabsVariantProps['shape'];\n  ltr?: boolean;\n}\nexport default function TabsDemo({\n  ltr = true,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n}: TabsDemoProps) {\n  const tabs: string[] = ['fetching', 'caching', 'mutations'];\n\n  const [active, setActive] = React.useState<number>(0);\n\n  return (\n    <div className=\"max-w-xl space-y-4\">\n      <Tabs\n        tabs={tabs}\n        ltr={ltr}\n        intent={intent}\n        styling={styling}\n        visuals={visuals}\n        size={size}\n        shape={shape}\n        activeTabId={active}\n        onTabChange={setActive}\n      />\n\n      <div className=\"text-sm text-muted-foreground\">Active tab: {active}</div>\n    </div>\n  );\n}",
+          '\'use client\';\n\nimport React from \'react\';\nimport { Tabs } from \'@/components/azemmur/components/azemmur/tabs\';\nimport { TabsVariantProps } from \'@/components/azemmur/components/azemmur/tabs/tabs-variants\';\n\ninterface TabsDemoProps {\n  intent?: TabsVariantProps[\'intent\'];\n  styling?: TabsVariantProps[\'styling\'];\n  visuals?: TabsVariantProps[\'visuals\'];\n  size?: TabsVariantProps[\'size\'];\n  shape?: TabsVariantProps[\'shape\'];\n  ltr?: boolean;\n}\n\nexport default function TabsDemo({\n  ltr = true,\n  intent,\n  styling,\n  visuals,\n  size,\n  shape,\n}: TabsDemoProps) {\n  const [active, setActive] = React.useState<string>(\'notifications\');\n\n  return (\n    <Tabs\n      defaultValue="profile"\n      intent={intent}\n      visuals={visuals}\n      styling={styling}\n      shape={shape}\n      size={size}\n      ltr={ltr}\n      value={active}\n      onValueChange={(value) => setActive(value)}\n      className="bg-card border rounded-xl p-4"\n    >\n      <Tabs.List>\n        <Tabs.Trigger\n          value="profile"\n          className="flex-1"\n          triggerClassName="gap-2"\n        >\n          Profile\n        </Tabs.Trigger>\n\n        <Tabs.Trigger\n          value="notifications"\n          className="flex-1"\n          triggerClassName="gap-2"\n        >\n          Notifications\n        </Tabs.Trigger>\n\n        <Tabs.Trigger\n          value="security"\n          className="flex-1"\n          triggerClassName="gap-2"\n        >\n          Security\n        </Tabs.Trigger>\n      </Tabs.List>\n\n      <Tabs.Content>\n        <Tabs.Panel value="profile">\n          <h2 className="text-lg font-semibold">Public Profile</h2>\n          <p className="text-muted-foreground text-sm">\n            Update your bio and avatar.\n          </p>\n          {/* Form components here */}\n        </Tabs.Panel>\n\n        <Tabs.Panel value="notifications">\n          <h2 className="text-lg font-semibold">Notifications</h2>\n          <p className="text-muted-foreground text-sm">\n            Manage how you receive alerts.\n          </p>\n        </Tabs.Panel>\n\n        <Tabs.Panel value="security">\n          <h2 className="text-lg font-semibold">Security Settings</h2>\n          <p className="text-muted-foreground text-sm">\n            Two-factor authentication and passwords.\n          </p>\n        </Tabs.Panel>\n      </Tabs.Content>\n    </Tabs>\n  );\n}',
       },
     ],
     keywords: [],
