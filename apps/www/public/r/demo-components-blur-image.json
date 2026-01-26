@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-blur-image",
+  "title": "Blur Image Demo",
+  "description": "Demo for the blur image component.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@azemmur/components-blur-image"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/blur-image/index.tsx",
+      "content": "import { BlurImage } from '@/components/azemmur/components/azemmur/blur-image';\n\ninterface BlurImageDemoProps {\n  src: string;\n  width?: number;\n  height?: number;\n}\n\nexport default function BlurImageDemo({\n  src,\n  width = 400,\n  height = 210,\n}: BlurImageDemoProps) {\n  return (\n    <div className=\"max-w-xl\">\n      <BlurImage\n        src={src}\n        width={width}\n        height={height}\n        alt=\"Demo blur image\"\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/components/blur-image.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "BlurImage": {
+        "src": {
+          "value": "https://mir-s3-cdn-cf.behance.net/project_modules/disp/dae2cf242954131.6977de86013f2.png"
+        },
+        "width": {
+          "value": 400
+        },
+        "height": {
+          "value": 210
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-blur-image",
+  "type": "registry:ui",
+  "title": "Blur Image",
+  "description": "An image component that shows a low-quality blurred placeholder while loading.",
+  "dependencies": ["next/image"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/azemmur/blur-image/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/blur-image.tsx"
+    }
+  ]
+}

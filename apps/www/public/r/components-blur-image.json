@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-blur-image",
+  "title": "Blur Image",
+  "description": "An image component that shows a low-quality blurred placeholder while loading.",
+  "dependencies": [
+    "next/image"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/azemmur/blur-image/index.tsx",
+      "content": "import { useState } from 'react';\nimport Image, { ImageProps } from 'next/image';\nimport { cn } from '@/lib/utils';\n\nexport const BlurImage = ({\n  className,\n  height,\n  width,\n  src,\n  alt,\n  ...props\n}: ImageProps) => {\n  const [isLoading, setLoading] = useState(true);\n\n  return (\n    <Image\n      className={cn(\n        'transition duration-300 bg-reverse-custom rounded-xl',\n        isLoading ? 'blur-sm' : 'blur-0',\n        className,\n      )}\n      aria-label={alt}\n      onLoadingComplete={() => setLoading(false)}\n      src={src as string}\n      width={width}\n      height={height}\n      loading=\"lazy\"\n      decoding=\"async\"\n      placeholder=\"blur\"\n      blurDataURL={typeof src === 'string' ? src : undefined}\n      alt={alt}\n      sizes=\"(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw\"\n      {...props}\n    />\n  );\n};\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/blur-image.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

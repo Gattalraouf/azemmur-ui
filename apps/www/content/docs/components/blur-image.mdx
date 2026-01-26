@@ -1,0 +1,46 @@
+---
+title: Blur Image
+description: Image component with a blurred placeholder while loading.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-01
+---
+
+<ComponentPreview name="demo-components-blur-image" />
+
+## Installation
+
+<ComponentInstallation name="components-blur-image" />
+
+## Usage
+
+```tsx
+<BlurImage src="/og-image.png" width={800} height={450} />
+```
+
+## Props
+
+<TypeTable
+  type={{
+    src: {
+      description: 'Image source (string or StaticImport).',
+      type: 'string',
+      required: true,
+    },
+    alt: {
+      description: 'Alt text for the image.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description: 'Other Next/Image props.',
+      type: 'ImageProps',
+      required: false,
+    },
+  }}
+/>
+
+## Notes
+
+- Uses a LQIP blur placeholder using the same `src` as `blurDataURL` by default. For production use consider generating a small, encoded blur placeholder.
