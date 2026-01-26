@@ -234,8 +234,7 @@
         "@tabler/icons-react"
       ],
       "registryDependencies": [
-        "@azemmur/components-tabs",
-        "@azemmur/components-tab-trigger"
+        "@azemmur/components-tabs"
       ],
       "files": [
         {

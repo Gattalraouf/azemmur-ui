@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Tab Demo",
   "description": "Interactive demo for the Tab component",
-  "dependencies": [],
+  "dependencies": ["@tabler/icons-react"],
   "registryDependencies": ["@azemmur/components-tabs"],
   "files": [
     {
