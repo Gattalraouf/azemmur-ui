@@ -2,7 +2,7 @@ import { MotionConfig } from 'motion/react';
 import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { baseOptions } from '@/lib/layout.shared';
-import { ThemeSwitch } from '@/registry/components/azemmur/themeSwitch';
+import { ThemeSwitch } from '@/registry/components/azemmur/theme-switch';
 
 export default function Layout({ children }: LayoutProps<'/docs'>) {
   return (

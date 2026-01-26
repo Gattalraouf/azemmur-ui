@@ -1,6 +1,6 @@
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
 import { baseOptions } from '@/lib/layout.shared';
-import ThemeSwitch from '@/registry/demo/components/azemmur/themeSwitch';
+import ThemeSwitch from '@/registry/demo/components/azemmur/theme-switch';
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (

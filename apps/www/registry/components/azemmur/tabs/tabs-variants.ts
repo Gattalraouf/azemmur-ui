@@ -1,3 +1,5 @@
+// Copyright (c) 2025 raouf.codes - Azemmur
+
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const listVariants = cva(

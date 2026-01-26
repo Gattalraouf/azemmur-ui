@@ -1,3 +1,4 @@
+// Copyright (c) 2025 raouf.codes - Azemmur
 'use client';
 
 import { createContext, useContext } from 'react';

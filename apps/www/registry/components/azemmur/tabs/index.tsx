@@ -1,3 +1,5 @@
+// Copyright (c) 2025 raouf.codes - Azemmur
+
 import { TabTrigger } from '@/registry/components/azemmur/tabs/tabs-trigger';
 import { TabsRoot } from '@/registry/components/azemmur/tabs/tabs-root';
 import { TabsList } from '@/registry/components/azemmur/tabs/tabs-list';

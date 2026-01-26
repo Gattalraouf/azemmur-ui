@@ -1,3 +1,5 @@
+// Copyright (c) 2025 raouf.codes - Azemmur
+
 import React, {
   useEffect,
   useRef,

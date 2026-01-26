@@ -8,10 +8,10 @@
   ],
   "files": [
     {
-      "path": "registry/demo/components/azemmur/themeSwitch/index.tsx",
-      "content": "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/themeSwitch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n  shape?: ThemeSwitchProps['shape'];\n  elevation?: ThemeSwitchProps['elevation'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n}: ThemeSwitchDemoProps) {\n  return (\n    <ThemeSwitch\n      size={size}\n      styling={styling}\n      intent={intent}\n      shape={shape}\n      elevation={elevation}\n    />\n  );\n}\n",
+      "path": "registry/demo/components/azemmur/theme-switch/index.tsx",
+      "content": "import {\n  ThemeSwitch,\n  type ThemeSwitchProps,\n} from '@/components/azemmur/components/azemmur/theme-switch';\n\ninterface ThemeSwitchDemoProps {\n  size?: ThemeSwitchProps['size'];\n  styling?: ThemeSwitchProps['styling'];\n  intent?: ThemeSwitchProps['intent'];\n  shape?: ThemeSwitchProps['shape'];\n  elevation?: ThemeSwitchProps['elevation'];\n}\n\nexport default function ThemeSwitchDemo({\n  size,\n  styling,\n  intent,\n  shape,\n  elevation,\n}: ThemeSwitchDemoProps) {\n  return (\n    <ThemeSwitch\n      size={size}\n      styling={styling}\n      intent={intent}\n      shape={shape}\n      elevation={elevation}\n    />\n  );\n}\n",
       "type": "registry:ui",
-      "target": "components/azemmur/demo/themeSwitch.tsx"
+      "target": "components/azemmur/demo/theme-switch.tsx"
     }
   ],
   "meta": {

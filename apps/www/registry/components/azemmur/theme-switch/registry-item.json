@@ -8,9 +8,9 @@
   "registryDependencies": ["@azemmur/primitives-button"],
   "files": [
     {
-      "path": "registry/components/azemmur/themeSwitch/index.tsx",
+      "path": "registry/components/azemmur/theme-switch/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/themeSwitch.tsx"
+      "target": "components/azemmur/components/theme-switch.tsx"
     }
   ]
 }

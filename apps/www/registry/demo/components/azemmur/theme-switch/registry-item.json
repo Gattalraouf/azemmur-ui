@@ -7,9 +7,9 @@
   "registryDependencies": ["@azemmur/components-theme-switch"],
   "files": [
     {
-      "path": "registry/demo/components/azemmur/themeSwitch/index.tsx",
+      "path": "registry/demo/components/azemmur/theme-switch/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/demo/themeSwitch.tsx"
+      "target": "components/azemmur/demo/theme-switch.tsx"
     }
   ],
   "meta": {

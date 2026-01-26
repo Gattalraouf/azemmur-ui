@@ -1,7 +1,7 @@
 import {
   ThemeSwitch,
   type ThemeSwitchProps,
-} from '@/registry/components/azemmur/themeSwitch';
+} from '@/registry/components/azemmur/theme-switch';
 
 interface ThemeSwitchDemoProps {
   size?: ThemeSwitchProps['size'];

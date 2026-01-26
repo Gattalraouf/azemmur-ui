@@ -1,3 +1,5 @@
+// Copyright (c) 2025 raouf.codes - Azemmur
+
 import type { ComponentProps } from 'react';
 import { motion } from 'motion/react';
 import { type VariantProps } from 'class-variance-authority';
