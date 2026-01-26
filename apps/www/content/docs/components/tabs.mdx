@@ -131,7 +131,7 @@ function Panel({
       type: 'enum',
       typeDescription: '"auto" | "manual"',
       required: false,
-      default: 'auto',
+      default: '"auto"',
     },
     ltr: {
       description:
@@ -144,14 +144,14 @@ function Panel({
       description: 'Semantic intent used by visual variants.',
       type: 'enum',
       typeDescription: '"primary" | "secondary" | "accent"',
-      default: 'primary',
+      default: '"primary"',
       required: false,
     },
     styling: {
       description: 'Trigger & indicator styling variant.',
       type: 'enum',
       typeDescription: '"underline" | "minimal" | "solid"',
-      default: 'underline',
+      default: '"underline"',
       required: false,
     },
     visuals: {
@@ -159,21 +159,21 @@ function Panel({
       type: 'enum',
       typeDescription:
         '"filled" | "subtle" | "classic" | "outline" | "levitate"',
-      default: 'classic',
+      default: '"classic"',
       required: false,
     },
     size: {
       description: 'Size variant affecting spacing and typography.',
       type: 'enum',
       typeDescription: '"sm" | "md" | "lg"',
-      default: 'md',
+      default: '"md"',
       required: false,
     },
     shape: {
       description: 'Global corner radius style for the component.',
       type: 'enum',
       typeDescription: '"rounded" | "pill" | "sharp"',
-      default: 'rounded',
+      default: '"rounded"',
       required: false,
     },
     className: {
@@ -209,6 +209,11 @@ function Panel({
 />
 
 ### `Tabs.Trigger`
+
+<ExternalLink
+  href="https://azemmur.raouf.codes/docs/primitives/button#button"
+  text="Azemmur API Reference - Button Primitive"
+/>
 
 <TypeTable
   type={{
@@ -256,7 +261,7 @@ function Panel({
   }}
 />
 
-### `Tabs.Panel` (TabPanel)
+### `Tabs.Panel`
 
 <TypeTable
   type={{
@@ -287,14 +292,14 @@ function Panel({
       description: 'Semantic intent applied to the indicator.',
       type: 'enum',
       typeDescription: '"primary" | "secondary" | "accent"',
-      default: 'primary',
+      default: '"primary"',
       required: false,
     },
     styling: {
       description: 'Visual style of the indicator.',
       type: 'enum',
       typeDescription: '"underline" | "minimal" | "solid"',
-      default: 'underline',
+      default: '"underline"',
       required: false,
     },
     visuals: {
@@ -302,14 +307,14 @@ function Panel({
       type: 'enum',
       typeDescription:
         '"filled" | "subtle" | "classic" | "outline" | "levitate"',
-      default: 'classic',
+      default: '"classic"',
       required: false,
     },
     shape: {
       description: 'Corner rounding for the indicator element.',
       type: 'enum',
       typeDescription: '"rounded" | "pill" | "sharp"',
-      default: 'rounded',
+      default: '"rounded"',
       required: false,
     },
     '...props': {
@@ -338,7 +343,7 @@ function Panel({
   size?: string;
   shape?: string;
   ltr?: boolean;
-  activation?: 'auto' | 'manual';
+  activation?: "auto" | "manual";
 }
 ```
 
