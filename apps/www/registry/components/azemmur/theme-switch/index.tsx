@@ -1,4 +1,4 @@
-// Copyright (c) 2025 raouf.codes - Azemmur
+// Copyright (c) 2026 raouf.codes - Azemmur
 
 'use client';
 import { IconSunLow, IconMoon } from '@tabler/icons-react';
@@ -6,7 +6,7 @@ import { cn } from '@workspace/ui/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from 'next-themes';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button as ButtonPrimitive } from '@/registry/components/primitives/button';
 
 const themeSwitchVariants = cva(
@@ -88,7 +88,12 @@ function ThemeSwitch({
   elevation,
   ...props
 }: ThemeSwitchProps) {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const currentTheme = resolvedTheme ?? theme;
   const isDark = currentTheme === 'dark';
@@ -106,32 +111,47 @@ function ThemeSwitch({
 
   return (
     <ButtonPrimitive
-      suppressHydrationWarning
-      aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-      aria-pressed={isDark}
+      aria-label={
+        mounted
+          ? isDark
+            ? 'Switch to Light Mode'
+            : 'Switch to Dark Mode'
+          : 'Toggle theme'
+      }
+      aria-pressed={mounted ? isDark : undefined}
       className={cn(
         themeSwitchVariants({ intent, size, styling, shape, elevation }),
         className,
       )}
       onClick={handleToggle}
+      disabled={!mounted}
       {...props}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={isDark ? 'sun-icon' : 'moon-icon'}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          whileHover="hover"
-          variants={iconVariants}
-          transition={{
-            duration: 0.4,
-            rotate: { duration: 0.6, delay: 0.12 },
-          }}
-        >
-          {isDark ? <IconSunLow /> : <IconMoon />}
-        </motion.div>
-      </AnimatePresence>
+      {!mounted ? (
+        <div
+          className={cn(
+            themeSwitchVariants({ size }),
+            'animate-pulse rounded-full bg-current opacity-20',
+          )}
+        />
+      ) : (
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={isDark ? 'sun-icon' : 'moon-icon'}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            whileHover="hover"
+            variants={iconVariants}
+            transition={{
+              duration: 0.4,
+              rotate: { duration: 0.6, delay: 0.12 },
+            }}
+          >
+            {isDark ? <IconSunLow /> : <IconMoon />}
+          </motion.div>
+        </AnimatePresence>
+      )}
     </ButtonPrimitive>
   );
 }
