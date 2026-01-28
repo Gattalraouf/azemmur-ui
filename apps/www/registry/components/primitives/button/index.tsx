@@ -1,7 +1,7 @@
 //Copyright (c) 2025 Elliot Sutton
+// Copyright (c) 2026 raouf.codes - Azemmur
 
 'use client';
-
 
 import {
   Slot,

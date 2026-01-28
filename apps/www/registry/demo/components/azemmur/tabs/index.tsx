@@ -64,7 +64,6 @@ export default function TabsDemo({
           <p className="text-muted-foreground text-sm">
             Update your bio and avatar.
           </p>
-          {/* Form components here */}
         </Tabs.Panel>
 
         <Tabs.Panel value="notifications">
