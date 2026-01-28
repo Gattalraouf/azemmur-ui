@@ -1,6 +1,6 @@
 ---
 title: Blur Image
-description: Image component with a blurred placeholder while loading.
+description: Image component with animated shimmer placeholder and blur-to-clear loading effect.
 author:
   name: raouf.codes
   url: https://github.com/Gattalraouf
@@ -16,7 +16,21 @@ releaseDate: 2026-02-01
 ## Usage
 
 ```tsx
-<BlurImage src="/og-image.png" width={800} height={450} />
+<BlurImage src="/og-image.png" width={800} height={450} alt="Description" />
+```
+
+### Custom Placeholder
+
+You can provide your own base64-encoded placeholder image:
+
+```tsx
+<BlurImage
+  src="/photo.jpg"
+  width={800}
+  height={450}
+  alt="Photo"
+  blurDataURL="data:image/png;base64,YOUR_BASE64_PLACEHOLDER..."
+/>
 ```
 
 ## Props
@@ -29,18 +43,60 @@ releaseDate: 2026-02-01
       required: true,
     },
     alt: {
-      description: 'Alt text for the image.',
+      description: 'Alt text for the image (required for accessibility).',
+      type: 'string',
+      required: true,
+    },
+    width: {
+      description: 'Width of the image in pixels.',
+      type: 'number',
+      required: false,
+      default: '700',
+    },
+    height: {
+      description: 'Height of the image in pixels.',
+      type: 'number',
+      required: false,
+      default: '475',
+    },
+    blurDataURL: {
+      description: 'Custom base64-encoded placeholder image. Falls back to a neutral gray placeholder if not provided.',
+      type: 'string',
+      required: false,
+    },
+    className: {
+      description: 'Additional class names applied to the container wrapper.',
       type: 'string',
       required: false,
     },
     '...props': {
-      description: 'Other Next/Image props.',
+      description: 'Other Next/Image props (loading, priority, quality, etc.).',
       type: 'ImageProps',
       required: false,
     },
   }}
 />
 
+## Features
+
+- **Shimmer animation** — A subtle shimmer overlay sweeps across while loading
+- **Blur-to-clear transition** — Image starts blurred and scales down as it loads
+- **Default placeholder** — Falls back to a neutral gray SVG placeholder
+- **Custom placeholder support** — Provide your own `blurDataURL` for branded loading states
+
 ## Notes
 
-- Uses a LQIP blur placeholder using the same `src` as `blurDataURL` by default. For production use consider generating a small, encoded blur placeholder.
+- The shimmer animation requires the `shimmer` keyframe in your CSS. Add this to your global styles:
+
+```css
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+```
+
+- For production, consider generating optimized blur placeholders using tools like [plaiceholder](https://plaiceholder.co/) or [next-blurhash](https://github.com/joe-bell/plaiceholder).
