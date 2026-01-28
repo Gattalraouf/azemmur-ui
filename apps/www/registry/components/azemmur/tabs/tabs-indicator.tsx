@@ -1,5 +1,7 @@
 // Copyright (c) 2025 raouf.codes - Azemmur
 
+'use client';
+
 import { cn } from '@workspace/ui/lib/utils';
 import { type VariantProps } from 'class-variance-authority';
 import { motion } from 'motion/react';

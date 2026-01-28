@@ -1,4 +1,6 @@
-// Copyright (c) 2025 raouf.codes - Azemmur
+// Copyright (c) 2026 raouf.codes - Azemmur
+
+'use client';
 
 import { cn } from '@workspace/ui/lib/utils';
 import React, {
@@ -58,17 +60,11 @@ const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
     }, [value, registerTrigger]);
 
     return (
-      <div
-        role="tab"
-        aria-selected={isActive}
-        aria-controls={getPanelId(value)}
-        className={cn('relative inline-block', className)}
-      >
+      <div className={cn('relative inline-block', className)}>
         {isActive && (
           <Indicator
             layoutId={`active-tab-${tabsId}`}
             className={indicatorClassName}
-            aria-selected={isActive}
             data-state={isActive ? 'active' : 'inactive'}
             intent={intent}
             styling={styling}
@@ -78,6 +74,9 @@ const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
         )}
 
         <ButtonPrimitive
+          role="tab"
+          aria-selected={isActive}
+          aria-controls={getPanelId(value)}
           id={getTriggerId(value)}
           ref={internalRef}
           data-state={isActive ? 'active' : 'inactive'}
