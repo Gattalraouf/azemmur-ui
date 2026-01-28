@@ -1,4 +1,4 @@
-// Copyright (c) 2025 raouf.codes - Azemmur
+// Copyright (c) 2026 raouf.codes - Azemmur
 
 'use client';
 
@@ -17,19 +17,20 @@ export function TabPanel({
   className,
   ...props
 }: TabPanelProps) {
-  const { activeValue, getPanelId } = useTabs();
+  const { activeValue, getPanelId, getTriggerId } = useTabs();
   const isActive = activeValue === value;
 
-  return isActive ? (
+  if (!isActive) return null;
+
+  return (
     <motion.div
       key={value}
       role="tabpanel"
       id={getPanelId(value)}
-      aria-labelledby={getPanelId(value)}
+      aria-labelledby={getTriggerId(value)}
       tabIndex={0}
       initial={{ opacity: 0, y: '100%' }}
       animate={{ opacity: 1, y: '0%' }}
-      exit={{ opacity: 0, y: '-100%' }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className={cn(
         'mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
@@ -39,5 +40,5 @@ export function TabPanel({
     >
       {children}
     </motion.div>
-  ) : null;
+  );
 }

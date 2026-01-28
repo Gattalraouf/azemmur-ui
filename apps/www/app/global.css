@@ -268,3 +268,13 @@
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
 }
+
+/* Shimmer animation for BlurImage component */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

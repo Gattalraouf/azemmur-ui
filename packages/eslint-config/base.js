@@ -31,7 +31,14 @@ export const config = [
       'import/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+          ],
           pathGroups: [
             {
               pattern: '@/**',
@@ -57,6 +64,7 @@ export const config = [
       'coverage/**',
       '*.config.js',
       '*.config.cjs',
+      'next-env.d.ts',
     ],
   },
 ];

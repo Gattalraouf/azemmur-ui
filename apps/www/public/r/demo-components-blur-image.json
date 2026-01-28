@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/demo/components/azemmur/blur-image/index.tsx",
-      "content": "import { BlurImage } from '@/components/azemmur/components/azemmur/blur-image';\n\ninterface BlurImageDemoProps {\n  src: string;\n  width?: number;\n  height?: number;\n}\n\nexport default function BlurImageDemo({\n  src,\n  width = 400,\n  height = 210,\n}: BlurImageDemoProps) {\n  return (\n    <div className=\"max-w-xl\">\n      <BlurImage\n        src={src}\n        width={width}\n        height={height}\n        alt=\"Demo blur image\"\n      />\n    </div>\n  );\n}\n",
+      "content": "import { BlurImage } from '@/components/azemmur/components/azemmur/blur-image';\n\ninterface BlurImageDemoProps {\n  src: string;\n  width?: number;\n  height?: number;\n}\n\nexport default function BlurImageDemo({\n  src,\n  width = 400,\n  height = 210,\n}: BlurImageDemoProps) {\n  return (\n    <div className=\"max-w-xl\">\n      <BlurImage\n        src={src}\n        width={width}\n        height={height}\n        alt=\"Demo blur image\"\n        className=\"border-4\"\n      />\n    </div>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/azemmur/demo/components/blur-image.tsx"
     }

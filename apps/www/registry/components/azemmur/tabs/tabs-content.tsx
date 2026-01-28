@@ -1,4 +1,4 @@
-// Copyright (c) 2025 raouf.codes - Azemmur
+// Copyright (c) 2026 raouf.codes - Azemmur
 'use client';
 
 import { cn } from '@workspace/ui/lib/utils';
