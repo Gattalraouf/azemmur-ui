@@ -18,6 +18,7 @@ export default function BlurImageDemo({
         width={width}
         height={height}
         alt="Demo blur image"
+        className="border-4"
       />
     </div>
   );
