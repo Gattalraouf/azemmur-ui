@@ -150,6 +150,16 @@
   --color-fd-primary: var(--primary);
 }
 
+[id^="radix-"][role="dialog"] button {
+    --color-fd-accent: var(--secondary);
+    --color-fd-popover-foreground: var(--foreground);
+    --color-fd-accent-foreground: var(--foreground);
+
+    &[aria-selected="false"] {
+      color: var(--foreground);
+    }
+}
+
 #nd-toc {
   --color-fd-primary: var(--foreground);
   --color-fd-accent-foreground: var(--foreground);

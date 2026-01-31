@@ -6,8 +6,12 @@ import { cn } from '@workspace/ui/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from 'next-themes';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import { Button as ButtonPrimitive } from '@/registry/components/primitives/button';
+
+const emptySubscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 const themeSwitchVariants = cva(
   [
@@ -88,12 +92,12 @@ function ThemeSwitch({
   elevation,
   ...props
 }: ThemeSwitchProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
   const { theme, setTheme, resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const currentTheme = resolvedTheme ?? theme;
   const isDark = currentTheme === 'dark';
