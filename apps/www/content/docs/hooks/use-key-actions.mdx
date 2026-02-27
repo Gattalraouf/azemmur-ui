@@ -183,7 +183,8 @@ function useKeyActions(
     },
     action: {
       description: 'Callback function invoked when a matching key is pressed.',
-      type: '(e: React.KeyboardEvent<HTMLElement>) => void',
+      type: 'function',
+      parameters: [{ name: 'e', description: 'React.KeyboardEvent<HTMLElement>' }],
       required: true,
     },
     modifiers: {
