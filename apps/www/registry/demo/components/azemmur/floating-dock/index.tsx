@@ -56,20 +56,12 @@ export default function FloatingDockDemo({
         shape={shape}
         elevation={elevation}
       >
-        {firstSet.map((item, i) => (
-          <FloatingDock.Item
-            key={item.title}
-            item={item}
-            tabIndex={i === 0 ? 0 : -1}
-          />
+        {firstSet.map((item) => (
+          <FloatingDock.Item key={item.title} item={item} />
         ))}
         <FloatingDock.Separator />
-        {secondSet.map((item, i) => (
-          <FloatingDock.Item
-            key={item.title}
-            item={item}
-            tabIndex={i === 0 ? 0 : -1}
-          />
+        {secondSet.map((item) => (
+          <FloatingDock.Item key={item.title} item={item} />
         ))}
       </FloatingDock>
     </div>

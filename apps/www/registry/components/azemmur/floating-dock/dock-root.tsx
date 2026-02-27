@@ -30,15 +30,18 @@ function DockRoot({
   const mousePosition = useMotionValue(Infinity);
   const containerRef = useRef<HTMLDivElement>(null);
   const isVertical = orientation !== 'horizontal';
+  const focusableSelector =
+    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
   const handleKeyDown = useKeyActions(
     [
       {
         keys: [isVertical ? 'ArrowDown' : 'ArrowRight'],
         action: (e) => {
-          const focusable = containerRef.current?.querySelectorAll<HTMLElement>(
-            'a[tabindex], button[tabindex]',
-          );
+          const focusable =
+            containerRef.current?.querySelectorAll<HTMLElement>(
+              focusableSelector,
+            );
           if (!focusable) return;
           const arr = Array.from(focusable);
           const index = arr.findIndex((el) => el === e.target);
@@ -49,9 +52,10 @@ function DockRoot({
       {
         keys: [isVertical ? 'ArrowUp' : 'ArrowLeft'],
         action: (e) => {
-          const focusable = containerRef.current?.querySelectorAll<HTMLElement>(
-            'a[tabindex], button[tabindex]',
-          );
+          const focusable =
+            containerRef.current?.querySelectorAll<HTMLElement>(
+              focusableSelector,
+            );
           if (!focusable) return;
           const arr = Array.from(focusable);
           const index = arr.findIndex((el) => el === e.target);

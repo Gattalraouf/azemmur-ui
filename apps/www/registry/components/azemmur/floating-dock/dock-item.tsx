@@ -32,7 +32,7 @@ const DOCK_BUTTON_SIZE = {
   lg: 'icon-lg',
 } as const;
 
-function DockItem({ item, className, tabIndex = 0, ...props }: DockItemProps) {
+function DockItem({ item, className, ...props }: DockItemProps) {
   const { mousePosition, isVertical, size, intent, styling, shape, elevation } =
     useDock();
   const internalRef = useRef<HTMLAnchorElement | null>(null);
@@ -87,9 +87,8 @@ function DockItem({ item, className, tabIndex = 0, ...props }: DockItemProps) {
         title={item.title}
         target="_blank"
         rel="noopener noreferrer"
-        tabIndex={tabIndex}
         onClick={handleClick}
-        className="flex items-center justify-center"
+        className="flex items-center justify-center focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:opacity-95 "
         {...props}
       >
         {item.icon}
