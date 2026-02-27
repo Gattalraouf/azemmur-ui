@@ -695,6 +695,36 @@
       }
     },
     {
+      "name": "hooks-use-focus-trap",
+      "type": "registry:hook",
+      "title": "useFocusTrap",
+      "description": "A hook to trap focus within a container element for accessibility.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/hooks/use-focus-trap/index.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-focus-trap.ts"
+        }
+      ]
+    },
+    {
+      "name": "hooks-use-is-mobile",
+      "type": "registry:hook",
+      "title": "useIsMobile",
+      "description": "A hook to detect whether the current viewport is considered mobile.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/hooks/use-is-mobile/index.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-is-mobile.ts"
+        }
+      ]
+    },
+    {
       "name": "hooks-use-key-actions",
       "type": "registry:hook",
       "title": "useKeyActions",
@@ -706,6 +736,21 @@
           "path": "registry/hooks/use-key-actions/index.ts",
           "type": "registry:hook",
           "target": "hooks/use-key-actions.ts"
+        }
+      ]
+    },
+    {
+      "name": "hooks-use-pinch-zoom",
+      "type": "registry:hook",
+      "title": "usePinchZoom",
+      "description": "A hook to handle pinch-to-zoom gestures on touch devices.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/hooks/use-pinch-zoom/index.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-pinch-zoom.ts"
         }
       ]
     }

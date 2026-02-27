@@ -1,12 +1,12 @@
+// Copyright (c) 2026 raouf.codes - Azemmur
+
+'use client';
+
 import { useCallback } from 'react';
 
-export type KeyAction = {
-  keys: string[];
-  action: (e: React.KeyboardEvent<HTMLElement>) => void | void;
-  modifiers?: Modifiers;
-  clickOnMatch?: boolean;
-};
-
+/**
+ * Modifier keys that can be required for a key action.
+ */
 export type Modifiers = {
   ctrl?: boolean;
   alt?: boolean;
@@ -14,10 +14,23 @@ export type Modifiers = {
   meta?: boolean;
 };
 
+/**
+ * Configuration for a single key action.
+ */
+export type KeyAction = {
+  keys: string[];
+  action: (e: React.KeyboardEvent<HTMLElement>) => void;
+  modifiers?: Modifiers;
+  clickOnMatch?: boolean;
+};
+
+/**
+ * Check if the pressed modifier keys match the expected modifiers.
+ */
 export function modifiersMatch(
   event: React.KeyboardEvent<HTMLElement>,
   modifiers?: Modifiers,
-) {
+): boolean {
   if (!modifiers) return true;
 
   return (
@@ -28,10 +41,35 @@ export function modifiersMatch(
   );
 }
 
+/**
+ * Hook for handling keyboard actions with customizable key bindings and modifiers.
+ *
+ * @example
+ * ```tsx
+ * const handleKeyDown = useKeyActions([
+ *   {
+ *     keys: ['Escape'],
+ *     action: () => close(),
+ *   },
+ *   {
+ *     keys: ['s'],
+ *     modifiers: { meta: true },
+ *     action: () => save(),
+ *   },
+ * ]);
+ *
+ * return <input onKeyDown={handleKeyDown} />;
+ * ```
+ *
+ * @param keyActions - Array of key action configurations
+ * @param activeRef - Optional ref to scope key handling to a container
+ * @param enabled - Whether the hook is active (default: true)
+ * @returns Event handler function for onKeyDown
+ */
 export function useKeyActions(
   keyActions: KeyAction[],
   activeRef?: React.RefObject<HTMLElement | null>,
-  enabled: boolean = true, // Only handle key events if enabled (e.g. isTopModal)
+  enabled: boolean = true,
 ) {
   return useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {

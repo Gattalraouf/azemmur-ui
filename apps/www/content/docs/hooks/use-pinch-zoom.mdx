@@ -1,0 +1,185 @@
+---
+title: usePinchZoom
+description: A hook to handle pinch-to-zoom gestures on touch devices.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-01
+---
+
+## Overview
+
+The `usePinchZoom` hook provides pinch-to-zoom gesture handling for touch devices. It tracks two-finger touch gestures and calculates zoom levels with configurable min/max bounds.
+
+## Installation
+
+<ComponentInstallation name="hooks-use-pinch-zoom" />
+
+## Usage
+
+### Basic
+
+```tsx
+import { useRef, useState } from 'react';
+import { usePinchZoom } from '@/hooks/use-pinch-zoom';
+
+function ZoomableImage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(1);
+
+  usePinchZoom({
+    elementRef: containerRef,
+    onZoom: setZoom,
+  });
+
+  return (
+    <div ref={containerRef} style={{ touchAction: 'none' }}>
+      <img
+        src="/image.jpg"
+        alt="Zoomable"
+        style={{ transform: `scale(${zoom})` }}
+      />
+    </div>
+  );
+}
+```
+
+### With Custom Bounds
+
+```tsx
+function ImageViewer() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(1);
+
+  usePinchZoom({
+    elementRef: containerRef,
+    onZoom: setZoom,
+    minZoom: 0.25,
+    maxZoom: 5,
+    initialZoom: 1,
+  });
+
+  return (
+    <div
+      ref={containerRef}
+      className="overflow-hidden"
+      style={{ touchAction: 'none' }}
+    >
+      <div style={{ transform: `scale(${zoom})`, transformOrigin: 'center' }}>
+        <img src="/photo.jpg" alt="Photo" />
+      </div>
+    </div>
+  );
+}
+```
+
+### With Reset Button
+
+```tsx
+function ZoomableContent() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(1);
+
+  usePinchZoom({
+    elementRef: containerRef,
+    onZoom: setZoom,
+    initialZoom: zoom,
+  });
+
+  return (
+    <div>
+      <button onClick={() => setZoom(1)}>Reset Zoom</button>
+      <div ref={containerRef} style={{ touchAction: 'none' }}>
+        <div style={{ transform: `scale(${zoom})` }}>{/* Content */}</div>
+      </div>
+    </div>
+  );
+}
+```
+
+## API Reference
+
+### `usePinchZoom`
+
+```tsx
+function usePinchZoom(options: UsePinchZoomOptions): void;
+```
+
+### `UsePinchZoomOptions`
+
+<TypeTable
+  type={{
+    elementRef: {
+      description: 'Ref to the element to track pinch gestures on.',
+      type: 'React.RefObject<HTMLElement | null>',
+      required: true,
+    },
+    onZoom: {
+      description: 'Callback fired when zoom level changes.',
+      type: 'function',
+      parameters: [{ name: 'zoom', description: 'number' }],
+      required: true,
+    },
+    minZoom: {
+      description: 'Minimum zoom level.',
+      type: 'number',
+      required: false,
+      default: '0.5',
+    },
+    maxZoom: {
+      description: 'Maximum zoom level.',
+      type: 'number',
+      required: false,
+      default: '3',
+    },
+    initialZoom: {
+      description: 'Initial zoom level.',
+      type: 'number',
+      required: false,
+      default: '1',
+    },
+  }}
+/>
+
+## Touch Events
+
+The hook handles the following touch events:
+
+- **touchstart** — Records initial pinch distance when two fingers touch
+- **touchmove** — Calculates new zoom based on finger distance change
+- **touchend/touchcancel** — Resets pinch tracking when gesture ends
+
+## Styling Tips
+
+For smooth zooming, consider these CSS properties:
+
+```css
+.zoomable-container {
+  touch-action: none; /* Prevent browser gestures */
+  overflow: hidden;
+}
+
+.zoomable-content {
+  transform-origin: center;
+  transition: transform 0.1s ease-out; /* Optional smoothing */
+}
+```
+
+## Features
+
+- **Bounded zoom** — Configurable min and max zoom levels
+- **Smooth gestures** — Calculates zoom based on pinch distance ratio
+- **Prevents conflicts** — Calls `preventDefault()` to stop page zooming
+- **Clean cleanup** — Removes all touch listeners on unmount
+
+## Browser Support
+
+Pinch zoom works on all modern touch-enabled browsers:
+
+- iOS Safari
+- Android Chrome
+- Touch-enabled laptops
+
+## Credits
+
+- Based on standard touch gesture handling patterns
