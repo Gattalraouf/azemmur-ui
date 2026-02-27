@@ -1,0 +1,12 @@
+{
+  "title": "Hooks",
+  "description": "Utility hooks for building interactive components",
+  "icon": "FishingHook",
+  "root": false,
+  "pages": [
+    "use-focus-trap",
+    "use-is-mobile",
+    "use-key-actions",
+    "use-pinch-zoom"
+  ]
+}

@@ -1,0 +1,254 @@
+---
+title: Speed Dial
+description: A floating action button that reveals a set of quick actions on click.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-27
+---
+
+## Overview
+
+The `SpeedDial` component provides a mobile-friendly floating action button that expands to reveal a set of quick action items with smooth animations and keyboard accessibility.
+
+**Subcomponents & hooks:**
+
+- `SpeedDial` — root component (context provider, keyboard handling)
+- `SpeedDial.Trigger` — toggle button to open/close the menu
+- `SpeedDial.Menu` — animated container for action items
+- `SpeedDial.Item` — individual action item with icon and link
+- `useSpeedDial()` — hook for custom integrations
+
+<ComponentPreview name="demo-components-speed-dial" />
+
+## Installation
+
+<ComponentInstallation name="components-speed-dial" />
+
+## Usage
+
+### Basic
+
+```tsx
+import {
+  SpeedDial,
+  type SpeedDialItemData,
+} from '@/components/azemmur/components/speed-dial';
+import { IconPlus, IconBrandGithub, IconMail } from '@tabler/icons-react';
+
+const items: SpeedDialItemData[] = [
+  {
+    title: 'GitHub',
+    icon: <IconBrandGithub className="size-full" />,
+    href: 'https://github.com',
+  },
+  {
+    title: 'Email',
+    icon: <IconMail className="size-full" />,
+    href: 'mailto:hello@example.com',
+  },
+];
+
+export default function Example() {
+  return (
+    <SpeedDial intent="primary" size="md">
+      <SpeedDial.Trigger>
+        <IconPlus className="size-5" />
+      </SpeedDial.Trigger>
+      <SpeedDial.Menu>
+        {items.map((item, index) => (
+          <SpeedDial.Item key={item.title} item={item} index={index} />
+        ))}
+      </SpeedDial.Menu>
+    </SpeedDial>
+  );
+}
+```
+
+### Obfuscated Links
+
+For email protection or other anti-scraping needs, use base64-encoded hrefs with the `obfuscated` flag:
+
+```tsx
+const items: SpeedDialItemData[] = [
+  {
+    title: 'Email',
+    icon: <IconMail className="size-full" />,
+    href: 'bWFpbHRvOmhlbGxvQGV4YW1wbGUuY29t', // base64 encoded
+    obfuscated: true,
+  },
+];
+```
+
+### Using `useSpeedDial()` for custom items
+
+```tsx
+import { useSpeedDial } from '@/components/azemmur/components/speed-dial/speed-dial-context';
+
+function CustomSpeedDialItem() {
+  const { open, setOpen, intent, styling, size } = useSpeedDial();
+  // Build custom speed dial item with context values
+  return <div>Custom content</div>;
+}
+```
+
+## API Reference
+
+### `SpeedDial` (root)
+
+<TypeTable
+  type={{
+    orientation: {
+      description: 'The layout direction of the speed dial menu.',
+      type: 'enum',
+      typeDescription: '"vertical" | "horizontal"',
+      required: false,
+      default: '"vertical"',
+    },
+    direction: {
+      description:
+        'Whether items appear before (reverse) or after (normal) the trigger.',
+      type: 'enum',
+      typeDescription: '"normal" | "reverse"',
+      required: false,
+      default: '"reverse"',
+    },
+    size: {
+      description: 'Controls the overall size of the speed dial and its items.',
+      type: 'enum',
+      typeDescription: '"sm" | "md" | "lg"',
+      required: false,
+      default: '"md"',
+    },
+    intent: {
+      description: 'Defines the color intent, indicating semantic meaning.',
+      type: 'enum',
+      typeDescription:
+        '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
+      required: false,
+      default: '"primary"',
+    },
+    styling: {
+      description: 'Specifies the visual treatment of speed dial items.',
+      type: 'enum',
+      typeDescription: '"solid" | "outline" | "ghost"',
+      required: false,
+      default: '"solid"',
+    },
+    shape: {
+      description: 'Defines the border radius style of speed dial items.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"pill"',
+    },
+    elevation: {
+      description: 'Controls the perceived depth and interaction style.',
+      type: 'enum',
+      typeDescription: '"raised" | "floating"',
+      required: false,
+      default: '"raised"',
+    },
+    defaultOpen: {
+      description: 'Whether the menu is open by default.',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+    },
+    className: {
+      description: 'Additional CSS classes to apply to the container.',
+      type: 'string',
+      required: false,
+    },
+  }}
+/>
+
+### `SpeedDial.Trigger`
+
+The trigger button that opens/closes the menu. Inherits variant props from the root.
+
+<TypeTable
+  type={{
+    children: {
+      description: 'The icon or content to display inside the trigger button.',
+      type: 'React.ReactNode',
+      required: true,
+    },
+    className: {
+      description: 'Additional CSS classes to apply to the trigger.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description:
+        'Additional props passed to the underlying Button component.',
+      type: 'ButtonProps',
+      required: false,
+    },
+  }}
+/>
+
+### `SpeedDial.Menu`
+
+The animated container for speed dial items.
+
+<TypeTable
+  type={{
+    children: {
+      description: 'SpeedDial.Item components to render in the menu.',
+      type: 'React.ReactNode',
+      required: true,
+    },
+    className: {
+      description: 'Additional CSS classes to apply to the menu container.',
+      type: 'string',
+      required: false,
+    },
+  }}
+/>
+
+### `SpeedDial.Item`
+
+Individual action item with icon and link.
+
+<TypeTable
+  type={{
+    item: {
+      description:
+        'The data object containing title, icon, href, and optional obfuscated flag.',
+      type: 'SpeedDialItemData',
+      typeDescription:
+        '{ title: string; icon: React.ReactNode; href: string; obfuscated?: boolean }',
+      required: true,
+    },
+    index: {
+      description: 'The index of the item for staggered animations.',
+      type: 'number',
+      required: false,
+      default: '0',
+    },
+    className: {
+      description: 'Additional CSS classes to apply to the item.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description: 'Additional props passed to the underlying anchor element.',
+      type: 'ComponentProps<"a">',
+      required: false,
+    },
+  }}
+/>
+
+## Accessibility
+
+- Full keyboard navigation support (Escape to close)
+- Proper ARIA attributes for menu role
+- Focus management on open/close
+- Screen reader friendly labels
+
+## Credits
+
+- Inspired by Material Design's Speed Dial pattern
+- Built with [Motion](https://motion.dev) for smooth animations
+- Uses the [Button](./button) component internally

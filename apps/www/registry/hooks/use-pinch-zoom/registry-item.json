@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-pinch-zoom",
+  "type": "registry:hook",
+  "title": "usePinchZoom",
+  "description": "A hook to handle pinch-to-zoom gestures on touch devices.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-pinch-zoom/index.ts",
+      "type": "registry:hook",
+      "target": "hooks/use-pinch-zoom.ts"
+    }
+  ]
+}

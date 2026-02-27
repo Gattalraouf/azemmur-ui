@@ -1,0 +1,321 @@
+---
+title: Floating Dock
+description: A macOS-style floating dock with magnetic hover animations and keyboard navigation.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-24
+---
+
+## Overview
+
+The `FloatingDock` component provides a macOS-style dock with magnetic hover effects, spring physics animations, and full keyboard accessibility.
+
+**Subcomponents & hooks:**
+
+- `FloatingDock` — root component (context provider, mouse/keyboard handling)
+- `FloatingDock.Item` — interactive dock item with animated scaling
+- `FloatingDock.Separator` — visual divider between item groups
+- `useDock()` — advanced hook for custom integrations
+
+<ComponentPreview name="demo-components-floating-dock" />
+
+## Installation
+
+<ComponentInstallation name="components-floating-dock" />
+
+## Usage
+
+### Basic
+
+```tsx
+import {
+  FloatingDock,
+  type DockItemData,
+} from '@/components/azemmur/components/floating-dock';
+
+const items: DockItemData[] = [
+  {
+    title: 'GitHub',
+    icon: <IconBrandGithub className="size-full" />,
+    href: 'https://github.com',
+  },
+  {
+    title: 'LinkedIn',
+    icon: <IconBrandLinkedin className="size-full" />,
+    href: 'https://linkedin.com',
+  },
+];
+
+export default function Example() {
+  return (
+    <FloatingDock intent="primary" size="md">
+      {items.map((item, i) => (
+        <FloatingDock.Item
+          key={item.title}
+          item={item}
+          tabIndex={i === 0 ? 0 : -1}
+        />
+      ))}
+    </FloatingDock>
+  );
+}
+```
+
+### With Separator
+
+```tsx
+<FloatingDock orientation="horizontal" styling="ghost">
+  {mainItems.map((item, i) => (
+    <FloatingDock.Item
+      key={item.title}
+      item={item}
+      tabIndex={i === 0 ? 0 : -1}
+    />
+  ))}
+  <FloatingDock.Separator />
+  {secondaryItems.map((item) => (
+    <FloatingDock.Item key={item.title} item={item} tabIndex={-1} />
+  ))}
+</FloatingDock>
+```
+
+### Using `useDock()` for custom items
+
+```tsx
+import { useDock } from '@/components/azemmur/components/floating-dock/dock-context';
+
+function CustomDockItem() {
+  const { mousePosition, isVertical, intent, styling } = useDock();
+  // Build custom dock item with context values
+  return <div>Custom content</div>;
+}
+```
+
+## API Reference
+
+### `FloatingDock` (root)
+
+<TypeTable
+  type={{
+    orientation: {
+      description: 'The layout direction of the dock.',
+      type: 'enum',
+      typeDescription: '"vertical" | "horizontal"',
+      required: false,
+      default: '"vertical"',
+    },
+    size: {
+      description:
+        'Controls the overall size of dock items and animation range.',
+      type: 'enum',
+      typeDescription: '"sm" | "md" | "lg"',
+      required: false,
+      default: '"md"',
+    },
+    intent: {
+      description:
+        'Defines the color intent of dock items, indicating semantic meaning.',
+      type: 'enum',
+      typeDescription:
+        '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
+      required: false,
+      default: '"primary"',
+    },
+    styling: {
+      description: 'Specifies the visual treatment of dock items.',
+      type: 'enum',
+      typeDescription: '"solid" | "outline" | "ghost" | "link"',
+      required: false,
+      default: '"solid"',
+    },
+    shape: {
+      description: 'Defines the border radius style of dock items.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"pill"',
+    },
+    elevation: {
+      description:
+        'Controls the perceived depth and interaction style of dock items.',
+      type: 'enum',
+      typeDescription: '"raised" | "floating"',
+      required: false,
+      default: '"raised"',
+    },
+    className: {
+      description: 'Additional CSS classes to apply to the dock container.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description: 'Additional props passed to the root container.',
+      type: 'ComponentProps<"div">',
+      required: false,
+    },
+  }}
+/>
+
+### `FloatingDock.Item`
+
+<ExternalLink
+  href="https://azemmur.raouf.codes/docs/primitives/button#button"
+  text="Azemmur API Reference - Button Primitive"
+/>
+
+<TypeTable
+  type={{
+    item: {
+      description:
+        'The dock item data containing title, icon, href, and optional obfuscation.',
+      type: 'DockItemData',
+      required: true,
+    },
+    tabIndex: {
+      description:
+        'Tab index for keyboard navigation. Set to 0 for the first item, -1 for others.',
+      type: 'number',
+      required: false,
+      default: '0',
+    },
+    className: {
+      description: 'Additional CSS classes.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description: 'Additional props passed to the anchor element.',
+      type: 'ComponentProps<"a">',
+      required: false,
+    },
+  }}
+/>
+
+### `FloatingDock.Separator`
+
+<TypeTable
+  type={{
+    className: {
+      description: 'Additional CSS classes for the separator.',
+      type: 'string',
+      required: false,
+    },
+    '...props': {
+      description: 'Additional props passed to the separator div.',
+      type: 'ComponentProps<"div">',
+      required: false,
+    },
+  }}
+/>
+
+### `DockItemData`
+
+<TypeTable
+  type={{
+    title: {
+      description:
+        'The accessible label for the link, used for aria-label and title attributes.',
+      type: 'string',
+      required: true,
+    },
+    icon: {
+      description: 'React node to render as the icon.',
+      type: 'React.ReactNode',
+      required: true,
+    },
+    href: {
+      description:
+        'The URL to navigate to. If obfuscated is true, this should be a base64-encoded string.',
+      type: 'string',
+      required: true,
+    },
+    obfuscated: {
+      description:
+        'When true, the href is treated as base64-encoded and decoded on click for spam protection.',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+    },
+  }}
+/>
+
+### `useDock()`
+
+Hook to access dock context values for building custom dock items.
+
+<TypeTable
+  type={{
+    mousePosition: {
+      description: 'Motion value tracking the current mouse position.',
+      type: 'MotionValue<number>',
+    },
+    isVertical: {
+      description: 'Whether the dock is in vertical orientation.',
+      type: 'boolean',
+    },
+    orientation: {
+      description: 'The current orientation of the dock.',
+      type: '"vertical" | "horizontal"',
+    },
+    size: {
+      description: 'The current size variant.',
+      type: '"sm" | "md" | "lg"',
+    },
+    intent: {
+      description: 'The current color intent.',
+      type: '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
+    },
+    styling: {
+      description: 'The current visual styling.',
+      type: '"solid" | "outline" | "ghost" | "link"',
+    },
+    shape: {
+      description: 'The current shape variant.',
+      type: '"rounded" | "pill" | "sharp"',
+    },
+    elevation: {
+      description: 'The current elevation variant.',
+      type: '"raised" | "floating"',
+    },
+  }}
+/>
+
+## Keyboard Navigation
+
+Keyboard navigation adapts to the dock orientation:
+
+**Vertical orientation:**
+
+| Key          | Action                          |
+| ------------ | ------------------------------- |
+| `Arrow Down` | Move focus to the next item     |
+| `Arrow Up`   | Move focus to the previous item |
+
+**Horizontal orientation:**
+
+| Key           | Action                          |
+| ------------- | ------------------------------- |
+| `Arrow Right` | Move focus to the next item     |
+| `Arrow Left`  | Move focus to the previous item |
+
+**Common keys:**
+
+| Key               | Action                          |
+| ----------------- | ------------------------------- |
+| `Enter` / `Space` | Activate the focused link       |
+| `Tab`             | Move focus into/out of the dock |
+
+## Features
+
+- **Magnetic hover effect** — Icons smoothly scale based on mouse proximity
+- **Spring animations** — Natural feeling physics-based transitions
+- **Keyboard navigation** — Full arrow key support with focus management
+- **Accessibility** — Proper ARIA labels and keyboard focus indicators
+- **Link obfuscation** — Optional base64-encoded hrefs for spam protection
+- **Variant system** — Full support for intent, styling, shape, and elevation
+
+## Credits
+
+- Inspired by macOS dock interactions
+- Built with [Motion](https://motion.dev/) for animations

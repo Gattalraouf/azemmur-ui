@@ -1,0 +1,262 @@
+---
+title: useKeyActions
+description: A hook for handling keyboard actions with customizable key bindings and modifiers.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-01
+---
+
+## Overview
+
+The `useKeyActions` hook provides a declarative way to handle keyboard events with support for multiple key bindings, modifier keys, and scoped focus management. It powers the keyboard navigation in components like `FloatingDock` and `Tabs`.
+
+## Installation
+
+<ComponentInstallation name="hooks-use-key-actions" />
+
+## Usage
+
+### Basic
+
+```tsx
+import { useKeyActions } from '@/hooks/use-key-actions';
+
+function SearchInput() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleKeyDown = useKeyActions([
+    {
+      keys: ['Escape'],
+      action: () => {
+        inputRef.current?.blur();
+      },
+    },
+    {
+      keys: ['Enter'],
+      action: () => {
+        // Submit search
+      },
+    },
+  ]);
+
+  return (
+    <input ref={inputRef} onKeyDown={handleKeyDown} placeholder="Search..." />
+  );
+}
+```
+
+### With Modifier Keys
+
+```tsx
+const handleKeyDown = useKeyActions([
+  {
+    keys: ['s'],
+    modifiers: { meta: true }, // Cmd+S on Mac
+    action: () => {
+      saveDocument();
+    },
+  },
+  {
+    keys: ['z'],
+    modifiers: { meta: true, shift: true }, // Cmd+Shift+Z
+    action: () => {
+      redo();
+    },
+  },
+]);
+```
+
+### Scoped to a Container
+
+```tsx
+function NavigationList() {
+  const containerRef = useRef<HTMLUListElement>(null);
+
+  const handleKeyDown = useKeyActions(
+    [
+      {
+        keys: ['ArrowDown'],
+        action: (e) => {
+          // Move focus to next item
+        },
+      },
+      {
+        keys: ['ArrowUp'],
+        action: (e) => {
+          // Move focus to previous item
+        },
+      },
+    ],
+    containerRef, // Only handle events when focus is within this container
+  );
+
+  return (
+    <ul ref={containerRef} onKeyDown={handleKeyDown}>
+      <li tabIndex={0}>Item 1</li>
+      <li tabIndex={-1}>Item 2</li>
+      <li tabIndex={-1}>Item 3</li>
+    </ul>
+  );
+}
+```
+
+### Conditional Enabling
+
+```tsx
+function Modal({ isOpen }: { isOpen: boolean }) {
+  const handleKeyDown = useKeyActions(
+    [
+      {
+        keys: ['Escape'],
+        action: () => closeModal(),
+      },
+    ],
+    undefined,
+    isOpen, // Only handle events when modal is open
+  );
+
+  return <div onKeyDown={handleKeyDown}>{/* Modal content */}</div>;
+}
+```
+
+### Click on Match
+
+```tsx
+const handleKeyDown = useKeyActions([
+  {
+    keys: ['Enter', ' '],
+    action: () => {},
+    clickOnMatch: true, // Programmatically click the target element
+  },
+]);
+```
+
+## API Reference
+
+### `useKeyActions`
+
+```tsx
+function useKeyActions(
+  keyActions: KeyAction[],
+  activeRef?: React.RefObject<HTMLElement | null>,
+  enabled?: boolean,
+): (e: React.KeyboardEvent<HTMLElement>) => void;
+```
+
+<TypeTable
+  type={{
+    keyActions: {
+      description: 'Array of key action definitions to handle.',
+      type: 'KeyAction[]',
+      required: true,
+    },
+    activeRef: {
+      description:
+        'Optional ref to scope key handling to a container. Events are only handled when focus is within this element.',
+      type: 'React.RefObject<HTMLElement | null>',
+      required: false,
+    },
+    enabled: {
+      description:
+        'When false, the handler returns early without processing any key events.',
+      type: 'boolean',
+      required: false,
+      default: 'true',
+    },
+    returns: {
+      description: 'Event handler function to attach to onKeyDown.',
+      type: '(e: React.KeyboardEvent<HTMLElement>) => void',
+    },
+  }}
+/>
+
+### `KeyAction`
+
+<TypeTable
+  type={{
+    keys: {
+      description:
+        'Array of key names that trigger this action (e.g., "Enter", "Escape", "ArrowDown").',
+      type: 'string[]',
+      required: true,
+    },
+    action: {
+      description: 'Callback function invoked when a matching key is pressed.',
+      type: 'function',
+      parameters: [
+        { name: 'e', description: 'React.KeyboardEvent<HTMLElement>' },
+      ],
+      required: true,
+    },
+    modifiers: {
+      description: 'Optional modifier key requirements.',
+      type: 'Modifiers',
+      required: false,
+    },
+    clickOnMatch: {
+      description:
+        'When true, programmatically clicks the event target after the action runs.',
+      type: 'boolean',
+      required: false,
+      default: 'false',
+    },
+  }}
+/>
+
+### `Modifiers`
+
+<TypeTable
+  type={{
+    ctrl: {
+      description: 'Requires the Ctrl key to be pressed.',
+      type: 'boolean',
+      required: false,
+    },
+    alt: {
+      description: 'Requires the Alt/Option key to be pressed.',
+      type: 'boolean',
+      required: false,
+    },
+    shift: {
+      description: 'Requires the Shift key to be pressed.',
+      type: 'boolean',
+      required: false,
+    },
+    meta: {
+      description:
+        'Requires the Meta key (Cmd on Mac, Win on Windows) to be pressed.',
+      type: 'boolean',
+      required: false,
+    },
+  }}
+/>
+
+## Helper Functions
+
+### `modifiersMatch`
+
+Utility function to check if an event's modifier keys match the expected modifiers.
+
+```tsx
+import { modifiersMatch } from '@/hooks/use-key-actions';
+
+function handleKeyDown(e: React.KeyboardEvent) {
+  if (e.key === 's' && modifiersMatch(e, { meta: true })) {
+    // Handle Cmd+S
+  }
+}
+```
+
+## Features
+
+- **Multiple key bindings** — Define multiple keys that trigger the same action
+- **Modifier support** — Handle Ctrl, Alt, Shift, and Meta (Cmd) key combinations
+- **Scoped handling** — Optionally scope key handling to a specific container
+- **Conditional enabling** — Dynamically enable/disable key handling
+- **Click simulation** — Optionally click the target element after action
+- **Memoized handler** — Returns a stable callback reference
+
+## Credits
+
+- Inspired by keyboard handling patterns from accessible component libraries

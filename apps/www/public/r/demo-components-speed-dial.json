@@ -1,0 +1,84 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-speed-dial",
+  "title": "Speed Dial Demo",
+  "description": "Demo for the Speed Dial component.",
+  "dependencies": [
+    "@tabler/icons-react"
+  ],
+  "registryDependencies": [
+    "@azemmur/components-speed-dial"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/speed-dial/index.tsx",
+      "content": "'use client';\n\nimport {\n  IconBrandGithub,\n  IconBrandLinkedin,\n  IconBrandX,\n  IconMail,\n  IconPlus,\n} from '@tabler/icons-react';\nimport {\n  SpeedDial,\n  type SpeedDialItemData,\n} from '@/components/azemmur/components/azemmur/speed-dial';\nimport type { SpeedDialVariantProps } from '@/components/azemmur/components/azemmur/speed-dial/speed-dial-variants';\n\nconst items: SpeedDialItemData[] = [\n  {\n    title: 'GitHub',\n    icon: <IconBrandGithub className=\"size-full\" />,\n    href: 'https://github.com',\n  },\n  {\n    title: 'LinkedIn',\n    icon: <IconBrandLinkedin className=\"size-full\" />,\n    href: 'https://linkedin.com',\n  },\n  {\n    title: 'X (Twitter)',\n    icon: <IconBrandX className=\"size-full\" />,\n    href: 'https://x.com',\n  },\n  {\n    title: 'Email',\n    icon: <IconMail className=\"size-full\" />,\n    href: 'bWFpbHRvOmhlbGxvQGV4YW1wbGUuY29t',\n    obfuscated: true,\n  },\n];\n\nexport default function SpeedDialDemo({\n  orientation,\n  direction,\n  size,\n  intent,\n  styling,\n  shape,\n  elevation,\n}: SpeedDialVariantProps) {\n  return (\n    <div className=\"flex items-center justify-center h-[400px] w-full\">\n      <SpeedDial\n        orientation={orientation}\n        direction={direction}\n        size={size}\n        intent={intent}\n        styling={styling}\n        shape={shape}\n        elevation={elevation}\n      >\n        <SpeedDial.Trigger>\n          <IconPlus className=\"size-5\" />\n        </SpeedDial.Trigger>\n        <SpeedDial.Menu>\n          {items.map((item, index) => (\n            <SpeedDial.Item key={item.title} item={item} index={index} />\n          ))}\n        </SpeedDial.Menu>\n      </SpeedDial>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/components/speed-dial.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "SpeedDial": {
+        "orientation": {
+          "value": "vertical",
+          "options": {
+            "vertical": "vertical",
+            "horizontal": "horizontal"
+          }
+        },
+        "direction": {
+          "value": "reverse",
+          "options": {
+            "normal": "normal",
+            "reverse": "reverse"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "styling": {
+          "value": "solid",
+          "options": {
+            "solid": "solid",
+            "outline": "outline",
+            "ghost": "ghost"
+          }
+        },
+        "shape": {
+          "value": "pill",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
+          }
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

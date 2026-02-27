@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-focus-trap",
+  "type": "registry:hook",
+  "title": "useFocusTrap",
+  "description": "A hook to trap focus within a container element for accessibility.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-focus-trap/index.ts",
+      "type": "registry:hook",
+      "target": "hooks/use-focus-trap.ts"
+    }
+  ]
+}

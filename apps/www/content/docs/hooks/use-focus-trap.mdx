@@ -1,0 +1,118 @@
+---
+title: useFocusTrap
+description: A hook to trap focus within a container element for accessibility.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-01
+---
+
+## Overview
+
+The `useFocusTrap` hook traps focus within a container element, ensuring that Tab and Shift+Tab navigation cycles through focusable elements without escaping. This is essential for accessible modals, dialogs, and dropdown menus.
+
+## Installation
+
+<ComponentInstallation name="hooks-use-focus-trap" />
+
+## Usage
+
+### Basic
+
+```tsx
+import { useRef, useState } from 'react';
+import { useFocusTrap } from '@/hooks/use-focus-trap';
+
+function Modal() {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(isOpen, containerRef);
+
+  if (!isOpen) return null;
+
+  return (
+    <div ref={containerRef} role="dialog" aria-modal="true">
+      <h2>Modal Title</h2>
+      <p>Modal content goes here.</p>
+      <button onClick={() => setIsOpen(false)}>Close</button>
+    </div>
+  );
+}
+```
+
+### With Multiple Focusable Elements
+
+```tsx
+function Dialog() {
+  const [isOpen, setIsOpen] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(isOpen, dialogRef);
+
+  return (
+    <div ref={dialogRef} className="dialog">
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <button>Cancel</button>
+      <button>Submit</button>
+    </div>
+  );
+}
+```
+
+## API Reference
+
+### `useFocusTrap`
+
+```tsx
+function useFocusTrap(
+  active: boolean,
+  containerRef: React.RefObject<HTMLElement | null>,
+): void;
+```
+
+<TypeTable
+  type={{
+    active: {
+      description: 'Whether the focus trap is active.',
+      type: 'boolean',
+      required: true,
+    },
+    containerRef: {
+      description: 'Ref to the container element that should trap focus.',
+      type: 'React.RefObject<HTMLElement | null>',
+      required: true,
+    },
+  }}
+/>
+
+## Focusable Elements
+
+The hook considers the following elements as focusable:
+
+- `a[href]` — Links with href attribute
+- `button:not([disabled])` — Enabled buttons
+- `textarea:not([disabled])` — Enabled textareas
+- `input:not([disabled])` — Enabled inputs
+- `select:not([disabled])` — Enabled selects
+- `[tabindex]:not([tabindex="-1"])` — Elements with positive tabindex
+
+## Features
+
+- **Automatic focus** — Focuses the first focusable element when trap activates
+- **Circular navigation** — Tab from last element wraps to first, Shift+Tab from first wraps to last
+- **Conditional activation** — Only traps focus when `active` is true
+- **Clean cleanup** — Removes event listeners when deactivated
+
+## Accessibility
+
+Focus trapping is crucial for:
+
+- **Modals/Dialogs** — Prevents users from accidentally interacting with content behind the modal
+- **Dropdown menus** — Keeps focus within the menu until closed
+- **Popovers** — Ensures keyboard users can navigate within the popover
+
+## Credits
+
+- Based on ARIA Authoring Practices for modal dialogs

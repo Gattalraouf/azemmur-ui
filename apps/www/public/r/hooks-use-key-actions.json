@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-key-actions",
+  "title": "useKeyActions",
+  "description": "A hook for handling keyboard actions with customizable key bindings and modifiers.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-key-actions/index.ts",
+      "content": "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { useCallback } from 'react';\n\n/**\n * Modifier keys that can be required for a key action.\n */\nexport type Modifiers = {\n  ctrl?: boolean;\n  alt?: boolean;\n  shift?: boolean;\n  meta?: boolean;\n};\n\n/**\n * Configuration for a single key action.\n */\nexport type KeyAction = {\n  keys: string[];\n  action: (e: React.KeyboardEvent<HTMLElement>) => void;\n  modifiers?: Modifiers;\n  clickOnMatch?: boolean;\n};\n\n/**\n * Check if the pressed modifier keys match the expected modifiers.\n */\nexport function modifiersMatch(\n  event: React.KeyboardEvent<HTMLElement>,\n  modifiers?: Modifiers,\n): boolean {\n  if (!modifiers) return true;\n\n  return (\n    (modifiers.ctrl === undefined || modifiers.ctrl === event.ctrlKey) &&\n    (modifiers.alt === undefined || modifiers.alt === event.altKey) &&\n    (modifiers.shift === undefined || modifiers.shift === event.shiftKey) &&\n    (modifiers.meta === undefined || modifiers.meta === event.metaKey)\n  );\n}\n\n/**\n * Hook for handling keyboard actions with customizable key bindings and modifiers.\n *\n * @example\n * ```tsx\n * const handleKeyDown = useKeyActions([\n *   {\n *     keys: ['Escape'],\n *     action: () => close(),\n *   },\n *   {\n *     keys: ['s'],\n *     modifiers: { meta: true },\n *     action: () => save(),\n *   },\n * ]);\n *\n * return <input onKeyDown={handleKeyDown} />;\n * ```\n *\n * @param keyActions - Array of key action configurations\n * @param activeRef - Optional ref to scope key handling to a container\n * @param enabled - Whether the hook is active (default: true)\n * @returns Event handler function for onKeyDown\n */\nexport function useKeyActions(\n  keyActions: KeyAction[],\n  activeRef?: React.RefObject<HTMLElement | null>,\n  enabled: boolean = true,\n) {\n  return useCallback(\n    (e: React.KeyboardEvent<HTMLElement>) => {\n      if (!enabled) return;\n\n      if (\n        activeRef?.current &&\n        !activeRef.current.contains(document.activeElement)\n      ) {\n        return;\n      }\n\n      for (const { keys, action, modifiers, clickOnMatch } of keyActions) {\n        if (keys.includes(e.key) && modifiersMatch(e, modifiers)) {\n          e.preventDefault();\n          action(e);\n\n          if (clickOnMatch && e.target instanceof HTMLElement) {\n            e.target.click();\n          }\n\n          break;\n        }\n      }\n    },\n    [keyActions, activeRef, enabled],\n  );\n}\n",
+      "type": "registry:hook",
+      "target": "hooks/use-key-actions.ts"
+    }
+  ],
+  "type": "registry:hook"
+}
