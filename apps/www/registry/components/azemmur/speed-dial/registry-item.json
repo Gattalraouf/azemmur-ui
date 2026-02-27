@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-speed-dial",
+  "type": "registry:ui",
+  "title": "Speed Dial",
+  "description": "A floating action button that reveals a set of quick actions on click.",
+  "dependencies": ["motion", "class-variance-authority"],
+  "registryDependencies": [
+    "@azemmur/components-button",
+    "@azemmur/hooks-use-key-actions"
+  ],
+  "files": [
+    {
+      "path": "registry/components/azemmur/speed-dial/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/speed-dial/index.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/speed-dial/speed-dial-root.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/speed-dial/speed-dial-root.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/speed-dial/speed-dial-context.tsx",
+      "type": "registry:hook",
+      "target": "components/azemmur/components/speed-dial/speed-dial-context.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/speed-dial/speed-dial-trigger.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/speed-dial/speed-dial-trigger.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/speed-dial/speed-dial-menu.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/speed-dial/speed-dial-menu.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/speed-dial/speed-dial-item.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/speed-dial/speed-dial-item.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/speed-dial/speed-dial-variants.ts",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/speed-dial/speed-dial-variants.ts"
+    }
+  ]
+}
