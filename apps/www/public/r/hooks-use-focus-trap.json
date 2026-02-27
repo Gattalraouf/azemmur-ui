@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-focus-trap",
+  "title": "useFocusTrap",
+  "description": "A hook to trap focus within a container element for accessibility.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-focus-trap/index.ts",
+      "content": "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { useEffect } from 'react';\n\nconst FOCUSABLE_SELECTORS = [\n  'a[href]',\n  'button:not([disabled])',\n  'textarea:not([disabled])',\n  'input:not([disabled])',\n  'select:not([disabled])',\n  '[tabindex]:not([tabindex=\"-1\"])',\n].join(',');\n\n/**\n * Hook to trap focus within a container element.\n *\n * When active, Tab and Shift+Tab will cycle through focusable elements\n * within the container, preventing focus from escaping.\n *\n * @example\n * ```tsx\n * const containerRef = useRef<HTMLDivElement>(null);\n * useFocusTrap(isOpen, containerRef);\n *\n * return <div ref={containerRef}>...</div>;\n * ```\n *\n * @param active - Whether the focus trap is active\n * @param containerRef - Ref to the container element\n */\nexport function useFocusTrap(\n  active: boolean,\n  containerRef: React.RefObject<HTMLElement | null>,\n) {\n  useEffect(() => {\n    const container = containerRef.current;\n    if (!active || !container) return;\n\n    const handleTabKey = (e: KeyboardEvent) => {\n      if (e.key !== 'Tab') return;\n\n      const focusableElements =\n        container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);\n\n      if (focusableElements.length === 0) return;\n\n      const firstElement = focusableElements[0];\n      const lastElement = focusableElements[focusableElements.length - 1];\n\n      if (!firstElement || !lastElement) return;\n\n      if (e.shiftKey) {\n        if (document.activeElement === firstElement) {\n          e.preventDefault();\n          lastElement.focus();\n        }\n      } else {\n        if (document.activeElement === lastElement) {\n          e.preventDefault();\n          firstElement.focus();\n        }\n      }\n    };\n\n    const focusableElements =\n      container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);\n    const firstElement = focusableElements[0];\n    if (firstElement) {\n      firstElement.focus();\n    }\n\n    container.addEventListener('keydown', handleTabKey);\n\n    return () => {\n      container.removeEventListener('keydown', handleTabKey);\n    };\n  }, [active, containerRef]);\n}\n",
+      "type": "registry:hook",
+      "target": "hooks/use-focus-trap.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

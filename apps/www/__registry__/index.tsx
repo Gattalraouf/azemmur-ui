@@ -228,7 +228,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/components/speed-dial/speed-dial-item.tsx',
         content:
-          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { motion } from 'motion/react';\nimport { type ComponentProps } from 'react';\nimport { Button } from '@/components/azemmur/components/azemmur/button';\nimport { useSpeedDial } from '@/components/azemmur/components/azemmur/speed-dial/speed-dial-context';\nimport { SPEED_DIAL_BUTTON_SIZE } from '@/components/azemmur/components/azemmur/speed-dial/speed-dial-variants';\n\ntype SpeedDialItemData = {\n  title: string;\n  icon: React.ReactNode;\n  href: string;\n  obfuscated?: boolean;\n};\n\ninterface SpeedDialItemProps extends ComponentProps<'a'> {\n  item: SpeedDialItemData;\n  index?: number;\n}\n\nfunction SpeedDialItem({\n  item,\n  index = 0,\n  className,\n  ...props\n}: SpeedDialItemProps) {\n  const { size, intent, styling, shape, elevation, setOpen, isVertical } =\n    useSpeedDial();\n\n  const sizeKey = size ?? 'md';\n  const href = item.obfuscated ? undefined : item.href;\n\n  const handleClick = item.obfuscated\n    ? () => {\n        window.open(atob(item.href), '_blank', 'noopener,noreferrer');\n        setOpen(false);\n      }\n    : () => setOpen(false);\n\n  const initialOffset = isVertical ? { y: 10 } : { x: 10 };\n  const animateOffset = isVertical ? { y: 0 } : { x: 0 };\n\n  return (\n    <motion.div\n      initial={{ opacity: 0, ...initialOffset, scale: 0.8 }}\n      animate={{ opacity: 1, ...animateOffset, scale: 1 }}\n      exit={{ opacity: 0, ...initialOffset, scale: 0.8 }}\n      transition={{\n        delay: index * 0.05,\n        duration: 0.15,\n        ease: 'easeOut',\n      }}\n    >\n      <Button\n        asChild\n        size={SPEED_DIAL_BUTTON_SIZE[sizeKey]}\n        intent={intent}\n        styling={styling}\n        shape={shape}\n        elevation={elevation}\n      >\n        <a\n          href={href}\n          role=\"menuitem\"\n          aria-label={item.title}\n          title={item.title}\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n          onClick={handleClick}\n          className={cn(\n            'flex items-center justify-center focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/60',\n            className,\n          )}\n          {...props}\n        >\n          {item.icon}\n        </a>\n      </Button>\n    </motion.div>\n  );\n}\n\nexport { SpeedDialItem, type SpeedDialItemProps, type SpeedDialItemData };",
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { motion } from 'motion/react';\nimport { type ComponentProps } from 'react';\nimport { Button } from '@/components/azemmur/components/azemmur/button';\nimport { useSpeedDial } from '@/components/azemmur/components/azemmur/speed-dial/speed-dial-context';\nimport { SPEED_DIAL_BUTTON_SIZE } from '@/components/azemmur/components/azemmur/speed-dial/speed-dial-variants';\n\ntype SpeedDialItemData = {\n  title: string;\n  icon: React.ReactNode;\n  href: string;\n  obfuscated?: boolean;\n};\n\ninterface SpeedDialItemProps extends ComponentProps<'a'> {\n  item: SpeedDialItemData;\n  index?: number;\n}\n\nfunction SpeedDialItem({\n  item,\n  index = 0,\n  className,\n  ...props\n}: SpeedDialItemProps) {\n  const { size, intent, styling, shape, elevation, setOpen, isVertical } =\n    useSpeedDial();\n\n  const sizeKey = size ?? 'md';\n  const href = item.obfuscated ? undefined : item.href;\n\n  const handleClick = item.obfuscated\n    ? () => {\n        window.open(atob(item.href), '_blank', 'noopener,noreferrer');\n        setOpen(false);\n      }\n    : () => setOpen(false);\n\n  const initialOffset = isVertical ? { y: 10 } : { x: 10 };\n  const animateOffset = isVertical ? { y: 0 } : { x: 0 };\n\n  return (\n    <motion.div\n      initial={{ opacity: 0, ...initialOffset, scale: 0.8 }}\n      animate={{ opacity: 1, ...animateOffset, scale: 1 }}\n      exit={{ opacity: 0, ...initialOffset, scale: 0.8 }}\n      transition={{\n        delay: index * 0.05,\n        duration: 0.15,\n        ease: 'easeOut',\n      }}\n    >\n      <Button\n        asChild\n        size={SPEED_DIAL_BUTTON_SIZE[sizeKey]}\n        intent={intent}\n        styling={styling}\n        shape={shape}\n        elevation={elevation}\n        className=\"p-2\"\n      >\n        <a\n          href={href}\n          role=\"menuitem\"\n          aria-label={item.title}\n          title={item.title}\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n          onClick={handleClick}\n          className={cn(\n            'flex items-center justify-center focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/60',\n            className,\n          )}\n          {...props}\n        >\n          {item.icon}\n        </a>\n      </Button>\n    </motion.div>\n  );\n}\n\nexport { SpeedDialItem, type SpeedDialItemProps, type SpeedDialItemData };",
       },
       {
         path: 'registry/components/azemmur/speed-dial/speed-dial-variants.ts',
@@ -919,6 +919,80 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/demo-primitives-button',
   },
+  'hooks-use-focus-trap': {
+    name: 'hooks-use-focus-trap',
+    description:
+      'A hook to trap focus within a container element for accessibility.',
+    type: 'registry:hook',
+    dependencies: [],
+    devDependencies: undefined,
+    registryDependencies: [],
+    files: [
+      {
+        path: 'registry/hooks/use-focus-trap/index.ts',
+        type: 'registry:hook',
+        target: 'hooks/use-focus-trap.ts',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { useEffect } from 'react';\n\nconst FOCUSABLE_SELECTORS = [\n  'a[href]',\n  'button:not([disabled])',\n  'textarea:not([disabled])',\n  'input:not([disabled])',\n  'select:not([disabled])',\n  '[tabindex]:not([tabindex=\"-1\"])',\n].join(',');\n\n/**\n * Hook to trap focus within a container element.\n *\n * When active, Tab and Shift+Tab will cycle through focusable elements\n * within the container, preventing focus from escaping.\n *\n * @example\n * ```tsx\n * const containerRef = useRef<HTMLDivElement>(null);\n * useFocusTrap(isOpen, containerRef);\n *\n * return <div ref={containerRef}>...</div>;\n * ```\n *\n * @param active - Whether the focus trap is active\n * @param containerRef - Ref to the container element\n */\nexport function useFocusTrap(\n  active: boolean,\n  containerRef: React.RefObject<HTMLElement | null>,\n) {\n  useEffect(() => {\n    const container = containerRef.current;\n    if (!active || !container) return;\n\n    const handleTabKey = (e: KeyboardEvent) => {\n      if (e.key !== 'Tab') return;\n\n      const focusableElements =\n        container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);\n\n      if (focusableElements.length === 0) return;\n\n      const firstElement = focusableElements[0];\n      const lastElement = focusableElements[focusableElements.length - 1];\n\n      if (!firstElement || !lastElement) return;\n\n      if (e.shiftKey) {\n        if (document.activeElement === firstElement) {\n          e.preventDefault();\n          lastElement.focus();\n        }\n      } else {\n        if (document.activeElement === lastElement) {\n          e.preventDefault();\n          firstElement.focus();\n        }\n      }\n    };\n\n    const focusableElements =\n      container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS);\n    const firstElement = focusableElements[0];\n    if (firstElement) {\n      firstElement.focus();\n    }\n\n    container.addEventListener('keydown', handleTabKey);\n\n    return () => {\n      container.removeEventListener('keydown', handleTabKey);\n    };\n  }, [active, containerRef]);\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import('@/registry/hooks/use-focus-trap/index.ts');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'hooks-use-focus-trap';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/hooks-use-focus-trap',
+  },
+  'hooks-use-is-mobile': {
+    name: 'hooks-use-is-mobile',
+    description:
+      'A hook to detect whether the current viewport is considered mobile.',
+    type: 'registry:hook',
+    dependencies: [],
+    devDependencies: undefined,
+    registryDependencies: [],
+    files: [
+      {
+        path: 'registry/hooks/use-is-mobile/index.ts',
+        type: 'registry:hook',
+        target: 'hooks/use-is-mobile.ts',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { useState, useEffect } from 'react';\n\nconst DEFAULT_BREAKPOINT = 1024;\n\n/**\n * Hook to detect whether the current viewport is considered \"mobile\".\n *\n * Uses a resize listener to determine if the viewport width is below the breakpoint.\n * Returns `undefined` during SSR, then `true` or `false` after hydration.\n *\n * @example\n * ```tsx\n * const isMobile = useIsMobile();\n * if (isMobile) {\n *   // Render mobile layout\n * }\n * ```\n *\n * @param breakpoint - The width threshold in pixels (default: 1024)\n * @returns `undefined` during SSR, `true` if mobile, `false` otherwise\n */\nexport function useIsMobile(breakpoint = DEFAULT_BREAKPOINT) {\n  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);\n\n  useEffect(() => {\n    const checkScreenSize = () => {\n      setIsMobile(window.innerWidth < breakpoint);\n    };\n\n    checkScreenSize();\n    window.addEventListener('resize', checkScreenSize);\n\n    return () => {\n      window.removeEventListener('resize', checkScreenSize);\n    };\n  }, [breakpoint]);\n\n  return isMobile;\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import('@/registry/hooks/use-is-mobile/index.ts');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'hooks-use-is-mobile';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/hooks-use-is-mobile',
+  },
   'hooks-use-key-actions': {
     name: 'hooks-use-key-actions',
     description:
@@ -933,7 +1007,7 @@ export const index: Record<string, any> = {
         type: 'registry:hook',
         target: 'hooks/use-key-actions.ts',
         content:
-          "import { useCallback } from 'react';\n\nexport type KeyAction = {\n  keys: string[];\n  action: (e: React.KeyboardEvent<HTMLElement>) => void | void;\n  modifiers?: Modifiers;\n  clickOnMatch?: boolean;\n};\n\nexport type Modifiers = {\n  ctrl?: boolean;\n  alt?: boolean;\n  shift?: boolean;\n  meta?: boolean;\n};\n\nexport function modifiersMatch(\n  event: React.KeyboardEvent<HTMLElement>,\n  modifiers?: Modifiers,\n) {\n  if (!modifiers) return true;\n\n  return (\n    (modifiers.ctrl === undefined || modifiers.ctrl === event.ctrlKey) &&\n    (modifiers.alt === undefined || modifiers.alt === event.altKey) &&\n    (modifiers.shift === undefined || modifiers.shift === event.shiftKey) &&\n    (modifiers.meta === undefined || modifiers.meta === event.metaKey)\n  );\n}\n\nexport function useKeyActions(\n  keyActions: KeyAction[],\n  activeRef?: React.RefObject<HTMLElement | null>,\n  enabled: boolean = true, // Only handle key events if enabled (e.g. isTopModal)\n) {\n  return useCallback(\n    (e: React.KeyboardEvent<HTMLElement>) => {\n      if (!enabled) return;\n\n      if (\n        activeRef?.current &&\n        !activeRef.current.contains(document.activeElement)\n      ) {\n        return;\n      }\n\n      for (const { keys, action, modifiers, clickOnMatch } of keyActions) {\n        if (keys.includes(e.key) && modifiersMatch(e, modifiers)) {\n          e.preventDefault();\n          action(e);\n\n          if (clickOnMatch && e.target instanceof HTMLElement) {\n            e.target.click();\n          }\n\n          break;\n        }\n      }\n    },\n    [keyActions, activeRef, enabled],\n  );\n}",
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { useCallback } from 'react';\n\n/**\n * Modifier keys that can be required for a key action.\n */\nexport type Modifiers = {\n  ctrl?: boolean;\n  alt?: boolean;\n  shift?: boolean;\n  meta?: boolean;\n};\n\n/**\n * Configuration for a single key action.\n */\nexport type KeyAction = {\n  keys: string[];\n  action: (e: React.KeyboardEvent<HTMLElement>) => void;\n  modifiers?: Modifiers;\n  clickOnMatch?: boolean;\n};\n\n/**\n * Check if the pressed modifier keys match the expected modifiers.\n */\nexport function modifiersMatch(\n  event: React.KeyboardEvent<HTMLElement>,\n  modifiers?: Modifiers,\n): boolean {\n  if (!modifiers) return true;\n\n  return (\n    (modifiers.ctrl === undefined || modifiers.ctrl === event.ctrlKey) &&\n    (modifiers.alt === undefined || modifiers.alt === event.altKey) &&\n    (modifiers.shift === undefined || modifiers.shift === event.shiftKey) &&\n    (modifiers.meta === undefined || modifiers.meta === event.metaKey)\n  );\n}\n\n/**\n * Hook for handling keyboard actions with customizable key bindings and modifiers.\n *\n * @example\n * ```tsx\n * const handleKeyDown = useKeyActions([\n *   {\n *     keys: ['Escape'],\n *     action: () => close(),\n *   },\n *   {\n *     keys: ['s'],\n *     modifiers: { meta: true },\n *     action: () => save(),\n *   },\n * ]);\n *\n * return <input onKeyDown={handleKeyDown} />;\n * ```\n *\n * @param keyActions - Array of key action configurations\n * @param activeRef - Optional ref to scope key handling to a container\n * @param enabled - Whether the hook is active (default: true)\n * @returns Event handler function for onKeyDown\n */\nexport function useKeyActions(\n  keyActions: KeyAction[],\n  activeRef?: React.RefObject<HTMLElement | null>,\n  enabled: boolean = true,\n) {\n  return useCallback(\n    (e: React.KeyboardEvent<HTMLElement>) => {\n      if (!enabled) return;\n\n      if (\n        activeRef?.current &&\n        !activeRef.current.contains(document.activeElement)\n      ) {\n        return;\n      }\n\n      for (const { keys, action, modifiers, clickOnMatch } of keyActions) {\n        if (keys.includes(e.key) && modifiersMatch(e, modifiers)) {\n          e.preventDefault();\n          action(e);\n\n          if (clickOnMatch && e.target instanceof HTMLElement) {\n            e.target.click();\n          }\n\n          break;\n        }\n      }\n    },\n    [keyActions, activeRef, enabled],\n  );\n}",
       },
     ],
     keywords: [],
@@ -955,5 +1029,41 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/hooks-use-key-actions',
+  },
+  'hooks-use-pinch-zoom': {
+    name: 'hooks-use-pinch-zoom',
+    description: 'A hook to handle pinch-to-zoom gestures on touch devices.',
+    type: 'registry:hook',
+    dependencies: [],
+    devDependencies: undefined,
+    registryDependencies: [],
+    files: [
+      {
+        path: 'registry/hooks/use-pinch-zoom/index.ts',
+        type: 'registry:hook',
+        target: 'hooks/use-pinch-zoom.ts',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\nimport { useEffect, useRef } from 'react';\n\nexport type UsePinchZoomOptions = {\n  elementRef: React.RefObject<HTMLElement | null>;\n  onZoom: (zoom: number) => void;\n  minZoom?: number;\n  maxZoom?: number;\n  initialZoom?: number;\n};\n\nfunction getDistance(touches: TouchList): number {\n  if (touches.length < 2) return 0;\n  const touch1 = touches[0];\n  const touch2 = touches[1];\n  if (!touch1 || !touch2) return 0;\n  return Math.hypot(\n    touch2.clientX - touch1.clientX,\n    touch2.clientY - touch1.clientY,\n  );\n}\n\n/**\n * Hook to handle pinch-to-zoom gestures on touch devices.\n *\n * @example\n * ```tsx\n * const elementRef = useRef<HTMLDivElement>(null);\n * const [zoom, setZoom] = useState(1);\n *\n * usePinchZoom({\n *   elementRef,\n *   onZoom: setZoom,\n *   minZoom: 0.5,\n *   maxZoom: 3,\n * });\n *\n * return <div ref={elementRef} style={{ transform: `scale(${zoom})` }}>...</div>;\n * ```\n */\nexport function usePinchZoom({\n  elementRef,\n  onZoom,\n  minZoom = 0.5,\n  maxZoom = 3,\n  initialZoom = 1,\n}: UsePinchZoomOptions) {\n  const currentZoom = useRef(initialZoom);\n  const pinchStartDistance = useRef<number | null>(null);\n  const pinchStartZoom = useRef(initialZoom);\n\n  useEffect(() => {\n    const el = elementRef.current;\n    if (!el) return;\n\n    const onTouchStart = (e: TouchEvent) => {\n      if (e.touches.length === 2) {\n        pinchStartDistance.current = getDistance(e.touches);\n        pinchStartZoom.current = currentZoom.current;\n      }\n    };\n\n    const onTouchMove = (e: TouchEvent) => {\n      if (e.touches.length === 2 && pinchStartDistance.current !== null) {\n        e.preventDefault();\n\n        const currentDistance = getDistance(e.touches);\n        if (currentDistance === 0) return;\n\n        const scale = currentDistance / pinchStartDistance.current;\n        const newZoom = Math.min(\n          maxZoom,\n          Math.max(minZoom, pinchStartZoom.current * scale),\n        );\n\n        currentZoom.current = newZoom;\n        onZoom(newZoom);\n      }\n    };\n\n    const onTouchEnd = (e: TouchEvent) => {\n      if (e.touches.length < 2) {\n        pinchStartDistance.current = null;\n      }\n    };\n\n    el.addEventListener('touchstart', onTouchStart, { passive: false });\n    el.addEventListener('touchmove', onTouchMove, { passive: false });\n    el.addEventListener('touchend', onTouchEnd);\n    el.addEventListener('touchcancel', onTouchEnd);\n\n    return () => {\n      el.removeEventListener('touchstart', onTouchStart);\n      el.removeEventListener('touchmove', onTouchMove);\n      el.removeEventListener('touchend', onTouchEnd);\n      el.removeEventListener('touchcancel', onTouchEnd);\n    };\n  }, [elementRef, onZoom, minZoom, maxZoom]);\n\n  useEffect(() => {\n    currentZoom.current = initialZoom;\n  }, [initialZoom]);\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import('@/registry/hooks/use-pinch-zoom/index.ts');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'hooks-use-pinch-zoom';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/hooks-use-pinch-zoom',
   },
 };
