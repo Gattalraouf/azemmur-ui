@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-key-actions",
+  "type": "registry:hook",
+  "title": "useKeyActions",
+  "description": "A hook for handling keyboard actions with customizable key bindings and modifiers.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-key-actions/index.ts",
+      "type": "registry:hook",
+      "target": "hooks/use-key-actions.ts"
+    }
+  ]
+}
