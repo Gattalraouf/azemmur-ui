@@ -1,0 +1,79 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-speed-dial",
+  "type": "registry:ui",
+  "title": "Speed Dial Demo",
+  "description": "Demo for the Speed Dial component.",
+  "dependencies": ["@tabler/icons-react"],
+  "registryDependencies": ["@azemmur/components-speed-dial"],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/speed-dial/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/components/speed-dial.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "SpeedDial": {
+        "orientation": {
+          "value": "vertical",
+          "options": {
+            "vertical": "vertical",
+            "horizontal": "horizontal"
+          }
+        },
+        "direction": {
+          "value": "reverse",
+          "options": {
+            "normal": "normal",
+            "reverse": "reverse"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "styling": {
+          "value": "solid",
+          "options": {
+            "solid": "solid",
+            "outline": "outline",
+            "ghost": "ghost"
+          }
+        },
+        "shape": {
+          "value": "pill",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
+          }
+        }
+      }
+    }
+  }
+}
