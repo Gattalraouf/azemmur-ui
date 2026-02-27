@@ -97,6 +97,83 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/components-button',
   },
+  'components-floating-dock': {
+    name: 'components-floating-dock',
+    description:
+      'A macOS-style floating dock with magnetic hover animations and keyboard navigation.',
+    type: 'registry:ui',
+    dependencies: ['motion', 'class-variance-authority'],
+    devDependencies: undefined,
+    registryDependencies: [
+      '@azemmur/components-button',
+      '@azemmur/hooks-use-key-actions',
+    ],
+    files: [
+      {
+        path: 'registry/components/azemmur/floating-dock/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/floating-dock/index.tsx',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\nimport {\n  DockItem,\n  type DockItemData,\n} from '@/components/azemmur/components/azemmur/floating-dock/dock-item';\nimport { DockRoot } from '@/components/azemmur/components/azemmur/floating-dock/dock-root';\nimport { DockSeparator } from '@/components/azemmur/components/azemmur/floating-dock/dock-separator';\n\ntype FloatingDockComponent = typeof DockRoot & {\n  Item: typeof DockItem;\n  Separator: typeof DockSeparator;\n};\n\nconst FloatingDock = DockRoot as FloatingDockComponent;\n\nFloatingDock.Item = DockItem;\nFloatingDock.Separator = DockSeparator;\n\nexport { FloatingDock, type DockItemData };",
+      },
+      {
+        path: 'registry/components/azemmur/floating-dock/dock-root.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/floating-dock/dock-root.tsx',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { motion, useMotionValue } from 'motion/react';\nimport { useRef, useMemo } from 'react';\nimport { DockContext } from '@/components/azemmur/components/azemmur/floating-dock/dock-context';\nimport {\n  dockVariants,\n  type DockVariantProps,\n} from '@/components/azemmur/components/azemmur/floating-dock/dock-variants';\nimport { useKeyActions } from '@/hooks/use-key-actions';\n\ninterface DockRootProps extends DockVariantProps {\n  children: React.ReactNode;\n  className?: string;\n}\n\nfunction DockRoot({\n  children,\n  className,\n  orientation = 'vertical',\n  size = 'md',\n  intent = 'primary',\n  styling = 'solid',\n  shape = 'pill',\n  elevation = 'raised',\n}: DockRootProps) {\n  const mousePosition = useMotionValue(Infinity);\n  const containerRef = useRef<HTMLDivElement>(null);\n  const isVertical = orientation !== 'horizontal';\n\n  const handleKeyDown = useKeyActions(\n    [\n      {\n        keys: [isVertical ? 'ArrowDown' : 'ArrowRight'],\n        action: (e) => {\n          const focusable = containerRef.current?.querySelectorAll<HTMLElement>(\n            'a[tabindex], button[tabindex]',\n          );\n          if (!focusable) return;\n          const arr = Array.from(focusable);\n          const index = arr.findIndex((el) => el === e.target);\n          const next = (index + 1) % arr.length;\n          arr[next]?.focus();\n        },\n      },\n      {\n        keys: [isVertical ? 'ArrowUp' : 'ArrowLeft'],\n        action: (e) => {\n          const focusable = containerRef.current?.querySelectorAll<HTMLElement>(\n            'a[tabindex], button[tabindex]',\n          );\n          if (!focusable) return;\n          const arr = Array.from(focusable);\n          const index = arr.findIndex((el) => el === e.target);\n          const prev = (index - 1 + arr.length) % arr.length;\n          arr[prev]?.focus();\n        },\n      },\n    ],\n    containerRef,\n  );\n\n  const handleMouseMove = (e: React.MouseEvent) => {\n    mousePosition.set(isVertical ? e.pageY : e.pageX);\n  };\n\n  const contextValue = useMemo(\n    () => ({\n      mousePosition,\n      isVertical,\n      orientation,\n      size,\n      intent,\n      styling,\n      shape,\n      elevation,\n    }),\n    [\n      mousePosition,\n      isVertical,\n      orientation,\n      size,\n      intent,\n      styling,\n      shape,\n      elevation,\n    ],\n  );\n\n  return (\n    <DockContext.Provider value={contextValue}>\n      <motion.div\n        ref={containerRef}\n        onMouseMove={handleMouseMove}\n        onMouseLeave={() => mousePosition.set(Infinity)}\n        onKeyDown={handleKeyDown}\n        className={cn(\n          dockVariants({\n            orientation,\n            size,\n            intent,\n            styling,\n            shape,\n            elevation,\n          }),\n          className,\n        )}\n        role=\"navigation\"\n        aria-label=\"Dock navigation\"\n      >\n        {children}\n      </motion.div>\n    </DockContext.Provider>\n  );\n}\n\nexport { DockRoot, type DockRootProps };",
+      },
+      {
+        path: 'registry/components/azemmur/floating-dock/dock-context.tsx',
+        type: 'registry:hook',
+        target: 'components/azemmur/components/floating-dock/dock-context.tsx',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { MotionValue } from 'motion/react';\nimport { createContext, useContext } from 'react';\nimport { DockVariantProps } from '@/components/azemmur/components/azemmur/floating-dock/dock-variants';\n\ninterface DockContextValue extends DockVariantProps {\n  mousePosition: MotionValue<number>;\n  isVertical: boolean;\n}\n\nconst DockContext = createContext<DockContextValue | null>(null);\n\nfunction useDock() {\n  const context = useContext(DockContext);\n  if (!context) {\n    throw new Error('Dock components must be used within <FloatingDock />');\n  }\n  return context;\n}\n\nexport { DockContext, useDock, type DockContextValue };",
+      },
+      {
+        path: 'registry/components/azemmur/floating-dock/dock-item.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/floating-dock/dock-item.tsx',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { useSpring, useTransform } from 'motion/react';\nimport { useRef, ComponentProps } from 'react';\nimport { Button } from '@/components/azemmur/components/azemmur/button';\nimport { useDock } from '@/components/azemmur/components/azemmur/floating-dock/dock-context';\nimport { DOCK_SIZE_CONFIG } from '@/components/azemmur/components/azemmur/floating-dock/dock-variants';\n\ntype DockItemData = {\n  title: string;\n  icon: React.ReactNode;\n  href: string;\n  obfuscated?: boolean;\n};\n\ninterface DockItemProps extends ComponentProps<'a'> {\n  item: DockItemData;\n}\n\nconst SPRING_CONFIG = {\n  mass: 0.1,\n  stiffness: 150,\n  damping: 12,\n};\n\nconst DOCK_BUTTON_SIZE = {\n  sm: 'icon-sm',\n  md: 'icon-md',\n  lg: 'icon-lg',\n} as const;\n\nfunction DockItem({ item, className, tabIndex = 0, ...props }: DockItemProps) {\n  const { mousePosition, isVertical, size, intent, styling, shape, elevation } =\n    useDock();\n  const internalRef = useRef<HTMLAnchorElement | null>(null);\n\n  const sizeKey = size ?? 'md';\n  const sizeConfig = DOCK_SIZE_CONFIG[sizeKey];\n\n  const distance = useTransform(mousePosition, (val) => {\n    const bounds = internalRef.current?.getBoundingClientRect() ?? {\n      x: 0,\n      y: 0,\n      width: 0,\n      height: 0,\n    };\n    const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;\n    const scrollX = typeof window !== 'undefined' ? window.scrollX : 0;\n    return isVertical\n      ? val - (bounds.y + scrollY) - bounds.height / 2\n      : val - (bounds.x + scrollX) - bounds.width / 2;\n  });\n\n  const animatedSize = useSpring(\n    useTransform(\n      distance,\n      [-sizeConfig.range, 0, sizeConfig.range],\n      [sizeConfig.min, sizeConfig.max, sizeConfig.min],\n    ),\n    SPRING_CONFIG,\n  );\n\n  const href = item.obfuscated ? undefined : item.href;\n\n  const handleClick = item.obfuscated\n    ? () => window.open(atob(item.href), '_blank', 'noopener,noreferrer')\n    : undefined;\n\n  return (\n    <Button\n      asChild\n      size={DOCK_BUTTON_SIZE[sizeKey]}\n      intent={intent}\n      styling={styling}\n      shape={shape}\n      elevation={elevation}\n      style={{ width: animatedSize, height: animatedSize }}\n      className={cn('p-2', className)}\n    >\n      <a\n        ref={internalRef}\n        href={href}\n        aria-label={item.title}\n        title={item.title}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        tabIndex={tabIndex}\n        onClick={handleClick}\n        className=\"flex items-center justify-center\"\n        {...props}\n      >\n        {item.icon}\n      </a>\n    </Button>\n  );\n}\n\nexport { DockItem, type DockItemData, type DockItemProps };",
+      },
+      {
+        path: 'registry/components/azemmur/floating-dock/dock-separator.tsx',
+        type: 'registry:ui',
+        target:
+          'components/azemmur/components/floating-dock/dock-separator.tsx',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { ComponentProps } from 'react';\nimport { useDock } from '@/components/azemmur/components/azemmur/floating-dock/dock-context';\n\ntype DockSeparatorProps = ComponentProps<'div'>;\n\nfunction DockSeparator({ className, ...props }: DockSeparatorProps) {\n  const { isVertical } = useDock();\n\n  return (\n    <div\n      className={cn(\n        'bg-current opacity-30',\n        isVertical ? 'w-0.5 h-8' : 'h-0.5 w-8',\n        className,\n      )}\n      aria-hidden=\"true\"\n      {...props}\n    />\n  );\n}\n\nexport { DockSeparator, type DockSeparatorProps };",
+      },
+      {
+        path: 'registry/components/azemmur/floating-dock/dock-variants.ts',
+        type: 'registry:ui',
+        target: 'components/azemmur/components/floating-dock/dock-variants.ts',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\nimport { cva, type VariantProps } from 'class-variance-authority';\n\nconst dockVariants = cva(\n  ['mx-auto flex items-center', '[&_svg]:pointer-events-none [&_svg]:shrink-0'],\n  {\n    variants: {\n      orientation: {\n        vertical: 'flex-col',\n        horizontal: 'flex-row',\n      },\n      size: {\n        sm: 'gap-2 p-2',\n        md: 'gap-4 p-4',\n        lg: 'gap-6 p-6',\n      },\n      intent: {\n        primary: 'text-primary',\n        accent: 'text-accent',\n        secondary: 'text-secondary',\n        success: 'text-success',\n        info: 'text-info',\n        warning: 'text-warning',\n        error: 'text-error',\n      },\n      styling: {\n        solid: '',\n        outline: '',\n        ghost: '',\n        link: '',\n      },\n      shape: {\n        rounded: '',\n        pill: '',\n        sharp: '',\n      },\n      elevation: {\n        raised: '',\n        floating: '',\n      },\n    },\n    defaultVariants: {\n      orientation: 'vertical',\n      size: 'md',\n      intent: 'primary',\n      styling: 'solid',\n      shape: 'pill',\n      elevation: 'raised',\n    },\n  },\n);\n\ntype DockSizeConfig = {\n  min: number;\n  max: number;\n  iconMin: number;\n  iconMax: number;\n  range: number;\n};\n\nconst DOCK_SIZE_CONFIG: Record<'sm' | 'md' | 'lg', DockSizeConfig> = {\n  sm: { min: 28, max: 56, iconMin: 14, iconMax: 28, range: 100 },\n  md: { min: 40, max: 80, iconMin: 20, iconMax: 40, range: 150 },\n  lg: { min: 56, max: 112, iconMin: 28, iconMax: 56, range: 200 },\n};\n\ntype DockVariantProps = VariantProps<typeof dockVariants>;\n\nexport { dockVariants, DOCK_SIZE_CONFIG, type DockVariantProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/components/azemmur/floating-dock/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'components-floating-dock';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/components-floating-dock',
+  },
   'components-tabs': {
     name: 'components-tabs',
     description:
@@ -433,6 +510,80 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/demo-components-button',
+  },
+  'demo-components-floating-dock': {
+    name: 'demo-components-floating-dock',
+    description: 'Demo for the Floating Dock component.',
+    type: 'registry:ui',
+    dependencies: ['@tabler/icons-react'],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/components-floating-dock'],
+    files: [
+      {
+        path: 'registry/demo/components/azemmur/floating-dock/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/components/floating-dock.tsx',
+        content:
+          "'use client';\n\nimport {\n  IconBrandGithub,\n  IconBrandLinkedin,\n  IconBrandX,\n  IconMail,\n} from '@tabler/icons-react';\nimport {\n  FloatingDock,\n  type DockItemData,\n} from '@/components/azemmur/components/azemmur/floating-dock';\nimport type { DockVariantProps } from '@/components/azemmur/components/azemmur/floating-dock/dock-variants';\n\nconst firstSet: DockItemData[] = [\n  {\n    title: 'GitHub',\n    icon: <IconBrandGithub className=\"size-full\" />,\n    href: 'https://github.com',\n  },\n  {\n    title: 'LinkedIn',\n    icon: <IconBrandLinkedin className=\"size-full\" />,\n    href: 'https://linkedin.com',\n  },\n];\nconst secondSet: DockItemData[] = [\n  {\n    title: 'X (Twitter)',\n    icon: <IconBrandX className=\"size-full\" />,\n    href: 'https://x.com',\n  },\n  {\n    title: 'Email',\n    icon: <IconMail className=\"size-full\" />,\n    href: 'bWFpbHRvOmhlbGxvQGV4YW1wbGUuY29t',\n    obfuscated: true,\n  },\n];\n\nexport default function FloatingDockDemo({\n  orientation,\n  size,\n  intent,\n  styling,\n  shape,\n  elevation,\n}: DockVariantProps) {\n  return (\n    <div className=\"flex items-center justify-center h-[400px] w-full\">\n      <FloatingDock\n        orientation={orientation}\n        size={size}\n        intent={intent}\n        styling={styling}\n        shape={shape}\n        elevation={elevation}\n      >\n        {firstSet.map((item, i) => (\n          <FloatingDock.Item\n            key={item.title}\n            item={item}\n            tabIndex={i === 0 ? 0 : -1}\n          />\n        ))}\n        <FloatingDock.Separator />\n        {secondSet.map((item, i) => (\n          <FloatingDock.Item\n            key={item.title}\n            item={item}\n            tabIndex={i === 0 ? 0 : -1}\n          />\n        ))}\n      </FloatingDock>\n    </div>\n  );\n}",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/components/azemmur/floating-dock/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-components-floating-dock';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        FloatingDock: {
+          orientation: {
+            value: 'vertical',
+            options: { vertical: 'vertical', horizontal: 'horizontal' },
+          },
+          size: { value: 'md', options: { sm: 'sm', md: 'md', lg: 'lg' } },
+          intent: {
+            value: 'primary',
+            options: {
+              primary: 'primary',
+              accent: 'accent',
+              secondary: 'secondary',
+              success: 'success',
+              info: 'info',
+              warning: 'warning',
+              error: 'error',
+            },
+          },
+          styling: {
+            value: 'solid',
+            options: {
+              solid: 'solid',
+              outline: 'outline',
+              ghost: 'ghost',
+              link: 'link',
+            },
+          },
+          shape: {
+            value: 'pill',
+            options: { rounded: 'rounded', pill: 'pill', sharp: 'sharp' },
+          },
+          elevation: {
+            value: 'raised',
+            options: { raised: 'raised', floating: 'floating' },
+          },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-components-floating-dock',
   },
   'demo-components-tabs': {
     name: 'demo-components-tabs',

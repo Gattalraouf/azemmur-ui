@@ -1,0 +1,78 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-floating-dock",
+  "title": "Floating Dock Demo",
+  "description": "Demo for the Floating Dock component.",
+  "dependencies": [
+    "@tabler/icons-react"
+  ],
+  "registryDependencies": [
+    "@azemmur/components-floating-dock"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/floating-dock/index.tsx",
+      "content": "'use client';\n\nimport {\n  IconBrandGithub,\n  IconBrandLinkedin,\n  IconBrandX,\n  IconMail,\n} from '@tabler/icons-react';\nimport {\n  FloatingDock,\n  type DockItemData,\n} from '@/components/azemmur/components/azemmur/floating-dock';\nimport type { DockVariantProps } from '@/components/azemmur/components/azemmur/floating-dock/dock-variants';\n\nconst firstSet: DockItemData[] = [\n  {\n    title: 'GitHub',\n    icon: <IconBrandGithub className=\"size-full\" />,\n    href: 'https://github.com',\n  },\n  {\n    title: 'LinkedIn',\n    icon: <IconBrandLinkedin className=\"size-full\" />,\n    href: 'https://linkedin.com',\n  },\n];\nconst secondSet: DockItemData[] = [\n  {\n    title: 'X (Twitter)',\n    icon: <IconBrandX className=\"size-full\" />,\n    href: 'https://x.com',\n  },\n  {\n    title: 'Email',\n    icon: <IconMail className=\"size-full\" />,\n    href: 'bWFpbHRvOmhlbGxvQGV4YW1wbGUuY29t',\n    obfuscated: true,\n  },\n];\n\nexport default function FloatingDockDemo({\n  orientation,\n  size,\n  intent,\n  styling,\n  shape,\n  elevation,\n}: DockVariantProps) {\n  return (\n    <div className=\"flex items-center justify-center h-[400px] w-full\">\n      <FloatingDock\n        orientation={orientation}\n        size={size}\n        intent={intent}\n        styling={styling}\n        shape={shape}\n        elevation={elevation}\n      >\n        {firstSet.map((item, i) => (\n          <FloatingDock.Item\n            key={item.title}\n            item={item}\n            tabIndex={i === 0 ? 0 : -1}\n          />\n        ))}\n        <FloatingDock.Separator />\n        {secondSet.map((item, i) => (\n          <FloatingDock.Item\n            key={item.title}\n            item={item}\n            tabIndex={i === 0 ? 0 : -1}\n          />\n        ))}\n      </FloatingDock>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/components/floating-dock.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "FloatingDock": {
+        "orientation": {
+          "value": "vertical",
+          "options": {
+            "vertical": "vertical",
+            "horizontal": "horizontal"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "styling": {
+          "value": "solid",
+          "options": {
+            "solid": "solid",
+            "outline": "outline",
+            "ghost": "ghost",
+            "link": "link"
+          }
+        },
+        "shape": {
+          "value": "pill",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
+          }
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}
