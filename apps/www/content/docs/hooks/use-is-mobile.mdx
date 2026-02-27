@@ -1,0 +1,121 @@
+---
+title: useIsMobile
+description: A hook to detect whether the current viewport is considered mobile.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-02-01
+---
+
+## Overview
+
+The `useIsMobile` hook detects whether the current viewport width is below a specified breakpoint. It listens for window resize events and updates in real-time. Returns `undefined` during SSR for hydration safety.
+
+## Installation
+
+<ComponentInstallation name="hooks-use-is-mobile" />
+
+## Usage
+
+### Basic
+
+```tsx
+import { useIsMobile } from '@/hooks/use-is-mobile';
+
+function Navigation() {
+  const isMobile = useIsMobile();
+
+  if (isMobile === undefined) {
+    return null; // or skeleton
+  }
+
+  return isMobile ? <MobileNav /> : <DesktopNav />;
+}
+```
+
+### Custom Breakpoint
+
+```tsx
+function Sidebar() {
+  const isMobile = useIsMobile(768); // Tablet breakpoint
+
+  return isMobile ? <CollapsedSidebar /> : <ExpandedSidebar />;
+}
+```
+
+### Conditional Rendering
+
+```tsx
+function Layout({ children }) {
+  const isMobile = useIsMobile();
+
+  return (
+    <div className="layout">
+      {!isMobile && <Sidebar />}
+      <main>{children}</main>
+      {isMobile && <BottomNav />}
+    </div>
+  );
+}
+```
+
+## API Reference
+
+### `useIsMobile`
+
+```tsx
+function useIsMobile(breakpoint?: number): boolean | undefined;
+```
+
+<TypeTable
+  type={{
+    breakpoint: {
+      description:
+        'The width threshold in pixels below which is considered mobile.',
+      type: 'number',
+      required: false,
+      default: '1024',
+    },
+    returns: {
+      description:
+        'undefined during SSR, true if viewport is below breakpoint, false otherwise.',
+      type: 'boolean | undefined',
+    },
+  }}
+/>
+
+## SSR Considerations
+
+The hook returns `undefined` during server-side rendering and initial hydration because `window` is not available. This prevents hydration mismatches.
+
+```tsx
+const isMobile = useIsMobile();
+
+// Handle the undefined state
+if (isMobile === undefined) {
+  return <SkeletonLoader />;
+}
+
+// Safe to use boolean value
+return isMobile ? <Mobile /> : <Desktop />;
+```
+
+## Features
+
+- **Real-time updates** — Responds to window resize events
+- **Custom breakpoints** — Configure your own mobile threshold
+- **SSR safe** — Returns `undefined` during server rendering
+- **Lightweight** — No dependencies, uses native resize events
+
+## Common Breakpoints
+
+| Device  | Breakpoint       |
+| ------- | ---------------- |
+| Mobile  | 640px            |
+| Tablet  | 768px            |
+| Laptop  | 1024px (default) |
+| Desktop | 1280px           |
+
+## Credits
+
+- Inspired by responsive design patterns from modern component libraries

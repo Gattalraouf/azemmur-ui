@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-is-mobile",
+  "type": "registry:hook",
+  "title": "useIsMobile",
+  "description": "A hook to detect whether the current viewport is considered mobile.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-is-mobile/index.ts",
+      "type": "registry:hook",
+      "target": "hooks/use-is-mobile.ts"
+    }
+  ]
+}
