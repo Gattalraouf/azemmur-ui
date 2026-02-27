@@ -12,7 +12,7 @@ import {
 } from '@/registry/components/azemmur/floating-dock';
 import type { DockVariantProps } from '@/registry/components/azemmur/floating-dock/dock-variants';
 
-const items: DockItemData[] = [
+const firstSet: DockItemData[] = [
   {
     title: 'GitHub',
     icon: <IconBrandGithub className="size-full" />,
@@ -23,6 +23,8 @@ const items: DockItemData[] = [
     icon: <IconBrandLinkedin className="size-full" />,
     href: 'https://linkedin.com',
   },
+];
+const secondSet: DockItemData[] = [
   {
     title: 'X (Twitter)',
     icon: <IconBrandX className="size-full" />,
@@ -54,7 +56,7 @@ export default function FloatingDockDemo({
         shape={shape}
         elevation={elevation}
       >
-        {items.map((item, i) => (
+        {firstSet.map((item, i) => (
           <FloatingDock.Item
             key={item.title}
             item={item}
@@ -62,6 +64,13 @@ export default function FloatingDockDemo({
           />
         ))}
         <FloatingDock.Separator />
+        {secondSet.map((item, i) => (
+          <FloatingDock.Item
+            key={item.title}
+            item={item}
+            tabIndex={i === 0 ? 0 : -1}
+          />
+        ))}
       </FloatingDock>
     </div>
   );
