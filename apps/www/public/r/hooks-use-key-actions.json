@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-key-actions",
+  "title": "useKeyActions",
+  "description": "A hook for handling keyboard actions with customizable key bindings and modifiers.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-key-actions/index.ts",
+      "content": "import { useCallback } from 'react';\n\nexport type KeyAction = {\n  keys: string[];\n  action: (e: React.KeyboardEvent<HTMLElement>) => void | void;\n  modifiers?: Modifiers;\n  clickOnMatch?: boolean;\n};\n\nexport type Modifiers = {\n  ctrl?: boolean;\n  alt?: boolean;\n  shift?: boolean;\n  meta?: boolean;\n};\n\nexport function modifiersMatch(\n  event: React.KeyboardEvent<HTMLElement>,\n  modifiers?: Modifiers,\n) {\n  if (!modifiers) return true;\n\n  return (\n    (modifiers.ctrl === undefined || modifiers.ctrl === event.ctrlKey) &&\n    (modifiers.alt === undefined || modifiers.alt === event.altKey) &&\n    (modifiers.shift === undefined || modifiers.shift === event.shiftKey) &&\n    (modifiers.meta === undefined || modifiers.meta === event.metaKey)\n  );\n}\n\nexport function useKeyActions(\n  keyActions: KeyAction[],\n  activeRef?: React.RefObject<HTMLElement | null>,\n  enabled: boolean = true, // Only handle key events if enabled (e.g. isTopModal)\n) {\n  return useCallback(\n    (e: React.KeyboardEvent<HTMLElement>) => {\n      if (!enabled) return;\n\n      if (\n        activeRef?.current &&\n        !activeRef.current.contains(document.activeElement)\n      ) {\n        return;\n      }\n\n      for (const { keys, action, modifiers, clickOnMatch } of keyActions) {\n        if (keys.includes(e.key) && modifiersMatch(e, modifiers)) {\n          e.preventDefault();\n          action(e);\n\n          if (clickOnMatch && e.target instanceof HTMLElement) {\n            e.target.click();\n          }\n\n          break;\n        }\n      }\n    },\n    [keyActions, activeRef, enabled],\n  );\n}\n",
+      "type": "registry:hook",
+      "target": "hooks/use-key-actions.ts"
+    }
+  ],
+  "type": "registry:hook"
+}
