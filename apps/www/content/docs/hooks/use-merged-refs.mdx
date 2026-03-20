@@ -1,0 +1,77 @@
+---
+title: useMergeRefs
+description: A hook for merging multiple refs into a single stable callback ref.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-03-20
+---
+
+## Overview
+
+The `useMergeRefs` hook combines multiple refs into one callback ref. It is useful when a component needs to forward a ref while also keeping an internal ref for measurements, focus handling, or animations.
+
+## Installation
+
+<ComponentInstallation name="hooks-use-merged-refs" />
+
+## Usage
+
+### Basic
+
+```tsx
+import { useRef } from 'react';
+import { useMergeRefs } from '@/hooks/use-merged-refs';
+
+function Input({ ref }: { ref?: React.Ref<HTMLInputElement> }) {
+  const internalRef = useRef<HTMLInputElement>(null);
+  const mergedRef = useMergeRefs(ref, internalRef);
+
+  return <input ref={mergedRef} />;
+}
+```
+
+### Merging Callback and Object Refs
+
+```tsx
+const localRef = useRef<HTMLDivElement>(null);
+
+const mergedRef = useMergeRefs(localRef, (node) => {
+  if (node) {
+    console.log('Node mounted', node);
+  }
+});
+
+return <div ref={mergedRef} />;
+```
+
+## API Reference
+
+### `useMergeRefs`
+
+```tsx
+function useMergeRefs<T>(
+  ...refs: (React.Ref<T> | undefined | null)[]
+): React.RefCallback<T>;
+```
+
+<TypeTable
+  type={{
+    refs: {
+      description:
+        'Any number of refs to merge. Supports object refs and callback refs.',
+      type: '(React.Ref<T> | undefined | null)[]',
+      required: true,
+    },
+    returns: {
+      description: 'A stable callback ref that updates all provided refs.',
+      type: 'React.RefCallback<T>',
+    },
+  }}
+/>
+
+## Features
+
+- **Multi-ref support** — Merge object refs and callback refs in one place.
+- **Stable callback** — Returns a memoized callback suitable for React refs.
+- **React 19 compatible** — Works with current ref patterns and callback cleanup behavior.
