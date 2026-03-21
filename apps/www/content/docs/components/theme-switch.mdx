@@ -9,16 +9,41 @@ releaseDate: 2026-02-01
 
 <ComponentPreview name="demo-components-theme-switch" />
 
+## Overview
+
+### Core Concept
+
+The `ThemeSwitch` component provides a one-click theme toggle between light and dark modes. Built with `next-themes`, it handles SSR hydration gracefully while delivering smooth icon transitions via Framer Motion.
+
+### Key Features
+
+- **Animated icon transitions** — Smooth morph between sun and moon icons
+- **SSR-safe** — Prevents hydration mismatch with mount detection
+- **next-themes integration** — Seamless theme state management
+- **Variant support** — Inherits button styling, shape, and elevation props
+
 ## Installation
 
 <ComponentInstallation name="components-theme-switch" />
 
 ## Usage
 
-### Basic Usage
+### Basic
 
 ```tsx
 <ThemeSwitch />
+```
+
+### Composition
+
+Use within navbars or settings panels:
+
+```tsx
+<nav className="flex items-center gap-4">
+  <Logo />
+  <NavLinks />
+  <ThemeSwitch styling="ghost" size="sm" />
+</nav>
 ```
 
 ## API Reference
@@ -77,3 +102,19 @@ releaseDate: 2026-02-01
     },
   }}
 />
+
+## Accessibility
+
+- **ARIA label** — Announces current theme state to screen readers
+- **Focus visible** — Native focus ring for keyboard navigation
+- **Reduced motion** — Icon transitions respect `prefers-reduced-motion`
+
+| Key               | Action        |
+| ----------------- | ------------- |
+| `Enter` / `Space` | Toggles theme |
+| `Tab`             | Moves focus   |
+
+## Credits
+
+- Built with [next-themes](https://github.com/pacocoursey/next-themes)
+- Icon animations powered by [Motion](https://motion.dev/)

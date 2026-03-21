@@ -7,23 +7,31 @@ author:
 releaseDate: 2026-02-01
 ---
 
+<ComponentPreview name="demo-components-tabs" />
+
 ## Overview
 
-The `Tabs` component provides a small, composable, and accessible tab system with first-class keyboard support and smooth motion.
+### Core Concept
 
-**Subcomponents & hooks:**
+The `Tabs` component provides a small, composable, and accessible tab system with first-class keyboard support and smooth motion. Built with Framer Motion for animated indicators and panel transitions.
 
-- `Tabs` — root component (state, ids, keyboard logic)
-- `Tabs.List` — tablist container
-- `Tabs.Trigger` — interactive tab button
-- `Tabs.Indicator` — animated underline / selection indicator
-- `Tabs.Content` — layout wrapper for panels
-- `Tabs.Panel` — individual animated panel
-- `useTabs()` — advanced hook for custom integrations
+### Key Features
 
-Advanced users can import `useTabs()` from the registry context for id helpers and keyboard/register callbacks.
+- **Animated indicator** — Smooth layout animation for the active tab marker
+- **Keyboard navigation** — Arrow keys, Home/End support per WAI-ARIA
+- **Controlled/Uncontrolled** — Flexible state management patterns
+- **Variant system** — Full support for intent, styling, shape, and visuals
+- **SSR compatible** — Stable IDs via `useId` hook
 
-<ComponentPreview name="demo-components-tabs" />
+### Anatomy
+
+- `Tabs` — Root component (state, ids, keyboard logic)
+- `Tabs.List` — Tablist container
+- `Tabs.Trigger` — Interactive tab button
+- `Tabs.Indicator` — Animated underline/selection indicator
+- `Tabs.Content` — Layout wrapper for panels
+- `Tabs.Panel` — Individual animated panel
+- `useTabs()` — Hook for custom integrations
 
 ## Installation
 
@@ -376,3 +384,9 @@ For more details, refer to the tables above.
 
 - `Tabs` manages focus and selection internally unless controlled via `value`.
 - This component exposes a stable public API. Lower-level primitives (auto-height contents, advanced layout helpers) live in the shared UI package and are intentionally not part of this surface.
+
+## Credits
+
+- Follows [WAI-ARIA Tabs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+- Inspired by [Radix UI Tabs](https://www.radix-ui.com/primitives/docs/components/tabs)
+- Animations powered by [Motion](https://motion.dev/)

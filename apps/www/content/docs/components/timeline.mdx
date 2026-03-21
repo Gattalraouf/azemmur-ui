@@ -7,13 +7,29 @@ author:
 releaseDate: 2026-03-01
 ---
 
+<ComponentPreview name="demo-components-timeline" />
+
 ## Overview
 
-The `Timeline` component provides a scroll-driven timeline experience with support for both horizontal and vertical orientations. It features animated progress bars, customizable pins, and smooth transitions.
+### Core Concept
+
+The `Timeline` component provides a scroll-driven timeline experience with support for both horizontal and vertical orientations. Built with Framer Motion's scroll-linked animations, it features animated progress bars, customizable pins, and smooth transitions.
+
+### Key Features
+
+- **Scroll-driven progress** — Progress bar animates based on scroll position
+- **Responsive orientation** — Automatically switches to vertical on mobile
+- **Animated pins** — Scale and opacity transitions as items enter viewport
+- **Sticky viewport** — Horizontal mode keeps timeline fixed during scroll
+- **Custom pin support** — Render custom markers via `pin` prop
+
+### Anatomy
+
+- `Timeline` — Root component (orientation resolver)
+- `Timeline.Item` — Individual timeline entry with title and content
+- `Timeline.Header` — Optional header block for the timeline
 
 By default, `Timeline` automatically switches to vertical layout on mobile screens.
-
-<ComponentPreview name="demo-components-timeline" />
 
 ## Installation
 

@@ -11,6 +11,13 @@ releaseDate: 2026-02-01
 
 The `useIsMobile` hook detects whether the current viewport width is below a specified breakpoint. It listens for window resize events and updates in real-time. Returns `undefined` during SSR for hydration safety.
 
+### Logic Lifecycle
+
+1. **SSR phase** — Returns `undefined` to prevent hydration mismatch
+2. **Client mount** — Reads `window.innerWidth` and compares against breakpoint
+3. **Resize events** — Listens for window resize and debounces updates
+4. **Cleanup** — Removes resize listener on unmount
+
 ## Installation
 
 <ComponentInstallation name="hooks-use-is-mobile" />
