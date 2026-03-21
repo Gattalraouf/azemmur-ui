@@ -8,7 +8,7 @@ const speedDialVariants = cva(['relative inline-flex items-center'], {
       vertical: 'flex-col',
       horizontal: 'flex-row',
     },
-    direction: {
+    expansion: {
       normal: '',
       reverse: '',
     },
@@ -44,18 +44,18 @@ const speedDialVariants = cva(['relative inline-flex items-center'], {
   compoundVariants: [
     {
       orientation: 'vertical',
-      direction: 'reverse',
+      expansion: 'reverse',
       className: 'flex-col-reverse',
     },
     {
       orientation: 'horizontal',
-      direction: 'reverse',
+      expansion: 'reverse',
       className: 'flex-row-reverse',
     },
   ],
   defaultVariants: {
     orientation: 'vertical',
-    direction: 'reverse',
+    expansion: 'reverse',
     size: 'md',
     intent: 'primary',
     styling: 'solid',
@@ -70,7 +70,7 @@ const speedDialMenuVariants = cva(['flex'], {
       vertical: 'flex-col',
       horizontal: 'flex-row',
     },
-    direction: {
+    expansion: {
       normal: '',
       reverse: '',
     },
@@ -83,23 +83,54 @@ const speedDialMenuVariants = cva(['flex'], {
   compoundVariants: [
     {
       orientation: 'vertical',
-      direction: 'reverse',
+      expansion: 'reverse',
       className: 'flex-col-reverse',
     },
     {
       orientation: 'horizontal',
-      direction: 'reverse',
+      expansion: 'reverse',
       className: 'flex-row-reverse',
     },
   ],
   defaultVariants: {
     orientation: 'vertical',
-    direction: 'reverse',
+    expansion: 'reverse',
     size: 'md',
   },
 });
 
 type SpeedDialVariantProps = VariantProps<typeof speedDialVariants>;
+
+type SpeedDialOrientation = NonNullable<SpeedDialVariantProps['orientation']>;
+type SpeedDialExpansion = NonNullable<SpeedDialVariantProps['expansion']>;
+
+const SPEED_DIAL_NAVIGATION_KEYS: Record<
+  SpeedDialOrientation,
+  { next: 'ArrowDown' | 'ArrowRight'; prev: 'ArrowUp' | 'ArrowLeft' }
+> = {
+  vertical: {
+    next: 'ArrowDown',
+    prev: 'ArrowUp',
+  },
+  horizontal: {
+    next: 'ArrowRight',
+    prev: 'ArrowLeft',
+  },
+};
+
+const SPEED_DIAL_ITEM_OFFSET: Record<
+  SpeedDialOrientation,
+  Record<SpeedDialExpansion, { x: number; y: number }>
+> = {
+  vertical: {
+    normal: { x: 0, y: -10 },
+    reverse: { x: 0, y: 10 },
+  },
+  horizontal: {
+    normal: { x: -10, y: 0 },
+    reverse: { x: 10, y: 0 },
+  },
+};
 
 const SPEED_DIAL_BUTTON_SIZE = {
   sm: 'icon-sm',
@@ -110,6 +141,10 @@ const SPEED_DIAL_BUTTON_SIZE = {
 export {
   speedDialVariants,
   speedDialMenuVariants,
+  SPEED_DIAL_NAVIGATION_KEYS,
+  SPEED_DIAL_ITEM_OFFSET,
   SPEED_DIAL_BUTTON_SIZE,
   type SpeedDialVariantProps,
+  type SpeedDialOrientation,
+  type SpeedDialExpansion,
 };

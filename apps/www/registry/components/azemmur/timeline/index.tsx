@@ -16,9 +16,6 @@ import {
 import type {
   TimelineVariantProps,
   TimelineItemVariantProps,
-  TimelineProgressVariantProps,
-  TimelinePinVariantProps,
-  TimelineContentVariantProps,
 } from '@/registry/components/azemmur/timeline/timeline-variants';
 import {
   VerticalTimeline,
@@ -45,9 +42,6 @@ export type {
   TimelineRootProps,
   TimelineVariantProps,
   TimelineItemVariantProps,
-  TimelineProgressVariantProps,
-  TimelinePinVariantProps,
-  TimelineContentVariantProps,
   HorizontalTimelineProps,
   VerticalTimelineProps,
 };

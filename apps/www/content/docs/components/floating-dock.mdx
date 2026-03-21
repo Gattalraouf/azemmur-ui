@@ -96,7 +96,7 @@ export default function Example() {
 import { useDock } from '@/components/azemmur/components/floating-dock/dock-context';
 
 function CustomDockItem() {
-  const { mousePosition, isVertical, intent, styling } = useDock();
+  const { mousePosition, orientation, intent, styling } = useDock();
   // Build custom dock item with context values
   return <div>Custom content</div>;
 }
@@ -259,10 +259,6 @@ Hook to access dock context values for building custom dock items.
     mousePosition: {
       description: 'Motion value tracking the current mouse position.',
       type: 'MotionValue<number>',
-    },
-    isVertical: {
-      description: 'Whether the dock is in vertical orientation.',
-      type: 'boolean',
     },
     orientation: {
       description: 'The current orientation of the dock.',

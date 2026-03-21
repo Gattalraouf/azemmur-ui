@@ -28,7 +28,6 @@ import { useMergeRefs } from '@/registry/hooks/use-merged-refs';
 
 interface HorizontalTimelineProps extends TimelineVariantProps {
   children: ReactNode;
-  dir?: Direction;
   className?: string;
   progressClassName?: string;
   ref?: RefObject<HTMLDivElement | null>;
@@ -37,7 +36,7 @@ interface HorizontalTimelineProps extends TimelineVariantProps {
 
 function HorizontalTimeline({
   children,
-  dir = 'ltr',
+  direction,
   intent = 'primary',
   size = 'md',
   gradient = 'purple-blue',
@@ -48,6 +47,7 @@ function HorizontalTimeline({
   ref,
   'aria-label': ariaLabel = 'Timeline',
 }: HorizontalTimelineProps) {
+  const resolvedDirection = direction ?? 'ltr';
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const timelineRowRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -62,7 +62,7 @@ function HorizontalTimeline({
   const [pinWidth, setPinWidth] = useState(0);
   const [pinMargin, setPinMargin] = useState<[number, number]>([0, 0]);
 
-  const isRTL = dir === 'rtl';
+  const isRTL = resolvedDirection === 'rtl';
   const orientation = 'horizontal' as const;
 
   const { header, items } = (() => {
@@ -176,7 +176,7 @@ function HorizontalTimeline({
 
   const contextValue = {
     scrollProgress: scrollYProgress,
-    dir,
+    direction: resolvedDirection,
     itemCount,
     containerWidth,
     containerHeight,
@@ -200,14 +200,14 @@ function HorizontalTimeline({
     size,
     visuals,
     shape,
-    dir,
+    direction: resolvedDirection,
   };
 
   return (
     <TimelineContext value={contextValue}>
       <section
         ref={combinedRef}
-        dir={dir}
+        dir={resolvedDirection}
         aria-label={ariaLabel}
         className={cn(
           timelineVariants({ orientation, intent, size }),
@@ -228,7 +228,7 @@ function HorizontalTimeline({
                       orientation,
                       size,
                       gradient,
-                      direction: dir,
+                      direction: resolvedDirection,
                       intent,
                     }),
                     progressClassName,
@@ -252,7 +252,7 @@ function HorizontalTimeline({
                     {cloneElement(
                       header as ReactElement<{
                         orientation?: 'horizontal' | 'vertical';
-                        dir?: Direction;
+                        direction?: Direction;
                       }>,
                       {
                         orientation:
@@ -261,9 +261,12 @@ function HorizontalTimeline({
                               orientation?: 'horizontal' | 'vertical';
                             }>
                           ).props.orientation ?? orientation,
-                        dir:
-                          (header as ReactElement<{ dir?: Direction }>).props
-                            .dir ?? dir,
+                        direction:
+                          (
+                            header as ReactElement<{
+                              direction?: Direction;
+                            }>
+                          ).props.direction ?? resolvedDirection,
                       },
                     )}
                   </div>

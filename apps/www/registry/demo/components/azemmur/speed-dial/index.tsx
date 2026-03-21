@@ -39,7 +39,7 @@ const items: SpeedDialItemData[] = [
 
 export default function SpeedDialDemo({
   orientation,
-  direction,
+  expansion,
   size,
   intent,
   styling,
@@ -50,7 +50,7 @@ export default function SpeedDialDemo({
     <div className="flex items-center justify-center h-[400px] w-full">
       <SpeedDial
         orientation={orientation}
-        direction={direction}
+        expansion={expansion}
         size={size}
         intent={intent}
         styling={styling}

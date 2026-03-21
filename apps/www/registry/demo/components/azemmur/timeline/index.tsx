@@ -7,7 +7,7 @@ import {
 import type { TimelineVariantProps } from '@/registry/components/azemmur/timeline/timeline-variants';
 
 interface TimelineDemoProps extends TimelineVariantProps {
-  dir?: Direction;
+  direction?: Direction;
 }
 
 export default function TimelineDemo({
@@ -17,7 +17,7 @@ export default function TimelineDemo({
   gradient = 'purple-blue',
   visuals = 'none',
   shape = 'circle',
-  dir = 'ltr',
+  direction = 'ltr',
 }: TimelineDemoProps) {
   const isVertical = orientation === 'vertical';
 
@@ -30,7 +30,7 @@ export default function TimelineDemo({
         gradient={gradient}
         visuals={visuals}
         shape={shape}
-        dir={dir}
+        direction={direction}
         className="h-full"
       >
         <Timeline.Header>

@@ -531,7 +531,7 @@
                 "horizontal": "horizontal"
               }
             },
-            "direction": {
+            "expansion": {
               "value": "reverse",
               "options": {
                 "normal": "normal",
@@ -648,8 +648,12 @@
                 "sharp": "sharp"
               }
             },
-            "ltr": {
-              "value": true
+            "direction": {
+              "value": "ltr",
+              "options": {
+                "ltr": "ltr",
+                "rtl": "rtl"
+              }
             }
           }
         }
@@ -793,7 +797,7 @@
                 "diamond": "diamond"
               }
             },
-            "dir": {
+            "direction": {
               "value": "ltr",
               "options": {
                 "ltr": "ltr",

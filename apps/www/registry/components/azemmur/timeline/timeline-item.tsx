@@ -5,10 +5,7 @@
 import { cn } from '@workspace/ui/lib/utils';
 import { motion, MotionValue, useTransform } from 'motion/react';
 import type { ReactNode, RefObject } from 'react';
-import {
-  useTimeline,
-  type Direction,
-} from '@/registry/components/azemmur/timeline/timeline-context';
+import { useTimeline } from '@/registry/components/azemmur/timeline/timeline-context';
 import {
   timelineItemVariants,
   timelineContentVariants,
@@ -28,18 +25,6 @@ interface TimelineItemProps extends TimelineItemVariantProps {
   className?: string;
   contentClassName?: string;
   pinClassName?: string;
-  dir?: Direction;
-  intent?:
-    | 'primary'
-    | 'accent'
-    | 'secondary'
-    | 'success'
-    | 'info'
-    | 'warning'
-    | 'error';
-  size?: 'sm' | 'md' | 'lg';
-  visuals?: 'card' | 'bordered' | 'solid' | 'dashed' | 'dotted' | 'none';
-  shape?: 'circle' | 'ring' | 'dot' | 'square' | 'diamond';
   'aria-current'?: boolean | 'step' | 'true' | 'false';
   __isTimelineItem?: boolean;
 }
@@ -54,7 +39,7 @@ function TimelineItem({
   className,
   contentClassName,
   pinClassName,
-  dir: dirProp,
+  direction: directionProp,
   orientation: orientationProp,
   intent: intentProp,
   size: sizeProp,
@@ -64,7 +49,7 @@ function TimelineItem({
 }: TimelineItemProps) {
   const context = useTimeline();
 
-  const dir = dirProp ?? context.dir ?? 'ltr';
+  const direction = directionProp ?? context.direction ?? 'ltr';
   const orientation = orientationProp ?? context.orientation ?? 'horizontal';
   const intent = intentProp ?? context.intent ?? 'primary';
   const size = sizeProp ?? context.size ?? 'md';
@@ -89,7 +74,7 @@ function TimelineItem({
       role="listitem"
       aria-labelledby={titleId}
       aria-current={ariaCurrent}
-      dir={dir}
+      dir={direction}
     >
       <motion.div
         ref={pinRef}

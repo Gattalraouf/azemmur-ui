@@ -74,7 +74,6 @@ function DockRoot({
   const contextValue = useMemo(
     () => ({
       mousePosition,
-      isVertical,
       orientation,
       size,
       intent,
@@ -82,16 +81,7 @@ function DockRoot({
       shape,
       elevation,
     }),
-    [
-      mousePosition,
-      isVertical,
-      orientation,
-      size,
-      intent,
-      styling,
-      shape,
-      elevation,
-    ],
+    [mousePosition, orientation, size, intent, styling, shape, elevation],
   );
 
   return (

@@ -54,8 +54,12 @@
             "sharp": "sharp"
           }
         },
-        "ltr": {
-          "value": true
+        "direction": {
+          "value": "ltr",
+          "options": {
+            "ltr": "ltr",
+            "rtl": "rtl"
+          }
         }
       }
     }

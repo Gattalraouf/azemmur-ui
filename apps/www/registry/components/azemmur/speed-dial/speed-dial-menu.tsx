@@ -13,7 +13,7 @@ interface SpeedDialMenuProps {
 }
 
 function SpeedDialMenu({ children, className }: SpeedDialMenuProps) {
-  const { open, orientation, direction, size } = useSpeedDial();
+  const { open, orientation, expansion, size } = useSpeedDial();
 
   return (
     <AnimatePresence>
@@ -27,7 +27,7 @@ function SpeedDialMenu({ children, className }: SpeedDialMenuProps) {
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.15, ease: 'easeOut' }}
           className={cn(
-            speedDialMenuVariants({ orientation, direction, size }),
+            speedDialMenuVariants({ orientation, expansion, size }),
             className,
           )}
         >

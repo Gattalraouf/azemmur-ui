@@ -3,13 +3,12 @@
 'use client';
 
 import { cn } from '@workspace/ui/lib/utils';
-import type { Direction } from '@/registry/components/azemmur/timeline/timeline-context';
 
 interface TimelineHeaderProps {
   children: React.ReactNode;
   className?: string;
   orientation?: 'horizontal' | 'vertical';
-  dir?: Direction;
+  direction?: 'ltr' | 'rtl';
   __isTimelineHeader?: boolean;
 }
 
@@ -17,13 +16,14 @@ function TimelineHeader({
   children,
   className,
   orientation = 'horizontal',
-  dir,
+  direction,
 }: TimelineHeaderProps) {
   const isHorizontal = orientation === 'horizontal';
+  const resolvedDirection = direction ?? 'ltr';
 
   return (
     <div
-      dir={dir}
+      dir={resolvedDirection}
       className={cn(
         'flex items-center justify-center',
         isHorizontal ? 'h-full' : 'mb-6',

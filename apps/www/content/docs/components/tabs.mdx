@@ -141,12 +141,13 @@ function Panel({
       required: false,
       default: '"manual"',
     },
-    ltr: {
+    direction: {
       description:
-        'Determines the logical direction for layout and keyboard interaction. When set to LTR, horizontal arrow keys follow standard left-to-right navigation.',
-      type: 'boolean',
+        'Determines the logical direction for layout and keyboard interaction. Controls arrow key navigation direction.',
+      type: 'enum',
+      typeDescription: '"ltr" | "rtl"',
       required: false,
-      default: 'true',
+      default: '"ltr"',
     },
     intent: {
       description: 'Semantic intent used by visual variants.',
@@ -350,7 +351,7 @@ function Panel({
   visuals?: string;
   size?: string;
   shape?: string;
-  ltr?: boolean;
+  direction?: "ltr" | "rtl";
   activation?: "auto" | "manual";
 }
 ```
@@ -376,7 +377,7 @@ For more details, refer to the tables above.
 
 ## Keyboard support
 
-- `ArrowRight` / `ArrowLeft` — move focus between tabs (respects `ltr`)
+- `ArrowRight` / `ArrowLeft` — move focus between tabs (respects `direction`)
 - `Home` / `End` — jump to first / last tab
 - `'auto'` vs `'manual'` activation controls when selection changes
 

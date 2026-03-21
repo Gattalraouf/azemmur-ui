@@ -10,7 +10,7 @@ type Direction = 'ltr' | 'rtl';
 
 interface TimelineContextValue extends TimelineVariantProps {
   scrollProgress: MotionValue<number>;
-  dir: Direction;
+  direction: Direction;
   itemCount: number;
   containerWidth: number;
   containerHeight: number;

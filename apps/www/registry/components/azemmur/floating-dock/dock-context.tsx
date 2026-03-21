@@ -8,7 +8,6 @@ import { DockVariantProps } from '@/registry/components/azemmur/floating-dock/do
 
 interface DockContextValue extends DockVariantProps {
   mousePosition: MotionValue<number>;
-  isVertical: boolean;
 }
 
 const DockContext = createContext<DockContextValue | null>(null);
