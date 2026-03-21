@@ -15,7 +15,7 @@ The `useIsMobile` hook detects whether the current viewport width is below a spe
 
 1. **SSR phase** — Returns `undefined` to prevent hydration mismatch
 2. **Client mount** — Reads `window.innerWidth` and compares against breakpoint
-3. **Resize events** — Listens for window resize and debounces updates
+3. **Resize events** — Listens for window resize and updates state
 4. **Cleanup** — Removes resize listener on unmount
 
 ## Installation
