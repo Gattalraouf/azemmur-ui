@@ -1,0 +1,90 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-timeline",
+  "title": "Timeline Demo",
+  "description": "Demo for the Timeline component.",
+  "dependencies": [],
+  "registryDependencies": [
+    "@azemmur/components-timeline"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/timeline/index.tsx",
+      "content": "'use client';\n\nimport {\n  Timeline,\n  type Direction,\n} from '@/components/azemmur/components/azemmur/timeline';\nimport type { TimelineVariantProps } from '@/components/azemmur/components/azemmur/timeline/timeline-variants';\n\ninterface TimelineDemoProps extends TimelineVariantProps {\n  dir?: Direction;\n}\n\nexport default function TimelineDemo({\n  orientation = 'horizontal',\n  intent = 'primary',\n  size = 'md',\n  gradient = 'purple-blue',\n  visuals = 'none',\n  shape = 'circle',\n  dir = 'ltr',\n}: TimelineDemoProps) {\n  const isVertical = orientation === 'vertical';\n\n  return (\n    <div className={isVertical ? 'w-full h-[500px]' : 'w-[400px] h-[400px]'}>\n      <Timeline\n        orientation={orientation}\n        intent={intent}\n        size={size}\n        gradient={gradient}\n        visuals={visuals}\n        shape={shape}\n        dir={dir}\n        className=\"h-full\"\n      >\n        <Timeline.Header>\n          <div className=\"w-full h-full flex items-center justify-center\">\n            <h2\n              className={\n                isVertical ? 'text-2xl font-bold' : 'text-4xl font-bold'\n              }\n            >\n              My Journey\n            </h2>\n          </div>\n        </Timeline.Header>\n\n        <Timeline.Item title=\"2020\">\n          <div className=\"flex flex-col gap-4 h-full justify-center\">\n            <h4 className=\"text-xl font-semibold\">Started Learning</h4>\n            <p className=\"max-w-md\">\n              Began the journey into web development, learning HTML, CSS, and\n              JavaScript fundamentals.\n            </p>\n          </div>\n        </Timeline.Item>\n\n        <Timeline.Item title=\"2021\">\n          <div className=\"flex flex-col gap-4 h-full justify-center\">\n            <h4 className=\"text-xl font-semibold\">First Projects</h4>\n            <p className=\"max-w-md\">\n              Built first real-world projects using React and Node.js, exploring\n              modern frameworks.\n            </p>\n          </div>\n        </Timeline.Item>\n\n        <Timeline.Item title=\"2022\">\n          <div className=\"flex flex-col gap-4 h-full justify-center\">\n            <h4 className=\"text-xl font-semibold\">Professional Growth</h4>\n            <p className=\"max-w-md\">\n              Joined a development team and started working on production\n              applications with TypeScript.\n            </p>\n          </div>\n        </Timeline.Item>\n\n        <Timeline.Item title=\"2023\">\n          <div className=\"flex flex-col gap-4 h-full justify-center\">\n            <h4 className=\"text-xl font-semibold\">Open Source</h4>\n            <p className=\"max-w-md\">\n              Started contributing to open source projects and building reusable\n              component libraries.\n            </p>\n          </div>\n        </Timeline.Item>\n      </Timeline>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/components/timeline.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "Timeline": {
+        "orientation": {
+          "value": "horizontal",
+          "options": {
+            "horizontal": "horizontal",
+            "vertical": "vertical"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "gradient": {
+          "value": "purple-blue",
+          "options": {
+            "purple-blue": "purple-blue",
+            "orange-red": "orange-red",
+            "green-teal": "green-teal",
+            "rainbow": "rainbow",
+            "none": "none"
+          }
+        },
+        "visuals": {
+          "value": "none",
+          "options": {
+            "card": "card",
+            "bordered": "bordered",
+            "solid": "solid",
+            "dashed": "dashed",
+            "dotted": "dotted",
+            "none": "none"
+          }
+        },
+        "shape": {
+          "value": "circle",
+          "options": {
+            "circle": "circle",
+            "ring": "ring",
+            "dot": "dot",
+            "square": "square",
+            "diamond": "diamond"
+          }
+        },
+        "dir": {
+          "value": "ltr",
+          "options": {
+            "ltr": "ltr",
+            "rtl": "rtl"
+          }
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

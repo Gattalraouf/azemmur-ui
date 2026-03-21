@@ -233,6 +233,62 @@
       ]
     },
     {
+      "name": "components-timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "A flexible scroll-driven timeline with animated progress, configurable orientations, and customizable pins.",
+      "dependencies": [
+        "motion",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@azemmur/hooks-use-is-mobile",
+        "@azemmur/hooks-use-merged-refs"
+      ],
+      "files": [
+        {
+          "path": "registry/components/azemmur/timeline/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/index.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/timeline/timeline-root.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/timeline-root.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/timeline/timeline-context.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/timeline-context.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/timeline/timeline-header.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/timeline-header.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/timeline/timeline-horizontal.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/timeline-horizontal.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/timeline/timeline-item.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/timeline-item.tsx"
+        },
+        {
+          "path": "registry/components/azemmur/timeline/timeline-variants.ts",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/timeline-variants.ts"
+        },
+        {
+          "path": "registry/components/azemmur/timeline/timeline-vertical.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/components/timeline/timeline-vertical.tsx"
+        }
+      ]
+    },
+    {
       "name": "primitives-button",
       "type": "registry:ui",
       "title": "Button",
@@ -661,6 +717,94 @@
       }
     },
     {
+      "name": "demo-components-timeline",
+      "type": "registry:ui",
+      "title": "Timeline Demo",
+      "description": "Demo for the Timeline component.",
+      "dependencies": [],
+      "registryDependencies": [
+        "@azemmur/components-timeline"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/azemmur/timeline/index.tsx",
+          "type": "registry:ui",
+          "target": "components/azemmur/demo/components/timeline.tsx"
+        }
+      ],
+      "meta": {
+        "demoProps": {
+          "Timeline": {
+            "orientation": {
+              "value": "horizontal",
+              "options": {
+                "horizontal": "horizontal",
+                "vertical": "vertical"
+              }
+            },
+            "intent": {
+              "value": "primary",
+              "options": {
+                "primary": "primary",
+                "accent": "accent",
+                "secondary": "secondary",
+                "success": "success",
+                "info": "info",
+                "warning": "warning",
+                "error": "error"
+              }
+            },
+            "size": {
+              "value": "md",
+              "options": {
+                "sm": "sm",
+                "md": "md",
+                "lg": "lg"
+              }
+            },
+            "gradient": {
+              "value": "purple-blue",
+              "options": {
+                "purple-blue": "purple-blue",
+                "orange-red": "orange-red",
+                "green-teal": "green-teal",
+                "rainbow": "rainbow",
+                "none": "none"
+              }
+            },
+            "visuals": {
+              "value": "none",
+              "options": {
+                "card": "card",
+                "bordered": "bordered",
+                "solid": "solid",
+                "dashed": "dashed",
+                "dotted": "dotted",
+                "none": "none"
+              }
+            },
+            "shape": {
+              "value": "circle",
+              "options": {
+                "circle": "circle",
+                "ring": "ring",
+                "dot": "dot",
+                "square": "square",
+                "diamond": "diamond"
+              }
+            },
+            "dir": {
+              "value": "ltr",
+              "options": {
+                "ltr": "ltr",
+                "rtl": "rtl"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "demo-primitives-button",
       "type": "registry:ui",
       "title": "Button Demo",
@@ -736,6 +880,21 @@
           "path": "registry/hooks/use-key-actions/index.ts",
           "type": "registry:hook",
           "target": "hooks/use-key-actions.ts"
+        }
+      ]
+    },
+    {
+      "name": "hooks-use-merged-refs",
+      "type": "registry:hook",
+      "title": "useMergeRefs",
+      "description": "A hook for merging multiple refs into a single stable callback ref.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/hooks/use-merged-refs/index.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-merged-refs.ts"
         }
       ]
     },
