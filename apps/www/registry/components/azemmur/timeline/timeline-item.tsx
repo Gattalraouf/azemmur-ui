@@ -94,7 +94,6 @@ function TimelineItem({
       <motion.div
         ref={pinRef}
         style={isHorizontal && scrollProgress ? { x } : undefined}
-        aria-hidden="true"
         className={cn(
           'flex z-10',
           isHorizontal
@@ -103,7 +102,10 @@ function TimelineItem({
           pinClassName,
         )}
       >
-        <div className={cn(timelinePinVariants({ size, shape, intent }))}>
+        <div
+          aria-hidden="true"
+          className={cn(timelinePinVariants({ size, shape, intent }))}
+        >
           <div
             className={cn(timelinePinDotVariants({ size, shape, intent }))}
           />
@@ -135,7 +137,7 @@ function TimelineItem({
         )}
         <div
           className={cn(
-            timelineContentVariants({ visuals, intent }),
+            timelineContentVariants({ orientation, visuals, intent }),
             isHorizontal ? 'h-full' : '',
           )}
         >

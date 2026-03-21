@@ -209,7 +209,6 @@ function HorizontalTimeline({
         ref={combinedRef}
         dir={dir}
         aria-label={ariaLabel}
-        aria-orientation="horizontal"
         className={cn(
           timelineVariants({ orientation, intent, size }),
           className,
@@ -223,10 +222,7 @@ function HorizontalTimeline({
             <div className="w-full bg-transparent">
               <div className="relative w-full">
                 <motion.div
-                  role="progressbar"
-                  aria-label="Timeline progress"
-                  aria-valuemin={0}
-                  aria-valuemax={100}
+                  aria-hidden="true"
                   className={cn(
                     timelineProgressVariants({
                       orientation,
@@ -248,35 +244,52 @@ function HorizontalTimeline({
             <div className="h-full w-max flex flex-row">
               <motion.div
                 ref={timelineRowRef}
-                role="list"
                 className="mx-auto py-3 flex flex-row h-full"
                 style={{ x: scrollX }}
               >
                 {header && (
-                  <div ref={headerRef} aria-hidden="true">
-                    {header}
+                  <div ref={headerRef}>
+                    {cloneElement(
+                      header as ReactElement<{
+                        orientation?: 'horizontal' | 'vertical';
+                        dir?: Direction;
+                      }>,
+                      {
+                        orientation:
+                          (
+                            header as ReactElement<{
+                              orientation?: 'horizontal' | 'vertical';
+                            }>
+                          ).props.orientation ?? orientation,
+                        dir:
+                          (header as ReactElement<{ dir?: Direction }>).props
+                            .dir ?? dir,
+                      },
+                    )}
                   </div>
                 )}
 
-                {items.map((item, index) =>
-                  cloneElement(
-                    item as ReactElement<{
-                      index?: number;
-                      pinRef?: RefObject<HTMLDivElement | null>;
-                      scrollProgress?: typeof scrollYProgress;
-                      transformsRange?: number[][];
-                      [key: string]: unknown;
-                    }>,
-                    {
-                      key: index,
-                      index,
-                      ...itemProps,
-                      pinRef: index === 0 ? pinRef : undefined,
-                      scrollProgress: scrollYProgress,
-                      transformsRange: getTransformRange(index),
-                    },
-                  ),
-                )}
+                <div role="list" className="flex flex-row h-full">
+                  {items.map((item, index) =>
+                    cloneElement(
+                      item as ReactElement<{
+                        index?: number;
+                        pinRef?: RefObject<HTMLDivElement | null>;
+                        scrollProgress?: typeof scrollYProgress;
+                        transformsRange?: number[][];
+                        [key: string]: unknown;
+                      }>,
+                      {
+                        key: index,
+                        index,
+                        ...itemProps,
+                        pinRef: index === 0 ? pinRef : undefined,
+                        scrollProgress: scrollYProgress,
+                        transformsRange: getTransformRange(index),
+                      },
+                    ),
+                  )}
+                </div>
               </motion.div>
             </div>
           </div>

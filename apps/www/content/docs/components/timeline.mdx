@@ -128,14 +128,6 @@ Use dedicated components when you want an explicit layout regardless of viewport
 <Timeline shape="diamond">...</Timeline>
 ```
 
-#### Animation Control
-
-```tsx
-<Timeline animation="smooth">...</Timeline>
-<Timeline animation="snappy">...</Timeline>
-<Timeline animation="none">...</Timeline>
-```
-
 ### Mobile Behavior
 
 `Timeline` switches from horizontal to vertical on mobile by default. You can disable this behavior with `responsive={false}`.
@@ -237,13 +229,6 @@ Use the `dir` prop to control reading direction:
       typeDescription: '"circle" | "ring" | "dot" | "square" | "diamond"',
       required: false,
       default: '"circle"',
-    },
-    animation: {
-      description: 'Animation transition timing.',
-      type: 'enum',
-      typeDescription: '"smooth" | "snappy" | "none"',
-      required: false,
-      default: '"smooth"',
     },
     dir: {
       description: 'Controls reading direction.',
@@ -350,11 +335,10 @@ Use the `dir` prop to control reading direction:
 
 The Timeline component includes the following accessibility features:
 
-- Semantic HTML with `<section>` and `role="group"` for timeline items
+- Semantic HTML with `<section>`, `role="list"`, and `role="listitem"`
 - Proper heading hierarchy with `aria-labelledby` relationships
 - Progress indicators are decorative and hidden from screen readers
 - Scroll-driven animations respect `prefers-reduced-motion`
-- Use `animation="none"` to disable all motion
 
 ## Credits
 

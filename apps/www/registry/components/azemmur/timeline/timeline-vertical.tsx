@@ -168,7 +168,6 @@ function VerticalTimeline({
         ref={combinedRef}
         dir={dir}
         aria-label={ariaLabel}
-        aria-orientation="vertical"
         className={cn(
           timelineVariants({ orientation, intent, size }),
           'relative',
@@ -176,10 +175,7 @@ function VerticalTimeline({
         )}
       >
         <motion.div
-          role="progressbar"
-          aria-label="Timeline progress"
-          aria-valuemin={0}
-          aria-valuemax={100}
+          aria-hidden="true"
           className={cn(
             timelineProgressVariants({
               orientation,
@@ -197,13 +193,29 @@ function VerticalTimeline({
         />
 
         <div className="h-full">
-          <div role="list" className="flex flex-col">
-            {header && (
-              <div ref={headerRef} className="mb-4">
-                {header}
-              </div>
-            )}
+          {header && (
+            <div ref={headerRef} className="mb-4">
+              {cloneElement(
+                header as ReactElement<{
+                  orientation?: 'horizontal' | 'vertical';
+                  dir?: Direction;
+                }>,
+                {
+                  orientation:
+                    (
+                      header as ReactElement<{
+                        orientation?: 'horizontal' | 'vertical';
+                      }>
+                    ).props.orientation ?? orientation,
+                  dir:
+                    (header as ReactElement<{ dir?: Direction }>).props.dir ??
+                    dir,
+                },
+              )}
+            </div>
+          )}
 
+          <div role="list" className="flex flex-col">
             {items.map((item, index) =>
               cloneElement(
                 item as ReactElement<{

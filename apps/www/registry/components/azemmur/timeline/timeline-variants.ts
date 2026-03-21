@@ -121,7 +121,7 @@ const timelineContentVariants = cva(['relative w-full'], {
   variants: {
     orientation: {
       horizontal: 'p-8 h-full content-center',
-      vertical: 'ps-6 pe-4 flex-1 mb-8',
+      vertical: 'ps-6 pe-4 flex-1',
     },
     intent: {
       primary: 'bg-primary border-primary',
@@ -133,11 +133,11 @@ const timelineContentVariants = cva(['relative w-full'], {
       error: 'bg-error border-error',
     },
     visuals: {
-      card: 'bg-card shadow-md rounded-lg border border-border',
-      bordered: 'border rounded-md',
-      solid: 'rounded-md',
-      dashed: 'border-2 border-dashed rounded-md',
-      dotted: 'border-2 border-dotted rounded-md',
+      card: 'bg-card shadow-md rounded-lg border border-border p-8',
+      bordered: 'border rounded-md p-8',
+      solid: 'rounded-md p-8',
+      dashed: 'border-2 border-dashed rounded-md p-8',
+      dotted: 'border-2 border-dotted rounded-md p-8',
       none: '',
     },
   },
