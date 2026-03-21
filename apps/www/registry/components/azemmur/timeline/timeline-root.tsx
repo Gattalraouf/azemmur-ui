@@ -3,7 +3,6 @@
 'use client';
 
 import { type ReactNode, type RefObject } from 'react';
-import { type Direction } from '@/registry/components/azemmur/timeline/timeline-context';
 import {
   HorizontalTimeline,
   type HorizontalTimelineProps,
@@ -17,7 +16,6 @@ import { useIsMobile } from '@/registry/hooks/use-is-mobile';
 
 interface TimelineRootProps extends TimelineVariantProps {
   children: ReactNode;
-  dir?: Direction;
   className?: string;
   progressClassName?: string;
   ref?: RefObject<HTMLDivElement | null>;
@@ -28,7 +26,7 @@ interface TimelineRootProps extends TimelineVariantProps {
 
 function TimelineRoot({
   children,
-  dir = 'ltr',
+  direction,
   orientation = 'horizontal',
   intent = 'primary',
   size = 'md',
@@ -42,6 +40,7 @@ function TimelineRoot({
   mobileBreakpoint = 1024,
   'aria-label': ariaLabel = 'Timeline',
 }: TimelineRootProps) {
+  const resolvedDirection = direction ?? 'ltr';
   const isMobile = useIsMobile(mobileBreakpoint);
   const resolvedOrientation =
     responsive && orientation === 'horizontal' && isMobile
@@ -50,7 +49,7 @@ function TimelineRoot({
 
   const sharedProps = {
     children,
-    dir,
+    direction: resolvedDirection,
     intent,
     size,
     gradient,

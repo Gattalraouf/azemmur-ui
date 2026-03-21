@@ -11,12 +11,12 @@ interface TabsListProps extends ComponentProps<'div'> {
 }
 
 function TabsList({ className, children, ...props }: TabsListProps) {
-  const { ltr, intent, visuals, size, shape } = useTabs();
+  const { direction, intent, visuals, size, shape } = useTabs();
   return (
     <div
       role="tablist"
       aria-orientation="horizontal"
-      dir={ltr ? 'ltr' : 'rtl'}
+      dir={direction}
       className={cn(listVariants({ intent, visuals, size, shape }), className)}
       {...props}
     >

@@ -10,10 +10,10 @@ interface TabsContentProps extends ComponentProps<'div'> {
 }
 
 function TabsContent({ className, children, ...props }: TabsContentProps) {
-  const { ltr } = useTabs();
+  const { direction } = useTabs();
   return (
     <div
-      dir={ltr ? 'ltr' : 'rtl'}
+      dir={direction}
       className={cn('overflow-hidden', className)}
       {...props}
     >

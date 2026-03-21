@@ -3,12 +3,12 @@
 'use client';
 
 import { cn } from '@workspace/ui/lib/utils';
-import React, {
+import {
   useEffect,
   useRef,
-  ComponentPropsWithoutRef,
   useImperativeHandle,
-  forwardRef,
+  type ComponentPropsWithoutRef,
+  type Ref,
 } from 'react';
 import { useTabs } from '@/registry/components/azemmur/tabs/tabs-context';
 import { TabsIndicator as Indicator } from '@/registry/components/azemmur/tabs/tabs-indicator';
@@ -22,91 +22,86 @@ interface TabTriggerProps extends Omit<
   value: string;
   triggerClassName?: string;
   indicatorClassName?: string;
+  ref?: Ref<HTMLButtonElement>;
 }
 
-const TabTrigger = forwardRef<HTMLButtonElement, TabTriggerProps>(
-  (
-    {
-      value,
-      children,
-      className,
-      triggerClassName,
-      indicatorClassName,
-      ...props
-    },
-    forwardedRef,
-  ) => {
-    const {
-      tabsId,
-      activeValue,
-      onValueChange,
-      registerTrigger,
-      handleKeyDown,
-      getTriggerId,
-      getPanelId,
-      intent,
-      styling,
-      visuals,
-      shape,
-    } = useTabs();
-    const isActive = value === activeValue;
-    const internalRef = useRef<HTMLButtonElement>(null);
+function TabTrigger({
+  value,
+  children,
+  className,
+  triggerClassName,
+  indicatorClassName,
+  ref,
+  ...props
+}: TabTriggerProps) {
+  const {
+    tabsId,
+    activeValue,
+    onValueChange,
+    registerTrigger,
+    handleKeyDown,
+    getTriggerId,
+    getPanelId,
+    intent,
+    styling,
+    visuals,
+    shape,
+  } = useTabs();
+  const isActive = value === activeValue;
+  const internalRef = useRef<HTMLButtonElement>(null);
 
-    useImperativeHandle(forwardedRef, () => internalRef.current!);
+  useImperativeHandle(ref, () => internalRef.current!);
 
-    useEffect(() => {
-      registerTrigger(value, internalRef.current);
-      return () => registerTrigger(value, null);
-    }, [value, registerTrigger]);
+  useEffect(() => {
+    registerTrigger(value, internalRef.current);
+    return () => registerTrigger(value, null);
+  }, [value, registerTrigger]);
 
-    return (
-      <div className={cn('relative inline-block', className)}>
-        {isActive && (
-          <Indicator
-            layoutId={`active-tab-${tabsId}`}
-            className={indicatorClassName}
-            data-state={isActive ? 'active' : 'inactive'}
-            intent={intent}
-            styling={styling}
-            visuals={visuals}
-            shape={shape}
-          />
-        )}
-
-        <ButtonPrimitive
-          role="tab"
-          aria-selected={isActive}
-          aria-controls={getPanelId(value)}
-          id={getTriggerId(value)}
-          ref={internalRef}
+  return (
+    <div className={cn('relative inline-block', className)}>
+      {isActive && (
+        <Indicator
+          layoutId={`active-tab-${tabsId}`}
+          className={indicatorClassName}
           data-state={isActive ? 'active' : 'inactive'}
-          tabIndex={isActive ? 0 : -1}
-          onClick={(e) => {
-            onValueChange(value);
-            props.onClick?.(e);
-          }}
-          onKeyDown={(e) => {
-            handleKeyDown(e, value);
-            props.onKeyDown?.(e);
-          }}
-          className={cn(
-            triggerVariants({
-              intent,
-              visuals,
-              styling,
-              shape,
-            }),
-            triggerClassName,
-          )}
-          {...props}
-        >
-          {children}
-        </ButtonPrimitive>
-      </div>
-    );
-  },
-);
+          intent={intent}
+          styling={styling}
+          visuals={visuals}
+          shape={shape}
+        />
+      )}
 
-TabTrigger.displayName = 'TabTrigger';
+      <ButtonPrimitive
+        role="tab"
+        aria-selected={isActive}
+        aria-controls={getPanelId(value)}
+        id={getTriggerId(value)}
+        ref={internalRef}
+        data-state={isActive ? 'active' : 'inactive'}
+        tabIndex={isActive ? 0 : -1}
+        onClick={(e) => {
+          onValueChange(value);
+          props.onClick?.(e);
+        }}
+        onKeyDown={(e) => {
+          handleKeyDown(e, value);
+          props.onKeyDown?.(e);
+        }}
+        className={cn(
+          triggerVariants({
+            intent,
+            visuals,
+            styling,
+            shape,
+          }),
+          triggerClassName,
+        )}
+        {...props}
+      >
+        {children}
+      </ButtonPrimitive>
+    </div>
+  );
+}
 
 export { TabTrigger, type TabTriggerProps };

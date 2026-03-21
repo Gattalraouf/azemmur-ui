@@ -11,6 +11,13 @@ releaseDate: 2026-02-01
 
 The `useKeyActions` hook provides a declarative way to handle keyboard events with support for multiple key bindings, modifier keys, and scoped focus management. It powers the keyboard navigation in components like `FloatingDock` and `Tabs`.
 
+### Logic Lifecycle
+
+1. **Configuration** — Accepts an array of action definitions with keys, modifiers, and handlers
+2. **Event matching** — On keydown, iterates through actions to find matching key + modifier combination
+3. **Action execution** — Invokes the matched action handler, optionally preventing default behavior
+4. **Memoization** — Returns a stable callback ref via `useCallback`
+
 ## Installation
 
 <ComponentInstallation name="hooks-use-key-actions" />

@@ -9,14 +9,46 @@ releaseDate: 2026-02-01
 
 <ComponentPreview name="demo-components-button" />
 
+## Overview
+
+### Core Concept
+
+The `Button` component provides a motion-enhanced button with comprehensive variant support. Built on top of Framer Motion, it delivers fluid hover and tap animations while maintaining full accessibility.
+
+### Key Features
+
+- **Motion animations** — Smooth scale and shadow transitions on hover/tap
+- **Variant system** — Full support for intent, styling, size, shape, and elevation
+- **Polymorphic rendering** — Uses primitive button with `asChild` slot support
+- **Accessible by default** — Proper focus states and ARIA support
+
 ## Installation
 
 <ComponentInstallation name="components-button" />
 
 ## Usage
 
+### Basic
+
 ```tsx
 <Button>Click me</Button>
+```
+
+### Composition
+
+Combine with icons or use within forms:
+
+```tsx
+<Button intent="primary" size="lg">
+  <IconPlus className="mr-2 size-4" />
+  Add Item
+</Button>
+
+<form onSubmit={handleSubmit}>
+  <Button type="submit" intent="success">
+    Submit Form
+  </Button>
+</form>
 ```
 
 ## API Reference
@@ -79,6 +111,17 @@ releaseDate: 2026-02-01
     },
   }}
 />
+
+## Accessibility
+
+- **Focus visible** — Native focus ring support for keyboard navigation
+- **ARIA attributes** — Supports all standard button ARIA props
+- **Disabled state** — Proper `disabled` attribute handling with visual feedback
+
+| Key               | Action                      |
+| ----------------- | --------------------------- |
+| `Enter` / `Space` | Activates the button        |
+| `Tab`             | Moves focus to next element |
 
 ## Credits
 

@@ -11,6 +11,12 @@ releaseDate: 2026-03-20
 
 The `useMergeRefs` hook combines multiple refs into one callback ref. It is useful when a component needs to forward a ref while also keeping an internal ref for measurements, focus handling, or animations.
 
+### Logic Lifecycle
+
+1. **Input collection** — Accepts a spread of refs (object refs, callback refs, or `null`)
+2. **Callback creation** — Returns a single callback ref that assigns to all valid refs
+3. **Assignment** — When the element mounts/unmounts, updates all refs synchronously
+
 ## Installation
 
 <ComponentInstallation name="hooks-use-merged-refs" />

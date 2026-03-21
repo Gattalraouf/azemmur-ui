@@ -7,19 +7,29 @@ author:
 releaseDate: 2026-02-27
 ---
 
+<ComponentPreview name="demo-components-speed-dial" />
+
 ## Overview
 
-The `SpeedDial` component provides a mobile-friendly floating action button that expands to reveal a set of quick action items with smooth animations and keyboard accessibility.
+### Core Concept
 
-**Subcomponents & hooks:**
+The `SpeedDial` component provides a mobile-friendly floating action button that expands to reveal a set of quick action items. Built with Framer Motion, it delivers smooth staggered animations and full keyboard accessibility.
 
-- `SpeedDial` — root component (context provider, keyboard handling)
-- `SpeedDial.Trigger` — toggle button to open/close the menu
-- `SpeedDial.Menu` — animated container for action items
-- `SpeedDial.Item` — individual action item with icon and link
-- `useSpeedDial()` — hook for custom integrations
+### Key Features
 
-<ComponentPreview name="demo-components-speed-dial" />
+- **Staggered animations** — Items reveal with cascading entrance/exit effects
+- **Keyboard navigation** — Full arrow key support with Escape to close
+- **Focus management** — Auto-focus on open with proper focus trapping
+- **Link obfuscation** — Optional base64-encoded hrefs for spam protection
+- **Orientation support** — Vertical or horizontal menu layouts
+
+### Anatomy
+
+- `SpeedDial` — Root component (context provider, keyboard handling)
+- `SpeedDial.Trigger` — Toggle button to open/close the menu
+- `SpeedDial.Menu` — Animated container for action items
+- `SpeedDial.Item` — Individual action item with icon and link
+- `useSpeedDial()` — Hook for custom integrations
 
 ## Installation
 
@@ -105,7 +115,7 @@ function CustomSpeedDialItem() {
       required: false,
       default: '"vertical"',
     },
-    direction: {
+    expansion: {
       description:
         'Whether items appear before (reverse) or after (normal) the trigger.',
       type: 'enum',

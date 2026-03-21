@@ -4,9 +4,11 @@
 import { createContext, useContext } from 'react';
 import { TabsVariantProps } from '@/registry/components/azemmur/tabs/tabs-variants';
 
+type TabsDirection = 'ltr' | 'rtl';
+
 interface TabsContextValue extends TabsVariantProps {
   tabsId: string;
-  ltr: boolean;
+  direction: TabsDirection;
   activeValue?: string;
   onValueChange: (value: string) => void;
   registerTrigger: (value: string, node: HTMLButtonElement | null) => void;
@@ -26,3 +28,4 @@ const useTabs = () => {
 };
 
 export { TabsContext, useTabs };
+export type { TabsDirection };

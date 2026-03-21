@@ -1,6 +1,6 @@
 // Copyright (c) 2026 raouf.codes - Azemmur
 
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
 const timelineVariants = cva(['relative w-full overflow-y-auto'], {
   variants: {
@@ -366,18 +366,24 @@ const timelineTitleVariants = cva(['font-bold text-foreground'], {
   },
 });
 
-type TimelineVariantProps = VariantProps<typeof timelineVariants> &
-  VariantProps<typeof timelineProgressVariants> &
-  VariantProps<typeof timelinePinVariants> &
-  VariantProps<typeof timelineContentVariants>;
+type TimelineVariantProps = {
+  orientation?: 'horizontal' | 'vertical';
+  intent?:
+    | 'primary'
+    | 'accent'
+    | 'secondary'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'error';
+  size?: 'sm' | 'md' | 'lg';
+  gradient?: 'purple-blue' | 'orange-red' | 'green-teal' | 'rainbow' | 'none';
+  direction?: 'ltr' | 'rtl';
+  visuals?: 'card' | 'bordered' | 'solid' | 'dashed' | 'dotted' | 'none';
+  shape?: 'circle' | 'ring' | 'dot' | 'square' | 'diamond';
+};
 
-type TimelineItemVariantProps = VariantProps<typeof timelineItemVariants>;
-type TimelineProgressVariantProps = VariantProps<
-  typeof timelineProgressVariants
->;
-type TimelinePinVariantProps = VariantProps<typeof timelinePinVariants>;
-type TimelineContentVariantProps = VariantProps<typeof timelineContentVariants>;
-type TimelineTitleVariantProps = VariantProps<typeof timelineTitleVariants>;
+type TimelineItemVariantProps = Omit<TimelineVariantProps, 'gradient'>;
 
 export {
   timelineVariants,
@@ -388,9 +394,5 @@ export {
   timelinePinDotVariants,
   timelineTitleVariants,
   type TimelineVariantProps,
-  type TimelineProgressVariantProps,
   type TimelineItemVariantProps,
-  type TimelinePinVariantProps,
-  type TimelineContentVariantProps,
-  type TimelineTitleVariantProps,
 };

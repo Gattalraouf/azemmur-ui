@@ -8,7 +8,6 @@ import type { SpeedDialVariantProps } from '@/registry/components/azemmur/speed-
 type SpeedDialContextValue = SpeedDialVariantProps & {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isVertical: boolean;
 };
 
 const SpeedDialContext = createContext<SpeedDialContextValue | null>(null);

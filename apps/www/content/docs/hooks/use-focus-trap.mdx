@@ -11,6 +11,12 @@ releaseDate: 2026-02-01
 
 The `useFocusTrap` hook traps focus within a container element, ensuring that Tab and Shift+Tab navigation cycles through focusable elements without escaping. This is essential for accessible modals, dialogs, and dropdown menus.
 
+### Logic Lifecycle
+
+1. **Mount** — When `active` becomes `true`, the hook queries all focusable elements within the container
+2. **Focus cycle** — Tab/Shift+Tab navigation is intercepted to wrap focus between first and last elements
+3. **Cleanup** — Event listeners are removed when `active` becomes `false` or on unmount
+
 ## Installation
 
 <ComponentInstallation name="hooks-use-focus-trap" />

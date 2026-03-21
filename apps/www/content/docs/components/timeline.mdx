@@ -7,13 +7,29 @@ author:
 releaseDate: 2026-03-01
 ---
 
+<ComponentPreview name="demo-components-timeline" />
+
 ## Overview
 
-The `Timeline` component provides a scroll-driven timeline experience with support for both horizontal and vertical orientations. It features animated progress bars, customizable pins, and smooth transitions.
+### Core Concept
+
+The `Timeline` component provides a scroll-driven timeline experience with support for both horizontal and vertical orientations. Built with Framer Motion's scroll-linked animations, it features animated progress bars, customizable pins, and smooth transitions.
+
+### Key Features
+
+- **Scroll-driven progress** — Progress bar animates based on scroll position
+- **Responsive orientation** — Automatically switches to vertical on mobile
+- **Animated pins** — Scale and opacity transitions as items enter viewport
+- **Sticky viewport** — Horizontal mode keeps timeline fixed during scroll
+- **RTL support** — Full right-to-left layout via the `direction` prop
+
+### Anatomy
+
+- `Timeline` — Root component (orientation resolver)
+- `Timeline.Item` — Individual timeline entry with title and content
+- `Timeline.Header` — Optional header block for the timeline
 
 By default, `Timeline` automatically switches to vertical layout on mobile screens.
-
-<ComponentPreview name="demo-components-timeline" />
 
 ## Installation
 
@@ -146,12 +162,12 @@ export function TimelineExample() {
 }
 ```
 
-### LTR Support
+### Direction (LTR / RTL)
 
-Use the `dir` prop to control reading direction:
+Use the `direction` prop to control reading direction:
 
 ```tsx
-<Timeline dir="ltr">
+<Timeline direction="rtl">
   <Timeline.Item title="2020">
     <div>Content</div>
   </Timeline.Item>
@@ -230,12 +246,19 @@ Use the `dir` prop to control reading direction:
       required: false,
       default: '"circle"',
     },
-    dir: {
-      description: 'Controls reading direction.',
+    direction: {
+      description:
+        'Controls reading direction. Affects pin translation direction and progress bar gradient orientation.',
       type: 'enum',
       typeDescription: '"ltr" | "rtl"',
       required: false,
       default: '"ltr"',
+    },
+    'aria-label': {
+      description: 'Accessible label for the timeline region.',
+      type: 'string',
+      required: false,
+      default: '"Timeline"',
     },
     className: {
       description: 'Additional CSS classes for the timeline container.',
@@ -265,6 +288,12 @@ Use the `dir` prop to control reading direction:
       typeDescription: '"horizontal" | "vertical"',
       required: false,
     },
+    direction: {
+      description: 'Inherits from parent Timeline if not specified.',
+      type: 'enum',
+      typeDescription: '"ltr" | "rtl"',
+      required: false,
+    },
     className: {
       description: 'Additional CSS classes for the header container.',
       type: 'string',
@@ -287,6 +316,12 @@ Use the `dir` prop to control reading direction:
       type: 'React.ReactNode',
       required: true,
     },
+    orientation: {
+      description: 'Override parent orientation for this item.',
+      type: 'enum',
+      typeDescription: '"horizontal" | "vertical"',
+      required: false,
+    },
     intent: {
       description: 'Override parent intent for this item.',
       type: 'enum',
@@ -298,6 +333,12 @@ Use the `dir` prop to control reading direction:
       description: 'Override parent size for this item.',
       type: 'enum',
       typeDescription: '"sm" | "md" | "lg"',
+      required: false,
+    },
+    direction: {
+      description: 'Override parent direction for this item.',
+      type: 'enum',
+      typeDescription: '"ltr" | "rtl"',
       required: false,
     },
     visuals: {
@@ -326,6 +367,13 @@ Use the `dir` prop to control reading direction:
     pinClassName: {
       description: 'Additional CSS classes for the pin.',
       type: 'string',
+      required: false,
+    },
+    'aria-current': {
+      description:
+        'Marks this item as the current step for assistive technologies.',
+      type: 'enum',
+      typeDescription: 'boolean | "step" | "true" | "false"',
       required: false,
     },
   }}

@@ -13,13 +13,14 @@ import React, {
   ComponentProps,
 } from 'react';
 import { TabsContext } from '@/registry/components/azemmur/tabs/tabs-context';
+import type { TabsDirection } from '@/registry/components/azemmur/tabs/tabs-context';
 import { TabsVariantProps } from '@/registry/components/azemmur/tabs/tabs-variants';
 
 interface TabsRootProps extends ComponentProps<'div'>, TabsVariantProps {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  ltr?: boolean;
+  direction?: TabsDirection;
   activation?: 'auto' | 'manual';
   className?: string;
   children: React.ReactNode;
@@ -29,7 +30,7 @@ function TabsRoot({
   value,
   defaultValue,
   onValueChange,
-  ltr = true,
+  direction,
   activation = 'manual',
   className,
   intent,
@@ -42,6 +43,8 @@ function TabsRoot({
 }: TabsRootProps) {
   const tabsId = useId();
   const [internalValue, setInternalValue] = useState(defaultValue ?? '');
+  const resolvedDirection = direction ?? 'ltr';
+  const isLtr = resolvedDirection === 'ltr';
 
   const activeValue = value ?? internalValue;
 
@@ -78,8 +81,8 @@ function TabsRoot({
       const index = values.indexOf(val);
       if (index === -1) return;
 
-      const forward = ltr ? 'ArrowRight' : 'ArrowLeft';
-      const backward = ltr ? 'ArrowLeft' : 'ArrowRight';
+      const forward = isLtr ? 'ArrowRight' : 'ArrowLeft';
+      const backward = isLtr ? 'ArrowLeft' : 'ArrowRight';
 
       let next = index;
 
@@ -95,7 +98,7 @@ function TabsRoot({
       triggerRefs.current.get(nextValue)?.focus();
       if (activation === 'auto') handleValueChange(nextValue);
     },
-    [ltr, activation, handleValueChange],
+    [isLtr, activation, handleValueChange],
   );
 
   useLayoutEffect(() => {
@@ -113,7 +116,7 @@ function TabsRoot({
       onValueChange: handleValueChange,
       registerTrigger,
       handleKeyDown,
-      ltr,
+      direction: resolvedDirection,
       activation,
       getTriggerId: (val: string) => `${tabsId}-trigger-${val}`,
       getPanelId: (val: string) => `${tabsId}-panel-${val}`,
@@ -129,7 +132,7 @@ function TabsRoot({
       handleValueChange,
       registerTrigger,
       handleKeyDown,
-      ltr,
+      resolvedDirection,
       activation,
       intent,
       styling,

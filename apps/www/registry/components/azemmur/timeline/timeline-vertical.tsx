@@ -28,7 +28,6 @@ import { useMergeRefs } from '@/registry/hooks/use-merged-refs';
 
 interface VerticalTimelineProps extends TimelineVariantProps {
   children: ReactNode;
-  dir?: Direction;
   className?: string;
   progressClassName?: string;
   ref?: RefObject<HTMLDivElement | null>;
@@ -37,7 +36,7 @@ interface VerticalTimelineProps extends TimelineVariantProps {
 
 function VerticalTimeline({
   children,
-  dir = 'ltr',
+  direction,
   intent = 'primary',
   size = 'md',
   gradient = 'purple-blue',
@@ -48,6 +47,7 @@ function VerticalTimeline({
   ref,
   'aria-label': ariaLabel = 'Timeline',
 }: VerticalTimelineProps) {
+  const resolvedDirection = direction ?? 'ltr';
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
@@ -137,7 +137,7 @@ function VerticalTimeline({
 
   const contextValue = {
     scrollProgress: scrollYProgress,
-    dir,
+    direction: resolvedDirection,
     itemCount,
     containerWidth: 0,
     containerHeight,
@@ -159,14 +159,14 @@ function VerticalTimeline({
     size,
     visuals,
     shape,
-    dir,
+    direction: resolvedDirection,
   };
 
   return (
     <TimelineContext value={contextValue}>
       <section
         ref={combinedRef}
-        dir={dir}
+        dir={resolvedDirection}
         aria-label={ariaLabel}
         className={cn(
           timelineVariants({ orientation, intent, size }),
@@ -181,7 +181,7 @@ function VerticalTimeline({
               orientation,
               size,
               gradient,
-              direction: dir,
+              direction: resolvedDirection,
               intent,
             }),
             progressClassName,
@@ -198,7 +198,7 @@ function VerticalTimeline({
               {cloneElement(
                 header as ReactElement<{
                   orientation?: 'horizontal' | 'vertical';
-                  dir?: Direction;
+                  direction?: Direction;
                 }>,
                 {
                   orientation:
@@ -207,9 +207,13 @@ function VerticalTimeline({
                         orientation?: 'horizontal' | 'vertical';
                       }>
                     ).props.orientation ?? orientation,
-                  dir:
-                    (header as ReactElement<{ dir?: Direction }>).props.dir ??
-                    dir,
+                  direction:
+                    (
+                      header as ReactElement<{
+                        direction?: Direction;
+                        dir?: Direction;
+                      }>
+                    ).props.direction ?? resolvedDirection,
                 },
               )}
             </div>
