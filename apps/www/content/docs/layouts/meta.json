@@ -3,5 +3,5 @@
   "description": "Scroll-driven layout primitives",
   "icon": "LayoutDashboard",
   "root": false,
-  "pages": ["floating-header"]
+  "pages": ["floating-header", "parallax-reveal-section"]
 }
