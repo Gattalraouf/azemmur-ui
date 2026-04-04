@@ -1099,6 +1099,73 @@ export const index: Record<string, any> = {
     })(),
     command: '@azemmur/demo-primitives-button',
   },
+  'demo-layouts-floating-header': {
+    name: 'demo-layouts-floating-header',
+    description: '',
+    type: 'registry:ui',
+    dependencies: [],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/layouts-floating-header'],
+    files: [
+      {
+        path: 'registry/demo/layouts/floating-header/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/layouts/floating-header.tsx',
+        content:
+          'import { useRef } from \'react\';\nimport {\n  FloatingHeader,\n  type FloatingHeaderProps,\n} from \'@/components/azemmur/layouts/floating-header\';\n\ninterface FloatingHeaderDemoProps {\n  intent: FloatingHeaderProps[\'intent\'];\n  styling: FloatingHeaderProps[\'styling\'];\n  size: FloatingHeaderProps[\'size\'];\n  shape: FloatingHeaderProps[\'shape\'];\n  elevation: FloatingHeaderProps[\'elevation\'];\n  targetWidth: FloatingHeaderProps[\'targetWidth\'];\n}\n\nexport default function FloatingHeaderDemo({\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  targetWidth,\n}: FloatingHeaderDemoProps) {\n  const containerRef = useRef<HTMLDivElement>(null);\n  return (\n    <div\n      ref={containerRef}\n      className="relative h-[32rem] w-full overflow-y-auto rounded-lg border border-border"\n    >\n      <FloatingHeader\n        intent={intent}\n        styling={styling}\n        size={size}\n        shape={shape}\n        elevation={elevation}\n        targetWidth={targetWidth}\n        scrollRef={containerRef}\n      >\n        <nav\n          aria-label="Demo navigation"\n          className="flex w-full items-center justify-between"\n        >\n          <span className="text-sm font-semibold">Azemmur</span>\n          <ul className="flex gap-4 text-sm" role="list">\n            <li>\n              <a href="#home" className="hover:opacity-70">\n                Home\n              </a>\n            </li>\n            <li>\n              <a href="#about" className="hover:opacity-70">\n                About\n              </a>\n            </li>\n            <li>\n              <a href="#contact" className="hover:opacity-70">\n                Contact\n              </a>\n            </li>\n          </ul>\n        </nav>\n      </FloatingHeader>\n\n      {/* Scrollable filler content */}\n      <div className="space-y-8 p-8 pt-24">\n        {Array.from({ length: 4 }, (_, i) => (\n          <div\n            key={i}\n            className="h-40 rounded-lg bg-muted/50 grid place-content-center text-muted-foreground text-sm"\n          >\n            Scroll to see the header transform&nbsp;&darr;\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}',
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/layouts/floating-header/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-layouts-floating-header';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        FloatingHeader: {
+          intent: {
+            value: 'neutral',
+            options: {
+              primary: 'primary',
+              accent: 'accent',
+              secondary: 'secondary',
+              success: 'success',
+              warning: 'warning',
+              error: 'error',
+              info: 'info',
+              neutral: 'neutral',
+            },
+          },
+          styling: {
+            value: 'glass',
+            options: { solid: 'solid', outline: 'outline', glass: 'glass' },
+          },
+          size: { value: 'md', options: { sm: 'sm', md: 'md', lg: 'lg' } },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', pill: 'pill', sharp: 'sharp' },
+          },
+          elevation: {
+            value: 'raised',
+            options: { raised: 'raised', floating: 'floating' },
+          },
+          targetWidth: { value: 85, max: 100, min: 0, step: 1, unit: '%' },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-layouts-floating-header',
+  },
   'hooks-use-focus-trap': {
     name: 'hooks-use-focus-trap',
     description:
@@ -1282,5 +1349,43 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/hooks-use-pinch-zoom',
+  },
+  'layouts-floating-header': {
+    name: 'layouts-floating-header',
+    description:
+      'A scroll-driven floating header that morphs width, radius, and elevation as the user scrolls.',
+    type: 'registry:ui',
+    dependencies: ['class-variance-authority', 'motion'],
+    devDependencies: undefined,
+    registryDependencies: [],
+    files: [
+      {
+        path: 'registry/layouts/floating-header/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/layouts/floating-header.tsx',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport {\n  motion,\n  useScroll,\n  useTransform,\n  useSpring,\n  useMotionTemplate,\n  type HTMLMotionProps,\n} from 'motion/react';\nimport * as React from 'react';\n\nconst floatingHeaderVariants = cva('sticky z-50 flex items-center mx-auto', {\n  variants: {\n    intent: {\n      primary: 'text-primary-foreground bg-primary border-primary',\n      accent: 'text-accent-foreground bg-accent border-accent',\n      secondary: 'text-secondary-foreground bg-secondary border-secondary',\n      success: 'text-success-foreground bg-success border-success',\n      warning: 'text-warning-foreground bg-warning border-warning',\n      error: 'text-error-foreground bg-error border-error',\n      info: 'text-info-foreground bg-info border-info',\n      neutral: 'text-foreground bg-background border-border',\n    },\n    styling: {\n      solid: 'border-none',\n      outline: 'border border-2 bg-background',\n      glass: 'backdrop-blur-md border-none',\n    },\n    size: {\n      sm: 'px-4 py-2 text-sm gap-2',\n      md: 'px-6 py-3 text-sm gap-3',\n      lg: 'px-8 py-4 text-base gap-4',\n    },\n  },\n  compoundVariants: [\n    { intent: 'primary', styling: 'outline', className: 'text-primary' },\n    { intent: 'accent', styling: 'outline', className: 'text-accent' },\n    { intent: 'secondary', styling: 'outline', className: 'text-secondary' },\n    { intent: 'success', styling: 'outline', className: 'text-success' },\n    { intent: 'warning', styling: 'outline', className: 'text-warning' },\n    { intent: 'error', styling: 'outline', className: 'text-error' },\n    { intent: 'info', styling: 'outline', className: 'text-info' },\n    { intent: 'neutral', styling: 'outline', className: 'text-foreground' },\n    { styling: 'glass', intent: 'primary', className: 'bg-primary/60' },\n    { styling: 'glass', intent: 'accent', className: 'bg-accent/60' },\n    { styling: 'glass', intent: 'secondary', className: 'bg-secondary/60' },\n    { styling: 'glass', intent: 'success', className: 'bg-success/60' },\n    { styling: 'glass', intent: 'warning', className: 'bg-warning/60' },\n    { styling: 'glass', intent: 'error', className: 'bg-error/60' },\n    { styling: 'glass', intent: 'info', className: 'bg-info/60' },\n    { styling: 'glass', intent: 'neutral', className: 'bg-background/60' },\n  ],\n  defaultVariants: {\n    intent: 'neutral',\n    styling: 'glass',\n    size: 'md',\n  },\n});\n\nconst SHAPE_RADII = {\n  rounded: 6,\n  pill: 9999,\n  sharp: 0,\n} as const;\n\nconst SHADOW_CONFIG = {\n  raised: {\n    layerOne: {\n      hOffset: [0, 0],\n      vOffset: [0, 4],\n      blur: [0, 6],\n      spread: [0, -1],\n      opacity: [0, 0.1],\n    },\n    layerTwo: {\n      hOffset: [0, 0],\n      vOffset: [0, 2],\n      blur: [0, 4],\n      spread: [0, -2],\n      opacity: [0, 0.1],\n    },\n  },\n  floating: {\n    layerOne: {\n      hOffset: [0, 0],\n      vOffset: [1, 10],\n      blur: [3, 15],\n      spread: [0, -3],\n      opacity: [0.05, 0.15],\n    },\n    layerTwo: {\n      hOffset: [0, 0],\n      vOffset: [1, 4],\n      blur: [2, 6],\n      spread: [-1, -4],\n      opacity: [0.05, 0.15],\n    },\n  },\n};\n\ntype FloatingHeaderShape = keyof typeof SHAPE_RADII;\ntype FloatingHeaderElevation = keyof typeof SHADOW_CONFIG;\n\ntype FloatingHeaderProps = Omit<HTMLMotionProps<'header'>, 'style'> &\n  VariantProps<typeof floatingHeaderVariants> & {\n    shape?: FloatingHeaderShape;\n    elevation?: FloatingHeaderElevation;\n    targetWidth?: number;\n    scrollRef?: React.RefObject<HTMLElement | null>;\n  };\n\nfunction FloatingHeader({\n  className,\n  children,\n  intent,\n  styling,\n  size,\n  shape = 'rounded',\n  elevation = 'raised',\n  targetWidth = 85,\n  scrollRef,\n  ...props\n}: FloatingHeaderProps) {\n  const resolvedElevation: FloatingHeaderElevation = elevation ?? 'raised';\n\n  const { scrollYProgress } = useScroll({\n    ...(scrollRef ? { container: scrollRef } : {}),\n    offset: ['start start', 'end start'],\n  });\n\n  const smoothProgress = useSpring(scrollYProgress, {\n    stiffness: 150,\n    damping: 15,\n    mass: 0.8,\n  });\n\n  const motionWidth = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    ['100%', `${targetWidth}%`],\n  );\n  const motionRadius = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    [0, SHAPE_RADII[shape]],\n  );\n  const motionY = useTransform(smoothProgress, [0, 0.2], ['0rem', '1rem']);\n  const motionScale = useTransform(smoothProgress, [0, 0.2], [1, 1.05]);\n\n  const config = SHADOW_CONFIG[resolvedElevation];\n  const shadowHOffset = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerOne.hOffset,\n  );\n  const shadowVOffset = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerOne.vOffset,\n  );\n  const shadowBlur = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerOne.blur,\n  );\n  const shadowSpread = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerOne.spread,\n  );\n  const shadowOpacity = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerOne.opacity,\n  );\n  const shadowHOffset2 = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerTwo.hOffset,\n  );\n  const shadowVOffset2 = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerTwo.vOffset,\n  );\n  const shadowBlur2 = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerTwo.blur,\n  );\n  const shadowSpread2 = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerTwo.spread,\n  );\n  const shadowOpacity2 = useTransform(\n    smoothProgress,\n    [0, 0.2],\n    config.layerTwo.opacity,\n  );\n  const motionShadow = useMotionTemplate`${shadowHOffset}px ${shadowVOffset}px ${shadowBlur}px ${shadowSpread}px oklch(from var(--primary) l c h / ${shadowOpacity}), ${shadowHOffset2}px ${shadowVOffset2}px ${shadowBlur2}px ${shadowSpread2}px oklch(from var(--primary) l c h / ${shadowOpacity2})`;\n\n  return (\n    <motion.header\n      role=\"banner\"\n      data-slot=\"floating-header\"\n      className={cn(\n        floatingHeaderVariants({ intent, styling, size }),\n        className,\n      )}\n      style={{\n        width: motionWidth,\n        borderRadius: motionRadius,\n        boxShadow: motionShadow,\n        top: motionY,\n        scale: motionScale,\n      }}\n      {...props}\n    >\n      {children}\n    </motion.header>\n  );\n}\n\nexport { FloatingHeader, floatingHeaderVariants, type FloatingHeaderProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/layouts/floating-header/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'layouts-floating-header';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/layouts-floating-header',
   },
 };
