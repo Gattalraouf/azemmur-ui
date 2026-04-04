@@ -1,0 +1,71 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-layouts-floating-header",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": ["@azemmur/layouts-floating-header"],
+  "files": [
+    {
+      "path": "registry/demo/layouts/floating-header/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/layouts/floating-header.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "FloatingHeader": {
+        "intent": {
+          "value": "neutral",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "warning": "warning",
+            "error": "error",
+            "info": "info",
+            "neutral": "neutral"
+          }
+        },
+        "styling": {
+          "value": "glass",
+          "options": {
+            "solid": "solid",
+            "outline": "outline",
+            "glass": "glass"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
+          }
+        },
+        "targetWidth": {
+          "value": 85,
+          "max": 100,
+          "min": 0,
+          "step": 1,
+          "unit": "%"
+        }
+      }
+    }
+  }
+}
