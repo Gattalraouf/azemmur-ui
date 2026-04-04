@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layouts-floating-header",
+  "type": "registry:ui",
+  "title": "Floating Header",
+  "description": "A scroll-driven floating header that morphs width, radius, and elevation as the user scrolls.",
+  "dependencies": ["class-variance-authority", "motion"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/layouts/floating-header/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/layouts/floating-header.tsx"
+    }
+  ]
+}
