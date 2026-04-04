@@ -1,0 +1,40 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-layouts-parallax-reveal-section",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": ["@azemmur/layouts-parallax-reveal-section"],
+  "files": [
+    {
+      "path": "registry/demo/layouts/parallax-reveal-section/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/layouts/parallax-reveal-section.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "ParallaxRevealSection": {
+        "intent": {
+          "value": "neutral",
+          "options": {
+            "neutral": "neutral",
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "sharp": "sharp"
+          }
+        }
+      }
+    }
+  }
+}
