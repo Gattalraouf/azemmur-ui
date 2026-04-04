@@ -1112,7 +1112,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/demo/layouts/floating-header.tsx',
         content:
-          'import { useRef } from \'react\';\nimport {\n  FloatingHeader,\n  type FloatingHeaderProps,\n} from \'@/components/azemmur/layouts/floating-header\';\n\ninterface FloatingHeaderDemoProps {\n  intent: FloatingHeaderProps[\'intent\'];\n  styling: FloatingHeaderProps[\'styling\'];\n  size: FloatingHeaderProps[\'size\'];\n  shape: FloatingHeaderProps[\'shape\'];\n  elevation: FloatingHeaderProps[\'elevation\'];\n  targetWidth: FloatingHeaderProps[\'targetWidth\'];\n}\n\nexport default function FloatingHeaderDemo({\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  targetWidth,\n}: FloatingHeaderDemoProps) {\n  const containerRef = useRef<HTMLDivElement>(null);\n  return (\n    <div\n      ref={containerRef}\n      className="relative h-[32rem] w-full overflow-y-auto rounded-lg border border-border"\n    >\n      <FloatingHeader\n        intent={intent}\n        styling={styling}\n        size={size}\n        shape={shape}\n        elevation={elevation}\n        targetWidth={targetWidth}\n        scrollRef={containerRef}\n      >\n        <nav\n          aria-label="Demo navigation"\n          className="flex w-full items-center justify-between"\n        >\n          <span className="text-sm font-semibold">Azemmur</span>\n          <ul className="flex gap-4 text-sm" role="list">\n            <li>\n              <a href="#home" className="hover:opacity-70">\n                Home\n              </a>\n            </li>\n            <li>\n              <a href="#about" className="hover:opacity-70">\n                About\n              </a>\n            </li>\n            <li>\n              <a href="#contact" className="hover:opacity-70">\n                Contact\n              </a>\n            </li>\n          </ul>\n        </nav>\n      </FloatingHeader>\n\n      {/* Scrollable filler content */}\n      <div className="space-y-8 p-8 pt-24">\n        {Array.from({ length: 4 }, (_, i) => (\n          <div\n            key={i}\n            className="h-40 rounded-lg bg-muted/50 grid place-content-center text-muted-foreground text-sm"\n          >\n            Scroll to see the header transform&nbsp;&darr;\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}',
+          'import { useRef } from \'react\';\nimport {\n  FloatingHeader,\n  type FloatingHeaderProps,\n} from \'@/components/azemmur/layouts/floating-header\';\n\ninterface FloatingHeaderDemoProps {\n  intent: FloatingHeaderProps[\'intent\'];\n  styling: FloatingHeaderProps[\'styling\'];\n  size: FloatingHeaderProps[\'size\'];\n  shape: FloatingHeaderProps[\'shape\'];\n  elevation: FloatingHeaderProps[\'elevation\'];\n  targetWidth: FloatingHeaderProps[\'targetWidth\'];\n}\n\nexport default function FloatingHeaderDemo({\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  targetWidth,\n}: FloatingHeaderDemoProps) {\n  const containerRef = useRef<HTMLDivElement>(null);\n  return (\n    <div\n      ref={containerRef}\n      className="relative h-[32rem] w-full overflow-y-auto rounded-lg border border-border"\n    >\n      <FloatingHeader\n        intent={intent}\n        styling={styling}\n        size={size}\n        shape={shape}\n        elevation={elevation}\n        targetWidth={targetWidth}\n        scrollRef={containerRef}\n      >\n        <nav\n          aria-label="Demo navigation"\n          className="flex w-full items-center justify-between"\n        >\n          <span className="text-sm font-semibold">Azemmur</span>\n          <ul className="flex gap-4 text-sm" role="list">\n            <li>\n              <a href="#home" className="hover:opacity-70">\n                Home\n              </a>\n            </li>\n            <li>\n              <a href="#about" className="hover:opacity-70">\n                About\n              </a>\n            </li>\n            <li>\n              <a href="#contact" className="hover:opacity-70">\n                Contact\n              </a>\n            </li>\n          </ul>\n        </nav>\n      </FloatingHeader>\n\n      <div className="space-y-8 p-8 pt-24">\n        {Array.from({ length: 4 }, (_, i) => (\n          <div\n            key={i}\n            className="h-40 rounded-lg bg-muted/50 grid place-content-center text-muted-foreground text-sm"\n          >\n            Scroll to see the header transform&nbsp;&darr;\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}',
       },
     ],
     keywords: [],
@@ -1165,6 +1165,63 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/demo-layouts-floating-header',
+  },
+  'demo-layouts-parallax-reveal-section': {
+    name: 'demo-layouts-parallax-reveal-section',
+    description: '',
+    type: 'registry:ui',
+    dependencies: [],
+    devDependencies: undefined,
+    registryDependencies: ['@azemmur/layouts-parallax-reveal-section'],
+    files: [
+      {
+        path: 'registry/demo/layouts/parallax-reveal-section/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/demo/layouts/parallax-reveal-section.tsx',
+        content:
+          'import {\n  ParallaxRevealSection,\n  type ParallaxRevealSectionProps,\n} from \'@/components/azemmur/layouts/parallax-reveal-section\';\n\ninterface ParallaxRevealSectionDemoProps {\n  intent: ParallaxRevealSectionProps[\'intent\'];\n  shape: ParallaxRevealSectionProps[\'shape\'];\n}\n\nexport default function ParallaxRevealSectionDemo({\n  intent,\n  shape,\n}: ParallaxRevealSectionDemoProps) {\n  return (\n    <div className="relative h-[20rem] border border-border">\n      <ParallaxRevealSection\n        className="h-full"\n        intent={intent}\n        shape={shape}\n        hero={\n          <div className="flex flex-col items-center gap-4 p-8 py-24">\n            <h2 className="text-3xl font-bold">Hero Section</h2>\n            <p className="max-w-md text-center opacity-75">\n              The section fills this fixed-height parent and keeps the hero\n              pinned while content scrolls.\n            </p>\n          </div>\n        }\n      >\n        <ParallaxRevealSection\n          intent="success"\n          shape={shape}\n          hero={\n            <div className="flex flex-col items-center gap-4 p-8 py-24 bg-warning">\n              <h2 className="text-3xl font-bold">Nested Hero</h2>\n              <p className="max-w-md text-center opacity-75">\n                Nested sections inherit the same behavior with no refs or\n                runtime measurement.\n              </p>\n            </div>\n          }\n        >\n          <div className="flex flex-col items-center justify-center gap-4 p-8 py-24">\n            <h3 className="text-2xl font-bold">Reveal Section</h3>\n            <p className="max-w-md text-center opacity-75">\n              This panel overlaps the hero as the user scrolls, creating a\n              parallax depth effect.\n            </p>\n          </div>\n        </ParallaxRevealSection>\n      </ParallaxRevealSection>\n    </div>\n  );\n}',
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/demo/layouts/parallax-reveal-section/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'demo-layouts-parallax-reveal-section';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        ParallaxRevealSection: {
+          intent: {
+            value: 'neutral',
+            options: {
+              neutral: 'neutral',
+              primary: 'primary',
+              accent: 'accent',
+              secondary: 'secondary',
+              success: 'success',
+              info: 'info',
+              warning: 'warning',
+              error: 'error',
+            },
+          },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', sharp: 'sharp' },
+          },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: '@azemmur/demo-layouts-parallax-reveal-section',
   },
   'hooks-use-focus-trap': {
     name: 'hooks-use-focus-trap',
@@ -1387,5 +1444,43 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: '@azemmur/layouts-floating-header',
+  },
+  'layouts-parallax-reveal-section': {
+    name: 'layouts-parallax-reveal-section',
+    description:
+      'A two-panel parallax layout where a sticky hero sits behind a reveal section that slides over it on scroll.',
+    type: 'registry:ui',
+    dependencies: ['class-variance-authority'],
+    devDependencies: undefined,
+    registryDependencies: [],
+    files: [
+      {
+        path: 'registry/layouts/parallax-reveal-section/index.tsx',
+        type: 'registry:ui',
+        target: 'components/azemmur/layouts/parallax-reveal-section.tsx',
+        content:
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\n\nconst parallaxRevealSectionVariants = cva('relative w-full sticky top-0 z-10', {\n  variants: {\n    intent: {\n      neutral: 'bg-background text-foreground',\n      primary: 'bg-primary text-primary-foreground',\n      accent: 'bg-accent text-accent-foreground',\n      secondary: 'bg-secondary text-secondary-foreground',\n      success: 'bg-success text-success-foreground',\n      info: 'bg-info text-info-foreground',\n      warning: 'bg-warning text-warning-foreground',\n      error: 'bg-error text-error-foreground',\n    },\n    shape: {\n      rounded: 'rounded-t-md',\n      sharp: 'rounded-none',\n    },\n  },\n  defaultVariants: {\n    intent: 'neutral',\n    shape: 'rounded',\n  },\n});\n\ntype ParallaxRevealSectionProps = React.ComponentPropsWithRef<'article'> &\n  VariantProps<typeof parallaxRevealSectionVariants> & {\n    hero?: React.ReactNode;\n  };\n\nfunction ParallaxRevealSection({\n  className,\n  hero,\n  intent,\n  shape,\n  children,\n  ...props\n}: ParallaxRevealSectionProps) {\n  return (\n    <article\n      data-slot=\"parallax-reveal-section\"\n      className={cn(\n        'relative w-full h-[100svh] overflow-y-auto',\n        '[&_[data-slot=parallax-reveal-section]]:h-auto [&_[data-slot=parallax-reveal-section]]:overflow-visible',\n        className,\n      )}\n      {...props}\n    >\n      <section\n        data-slot=\"parallax-reveal-hero\"\n        className={cn(\n          `relative w-full sticky top-0 bg-background text-foreground`,\n          `[&_[data-slot=parallax-reveal-section]]:${parallaxRevealSectionVariants({ shape })}`,\n        )}\n      >\n        {hero}\n      </section>\n      <section\n        data-slot=\"parallax-reveal-content\"\n        className={cn(parallaxRevealSectionVariants({ intent, shape }))}\n      >\n        {children}\n      </section>\n    </article>\n  );\n}\n\nexport {\n  ParallaxRevealSection,\n  parallaxRevealSectionVariants,\n  type ParallaxRevealSectionProps,\n};",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod =
+          await import('@/registry/layouts/parallax-reveal-section/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'layouts-parallax-reveal-section';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: '@azemmur/layouts-parallax-reveal-section',
   },
 };

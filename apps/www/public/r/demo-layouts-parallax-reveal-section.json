@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-layouts-parallax-reveal-section",
+  "dependencies": [],
+  "registryDependencies": [
+    "@azemmur/layouts-parallax-reveal-section"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/layouts/parallax-reveal-section/index.tsx",
+      "content": "import {\n  ParallaxRevealSection,\n  type ParallaxRevealSectionProps,\n} from '@/components/azemmur/layouts/parallax-reveal-section';\n\ninterface ParallaxRevealSectionDemoProps {\n  intent: ParallaxRevealSectionProps['intent'];\n  shape: ParallaxRevealSectionProps['shape'];\n}\n\nexport default function ParallaxRevealSectionDemo({\n  intent,\n  shape,\n}: ParallaxRevealSectionDemoProps) {\n  return (\n    <div className=\"relative h-[20rem] border border-border\">\n      <ParallaxRevealSection\n        className=\"h-full\"\n        intent={intent}\n        shape={shape}\n        hero={\n          <div className=\"flex flex-col items-center gap-4 p-8 py-24\">\n            <h2 className=\"text-3xl font-bold\">Hero Section</h2>\n            <p className=\"max-w-md text-center opacity-75\">\n              The section fills this fixed-height parent and keeps the hero\n              pinned while content scrolls.\n            </p>\n          </div>\n        }\n      >\n        <ParallaxRevealSection\n          intent=\"success\"\n          shape={shape}\n          hero={\n            <div className=\"flex flex-col items-center gap-4 p-8 py-24 bg-warning\">\n              <h2 className=\"text-3xl font-bold\">Nested Hero</h2>\n              <p className=\"max-w-md text-center opacity-75\">\n                Nested sections inherit the same behavior with no refs or\n                runtime measurement.\n              </p>\n            </div>\n          }\n        >\n          <div className=\"flex flex-col items-center justify-center gap-4 p-8 py-24\">\n            <h3 className=\"text-2xl font-bold\">Reveal Section</h3>\n            <p className=\"max-w-md text-center opacity-75\">\n              This panel overlaps the hero as the user scrolls, creating a\n              parallax depth effect.\n            </p>\n          </div>\n        </ParallaxRevealSection>\n      </ParallaxRevealSection>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/layouts/parallax-reveal-section.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "ParallaxRevealSection": {
+        "intent": {
+          "value": "neutral",
+          "options": {
+            "neutral": "neutral",
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "sharp": "sharp"
+          }
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}
