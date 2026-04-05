@@ -1,0 +1,154 @@
+---
+title: Parallax Reveal Section
+description: A scroll-driven two-panel layout — a sticky hero sits behind a reveal panel that slides over it, powered entirely by CSS sticky positioning.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-03-25
+---
+
+<ComponentPreview name="demo-layouts-parallax-reveal-section" />
+
+## Overview
+
+### Core Concept
+
+`ParallaxRevealSection` creates a scroll-driven depth effect using only CSS `position: sticky` and stacking order, with no JavaScript listeners or runtime measurements. The first `<section>` (hero backdrop) pins in place as the user scrolls, while the second `<section>` (reveal panel) rises and overlaps it.
+
+### Key Features
+
+- **Pure CSS parallax** — `sticky` positioning and z-index stacking; no scroll listeners, no layout thrash
+- **Intent variants** — supports all design-system colors (`neutral`, `primary`, `accent`, `secondary`, `success`, `info`, `warning`, `error`)
+- **Adaptive height** — defaults to `100svh` (viewport); pass `className="h-full"` inside a sized parent to fill it instead
+- **Recursive composition** — nested `ParallaxRevealSection` instances automatically switch to `h-auto overflow-visible` via descendant selectors, so sticky behaviour flows through every level
+- **Lightweight API** — no refs, no resize observers, and no layout effect hooks
+
+### Anatomy
+
+```
+<article>   ← root scroll container (h-[100svh] overflow-y-auto)
+  <section> ← sticky hero backdrop (sticky top-0)
+  <section> ← overlapping reveal panel (intent + shape variants)
+```
+
+## Installation
+
+<ComponentInstallation name="layouts-parallax-reveal-section" />
+
+## Usage
+
+### Basic — full viewport
+
+By default the component takes `100svh`. No wrapper needed.
+
+```tsx
+<ParallaxRevealSection
+  intent="primary"
+  hero={<h1 className="p-16 h-[100svh] text-4xl font-bold">Welcome</h1>}
+>
+  <p className="p-16 h-[200svh] text-lg">Scroll to discover more.</p>
+</ParallaxRevealSection>
+```
+
+### Inside a fixed-height parent
+
+Pass `className="h-full"` so the component fills its parent instead of the viewport.
+
+```tsx
+<div className="h-[24rem]">
+  <ParallaxRevealSection
+    className="h-full"
+    hero={<h1 className="p-16 text-4xl font-bold">Welcome</h1>}
+  >
+    <p className="p-16 text-lg">This section uses the parent height.</p>
+  </ParallaxRevealSection>
+</div>
+```
+
+### Composition — recursive nesting
+
+Nested instances automatically drop `overflow` and `height` constraints, so sticky positioning continues to work at every level.
+
+```tsx
+<ParallaxRevealSection
+  intent="primary"
+  shape="sharp"
+  hero={
+    <div className="flex flex-col items-center gap-4 p-16">
+      <h2 className="text-5xl font-bold">Our Story</h2>
+      <p className="max-w-lg opacity-75">A brief introduction.</p>
+    </div>
+  }
+>
+  <ParallaxRevealSection
+    intent="accent"
+    shape="rounded"
+    hero={
+      <div className="flex flex-col items-center gap-4 p-16">
+        <h3 className="text-3xl font-bold">Chapter Two</h3>
+      </div>
+    }
+  >
+    <ParallaxRevealSection
+      intent="success"
+      shape="rounded"
+      hero={
+        <div className="flex flex-col items-center gap-4 p-16">
+          <h4 className="text-2xl font-bold">Chapter Three</h4>
+        </div>
+      }
+    >
+      <div className="p-16">
+        <p>Final reveal content — three levels deep.</p>
+      </div>
+    </ParallaxRevealSection>
+  </ParallaxRevealSection>
+</ParallaxRevealSection>
+```
+
+## API Reference
+
+### ParallaxRevealSection
+
+<TypeTable
+  type={{
+    intent: {
+      description: 'Sets the color scheme for the reveal panel.',
+      type: 'enum',
+      typeDescription:
+        '"neutral" | "primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error"',
+      required: false,
+      default: '"neutral"',
+    },
+    shape: {
+      description:
+        'Controls the top border-radius of the reveal panel as it overlaps the hero.',
+      type: 'enum',
+      typeDescription: '"rounded" | "sharp"',
+      required: false,
+      default: '"rounded"',
+    },
+    hero: {
+      description:
+        'React node rendered inside the sticky hero section. Typically contains a heading and supporting copy.',
+      type: 'ReactNode',
+      required: false,
+    },
+    '...props': {
+      description:
+        'Additional props forwarded to the root `<article>` element, including `className` for custom sizing (e.g. `h-full`).',
+      type: 'React.ComponentPropsWithRef<"article">',
+      required: false,
+    },
+  }}
+/>
+
+## Accessibility
+
+- **Landmark** — Renders as semantic `<article>` with a clear two-section reading order
+- **Data slots** — `data-slot` attributes on every section (`parallax-reveal-section`, `parallax-reveal-hero`, `parallax-reveal-content`) for styling hooks and testing
+- **Reduced motion** — The parallax effect is CSS-only (`sticky`), so it inherits `prefers-reduced-motion` behaviour from the browser naturally
+
+| Key   | Action                                                                   |
+| ----- | ------------------------------------------------------------------------ |
+| `Tab` | Moves focus sequentially through interactive children in hero and reveal |

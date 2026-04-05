@@ -1,0 +1,150 @@
+---
+title: Floating Header
+description: A scroll-driven floating header that morphs width, radius, and elevation as the user scrolls.
+author:
+  name: raouf.codes
+  url: https://github.com/Gattalraouf
+releaseDate: 2026-03-25
+---
+
+<ComponentPreview name="demo-layouts-floating-header" />
+
+## Overview
+
+### Core Concept
+
+The `FloatingHeader` component transforms a static navigation bar into a scroll-reactive, motion-enhanced header. Built on top of Framer Motion's `useScroll` and `useSpring`, it interpolates width, border-radius, background, and shadow as the user scrolls — giving a polished "shrink-on-scroll" effect with zero JavaScript layout thrashing.
+
+Visual transitions use direct motion values for geometry and theme CSS variables (`--primary`, `--accent`, `--secondary`, `--background`, `--foreground`) for color, so the component stays aligned with your design tokens.
+
+### Key Features
+
+- **Scroll-driven morph** — Width, radius, shadow, and background animate smoothly via spring physics
+- **Theme-aware visuals** — Background and shadow colors derive from theme tokens, so the header automatically adapts to your palette
+- **Variant system** — Full support for `intent`, `styling`, `size`, `shape`, `elevation`, and `targetWidth`
+- **Glass styling** — Built-in `backdrop-blur` glass morphism variant
+- **Semantic markup** — Renders as a `<header role="banner">`
+
+## Installation
+
+<ComponentInstallation name="layouts-floating-header" />
+
+## Usage
+
+### Basic
+
+```tsx
+<FloatingHeader>
+  <nav className="flex w-full items-center justify-between">
+    <span className="font-semibold">Logo</span>
+    <ul className="flex gap-4">
+      <li>
+        <a href="#home">Home</a>
+      </li>
+      <li>
+        <a href="#about">About</a>
+      </li>
+    </ul>
+  </nav>
+</FloatingHeader>
+```
+
+### Composition
+
+Combine with a glass look, pill shape, and floating elevation:
+
+```tsx
+<FloatingHeader
+  intent="primary"
+  styling="glass"
+  shape="pill"
+  elevation="floating"
+  size="lg"
+  targetWidth={70}
+>
+  <nav aria-label="Main" className="flex w-full items-center justify-between">
+    <Logo />
+    <NavigationMenu />
+    <Button size="sm">Sign in</Button>
+  </nav>
+</FloatingHeader>
+```
+
+## API Reference
+
+### FloatingHeader
+
+<TypeTable
+  type={{
+    intent: {
+      description:
+        'Sets the color scheme applied to the header background and text after scroll.',
+      type: 'enum',
+      typeDescription:
+        '"primary" | "accent" | "secondary" | "success" | "warning" | "error" | "info" | "neutral"',
+      required: false,
+      default: '"neutral"',
+    },
+    styling: {
+      description:
+        'Controls the visual treatment — solid fill, outlined border, transparent ghost, or frosted glass.',
+      type: 'enum',
+      typeDescription: '"solid" | "outline" | "glass"',
+      required: false,
+      default: '"glass"',
+    },
+    size: {
+      description:
+        'Controls the padding, font size, and gap of the header content.',
+      type: 'enum',
+      typeDescription: '"sm" | "md" | "lg"',
+      required: false,
+      default: '"md"',
+    },
+    shape: {
+      description:
+        'Defines the border radius the header morphs to once the user has scrolled.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"rounded"',
+    },
+    elevation: {
+      description:
+        'Controls the shadow depth at rest and after scroll. "raised" is subtle; "floating" is more pronounced.',
+      type: 'enum',
+      typeDescription: '"raised" | "floating"',
+      required: false,
+      default: '"raised"',
+    },
+    targetWidth: {
+      description:
+        'Numeric percentage (0-100) the header shrinks to on scroll. For example `85` becomes `85%`.',
+      type: 'number',
+      required: false,
+      default: 85,
+    },
+    scrollRef: {
+      description:
+        'An optional ref to a scrollable container. When omitted, the component tracks the window scroll position.',
+      type: 'RefObject<HTMLElement | null>',
+      required: false,
+    },
+    '...props': {
+      description:
+        'Inherits all Framer Motion properties for the header element.',
+      type: 'HTMLMotionProps<"header">',
+      required: false,
+    },
+  }}
+/>
+
+## Accessibility
+
+- **Landmark** — Renders as `<header role="banner">` for assistive technology detection
+- **Focus management** — Place focusable navigation items inside; the header itself is not interactive
+- **Reduced motion** — Spring animations respect `prefers-reduced-motion` when configured via Framer Motion's global settings
+
+| Key   | Action                                     |
+| ----- | ------------------------------------------ |
+| `Tab` | Moves focus through child navigation items |

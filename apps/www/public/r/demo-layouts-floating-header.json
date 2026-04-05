@@ -1,0 +1,74 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-layouts-floating-header",
+  "dependencies": [],
+  "registryDependencies": [
+    "@azemmur/layouts-floating-header"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/layouts/floating-header/index.tsx",
+      "content": "import { useRef } from 'react';\nimport {\n  FloatingHeader,\n  type FloatingHeaderProps,\n} from '@/components/azemmur/layouts/floating-header';\n\ninterface FloatingHeaderDemoProps {\n  intent: FloatingHeaderProps['intent'];\n  styling: FloatingHeaderProps['styling'];\n  size: FloatingHeaderProps['size'];\n  shape: FloatingHeaderProps['shape'];\n  elevation: FloatingHeaderProps['elevation'];\n  targetWidth: FloatingHeaderProps['targetWidth'];\n}\n\nexport default function FloatingHeaderDemo({\n  intent,\n  styling,\n  size,\n  shape,\n  elevation,\n  targetWidth,\n}: FloatingHeaderDemoProps) {\n  const containerRef = useRef<HTMLDivElement>(null);\n  return (\n    <div\n      ref={containerRef}\n      className=\"relative h-[32rem] w-full overflow-y-auto rounded-lg border border-border\"\n    >\n      <FloatingHeader\n        intent={intent}\n        styling={styling}\n        size={size}\n        shape={shape}\n        elevation={elevation}\n        targetWidth={targetWidth}\n        scrollRef={containerRef}\n      >\n        <nav\n          aria-label=\"Demo navigation\"\n          className=\"flex w-full items-center justify-between\"\n        >\n          <span className=\"text-sm font-semibold\">Azemmur</span>\n          <ul className=\"flex gap-4 text-sm\" role=\"list\">\n            <li>\n              <a href=\"#home\" className=\"hover:opacity-70\">\n                Home\n              </a>\n            </li>\n            <li>\n              <a href=\"#about\" className=\"hover:opacity-70\">\n                About\n              </a>\n            </li>\n            <li>\n              <a href=\"#contact\" className=\"hover:opacity-70\">\n                Contact\n              </a>\n            </li>\n          </ul>\n        </nav>\n      </FloatingHeader>\n\n      <div className=\"space-y-8 p-8 pt-24\">\n        {Array.from({ length: 4 }, (_, i) => (\n          <div\n            key={i}\n            className=\"h-40 rounded-lg bg-muted/50 grid place-content-center text-muted-foreground text-sm\"\n          >\n            Scroll to see the header transform&nbsp;&darr;\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/layouts/floating-header.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "FloatingHeader": {
+        "intent": {
+          "value": "neutral",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "warning": "warning",
+            "error": "error",
+            "info": "info",
+            "neutral": "neutral"
+          }
+        },
+        "styling": {
+          "value": "glass",
+          "options": {
+            "solid": "solid",
+            "outline": "outline",
+            "glass": "glass"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "elevation": {
+          "value": "raised",
+          "options": {
+            "raised": "raised",
+            "floating": "floating"
+          }
+        },
+        "targetWidth": {
+          "value": 85,
+          "max": 100,
+          "min": 0,
+          "step": 1,
+          "unit": "%"
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}
