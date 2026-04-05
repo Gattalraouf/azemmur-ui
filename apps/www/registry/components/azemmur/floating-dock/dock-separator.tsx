@@ -9,7 +9,8 @@ import { useDock } from '@/registry/components/azemmur/floating-dock/dock-contex
 type DockSeparatorProps = ComponentProps<'div'>;
 
 function DockSeparator({ className, ...props }: DockSeparatorProps) {
-  const { isVertical } = useDock();
+  const { orientation } = useDock();
+  const isVertical = orientation !== 'horizontal';
 
   return (
     <div

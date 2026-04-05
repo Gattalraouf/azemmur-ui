@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layouts-parallax-reveal-section",
+  "title": "Parallax Reveal Section",
+  "description": "A two-panel parallax layout where a sticky hero sits behind a reveal section that slides over it on scroll.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/layouts/parallax-reveal-section/index.tsx",
+      "content": "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport * as React from 'react';\n\nconst parallaxRevealSectionVariants = cva('relative w-full sticky top-0 z-10', {\n  variants: {\n    intent: {\n      neutral: 'bg-background text-foreground',\n      primary: 'bg-primary text-primary-foreground',\n      accent: 'bg-accent text-accent-foreground',\n      secondary: 'bg-secondary text-secondary-foreground',\n      success: 'bg-success text-success-foreground',\n      info: 'bg-info text-info-foreground',\n      warning: 'bg-warning text-warning-foreground',\n      error: 'bg-error text-error-foreground',\n    },\n    shape: {\n      rounded: 'rounded-t-md',\n      sharp: 'rounded-none',\n    },\n  },\n  defaultVariants: {\n    intent: 'neutral',\n    shape: 'rounded',\n  },\n});\n\ntype ParallaxRevealSectionProps = React.ComponentPropsWithRef<'article'> &\n  VariantProps<typeof parallaxRevealSectionVariants> & {\n    hero?: React.ReactNode;\n  };\n\nfunction ParallaxRevealSection({\n  className,\n  hero,\n  intent,\n  shape,\n  children,\n  ...props\n}: ParallaxRevealSectionProps) {\n  return (\n    <article\n      data-slot=\"parallax-reveal-section\"\n      className={cn(\n        'relative w-full h-[100svh] overflow-y-auto',\n        '[&_[data-slot=parallax-reveal-section]]:h-auto [&_[data-slot=parallax-reveal-section]]:overflow-visible',\n        className,\n      )}\n      {...props}\n    >\n      <section\n        data-slot=\"parallax-reveal-hero\"\n        className={cn(\n          `relative w-full sticky top-0 bg-background text-foreground`,\n          `[&_[data-slot=parallax-reveal-section]]:${parallaxRevealSectionVariants({ shape })}`,\n        )}\n      >\n        {hero}\n      </section>\n      <section\n        data-slot=\"parallax-reveal-content\"\n        className={cn(parallaxRevealSectionVariants({ intent, shape }))}\n      >\n        {children}\n      </section>\n    </article>\n  );\n}\n\nexport {\n  ParallaxRevealSection,\n  parallaxRevealSectionVariants,\n  type ParallaxRevealSectionProps,\n};\n",
+      "type": "registry:ui",
+      "target": "components/azemmur/layouts/parallax-reveal-section.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}

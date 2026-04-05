@@ -7,18 +7,28 @@ author:
 releaseDate: 2026-02-24
 ---
 
+<ComponentPreview name="demo-components-floating-dock" />
+
 ## Overview
 
-The `FloatingDock` component provides a macOS-style dock with magnetic hover effects, spring physics animations, and full keyboard accessibility.
+### Core Concept
 
-**Subcomponents & hooks:**
+The `FloatingDock` component provides a macOS-style dock with magnetic hover effects, spring physics animations, and full keyboard accessibility. Built on Framer Motion, it delivers fluid scaling animations based on mouse proximity.
 
-- `FloatingDock` — root component (context provider, mouse/keyboard handling)
-- `FloatingDock.Item` — interactive dock item with animated scaling
-- `FloatingDock.Separator` — visual divider between item groups
-- `useDock()` — advanced hook for custom integrations
+### Key Features
 
-<ComponentPreview name="demo-components-floating-dock" />
+- **Magnetic hover effect** — Icons smoothly scale based on mouse proximity
+- **Spring animations** — Natural feeling physics-based transitions
+- **Keyboard navigation** — Full arrow key support with focus management
+- **Link obfuscation** — Optional base64-encoded hrefs for spam protection
+- **Variant system** — Full support for intent, styling, shape, and elevation
+
+### Anatomy
+
+- `FloatingDock` — Root component (context provider, mouse/keyboard handling)
+- `FloatingDock.Item` — Interactive dock item with animated scaling
+- `FloatingDock.Separator` — Visual divider between item groups
+- `useDock()` — Hook for custom integrations
 
 ## Installation
 
@@ -86,7 +96,7 @@ export default function Example() {
 import { useDock } from '@/components/azemmur/components/floating-dock/dock-context';
 
 function CustomDockItem() {
-  const { mousePosition, isVertical, intent, styling } = useDock();
+  const { mousePosition, orientation, intent, styling } = useDock();
   // Build custom dock item with context values
   return <div>Custom content</div>;
 }
@@ -250,10 +260,6 @@ Hook to access dock context values for building custom dock items.
       description: 'Motion value tracking the current mouse position.',
       type: 'MotionValue<number>',
     },
-    isVertical: {
-      description: 'Whether the dock is in vertical orientation.',
-      type: 'boolean',
-    },
     orientation: {
       description: 'The current orientation of the dock.',
       type: '"vertical" | "horizontal"',
@@ -306,12 +312,17 @@ Keyboard navigation adapts to the dock orientation:
 | `Enter` / `Space` | Activate the focused link       |
 | `Tab`             | Move focus into/out of the dock |
 
+## Accessibility
+
+- **ARIA labels** — Proper aria-label attributes from item titles
+- **Focus indicators** — Visible focus rings for keyboard navigation
+- **Role semantics** — Links maintain proper anchor semantics
+
 ## Features
 
 - **Magnetic hover effect** — Icons smoothly scale based on mouse proximity
 - **Spring animations** — Natural feeling physics-based transitions
 - **Keyboard navigation** — Full arrow key support with focus management
-- **Accessibility** — Proper ARIA labels and keyboard focus indicators
 - **Link obfuscation** — Optional base64-encoded hrefs for spam protection
 - **Variant system** — Full support for intent, styling, shape, and elevation
 

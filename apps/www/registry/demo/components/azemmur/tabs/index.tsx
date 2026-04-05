@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Tabs } from '@/registry/components/azemmur/tabs';
+import type { TabsDirection } from '@/registry/components/azemmur/tabs/tabs-context';
 import { TabsVariantProps } from '@/registry/components/azemmur/tabs/tabs-variants';
 
 interface TabsDemoProps {
@@ -10,11 +11,11 @@ interface TabsDemoProps {
   visuals?: TabsVariantProps['visuals'];
   size?: TabsVariantProps['size'];
   shape?: TabsVariantProps['shape'];
-  ltr?: boolean;
+  direction?: TabsDirection;
 }
 
 export default function TabsDemo({
-  ltr = true,
+  direction = 'ltr',
   intent,
   styling,
   visuals,
@@ -29,7 +30,7 @@ export default function TabsDemo({
       styling={styling}
       shape={shape}
       size={size}
-      ltr={ltr}
+      direction={direction}
       className="bg-card border rounded-xl p-4"
     >
       <Tabs.List>

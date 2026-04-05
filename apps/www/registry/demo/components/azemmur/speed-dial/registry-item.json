@@ -23,7 +23,7 @@
             "horizontal": "horizontal"
           }
         },
-        "direction": {
+        "expansion": {
           "value": "reverse",
           "options": {
             "normal": "normal",

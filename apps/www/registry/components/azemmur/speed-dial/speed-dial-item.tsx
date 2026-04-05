@@ -7,7 +7,10 @@ import { motion } from 'motion/react';
 import { type ComponentProps } from 'react';
 import { Button } from '@/registry/components/azemmur/button';
 import { useSpeedDial } from '@/registry/components/azemmur/speed-dial/speed-dial-context';
-import { SPEED_DIAL_BUTTON_SIZE } from '@/registry/components/azemmur/speed-dial/speed-dial-variants';
+import {
+  SPEED_DIAL_BUTTON_SIZE,
+  SPEED_DIAL_ITEM_OFFSET,
+} from '@/registry/components/azemmur/speed-dial/speed-dial-variants';
 
 type SpeedDialItemData = {
   title: string;
@@ -27,10 +30,20 @@ function SpeedDialItem({
   className,
   ...props
 }: SpeedDialItemProps) {
-  const { size, intent, styling, shape, elevation, setOpen, isVertical } =
-    useSpeedDial();
+  const {
+    size,
+    intent,
+    styling,
+    shape,
+    elevation,
+    setOpen,
+    orientation,
+    expansion,
+  } = useSpeedDial();
 
   const sizeKey = size ?? 'md';
+  const orientationKey = orientation ?? 'vertical';
+  const expansionKey = expansion ?? 'reverse';
   const href = item.obfuscated ? undefined : item.href;
 
   const handleClick = item.obfuscated
@@ -40,8 +53,8 @@ function SpeedDialItem({
       }
     : () => setOpen(false);
 
-  const initialOffset = isVertical ? { y: 10 } : { x: 10 };
-  const animateOffset = isVertical ? { y: 0 } : { x: 0 };
+  const initialOffset = SPEED_DIAL_ITEM_OFFSET[orientationKey][expansionKey];
+  const animateOffset = { x: 0, y: 0 };
 
   return (
     <motion.div

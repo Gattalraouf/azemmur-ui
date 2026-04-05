@@ -1,0 +1,54 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "components-timeline",
+  "type": "registry:ui",
+  "title": "Timeline",
+  "description": "A flexible scroll-driven timeline with animated progress, configurable orientations, and customizable pins.",
+  "dependencies": ["motion", "class-variance-authority"],
+  "registryDependencies": [
+    "@azemmur/hooks-use-is-mobile",
+    "@azemmur/hooks-use-merged-refs"
+  ],
+  "files": [
+    {
+      "path": "registry/components/azemmur/timeline/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/index.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/timeline/timeline-root.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/timeline-root.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/timeline/timeline-context.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/timeline-context.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/timeline/timeline-header.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/timeline-header.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/timeline/timeline-horizontal.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/timeline-horizontal.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/timeline/timeline-item.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/timeline-item.tsx"
+    },
+    {
+      "path": "registry/components/azemmur/timeline/timeline-variants.ts",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/timeline-variants.ts"
+    },
+    {
+      "path": "registry/components/azemmur/timeline/timeline-vertical.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/components/timeline/timeline-vertical.tsx"
+    }
+  ]
+}

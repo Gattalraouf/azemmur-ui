@@ -9,14 +9,51 @@ releaseDate: 2026-02-01
 
 <ComponentPreview name="demo-components-blur-image" />
 
+## Overview
+
+### Core Concept
+
+The `BlurImage` component wraps Next.js `Image` to provide an enhanced loading experience with a shimmer animation and blur-to-clear transition. It eliminates content layout shift while delivering a polished progressive loading effect.
+
+### Key Features
+
+- **Shimmer animation** — A subtle overlay sweeps across the placeholder while loading
+- **Blur-to-clear transition** — Image starts blurred and scales down smoothly as it loads
+- **Default placeholder** — Falls back to a neutral gray SVG placeholder
+- **Custom placeholder support** — Provide your own `blurDataURL` for branded loading states
+- **SSR compatible** — Works seamlessly with Next.js server-side rendering
+
 ## Installation
 
 <ComponentInstallation name="components-blur-image" />
 
 ## Usage
 
+### Basic
+
 ```tsx
 <BlurImage src="/og-image.png" width={800} height={450} alt="Description" />
+```
+
+### Composition
+
+Combine with grid layouts or card components for gallery views:
+
+```tsx
+<div className="grid grid-cols-2 gap-4">
+  <BlurImage
+    src="/photo-1.jpg"
+    width={400}
+    height={300}
+    alt="Gallery image 1"
+  />
+  <BlurImage
+    src="/photo-2.jpg"
+    width={400}
+    height={300}
+    alt="Gallery image 2"
+  />
+</div>
 ```
 
 ### Custom Placeholder
@@ -33,7 +70,9 @@ You can provide your own base64-encoded placeholder image:
 />
 ```
 
-## Props
+## API Reference
+
+### BlurImage
 
 <TypeTable
   type={{
@@ -78,12 +117,11 @@ You can provide your own base64-encoded placeholder image:
   }}
 />
 
-## Features
+## Accessibility
 
-- **Shimmer animation** — A subtle shimmer overlay sweeps across while loading
-- **Blur-to-clear transition** — Image starts blurred and scales down as it loads
-- **Default placeholder** — Falls back to a neutral gray SVG placeholder
-- **Custom placeholder support** — Provide your own `blurDataURL` for branded loading states
+- **Required `alt` attribute** — Enforces descriptive alt text for screen readers
+- **Decorative images** — Use `alt=""` for purely decorative images
+- **Reduced motion** — Shimmer animation respects `prefers-reduced-motion` when styled appropriately
 
 ## Notes
 
@@ -101,3 +139,8 @@ You can provide your own base64-encoded placeholder image:
 ```
 
 - For production, consider a server-side preprocessing step to generate low-resolution data URLs for all remote assets.
+
+## Credits
+
+- Inspired by Next.js Image placeholder patterns
+- Shimmer effect inspired by [Skeleton loading patterns](https://css-tricks.com/building-skeleton-screens-css-custom-properties/)

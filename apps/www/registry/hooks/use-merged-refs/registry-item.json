@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hooks-use-merged-refs",
+  "type": "registry:hook",
+  "title": "useMergeRefs",
+  "description": "A hook for merging multiple refs into a single stable callback ref.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/hooks/use-merged-refs/index.ts",
+      "type": "registry:hook",
+      "target": "hooks/use-merged-refs.ts"
+    }
+  ]
+}

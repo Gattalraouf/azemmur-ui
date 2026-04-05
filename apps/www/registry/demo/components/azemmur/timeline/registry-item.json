@@ -1,0 +1,87 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "demo-components-timeline",
+  "type": "registry:ui",
+  "title": "Timeline Demo",
+  "description": "Demo for the Timeline component.",
+  "dependencies": [],
+  "registryDependencies": ["@azemmur/components-timeline"],
+  "files": [
+    {
+      "path": "registry/demo/components/azemmur/timeline/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/demo/components/timeline.tsx"
+    }
+  ],
+  "meta": {
+    "demoProps": {
+      "Timeline": {
+        "orientation": {
+          "value": "horizontal",
+          "options": {
+            "horizontal": "horizontal",
+            "vertical": "vertical"
+          }
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error"
+          }
+        },
+        "size": {
+          "value": "md",
+          "options": {
+            "sm": "sm",
+            "md": "md",
+            "lg": "lg"
+          }
+        },
+        "gradient": {
+          "value": "purple-blue",
+          "options": {
+            "purple-blue": "purple-blue",
+            "orange-red": "orange-red",
+            "green-teal": "green-teal",
+            "rainbow": "rainbow",
+            "none": "none"
+          }
+        },
+        "visuals": {
+          "value": "none",
+          "options": {
+            "card": "card",
+            "bordered": "bordered",
+            "solid": "solid",
+            "dashed": "dashed",
+            "dotted": "dotted",
+            "none": "none"
+          }
+        },
+        "shape": {
+          "value": "circle",
+          "options": {
+            "circle": "circle",
+            "ring": "ring",
+            "dot": "dot",
+            "square": "square",
+            "diamond": "diamond"
+          }
+        },
+        "direction": {
+          "value": "ltr",
+          "options": {
+            "ltr": "ltr",
+            "rtl": "rtl"
+          }
+        }
+      }
+    }
+  }
+}

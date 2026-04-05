@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "layouts-parallax-reveal-section",
+  "type": "registry:ui",
+  "title": "Parallax Reveal Section",
+  "description": "A two-panel parallax layout where a sticky hero sits behind a reveal section that slides over it on scroll.",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/layouts/parallax-reveal-section/index.tsx",
+      "type": "registry:ui",
+      "target": "components/azemmur/layouts/parallax-reveal-section.tsx"
+    }
+  ]
+}

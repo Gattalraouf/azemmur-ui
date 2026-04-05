@@ -7,6 +7,7 @@
     "use-focus-trap",
     "use-is-mobile",
     "use-key-actions",
+    "use-merged-refs",
     "use-pinch-zoom"
   ]
 }

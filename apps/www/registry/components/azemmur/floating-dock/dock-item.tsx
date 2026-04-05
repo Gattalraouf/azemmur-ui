@@ -33,9 +33,17 @@ const DOCK_BUTTON_SIZE = {
 } as const;
 
 function DockItem({ item, className, ...props }: DockItemProps) {
-  const { mousePosition, isVertical, size, intent, styling, shape, elevation } =
-    useDock();
+  const {
+    mousePosition,
+    orientation,
+    size,
+    intent,
+    styling,
+    shape,
+    elevation,
+  } = useDock();
   const internalRef = useRef<HTMLAnchorElement | null>(null);
+  const isVertical = orientation !== 'horizontal';
 
   const sizeKey = size ?? 'md';
   const sizeConfig = DOCK_SIZE_CONFIG[sizeKey];

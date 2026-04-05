@@ -11,6 +11,14 @@ releaseDate: 2026-02-01
 
 The `usePinchZoom` hook provides pinch-to-zoom gesture handling for touch devices. It tracks two-finger touch gestures and calculates zoom levels with configurable min/max bounds.
 
+### Logic Lifecycle
+
+1. **Attach listeners** — Adds `touchstart`, `touchmove`, `touchend` events to the target element
+2. **Gesture detection** — Detects two-finger touches and calculates initial pinch distance
+3. **Zoom calculation** — Computes scale factor from finger distance delta, clamped to bounds
+4. **Callback invocation** — Calls `onZoom` with the new zoom level
+5. **Cleanup** — Removes all event listeners on unmount
+
 ## Installation
 
 <ComponentInstallation name="hooks-use-pinch-zoom" />

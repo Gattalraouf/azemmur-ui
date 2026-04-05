@@ -1,3 +1,14 @@
 {
-  "pages": ["index", "installation", "accessibility", "mcp", "brand", "components", "primitives", "hooks", "community"]
+  "pages": [
+    "index",
+    "installation",
+    "accessibility",
+    "mcp",
+    "brand",
+    "components",
+    "primitives",
+    "layouts",
+    "hooks",
+    "community"
+  ]
 }

@@ -6,6 +6,7 @@ import { cn } from '@workspace/ui/lib/utils';
 import { useState, useRef, useMemo, useCallback } from 'react';
 import { SpeedDialContext } from '@/registry/components/azemmur/speed-dial/speed-dial-context';
 import {
+  SPEED_DIAL_NAVIGATION_KEYS,
   speedDialVariants,
   type SpeedDialVariantProps,
 } from '@/registry/components/azemmur/speed-dial/speed-dial-variants';
@@ -22,7 +23,7 @@ function SpeedDialRoot({
   className,
   defaultOpen = false,
   orientation = 'vertical',
-  direction = 'reverse',
+  expansion = 'reverse',
   size = 'md',
   intent = 'primary',
   styling = 'solid',
@@ -31,7 +32,7 @@ function SpeedDialRoot({
 }: SpeedDialRootProps) {
   const [open, setOpen] = useState(defaultOpen);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isVertical = orientation === 'vertical';
+  const navigationKeys = SPEED_DIAL_NAVIGATION_KEYS[orientation ?? 'vertical'];
   const focusableSelector =
     'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -48,7 +49,7 @@ function SpeedDialRoot({
         action: () => setOpen(false),
       },
       {
-        keys: [isVertical ? 'ArrowDown' : 'ArrowRight'],
+        keys: [navigationKeys.next],
         action: (e) => {
           const focusable =
             containerRef.current?.querySelectorAll<HTMLElement>(
@@ -62,7 +63,7 @@ function SpeedDialRoot({
         },
       },
       {
-        keys: [isVertical ? 'ArrowUp' : 'ArrowLeft'],
+        keys: [navigationKeys.prev],
         action: (e) => {
           const focusable =
             containerRef.current?.querySelectorAll<HTMLElement>(
@@ -84,25 +85,14 @@ function SpeedDialRoot({
       open,
       setOpen,
       orientation,
-      direction,
-      isVertical,
+      expansion,
       size,
       intent,
       styling,
       shape,
       elevation,
     }),
-    [
-      open,
-      orientation,
-      direction,
-      isVertical,
-      size,
-      intent,
-      styling,
-      shape,
-      elevation,
-    ],
+    [open, orientation, expansion, size, intent, styling, shape, elevation],
   );
 
   return (
@@ -112,7 +102,7 @@ function SpeedDialRoot({
         className={cn(
           speedDialVariants({
             orientation,
-            direction,
+            expansion,
             size,
             intent,
             styling,
