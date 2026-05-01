@@ -10,7 +10,7 @@
       "path": "registry/hooks/use-is-mobile/index.ts",
       "content": "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { useState, useEffect } from 'react';\n\nconst DEFAULT_BREAKPOINT = 1024;\n\n/**\n * Hook to detect whether the current viewport is considered \"mobile\".\n *\n * Uses a resize listener to determine if the viewport width is below the breakpoint.\n * Returns `undefined` during SSR, then `true` or `false` after hydration.\n *\n * @example\n * ```tsx\n * const isMobile = useIsMobile();\n * if (isMobile) {\n *   // Render mobile layout\n * }\n * ```\n *\n * @param breakpoint - The width threshold in pixels (default: 1024)\n * @returns `undefined` during SSR, `true` if mobile, `false` otherwise\n */\nexport function useIsMobile(breakpoint = DEFAULT_BREAKPOINT) {\n  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);\n\n  useEffect(() => {\n    const checkScreenSize = () => {\n      setIsMobile(window.innerWidth < breakpoint);\n    };\n\n    checkScreenSize();\n    window.addEventListener('resize', checkScreenSize);\n\n    return () => {\n      window.removeEventListener('resize', checkScreenSize);\n    };\n  }, [breakpoint]);\n\n  return isMobile;\n}\n",
       "type": "registry:hook",
-      "target": "hooks/use-is-mobile.ts"
+      "target": "hooks/azemmur/use-is-mobile.ts"
     }
   ],
   "type": "registry:hook"
