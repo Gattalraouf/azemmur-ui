@@ -13,32 +13,32 @@
     {
       "path": "registry/components/azemmur/floating-dock/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/floating-dock/index.tsx"
+      "target": "components/azemmur/floating-dock/index.tsx"
     },
     {
       "path": "registry/components/azemmur/floating-dock/dock-root.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/floating-dock/dock-root.tsx"
+      "target": "components/azemmur/floating-dock/dock-root.tsx"
     },
     {
       "path": "registry/components/azemmur/floating-dock/dock-context.tsx",
       "type": "registry:hook",
-      "target": "components/azemmur/components/floating-dock/dock-context.tsx"
+      "target": "components/azemmur/floating-dock/dock-context.tsx"
     },
     {
       "path": "registry/components/azemmur/floating-dock/dock-item.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/floating-dock/dock-item.tsx"
+      "target": "components/azemmur/floating-dock/dock-item.tsx"
     },
     {
       "path": "registry/components/azemmur/floating-dock/dock-separator.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/floating-dock/dock-separator.tsx"
+      "target": "components/azemmur/floating-dock/dock-separator.tsx"
     },
     {
       "path": "registry/components/azemmur/floating-dock/dock-variants.ts",
       "type": "registry:ui",
-      "target": "components/azemmur/components/floating-dock/dock-variants.ts"
+      "target": "components/azemmur/floating-dock/dock-variants.ts"
     }
   ]
 }

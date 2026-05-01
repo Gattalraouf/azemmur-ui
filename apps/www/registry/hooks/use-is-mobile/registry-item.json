@@ -10,7 +10,7 @@
     {
       "path": "registry/hooks/use-is-mobile/index.ts",
       "type": "registry:hook",
-      "target": "hooks/use-is-mobile.ts"
+      "target": "hooks/azemmur/use-is-mobile.ts"
     }
   ]
 }

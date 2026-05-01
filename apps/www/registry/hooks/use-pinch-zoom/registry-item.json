@@ -10,7 +10,7 @@
     {
       "path": "registry/hooks/use-pinch-zoom/index.ts",
       "type": "registry:hook",
-      "target": "hooks/use-pinch-zoom.ts"
+      "target": "hooks/azemmur/use-pinch-zoom.ts"
     }
   ]
 }

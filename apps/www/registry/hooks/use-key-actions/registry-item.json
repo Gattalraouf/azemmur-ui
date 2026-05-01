@@ -10,7 +10,7 @@
     {
       "path": "registry/hooks/use-key-actions/index.ts",
       "type": "registry:hook",
-      "target": "hooks/use-key-actions.ts"
+      "target": "hooks/azemmur/use-key-actions.ts"
     }
   ]
 }

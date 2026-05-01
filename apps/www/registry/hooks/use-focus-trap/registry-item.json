@@ -10,7 +10,7 @@
     {
       "path": "registry/hooks/use-focus-trap/index.ts",
       "type": "registry:hook",
-      "target": "hooks/use-focus-trap.ts"
+      "target": "hooks/azemmur/use-focus-trap.ts"
     }
   ]
 }
