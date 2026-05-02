@@ -27,7 +27,7 @@ export const index: Record<string, any> = {
     description:
       'An image component that shows a low-quality blurred placeholder while loading.',
     type: 'registry:ui',
-    dependencies: ['next/image'],
+    dependencies: [],
     devDependencies: undefined,
     registryDependencies: [],
     files: [
