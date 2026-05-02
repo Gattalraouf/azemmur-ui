@@ -10,7 +10,7 @@
     {
       "path": "registry/components/azemmur/button/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/button.tsx"
+      "target": "components/azemmur/button.tsx"
     }
   ]
 }

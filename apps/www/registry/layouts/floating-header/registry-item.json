@@ -10,7 +10,7 @@
     {
       "path": "registry/layouts/floating-header/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/layouts/floating-header.tsx"
+      "target": "layouts/azemmur/floating-header.tsx"
     }
   ]
 }

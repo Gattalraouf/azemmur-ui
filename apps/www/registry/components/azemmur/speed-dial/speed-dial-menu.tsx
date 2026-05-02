@@ -4,6 +4,7 @@
 
 import { cn } from '@workspace/ui/lib/utils';
 import { AnimatePresence, motion } from 'motion/react';
+import { Children } from 'react';
 import { useSpeedDial } from '@/registry/components/azemmur/speed-dial/speed-dial-context';
 import { speedDialMenuVariants } from '@/registry/components/azemmur/speed-dial/speed-dial-variants';
 
@@ -14,6 +15,10 @@ interface SpeedDialMenuProps {
 
 function SpeedDialMenu({ children, className }: SpeedDialMenuProps) {
   const { open, orientation, expansion, size } = useSpeedDial();
+  const items =
+    expansion === 'reverse'
+      ? [...Children.toArray(children)].reverse()
+      : Children.toArray(children);
 
   return (
     <AnimatePresence>
@@ -31,7 +36,7 @@ function SpeedDialMenu({ children, className }: SpeedDialMenuProps) {
             className,
           )}
         >
-          {children}
+          {items}
         </motion.div>
       )}
     </AnimatePresence>

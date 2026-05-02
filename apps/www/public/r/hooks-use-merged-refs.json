@@ -10,7 +10,7 @@
       "path": "registry/hooks/use-merged-refs/index.ts",
       "content": "import { useCallback, type Ref, type RefCallback } from 'react';\n\n/**\n * React 19 compliant hook to merge multiple refs.\n * Replaces the deprecated 'MutableRefObject' with 'RefObject'.\n */\nexport function useMergeRefs<T>(\n  ...refs: (Ref<T> | undefined | null)[]\n): RefCallback<T> {\n  return useCallback((value: T | null) => {\n    const cleanups: Array<void | (() => void)> = [];\n\n    refs.forEach((ref) => {\n      if (typeof ref === 'function') {\n        const cleanup = ref(value);\n        if (typeof cleanup === 'function') {\n          cleanups.push(cleanup);\n        }\n      } else if (ref && typeof ref === 'object') {\n        (ref as { current: T | null }).current = value;\n      }\n    });\n\n    if (cleanups.length > 0) {\n      return () => {\n        cleanups.forEach((cleanup) => {\n          if (typeof cleanup === 'function') cleanup();\n        });\n      };\n    }\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, refs);\n}\n",
       "type": "registry:hook",
-      "target": "hooks/use-merged-refs.ts"
+      "target": "hooks/azemmur/use-merged-refs.ts"
     }
   ],
   "type": "registry:hook"

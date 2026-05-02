@@ -31,6 +31,7 @@ interface VerticalTimelineProps extends TimelineVariantProps {
   className?: string;
   progressClassName?: string;
   ref?: RefObject<HTMLDivElement | null>;
+  containerScrollRef?: RefObject<HTMLElement | null>;
   'aria-label'?: string;
 }
 
@@ -45,6 +46,7 @@ function VerticalTimeline({
   className,
   progressClassName,
   ref,
+  containerScrollRef,
   'aria-label': ariaLabel = 'Timeline',
 }: VerticalTimelineProps) {
   const resolvedDirection = direction ?? 'ltr';
@@ -53,6 +55,7 @@ function VerticalTimeline({
   const pinRef = useRef<HTMLDivElement>(null);
 
   const combinedRef = useMergeRefs(scrollContainerRef, ref);
+  const scrollSourceRef = containerScrollRef ?? scrollContainerRef;
 
   const [containerHeight, setContainerHeight] = useState(0);
   const [contentHeight, setContentHeight] = useState(0);
@@ -117,7 +120,7 @@ function VerticalTimeline({
   }, []);
 
   const { scrollYProgress } = useScroll({
-    container: scrollContainerRef,
+    container: scrollSourceRef,
   });
 
   const progressHeight = useTransform(
@@ -171,6 +174,7 @@ function VerticalTimeline({
         className={cn(
           timelineVariants({ orientation, intent, size }),
           'relative',
+          containerScrollRef ? 'overflow-y-visible' : '',
           className,
         )}
       >

@@ -30,7 +30,7 @@
         {
           "path": "registry/components/azemmur/blur-image/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/blur-image.tsx"
+          "target": "components/azemmur/blur-image.tsx"
         }
       ]
     },
@@ -49,7 +49,7 @@
         {
           "path": "registry/components/azemmur/button/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/button.tsx"
+          "target": "components/azemmur/button.tsx"
         }
       ]
     },
@@ -70,32 +70,32 @@
         {
           "path": "registry/components/azemmur/floating-dock/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/floating-dock/index.tsx"
+          "target": "components/azemmur/floating-dock/index.tsx"
         },
         {
           "path": "registry/components/azemmur/floating-dock/dock-root.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/floating-dock/dock-root.tsx"
+          "target": "components/azemmur/floating-dock/dock-root.tsx"
         },
         {
           "path": "registry/components/azemmur/floating-dock/dock-context.tsx",
           "type": "registry:hook",
-          "target": "components/azemmur/components/floating-dock/dock-context.tsx"
+          "target": "components/azemmur/floating-dock/dock-context.tsx"
         },
         {
           "path": "registry/components/azemmur/floating-dock/dock-item.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/floating-dock/dock-item.tsx"
+          "target": "components/azemmur/floating-dock/dock-item.tsx"
         },
         {
           "path": "registry/components/azemmur/floating-dock/dock-separator.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/floating-dock/dock-separator.tsx"
+          "target": "components/azemmur/floating-dock/dock-separator.tsx"
         },
         {
           "path": "registry/components/azemmur/floating-dock/dock-variants.ts",
           "type": "registry:ui",
-          "target": "components/azemmur/components/floating-dock/dock-variants.ts"
+          "target": "components/azemmur/floating-dock/dock-variants.ts"
         }
       ]
     },
@@ -116,37 +116,37 @@
         {
           "path": "registry/components/azemmur/speed-dial/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/speed-dial/index.tsx"
+          "target": "components/azemmur/speed-dial/index.tsx"
         },
         {
           "path": "registry/components/azemmur/speed-dial/speed-dial-root.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/speed-dial/speed-dial-root.tsx"
+          "target": "components/azemmur/speed-dial/speed-dial-root.tsx"
         },
         {
           "path": "registry/components/azemmur/speed-dial/speed-dial-context.tsx",
           "type": "registry:hook",
-          "target": "components/azemmur/components/speed-dial/speed-dial-context.tsx"
+          "target": "components/azemmur/speed-dial/speed-dial-context.tsx"
         },
         {
           "path": "registry/components/azemmur/speed-dial/speed-dial-trigger.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/speed-dial/speed-dial-trigger.tsx"
+          "target": "components/azemmur/speed-dial/speed-dial-trigger.tsx"
         },
         {
           "path": "registry/components/azemmur/speed-dial/speed-dial-menu.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/speed-dial/speed-dial-menu.tsx"
+          "target": "components/azemmur/speed-dial/speed-dial-menu.tsx"
         },
         {
           "path": "registry/components/azemmur/speed-dial/speed-dial-item.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/speed-dial/speed-dial-item.tsx"
+          "target": "components/azemmur/speed-dial/speed-dial-item.tsx"
         },
         {
           "path": "registry/components/azemmur/speed-dial/speed-dial-variants.ts",
           "type": "registry:ui",
-          "target": "components/azemmur/components/speed-dial/speed-dial-variants.ts"
+          "target": "components/azemmur/speed-dial/speed-dial-variants.ts"
         }
       ]
     },
@@ -166,47 +166,47 @@
         {
           "path": "registry/components/azemmur/tabs/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/index.tsx"
+          "target": "components/azemmur/tabs/index.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-root.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/tabs-root.tsx"
+          "target": "components/azemmur/tabs/tabs-root.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-context.tsx",
           "type": "registry:hook",
-          "target": "components/azemmur/components/tabs/tabs-context.tsx"
+          "target": "components/azemmur/tabs/tabs-context.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-list.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/tabs-list.tsx"
+          "target": "components/azemmur/tabs/tabs-list.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-trigger.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/tabs-trigger.tsx"
+          "target": "components/azemmur/tabs/tabs-trigger.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-indicator.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/tabs-indicator.tsx"
+          "target": "components/azemmur/tabs/tabs-indicator.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-content.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/tabs-content.tsx"
+          "target": "components/azemmur/tabs/tabs-content.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-panel.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/tabs-panel.tsx"
+          "target": "components/azemmur/tabs/tabs-panel.tsx"
         },
         {
           "path": "registry/components/azemmur/tabs/tabs-variants.ts",
           "type": "registry:ui",
-          "target": "components/azemmur/components/tabs/tabs-variants.ts"
+          "target": "components/azemmur/tabs/tabs-variants.ts"
         }
       ]
     },
@@ -228,7 +228,7 @@
         {
           "path": "registry/components/azemmur/theme-switch/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/theme-switch.tsx"
+          "target": "components/azemmur/theme-switch.tsx"
         }
       ]
     },
@@ -236,7 +236,7 @@
       "name": "components-timeline",
       "type": "registry:ui",
       "title": "Timeline",
-      "description": "A flexible scroll-driven timeline with animated progress, configurable orientations, and customizable pins.",
+      "description": "A flexible scroll-driven timeline with animated progress, configurable orientations, customizable pins, and optional external scroll-container control.",
       "dependencies": [
         "motion",
         "class-variance-authority"
@@ -249,42 +249,42 @@
         {
           "path": "registry/components/azemmur/timeline/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/index.tsx"
+          "target": "components/azemmur/timeline/index.tsx"
         },
         {
           "path": "registry/components/azemmur/timeline/timeline-root.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/timeline-root.tsx"
+          "target": "components/azemmur/timeline/timeline-root.tsx"
         },
         {
           "path": "registry/components/azemmur/timeline/timeline-context.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/timeline-context.tsx"
+          "target": "components/azemmur/timeline/timeline-context.tsx"
         },
         {
           "path": "registry/components/azemmur/timeline/timeline-header.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/timeline-header.tsx"
+          "target": "components/azemmur/timeline/timeline-header.tsx"
         },
         {
           "path": "registry/components/azemmur/timeline/timeline-horizontal.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/timeline-horizontal.tsx"
+          "target": "components/azemmur/timeline/timeline-horizontal.tsx"
         },
         {
           "path": "registry/components/azemmur/timeline/timeline-item.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/timeline-item.tsx"
+          "target": "components/azemmur/timeline/timeline-item.tsx"
         },
         {
           "path": "registry/components/azemmur/timeline/timeline-variants.ts",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/timeline-variants.ts"
+          "target": "components/azemmur/timeline/timeline-variants.ts"
         },
         {
           "path": "registry/components/azemmur/timeline/timeline-vertical.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/components/timeline/timeline-vertical.tsx"
+          "target": "components/azemmur/timeline/timeline-vertical.tsx"
         }
       ]
     },
@@ -966,7 +966,7 @@
         {
           "path": "registry/hooks/use-focus-trap/index.ts",
           "type": "registry:hook",
-          "target": "hooks/use-focus-trap.ts"
+          "target": "hooks/azemmur/use-focus-trap.ts"
         }
       ]
     },
@@ -981,7 +981,7 @@
         {
           "path": "registry/hooks/use-is-mobile/index.ts",
           "type": "registry:hook",
-          "target": "hooks/use-is-mobile.ts"
+          "target": "hooks/azemmur/use-is-mobile.ts"
         }
       ]
     },
@@ -996,7 +996,7 @@
         {
           "path": "registry/hooks/use-key-actions/index.ts",
           "type": "registry:hook",
-          "target": "hooks/use-key-actions.ts"
+          "target": "hooks/azemmur/use-key-actions.ts"
         }
       ]
     },
@@ -1011,7 +1011,7 @@
         {
           "path": "registry/hooks/use-merged-refs/index.ts",
           "type": "registry:hook",
-          "target": "hooks/use-merged-refs.ts"
+          "target": "hooks/azemmur/use-merged-refs.ts"
         }
       ]
     },
@@ -1026,7 +1026,7 @@
         {
           "path": "registry/hooks/use-pinch-zoom/index.ts",
           "type": "registry:hook",
-          "target": "hooks/use-pinch-zoom.ts"
+          "target": "hooks/azemmur/use-pinch-zoom.ts"
         }
       ]
     },
@@ -1044,7 +1044,7 @@
         {
           "path": "registry/layouts/floating-header/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/layouts/floating-header.tsx"
+          "target": "layouts/azemmur/floating-header.tsx"
         }
       ]
     },
@@ -1061,7 +1061,7 @@
         {
           "path": "registry/layouts/parallax-reveal-section/index.tsx",
           "type": "registry:ui",
-          "target": "components/azemmur/layouts/parallax-reveal-section.tsx"
+          "target": "layouts/azemmur/parallax-reveal-section.tsx"
         }
       ]
     }

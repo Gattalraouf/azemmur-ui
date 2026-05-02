@@ -10,7 +10,7 @@
     {
       "path": "registry/components/azemmur/blur-image/index.tsx",
       "type": "registry:ui",
-      "target": "components/azemmur/components/blur-image.tsx"
+      "target": "components/azemmur/blur-image.tsx"
     }
   ]
 }
