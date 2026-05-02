@@ -31,6 +31,7 @@ interface HorizontalTimelineProps extends TimelineVariantProps {
   className?: string;
   progressClassName?: string;
   ref?: RefObject<HTMLDivElement | null>;
+  containerScrollRef?: RefObject<HTMLElement | null>;
   'aria-label'?: string;
 }
 
@@ -45,6 +46,7 @@ function HorizontalTimeline({
   className,
   progressClassName,
   ref,
+  containerScrollRef,
   'aria-label': ariaLabel = 'Timeline',
 }: HorizontalTimelineProps) {
   const resolvedDirection = direction ?? 'ltr';
@@ -54,6 +56,7 @@ function HorizontalTimeline({
   const pinRef = useRef<HTMLDivElement>(null);
 
   const combinedRef = useMergeRefs(scrollContainerRef, ref);
+  const scrollSourceRef = containerScrollRef ?? scrollContainerRef;
 
   const [containerWidth, setContainerWidth] = useState(0);
   const [containerHeight, setContainerHeight] = useState(0);
@@ -129,7 +132,7 @@ function HorizontalTimeline({
   }, []);
 
   const { scrollYProgress } = useScroll({
-    container: scrollContainerRef,
+    container: scrollSourceRef,
   });
 
   const progressWidth = useTransform(

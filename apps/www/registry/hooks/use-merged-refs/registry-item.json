@@ -10,7 +10,7 @@
     {
       "path": "registry/hooks/use-merged-refs/index.ts",
       "type": "registry:hook",
-      "target": "hooks/use-merged-refs.ts"
+      "target": "hooks/azemmur/use-merged-refs.ts"
     }
   ]
 }

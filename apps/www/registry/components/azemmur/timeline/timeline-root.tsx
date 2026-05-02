@@ -19,6 +19,7 @@ interface TimelineRootProps extends TimelineVariantProps {
   className?: string;
   progressClassName?: string;
   ref?: RefObject<HTMLDivElement | null>;
+  containerScrollRef?: RefObject<HTMLElement | null>;
   responsive?: boolean;
   mobileBreakpoint?: number;
   'aria-label'?: string;
@@ -36,6 +37,7 @@ function TimelineRoot({
   className,
   progressClassName,
   ref,
+  containerScrollRef,
   responsive = true,
   mobileBreakpoint = 1024,
   'aria-label': ariaLabel = 'Timeline',
@@ -58,8 +60,11 @@ function TimelineRoot({
     className,
     progressClassName,
     ref,
+    containerScrollRef,
     'aria-label': ariaLabel,
   };
+
+  if (isMobile == null) return null;
 
   if (resolvedOrientation === 'vertical') {
     return <VerticalTimeline {...sharedProps} />;

@@ -1,6 +1,6 @@
 ---
 title: Timeline
-description: A flexible scroll-driven timeline with animated progress, configurable orientations, and customizable pins.
+description: A flexible scroll-driven timeline with animated progress, configurable orientations, customizable pins, and optional external scroll-container control.
 author:
   name: raouf.codes
   url: https://github.com/Gattalraouf
@@ -22,6 +22,7 @@ The `Timeline` component provides a scroll-driven timeline experience with suppo
 - **Animated pins** — Scale and opacity transitions as items enter viewport
 - **Sticky viewport** — Horizontal mode keeps timeline fixed during scroll
 - **RTL support** — Full right-to-left layout via the `direction` prop
+- **External scroll source** — Drive timeline animation from a separate scrolling container via `containerScrollRef`
 
 ### Anatomy
 
@@ -88,6 +89,32 @@ Use dedicated components when you want an explicit layout regardless of viewport
     <p>Vertical content</p>
   </Timeline.Item>
 </Timeline.Vertical>
+```
+
+### Composition with an External Scroll Container
+
+Use `containerScrollRef` when a parent container should control timeline progress (for example, inside a scrollable panel).
+
+```tsx
+import { useRef } from 'react';
+import { Timeline } from '@/components/azemmur/components/timeline';
+
+export function TimelineInScrollPanel() {
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={panelRef} className="h-[520px] overflow-y-auto">
+      <Timeline orientation="vertical" containerScrollRef={panelRef}>
+        <Timeline.Item title="2024">
+          <p>Milestone content</p>
+        </Timeline.Item>
+        <Timeline.Item title="2025">
+          <p>Next milestone</p>
+        </Timeline.Item>
+      </Timeline>
+    </div>
+  );
+}
 ```
 
 ### With Header
@@ -206,6 +233,12 @@ Use the `direction` prop to control reading direction:
       type: 'number',
       required: false,
       default: '1024',
+    },
+    containerScrollRef: {
+      description:
+        'Optional ref to an external scroll container. Timeline progress animations track this container instead of the timeline element itself.',
+      type: 'React.RefObject<HTMLElement | null>',
+      required: false,
     },
     intent: {
       description: 'Color intent for pins and progress bar.',
