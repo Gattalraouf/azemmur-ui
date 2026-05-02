@@ -3,9 +3,7 @@
   "name": "components-blur-image",
   "title": "Blur Image",
   "description": "An image component that shows a low-quality blurred placeholder while loading.",
-  "dependencies": [
-    "next/image"
-  ],
+  "dependencies": [],
   "registryDependencies": [],
   "files": [
     {
