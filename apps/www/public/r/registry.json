@@ -236,7 +236,7 @@
       "name": "components-timeline",
       "type": "registry:ui",
       "title": "Timeline",
-      "description": "A flexible scroll-driven timeline with animated progress, configurable orientations, and customizable pins.",
+      "description": "A flexible scroll-driven timeline with animated progress, configurable orientations, customizable pins, and optional external scroll-container control.",
       "dependencies": [
         "motion",
         "class-variance-authority"
