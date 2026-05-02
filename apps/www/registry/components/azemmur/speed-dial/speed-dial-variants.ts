@@ -80,18 +80,7 @@ const speedDialMenuVariants = cva(['flex'], {
       lg: 'gap-4',
     },
   },
-  compoundVariants: [
-    {
-      orientation: 'vertical',
-      expansion: 'reverse',
-      className: 'flex-col-reverse',
-    },
-    {
-      orientation: 'horizontal',
-      expansion: 'reverse',
-      className: 'flex-row-reverse',
-    },
-  ],
+  compoundVariants: [],
   defaultVariants: {
     orientation: 'vertical',
     expansion: 'reverse',
