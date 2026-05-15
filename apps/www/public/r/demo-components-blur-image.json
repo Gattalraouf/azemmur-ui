@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/demo/components/azemmur/blur-image/index.tsx",
-      "content": "import { BlurImage } from '@/components/azemmur/components/azemmur/blur-image';\n\ninterface BlurImageDemoProps {\n  src: string;\n  width?: number;\n  height?: number;\n}\n\nexport default function BlurImageDemo({\n  src,\n  width = 400,\n  height = 210,\n}: BlurImageDemoProps) {\n  return (\n    <div className=\"max-w-xl\">\n      <BlurImage\n        src={src}\n        width={width}\n        height={height}\n        alt=\"Demo blur image\"\n        className=\"border-4\"\n      />\n    </div>\n  );\n}\n",
+      "content": "import {\n  BlurImage,\n  type BlurImageProps,\n} from '@/components/azemmur/components/azemmur/blur-image';\n\ninterface BlurImageDemoProps {\n  src: string;\n  width?: number;\n  height?: number;\n  intent?: BlurImageProps['intent'];\n  visuals?: BlurImageProps['visuals'];\n  shape?: BlurImageProps['shape'];\n  elevation?: BlurImageProps['elevation'];\n}\n\nexport default function BlurImageDemo({\n  src,\n  width = 400,\n  height = 210,\n  intent,\n  visuals,\n  shape,\n  elevation,\n}: BlurImageDemoProps) {\n  return (\n    <div className=\"max-w-xl\">\n      <BlurImage\n        src={src}\n        width={width}\n        height={height}\n        alt=\"Demo blur image\"\n        intent={intent}\n        visuals={visuals}\n        shape={shape}\n        elevation={elevation}\n      />\n    </div>\n  );\n}\n",
       "type": "registry:ui",
       "target": "components/azemmur/demo/components/blur-image.tsx"
     }
@@ -26,6 +26,44 @@
         },
         "height": {
           "value": 210
+        },
+        "intent": {
+          "value": "primary",
+          "options": {
+            "primary": "primary",
+            "accent": "accent",
+            "secondary": "secondary",
+            "success": "success",
+            "info": "info",
+            "warning": "warning",
+            "error": "error",
+            "neutral": "neutral"
+          }
+        },
+        "visuals": {
+          "value": "none",
+          "options": {
+            "solid": "solid",
+            "dashed": "dashed",
+            "dotted": "dotted",
+            "none": "none"
+          }
+        },
+        "shape": {
+          "value": "rounded",
+          "options": {
+            "rounded": "rounded",
+            "pill": "pill",
+            "sharp": "sharp"
+          }
+        },
+        "elevation": {
+          "value": "none",
+          "options": {
+            "none": "none",
+            "raised": "raised",
+            "floating": "floating"
+          }
         }
       }
     }

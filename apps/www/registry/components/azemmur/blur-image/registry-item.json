@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "title": "Blur Image",
   "description": "An image component that shows a low-quality blurred placeholder while loading.",
-  "dependencies": [],
+  "dependencies": ["class-variance-authority"],
   "registryDependencies": [],
   "files": [
     {
