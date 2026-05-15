@@ -1,6 +1,6 @@
 ---
 title: Blur Image
-description: Image component with animated shimmer placeholder and blur-to-clear loading effect.
+description: Image component with animated shimmer placeholder, blur-to-clear loading effect, and configurable intent, visuals, shape, and elevation variants.
 author:
   name: raouf.codes
   url: https://github.com/Gattalraouf
@@ -13,7 +13,7 @@ releaseDate: 2026-02-01
 
 ### Core Concept
 
-The `BlurImage` component wraps Next.js `Image` to provide an enhanced loading experience with a shimmer animation and blur-to-clear transition. It eliminates content layout shift while delivering a polished progressive loading effect.
+The `BlurImage` component wraps Next.js `Image` to provide an enhanced loading experience with a shimmer animation and blur-to-clear transition. Built with `class-variance-authority`, it offers configurable `intent`, `visuals`, `shape`, and `elevation` variants for consistent styling across your application.
 
 ### Key Features
 
@@ -21,6 +21,10 @@ The `BlurImage` component wraps Next.js `Image` to provide an enhanced loading e
 - **Blur-to-clear transition** — Image starts blurred and scales down smoothly as it loads
 - **Default placeholder** — Falls back to a neutral gray SVG placeholder
 - **Custom placeholder support** — Provide your own `blurDataURL` for branded loading states
+- **Intent variants** — Apply semantic color (`primary`, `accent`, `secondary`, `success`, `info`, `warning`, `error`, `neutral`) that controls background, text, and border colors
+- **Visual variants** — Apply `solid`, `dashed`, `dotted`, or `none` border styling
+- **Shape variants** — Control border radius with `rounded`, `pill`, or `sharp`
+- **Elevation variants** — Control drop shadow: `none`, `raised`, `floating`
 - **SSR compatible** — Works seamlessly with Next.js server-side rendering
 
 ## Installation
@@ -46,12 +50,18 @@ Combine with grid layouts or card components for gallery views:
     width={400}
     height={300}
     alt="Gallery image 1"
+    intent="primary"
+    visuals="dashed"
+    shape="rounded"
   />
   <BlurImage
     src="/photo-2.jpg"
     width={400}
     height={300}
     alt="Gallery image 2"
+    intent="primary"
+    visuals="dashed"
+    shape="rounded"
   />
 </div>
 ```
@@ -98,6 +108,38 @@ You can provide your own base64-encoded placeholder image:
       required: false,
       default: '210',
     },
+    intent: {
+      description:
+        'Semantic color intent that controls background, text, and border colors.',
+      type: 'enum',
+      typeDescription:
+        '"primary" | "accent" | "secondary" | "success" | "info" | "warning" | "error" | "neutral"',
+      required: false,
+      default: '"primary"',
+    },
+    visuals: {
+      description:
+        'Controls the visual framing and border style of the image container.',
+      type: 'enum',
+      typeDescription: '"solid" | "dashed" | "dotted" | "none"',
+      required: false,
+      default: '"none"',
+    },
+    shape: {
+      description: 'Controls the border radius of the image.',
+      type: 'enum',
+      typeDescription: '"rounded" | "pill" | "sharp"',
+      required: false,
+      default: '"rounded"',
+    },
+    elevation: {
+      description:
+        'Controls drop shadow and hover/active elevation transitions.',
+      type: 'enum',
+      typeDescription: '"none" | "raised" | "floating"',
+      required: false,
+      default: '"none"',
+    },
     blurDataURL: {
       description:
         'Custom base64-encoded placeholder image. Falls back to a neutral gray placeholder if not provided.',
@@ -105,7 +147,7 @@ You can provide your own base64-encoded placeholder image:
       required: false,
     },
     className: {
-      description: 'Additional class names applied to the container wrapper.',
+      description: 'Additional class names applied to the `Image` element.',
       type: 'string',
       required: false,
     },
@@ -139,8 +181,3 @@ You can provide your own base64-encoded placeholder image:
 ```
 
 - For production, consider a server-side preprocessing step to generate low-resolution data URLs for all remote assets.
-
-## Credits
-
-- Inspired by Next.js Image placeholder patterns
-- Shimmer effect inspired by [Skeleton loading patterns](https://css-tricks.com/building-skeleton-screens-css-custom-properties/)

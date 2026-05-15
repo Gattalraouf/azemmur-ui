@@ -22,7 +22,9 @@
       "type": "registry:ui",
       "title": "Blur Image",
       "description": "An image component that shows a low-quality blurred placeholder while loading.",
-      "dependencies": [],
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "registryDependencies": [],
       "files": [
         {
@@ -348,6 +350,44 @@
             },
             "height": {
               "value": 210
+            },
+            "intent": {
+              "value": "primary",
+              "options": {
+                "primary": "primary",
+                "accent": "accent",
+                "secondary": "secondary",
+                "success": "success",
+                "info": "info",
+                "warning": "warning",
+                "error": "error",
+                "neutral": "neutral"
+              }
+            },
+            "visuals": {
+              "value": "none",
+              "options": {
+                "solid": "solid",
+                "dashed": "dashed",
+                "dotted": "dotted",
+                "none": "none"
+              }
+            },
+            "shape": {
+              "value": "rounded",
+              "options": {
+                "rounded": "rounded",
+                "pill": "pill",
+                "sharp": "sharp"
+              }
+            },
+            "elevation": {
+              "value": "none",
+              "options": {
+                "none": "none",
+                "raised": "raised",
+                "floating": "floating"
+              }
             }
           }
         }

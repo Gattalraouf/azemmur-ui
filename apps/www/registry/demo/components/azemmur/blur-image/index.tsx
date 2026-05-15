@@ -1,15 +1,26 @@
-import { BlurImage } from '@/registry/components/azemmur/blur-image';
+import {
+  BlurImage,
+  type BlurImageProps,
+} from '@/registry/components/azemmur/blur-image';
 
 interface BlurImageDemoProps {
   src: string;
   width?: number;
   height?: number;
+  intent?: BlurImageProps['intent'];
+  visuals?: BlurImageProps['visuals'];
+  shape?: BlurImageProps['shape'];
+  elevation?: BlurImageProps['elevation'];
 }
 
 export default function BlurImageDemo({
   src,
   width = 400,
   height = 210,
+  intent,
+  visuals,
+  shape,
+  elevation,
 }: BlurImageDemoProps) {
   return (
     <div className="max-w-xl">
@@ -18,7 +29,10 @@ export default function BlurImageDemo({
         width={width}
         height={height}
         alt="Demo blur image"
-        className="border-4"
+        intent={intent}
+        visuals={visuals}
+        shape={shape}
+        elevation={elevation}
       />
     </div>
   );

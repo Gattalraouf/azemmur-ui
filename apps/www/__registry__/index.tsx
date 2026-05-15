@@ -27,7 +27,7 @@ export const index: Record<string, any> = {
     description:
       'An image component that shows a low-quality blurred placeholder while loading.',
     type: 'registry:ui',
-    dependencies: [],
+    dependencies: ['class-variance-authority'],
     devDependencies: undefined,
     registryDependencies: [],
     files: [
@@ -36,7 +36,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/blur-image.tsx',
         content:
-          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport Image, { ImageProps } from 'next/image';\nimport { useState } from 'react';\n\nconst PLACEHOLDER_BLUR =\n  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjQ3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjIyIi8+PC9zdmc+';\n\nexport const BlurImage = ({\n  className,\n  height = 210,\n  width = 400,\n  src,\n  alt,\n  blurDataURL,\n  ...props\n}: ImageProps) => {\n  const [isLoading, setLoading] = useState(true);\n\n  return (\n    <div className={cn('relative overflow-hidden rounded-xl', className)}>\n      {isLoading && (\n        <div className=\"absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent\" />\n      )}\n      <Image\n        className={cn(\n          'transition duration-300 rounded-xl',\n          isLoading ? 'blur-sm scale-105' : 'blur-0 scale-100',\n        )}\n        aria-label={alt}\n        onLoad={() => setLoading(false)}\n        src={src as string}\n        width={width}\n        height={height}\n        loading=\"lazy\"\n        decoding=\"async\"\n        placeholder=\"blur\"\n        blurDataURL={blurDataURL ?? PLACEHOLDER_BLUR}\n        alt={alt}\n        sizes=\"(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw\"\n        {...props}\n      />\n    </div>\n  );\n};",
+          "// Copyright (c) 2026 raouf.codes - Azemmur\n\n'use client';\n\nimport { cn } from '@/lib/utils';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport Image, { ImageProps } from 'next/image';\nimport { useState } from 'react';\n\nconst PLACEHOLDER_BLUR =\n  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjQ3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjIyIi8+PC9zdmc+';\n\nconst blurImageVariants = cva('relative overflow-hidden border-2', {\n  variants: {\n    intent: {\n      primary: 'border-primary',\n      accent: 'border-accent',\n      secondary: 'border-secondary',\n      success: 'border-success',\n      info: 'border-info',\n      warning: 'border-warning',\n      error: 'border-error',\n      neutral: 'border-border',\n    },\n    visuals: {\n      solid: '',\n      dashed: 'border-dashed',\n      dotted: 'border-dotted',\n      none: 'border-none bg-transparent',\n    },\n    shape: {\n      rounded: 'rounded-xl',\n      pill: 'rounded-full',\n      sharp: 'rounded-none',\n    },\n    elevation: {\n      none: '',\n      raised: 'shadow-md',\n      floating: 'shadow-lg',\n    },\n  },\n  defaultVariants: {\n    shape: 'rounded',\n    visuals: 'none',\n    intent: 'neutral',\n    elevation: 'none',\n  },\n});\n\ntype BlurImageProps = Omit<ImageProps, 'size'> &\n  VariantProps<typeof blurImageVariants>;\n\nconst BlurImage = ({\n  className,\n  height = 210,\n  width = 400,\n  src,\n  alt,\n  blurDataURL,\n  shape,\n  visuals,\n  intent,\n  elevation,\n  ...props\n}: BlurImageProps) => {\n  const [isLoading, setLoading] = useState(true);\n\n  return (\n    <div\n      className={cn(blurImageVariants({ shape, visuals, intent, elevation }))}\n    >\n      {isLoading && (\n        <div className=\"absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent\" />\n      )}\n      <Image\n        className={cn(\n          'transition duration-300',\n          shape === 'pill'\n            ? 'rounded-full'\n            : shape === 'sharp'\n              ? 'rounded-none'\n              : 'rounded-xl',\n          isLoading ? 'blur-sm scale-105' : 'blur-0 scale-100',\n          className,\n        )}\n        aria-label={alt}\n        onLoad={() => setLoading(false)}\n        src={src as string}\n        width={width}\n        height={height}\n        loading=\"lazy\"\n        decoding=\"async\"\n        placeholder=\"blur\"\n        blurDataURL={blurDataURL ?? PLACEHOLDER_BLUR}\n        alt={alt}\n        sizes=\"(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw\"\n        {...props}\n      />\n    </div>\n  );\n};\n\nexport { BlurImage, blurImageVariants, type BlurImageProps };",
       },
     ],
     keywords: [],
@@ -570,7 +570,7 @@ export const index: Record<string, any> = {
         type: 'registry:ui',
         target: 'components/azemmur/demo/components/blur-image.tsx',
         content:
-          'import { BlurImage } from \'@/components/azemmur/components/azemmur/blur-image\';\n\ninterface BlurImageDemoProps {\n  src: string;\n  width?: number;\n  height?: number;\n}\n\nexport default function BlurImageDemo({\n  src,\n  width = 400,\n  height = 210,\n}: BlurImageDemoProps) {\n  return (\n    <div className="max-w-xl">\n      <BlurImage\n        src={src}\n        width={width}\n        height={height}\n        alt="Demo blur image"\n        className="border-4"\n      />\n    </div>\n  );\n}',
+          "import {\n  BlurImage,\n  type BlurImageProps,\n} from '@/components/azemmur/components/azemmur/blur-image';\n\ninterface BlurImageDemoProps {\n  src: string;\n  width?: number;\n  height?: number;\n  intent?: BlurImageProps['intent'];\n  visuals?: BlurImageProps['visuals'];\n  shape?: BlurImageProps['shape'];\n  elevation?: BlurImageProps['elevation'];\n}\n\nexport default function BlurImageDemo({\n  src,\n  width = 400,\n  height = 210,\n  intent,\n  visuals,\n  shape,\n  elevation,\n}: BlurImageDemoProps) {\n  return (\n    <div className=\"max-w-xl\">\n      <BlurImage\n        src={src}\n        width={width}\n        height={height}\n        alt=\"Demo blur image\"\n        intent={intent}\n        visuals={visuals}\n        shape={shape}\n        elevation={elevation}\n      />\n    </div>\n  );\n}",
       },
     ],
     keywords: [],
@@ -597,6 +597,36 @@ export const index: Record<string, any> = {
           },
           width: { value: 400 },
           height: { value: 210 },
+          intent: {
+            value: 'primary',
+            options: {
+              primary: 'primary',
+              accent: 'accent',
+              secondary: 'secondary',
+              success: 'success',
+              info: 'info',
+              warning: 'warning',
+              error: 'error',
+              neutral: 'neutral',
+            },
+          },
+          visuals: {
+            value: 'none',
+            options: {
+              solid: 'solid',
+              dashed: 'dashed',
+              dotted: 'dotted',
+              none: 'none',
+            },
+          },
+          shape: {
+            value: 'rounded',
+            options: { rounded: 'rounded', pill: 'pill', sharp: 'sharp' },
+          },
+          elevation: {
+            value: 'none',
+            options: { none: 'none', raised: 'raised', floating: 'floating' },
+          },
         },
       };
       return LazyComp;
